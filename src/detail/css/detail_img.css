@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+}
+.detail_img_form{
+    width: 560px;
+}
+.detail_img_container{
+    width: 560px;
+    height: 700px;
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 30px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detail_img_info{
+    margin-top: 20px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 62.85px 62.85px 62.85px 62.85px 62.85px 62.85px 62.85px;
+    grid-template-rows: 62.85px 62.85px;
+    gap: 20px;
+}

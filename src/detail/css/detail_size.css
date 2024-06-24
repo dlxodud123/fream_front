@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+}
+
+tr{
+    text-align: center; /* 텍스트를 왼쪽으로 정렬합니다. */
+    /* border: 1px solid black; */
+}
+th, td{
+    text-align: center;
+    padding: 20px;
+    /* border: 1px solid black; */
+}  
+.size_table{
+    margin-top: 20px;
+    border-collapse: collapse;
+    
+}
+.tab{
+    overflow-x: auto;
+}

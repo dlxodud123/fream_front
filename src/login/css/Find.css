@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+div{
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.content{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+}
+.area{
+    margin: 0 auto;
+    padding: 60px 0 160px;
+    width: 400px;
+}
+.help_title{
+    border-bottom: 2px solid #000;
+    color: #000;
+    font-size: 32px;
+    letter-spacing: -.48px;
+    padding-bottom: 41px;
+    text-align: center;
+}
+.notice{
+    padding: 40px 0 30px;
+}
+.input_item{
+    margin: 0;
+    padding: 0;
+}
+.input_tel{
+    border-bottom: 1px solid #ebebeb;
+    font-size: 15px;
+    letter-spacing: -.15px;
+    line-height: 22px;
+    padding: 8px 0;
+    width: 100%;
+}
+
+input{
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    resize: none;
+}
+.input_but{
+    padding-top: 44px;
+}
+/* .butt{
+    background-color: #ebebeb;
+    color: #fff;
+    cursor: default;
+    font-size: 16px;
+    height: 52px;
+    letter-spacing: -.16px;
+    width: 100%;
+    align-items: center;
+} */
+.solid{
+    font-weight: 700;
+}
+.text{
+    font-size: 14px;
+    letter-spacing: -.21px;
+}
+.title{
+    font-size: 13px;
+    letter-spacing: -.07px;
+    line-height: 18px;
+}
+.emailBut{
+        width: 100%;
+        margin: 15px 0;
+        background-color: #000;
+        border: none ;
+        padding: 10px 0 ;
+        cursor:auto ;
+}
+/* FindPw.css */
+.title_phon{
+    padding: 10px 0 14px;
+    position: relative;
+    font-size: 13px;
+    letter-spacing: -.07px;
+    line-height: 18px;
+}
+.title_email{
+    margin-top: 44px;
+    font-size: 13px;
+    letter-spacing: -.07px;
+    line-height: 18px;
+}

@@ -1,0 +1,11 @@
+.img-mainbutton1{
+
+    /* background-image: url('./img/main-button0.webp'); 이미지 파일의 경로를 설정합니다. */
+    background-size: cover; /* 이미지를 컨테이너에 맞게 조정합니다. */
+    background-position: center; /* 이미지를 가운데로 정렬합니다. */
+    background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
+    width: 250px; /* 박스의 너비를 100%로 설정하여 이미지가 가로 방향으로 가득 차도록 합니다. */
+    height: 100px; /* 박스의 높이를 원하는 값으로 설정합니다. */
+    border-radius: 30px;
+    border: none;
+  }

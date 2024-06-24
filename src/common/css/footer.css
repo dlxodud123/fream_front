@@ -1,0 +1,30 @@
+.footer_info{
+    width: 800px;
+    margin-top: 50px;
+}
+.footer_title{
+    display: flex;
+}
+.footer_title_info{
+    margin-top: 20px;
+}
+.footer_card_title{
+    margin-top: 45px;
+}
+.footer_card_info{
+    margin-top: 20px;
+}
+.footer_call{
+    width: 480px;
+    margin-top: 50px;
+}
+.footer_img{
+    width: 200px;
+    height: 70px;
+    text-align: right;
+    margin-left: 280px;
+}
+.footer_call_info{
+    width: 480px;
+    margin-left: 100px;
+}

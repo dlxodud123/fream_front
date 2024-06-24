@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    /* background-color: white; */
+}
+.buy_all{
+    background-color: #f4f4f4;
+    height: 1700px;
+}
+.buy_container{
+    margin: auto;
+    width: 700px;
+    text-align: center;
+}
+.buy_content{
+    height: 150px;
+    background-color: white;
+    display: flex;
+}
+.buy_delivery{
+    height: 500px;
+    background-color: white;
+    /* margin-top: 30px; */
+}
+.buy_payment{
+    height: 460px;
+    background-color: white;
+}
+.buy_final_payment{
+    height: 230px;
+    background-color: white;
+}
+.buy_total_payment{
+    height: 100px;
+    background-color: rgb(250, 250, 250);
+    display: flex;
+}
+.order_agreemnet_button{
+    height: 100px;
+    background-color: white;
+}

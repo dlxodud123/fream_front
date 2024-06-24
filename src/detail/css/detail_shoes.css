@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+}
+.detail_shoes{
+    display: flex;
+}
+.img{
+    background-size: cover; /* 이미지를 컨테이너에 맞게 조정합니다. */
+    background-position: center; /* 이미지를 가운데로 정렬합니다. */
+    background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
+    width: 220px; /* 박스의 너비를 100%로 설정하여 이미지가 가로 방향으로 가득 차도록 합니다. */
+    height: 220px; /* 박스의 높이를 원하는 값으로 설정합니다. */
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgb(233, 233, 233);
+}

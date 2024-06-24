@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+  }
+  .detail_info_form{
+    width: 599px;
+    /* height: 1850px; */
+    /* overflow-y: auto;  */
+  }
+  .detail_info_form::-webkit-scrollbar {
+    display: none;
+  }
+  .detail_info{
+    margin-left: 40px;
+    width: 560px;
+    height: 560px;
+  }
+  .price_container{
+    text-align: left;
+  }
+  .title_container{
+    text-align: left;
+    margin-top: 40px;
+  }
+  .product_container{
+    margin-top: 40px;
+    display: flex;
+  }
+  .division_btn_container{
+    margin-top: 20px; 
+    display: flex;
+  }
+  .wrap_title{
+    font-weight: bold;
+    font-size: "20px";
+  }
+  button{
+    width: 133px;
+    height: 58px;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .add_benefit{
+    width: 560px;
+    height: 114px;
+    margin-top: 60px;
+  }
+  .ship_info{
+    width: 560px;
+    height: 220px;
+  } 
+  .guarantee{
+    width: 560px;
+    height: 200px;
+    margin-top: 30px;
+  }
+  .parentDiv .canvasjs-chart-canvas {
+    z-index: 0;
+  }

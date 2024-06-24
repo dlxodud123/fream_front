@@ -1,0 +1,12 @@
+.header_contianer{
+    width: 1280px;
+    margin: auto;
+    height: 100px;
+}
+.top_inner{
+    margin-top: 10px;
+}
+.main_inner{
+    display: flex;
+    margin-top: 20px;
+}

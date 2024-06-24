@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+  }
+  .buy_modal-close-btn {
+    cursor: pointer;
+  }
+  .buy_modal-container{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .buy_modal-container .buy_modal-content{
+    z-index: 2;
+    background-color: white;
+    position: fixed;
+    width: 480px ;
+    height: 680px;
+    border-radius: 20px;
+  }
+  .buy_modal-container .buy_modal-title{
+    display: flex;
+    height: 100px;
+
+  }
+  .span_font1{
+    font-size: 17px;
+    font-weight: bold;
+  }
+  .span_font2{
+    font-size: 12px;
+    font-weight: bold;
+    color: red;
+  }
