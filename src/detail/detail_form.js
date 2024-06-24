@@ -16,7 +16,7 @@ const Detail_form = () => {
             <Header></Header>
             <div className="detail_container">
                 <Detail_img className="detail_img"></Detail_img>
-                <div style={{height:"1730px", width:"1px",marginLeft:"40px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
+                <div style={{height:"1680px", width:"1px",marginLeft:"40px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
                 <Detail_info className="detail_info"></Detail_info>
             </div>
             <div className="detail_cotainer2">

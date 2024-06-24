@@ -36,27 +36,33 @@ const Detail_info = () => {
 
                 </div>
                 <div className="product_container">
-                    <div style={{width:"112px", height:"90px"}}>
+                    <div style={{}}>
                         <div style={{textAlign:"left", color:"rgba(0,0,0,0.5)", fontSize:"11px"}}>
                             최근 거래가
                         </div>
                         <div style={{textAlign:"left"}}>
-                            2,090,000원
+                            290,000원
                         </div>
                     </div>
-                    {/* 
-                    <div style={{width:"1px", height:"100px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
-                    <div style={{width:"11px", height:"100px", }}></div> */}
+                    
+                    <div>
+                        <div style={{width:"1px", height:"40px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
+                    </div>
 
-                    <div style={{width:"112px", height:"90px"}}>
+                    <div style={{}}>
                         <div style={{textAlign:"left", color:"rgba(0,0,0,0.5)", fontSize:"11px"}}>
                             발매가
                         </div>
                         <div style={{textAlign:"left"}}>
-                            2,090,000원
+                            290,000원
                         </div>
                     </div>
-                    <div style={{width:"112px", height:"90px"}}>
+
+                    <div>
+                        <div style={{width:"1px", height:"40px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
+                    </div>
+
+                    <div style={{}}>
                         <div style={{textAlign:"left", color:"rgba(0,0,0,0.5)", fontSize:"11px"}}>
                             모델번호
                         </div>
@@ -64,7 +70,12 @@ const Detail_info = () => {
                             IH9985
                         </div>
                     </div>
-                    <div style={{width:"112px", height:"90px"}}>
+
+                    <div>
+                        <div style={{width:"1px", height:"40px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
+                    </div>
+
+                    <div style={{}}>
                         <div style={{textAlign:"left", color:"rgba(0,0,0,0.5)", fontSize:"11px"}}>
                             출시일
                         </div>
@@ -72,14 +83,20 @@ const Detail_info = () => {
                             24/06/11
                         </div>
                     </div>
-                    <div style={{width:"112px", height:"90px"}}>
+
+                    <div>
+                        <div style={{width:"1px", height:"40px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
+                    </div>
+
+                    <div style={{}}>
                         <div style={{textAlign:"left", color:"rgba(0,0,0,0.5)", fontSize:"11px"}}>
                             대표 색상
                         </div>
                         <div style={{textAlign:"left"}}>
-                            White/Night Gray
+                            Yellow
                         </div>
                     </div>
+
                 </div>
                 <div className="division_btn_container">
                     <Buy_modal final_size={final_size} setFinal_Size={setFinal_Size}></Buy_modal>
@@ -138,7 +155,7 @@ const Detail_info = () => {
                 <div style={{width:"560px", height:"160px", marginTop:"40px"}}>
                     <img src={point_img} style={{width:"560px", height:"100px"}}></img>
                 </div>
-                {/* <div className="wrap_title">
+                {/* <div style={{width:"560px", textAlign:"left", fontWeight:"bold", marginLeft:"50px"}}>
                     시세
                 </div> */}
                 <div className="parentDiv">

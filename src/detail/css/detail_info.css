@@ -25,7 +25,10 @@ body {
   }
   .product_container{
     margin-top: 40px;
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 90px 27.5px 90px 27.5px 90px 27.5px 90px 27.5px 90px;
+    grid-template-rows: 70px;
   }
   .division_btn_container{
     margin-top: 20px; 

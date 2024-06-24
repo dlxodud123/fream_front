@@ -1,6 +1,6 @@
 import './css/buy_form.css';
 import Footer from "../common/footer";
-import Header from "../common/detail_buy_header";
+import Header from "../common/header";
 import Buy_request_modal from './modal/buy_request_modal';
 import img from "../img/img5.jpg";
 import styled from 'styled-components';
@@ -13,6 +13,7 @@ import toss_img from "./../img/detail-page/toss_pay.png";
 import payco_img from "./../img/detail-page/payco_pay.png";
 
 const Buy_form = () => {
+    document.getElementById()
     let [deliveryBtn, setDeliveryBtn] = useState(1);
     let [paymentBtn, setPaymentBtn] = useState();
 

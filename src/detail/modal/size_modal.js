@@ -1,5 +1,6 @@
 import "./../css/modal/size_modal.css";
 import { useState } from "react";
+import img from "./../../img/detail-page/enter.png";
 
 const Size_modal = (props) => {
     const [sizeModal, setSizeModal] = useState(false);
@@ -10,7 +11,7 @@ const Size_modal = (props) => {
         <>
             <div className={'btn-wrapper'}>
                 <button onClick={() => setSizeModal(true)} style={{width:"560px", height:"50px", fontWeight:"bold", display:"flex"}}>
-                    <div style={{marginTop:"12px", marginLeft:"13px", display:"flex"}}><span style={{width:"270px", fontSize:"17px", fontWeight:"700", textAlign:"left"}}>{size}</span><span style={{width:"260px", textAlign:"right"}}>▼</span></div>
+                    <div style={{marginTop:"9px", marginLeft:"13px", display:"flex"}}><span style={{width:"270px", fontSize:"17px", fontWeight:"700", textAlign:"left", marginTop:"3px"}}>{size}</span><span style={{width:"260px", height:"50px", textAlign:"right"}}><img src={img} style={{width:"30px", marginBottom:"15px"}}></img></span></div>
                 </button>
             </div>
             {
