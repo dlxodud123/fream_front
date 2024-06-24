@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+
 .header_contianer{
     width: 1280px;
     margin: auto;
@@ -12,6 +14,5 @@
 }
 .italic {
     font-family: "Rowdies", sans-serif;
-    font-style: italic; /* 글자를 이탤릭체로 만듭니다 */
-    font-size: 40px;
+    font-style: italic;
 }

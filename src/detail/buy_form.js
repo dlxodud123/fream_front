@@ -13,7 +13,6 @@ import toss_img from "./../img/detail-page/toss_pay.png";
 import payco_img from "./../img/detail-page/payco_pay.png";
 
 const Buy_form = () => {
-    document.getElementById()
     let [deliveryBtn, setDeliveryBtn] = useState(1);
     let [paymentBtn, setPaymentBtn] = useState();
 

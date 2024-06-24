@@ -9,6 +9,7 @@ const Buy_modal = (props) => {
 
     useEffect(() => {
         setBuyBtn(parseInt(props.final_size));
+        props.setFinal_Size(props.final_size);
     }, [props.final_size]);
 
     const Buy_modal_btn = styled.button`
@@ -17,7 +18,7 @@ const Buy_modal = (props) => {
     const buy_link = () => {
         window.location.href = '/buy';
     }
-    
+
     return(
         <>  
             <button onClick={() => setBuyModal(true)} style={{width:"275px", height:"60px", display:"flex", color:"white", backgroundColor:"rgb(239, 98, 83)", borderRadius:"10px", fontWeight:"bold"}}>

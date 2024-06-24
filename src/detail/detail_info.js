@@ -15,6 +15,7 @@ import guar_img2 from './../img/detail-page/guar2.png';
 const Detail_info = () => {
 
     let [final_size, setFinal_Size] = useState();
+
     return(
         <div className="detail_info_form">
             <div className="detail_info">
@@ -31,7 +32,7 @@ const Detail_info = () => {
                     </div>
                 </div>
 
-                <Size_modal setFinal_Size = {setFinal_Size}></Size_modal>
+                <Size_modal final_size = {final_size} setFinal_Size = {setFinal_Size}></Size_modal>
                 <div >
 
                 </div>
