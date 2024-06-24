@@ -13,6 +13,7 @@ import Benner from './benner';
 import axios from 'axios';
 import Mainbutton from './mainbutton';
 import mendata from '../mendata/mendata';
+import MainHeader from '../common/main_header';
 
 import Footer from '../common/footer';
 
@@ -30,9 +31,13 @@ function App1() {
 
 
   return (
+    <>
     <div className="App">
-      <Header></Header>
+      
+      <MainHeader></MainHeader>
+      <div style={{paddingTop:'80px'}}></div>
       <Benner></Benner>
+ 
       <Mainbutton></Mainbutton>
 
       {/* <div className="container"> */}
@@ -55,8 +60,10 @@ function App1() {
       )}
    </div>
 </div>
+        <div style={{height:'50px'}}></div>
       <Footer></Footer>
     </div>
+    </>
     
   );
 }

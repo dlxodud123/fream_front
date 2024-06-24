@@ -123,6 +123,7 @@ function Shope() {
   return (
     <>
       <Shoesheader />
+      <div style={{paddingTop:'120px'}}></div>
       <AdvancedExample />
       <div style={{ display: 'flex', width: "1280px", margin: "auto" }}>
         <FilterComponent onFiltersChange={handleFiltersChange} />

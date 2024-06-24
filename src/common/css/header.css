@@ -10,3 +10,8 @@
     display: flex;
     margin-top: 20px;
 }
+.italic {
+    font-family: "Rowdies", sans-serif;
+    font-style: italic; /* 글자를 이탤릭체로 만듭니다 */
+    font-size: 40px;
+}
