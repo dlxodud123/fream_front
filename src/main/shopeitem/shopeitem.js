@@ -1,11 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export const Shopeitem = ({ shoesitemsimg, i }) => {
+
+
+export const Shopeitem = ({ shoesitemsimg, i}) => {
+  const navigate = useNavigate();
   return (
+
     <div className="">
-      <div className="card">
+      <div className="card" >
         <img
-          className="card-img-top"
+          onClick={()=>navigate(`/product/${shoesitemsimg.id}`)} className="card-img-top" style={{backgroundColor:'black'}}
           src={shoesitemsimg.image}
           alt={shoesitemsimg.name}
         />
