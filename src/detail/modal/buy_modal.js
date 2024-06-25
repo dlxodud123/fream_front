@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const Buy_modal = (props) => {
     const [buyModal, setBuyModal] = useState(false);    
-    const [buyBtn, setBuyBtn] = useState();
+    const [buyBtn, setBuyBtn] = useState(0);
 
     useEffect(() => {
         setBuyBtn(parseInt(props.final_size));
@@ -85,9 +85,15 @@ const Buy_modal = (props) => {
                         <div style={{width:"420px" ,height:"70px", marginLeft:"30px", display:"flex"}}>
                             <Buy_modal_btn active={buyBtn === 295} onClick={() => setBuyBtn(295)}><span className='span_font1'>295</span><br></br><span className='span_font2'>190,000</span></Buy_modal_btn>
                         </div>
-                        <div>
-                            <button onClick={() => buy_link()} style={{width:"420px", height:"65px", backgroundColor:'black', color:"#fff", fontWeight:"bold", marginTop:"10px"}}>310,000</button>
-                        </div>
+                        {
+                            (!(props.final_size  === "모든 사이즈") || !(Number.isNaN(buyBtn))) ? 
+                            <div>
+                                <button onClick={() => buy_link()} style={{width:"420px", height:"65px", backgroundColor:'black', color:"#fff", fontWeight:"bold", marginTop:"10px"}}>310,000</button>
+                            </div>
+                            :
+                            <div></div>
+                        }
+
                     </div>
                 </div>
             }
