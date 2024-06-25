@@ -7,15 +7,18 @@ import Detail_size from "./detail_size.js";
 import { createContext, useState } from "react";
 import Detail_shoes from "./detail_shoes.js";
 import Detail_shoes2 from "./detail_shoes2.js";
+import { useParams } from "react-router-dom";
 
 const Detail_form = () => {
-    let [final_size, setFinal_Size] = useState();
+    let [final_size, setFinal_Size] = useState("모든사이즈");
+    const {id} = useParams();
 
     return(
         <>
             <div className="body1">
                 <Detail_header final_size={final_size} setFinal_Size={setFinal_Size}></Detail_header>
                 <div className="detail_container">
+                    {id}
                     <Detail_img className="detail_img"></Detail_img>
                     <div style={{height:"1680px", width:"1px",marginLeft:"40px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
                     <Detail_info final_size={final_size} setFinal_Size={setFinal_Size} className="detail_info"></Detail_info>
