@@ -12,9 +12,7 @@ import guar_img from './../img/detail-page/guar.png';
 import guar_img1 from './../img/detail-page/guar1.png';
 import guar_img2 from './../img/detail-page/guar2.png';
 
-const Detail_info = () => {
-
-    let [final_size, setFinal_Size] = useState();
+const Detail_info = (props) => {
 
     return(
         <div className="detail_info_form">
@@ -32,7 +30,7 @@ const Detail_info = () => {
                     </div>
                 </div>
 
-                <Size_modal final_size = {final_size} setFinal_Size = {setFinal_Size}></Size_modal>
+                <Size_modal final_size = {props.final_size} setFinal_Size = {props.setFinal_Size}></Size_modal>
                 <div >
 
                 </div>
@@ -100,8 +98,8 @@ const Detail_info = () => {
 
                 </div>
                 <div className="division_btn_container">
-                    <Buy_modal final_size={final_size} setFinal_Size={setFinal_Size}></Buy_modal>
-                    <Sell_modal final_size={final_size} setFinal_Size={setFinal_Size}></Sell_modal>
+                    <Buy_modal final_size={props.final_size} setFinal_Size={props.setFinal_Size}></Buy_modal>
+                    <Sell_modal final_size={props.final_size} setFinal_Size={props.setFinal_Size}></Sell_modal>
                 </div>
                 <div className='add_benefit'>
                     <div style={{textAlign:"left", fontWeight:"bold"}}>추가 혜택</div>

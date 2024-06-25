@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+
+.detail_header_contianer{
+    width: 100%;
+    top: 0;
+    background-color: white;
+    height: 110px;
+    position: fixed;
+    justify-content: center;
+    z-index: 1;
+}
+.detail_top_inner{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.detail_main_inner{  
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+}
+.scroll_container{
+    display: flex;
+    justify-content: center;
+    height: 90px;
+    background-color: white;
+}
+.buy_modal{
+    height: 40px;
+}
+
+.italic {
+    font-family: "Rowdies", sans-serif;
+    font-style: italic;
+}

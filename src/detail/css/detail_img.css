@@ -8,10 +8,10 @@ body {
 }
 .detail_img_container{
     width: 560px;
-    height: 700px;
+    height: 731px;
     position: -webkit-sticky; 
     position: sticky;
-    top: 30px;
+    top: 130px;
     margin-bottom: 25px;
     display: flex;
     flex-wrap: wrap;
