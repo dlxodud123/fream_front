@@ -12,22 +12,30 @@ import { useParams } from "react-router-dom";
 const Detail_form = () => {
     let [final_size, setFinal_Size] = useState("모든 사이즈");
     const {id} = useParams();
+
     let [shoes, setShoes] = useState();
 
     useEffect(() => {
-        fetch(`http://localhost:3001/product/${id}`)
-          .then(response => response.json())
-          .then(data => {
-            setShoes(data);
-            console.log(shoes);
-            // console.log(data);
-          })
-          .catch(error => console.error('Error fetching data:', error));
-      }, []);
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://192.168.0.1:3000/products/${id}`);
+                const data = await response.json();
+                setShoes(data[0]);
+                console.log(data[0]);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, [id]);
 
     return(
         <>
             <div className="body1">
+
+                {/* <img src={`${process.env.PUBLIC_URL}/images/kream_img001.jpg`} alt="asdf"></img> */}
+
                 <Detail_header final_size={final_size} setFinal_Size={setFinal_Size}></Detail_header>
                 <div className="detail_container">
                     <Detail_img className="detail_img"></Detail_img>
@@ -43,11 +51,9 @@ const Detail_form = () => {
                 <div className="detail_container4">
                     <Detail_shoes2></Detail_shoes2>
                 </div>
-
                 <div className="detail_container4">
                     <Detail_shoes2></Detail_shoes2>
                 </div>
-
                 <div style={{height:"50px"}}></div>
                 <Footer></Footer>
             </div>
