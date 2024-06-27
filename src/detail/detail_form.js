@@ -4,7 +4,7 @@ import Detail_header from "../common/detail_header.js";
 import Detail_img from "./detail_img.js";
 import Detail_info from "./detail_info.js";
 import Detail_size from "./detail_size.js";
-import { createContext, useState } from "react";
+import { useEffect, useState } from "react";
 import Detail_shoes from "./detail_shoes.js";
 import Detail_shoes2 from "./detail_shoes2.js";
 import { useParams } from "react-router-dom";
@@ -12,6 +12,18 @@ import { useParams } from "react-router-dom";
 const Detail_form = () => {
     let [final_size, setFinal_Size] = useState("모든 사이즈");
     const {id} = useParams();
+    let [shoes, setShoes] = useState();
+
+    useEffect(() => {
+        fetch(`http://localhost:3001/product/${id}`)
+          .then(response => response.json())
+          .then(data => {
+            setShoes(data);
+            console.log(shoes);
+            // console.log(data);
+          })
+          .catch(error => console.error('Error fetching data:', error));
+      }, []);
 
     return(
         <>
@@ -35,7 +47,7 @@ const Detail_form = () => {
                 <div className="detail_container4">
                     <Detail_shoes2></Detail_shoes2>
                 </div>
-                
+
                 <div style={{height:"50px"}}></div>
                 <Footer></Footer>
             </div>

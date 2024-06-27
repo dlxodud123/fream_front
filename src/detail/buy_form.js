@@ -109,7 +109,7 @@ const Buy_form = () => {
                     <div style={{height:"15px", backgroundColor:"#f4f4f4"}}/>
                     <div className='buy_payment'>
                         <div style={{width:"200px", paddingTop:"30px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold"}}>
-                            배송 주소
+                            결제 방식
                         </div>
                         <div style={{textAlign:"left", marginLeft:"25px", marginTop:"10px", display:"flex"}}>
                             <div>일반 결제</div>&nbsp;
