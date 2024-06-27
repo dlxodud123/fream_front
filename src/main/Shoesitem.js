@@ -6,10 +6,12 @@ function Shoesitem0(props){
     return(
         <>
           <div style={{textAlign:"center"}} className="col-md-4">
-            <img onClick={{naviagte}} className="img-a-1" src={props.shoes.img}/>
-            <h6>{props.shoes.maker}</h6>
-            <h4>{props.shoes.title}</h4>
-            <h6>{props.shoes.price}</h6>
+            <img onClick={()=>naviagte(`/product/${props.shoes.id}`)} className="img-a-1" src={props.shoes.img}/>
+            <div style={{textAlign:"left", marginLeft:"65px"}}>
+            <h6 onClick={()=>naviagte(`/product/${props.shoes.id}`)} className='cursor'>{props.shoes.maker}</h6>
+            <h4 onClick={()=>naviagte(`/product/${props.shoes.id}`)} className='cursor'>{props.shoes.title}</h4>
+            <h6 style={{fontWeight:'bold'}} onClick={()=>naviagte(`/product/${props.shoes.id}`)} className='cursor'>{props.shoes.price}원</h6>
+            </div>
           </div>
 
           </>

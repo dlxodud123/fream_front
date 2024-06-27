@@ -8,16 +8,16 @@ export const Shopeitem = ({ shoesitemsimg, i}) => {
   return (
 
     <div className="">
-      <div className="card" >
+      <div className="card"  style={{border:'none'}}>
         <img
-          onClick={()=>navigate(`/product/${shoesitemsimg.id}`)} className="card-img-top" style={{backgroundColor:'black'}}
+          onClick={()=>navigate(`/product/${shoesitemsimg.id}`)} className="card-img-top" style={{backgroundColor:'#f4f4f4'}}
           src={shoesitemsimg.image}
           alt={shoesitemsimg.name}
         />
         <div className="card-body">
-          <h5 className="card-title">{shoesitemsimg.name}</h5>
-          <p className="card-text">{shoesitemsimg.title}</p>
-          <p className="card-text">{shoesitemsimg.price}</p>
+          <h5  onClick={()=>navigate(`/product/${shoesitemsimg.id}`)} className="card-title cursor">{shoesitemsimg.name}</h5>
+          <p  onClick={()=>navigate(`/product/${shoesitemsimg.id}`)} className="card-tex cursor">{shoesitemsimg.title}</p>
+          <p  onClick={()=>navigate(`/product/${shoesitemsimg.id}`)} className="card-text cursor">{shoesitemsimg.price}</p>
         </div>
       </div>
     </div>

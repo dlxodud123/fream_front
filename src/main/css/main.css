@@ -35,6 +35,9 @@ body {
     margin-left: 20px; /* 왼쪽으로 간격 추가 */
     cursor: pointer; /* 마우스 커서 손모양으로 변경*/
   }
+  .cursor{
+    cursor: pointer;
+  }
   .img-a-1{
   
     /* background-image: url('./img/img1.jpg'); 이미지 파일의 경로를 설정합니다. */

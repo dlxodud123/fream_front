@@ -44,7 +44,7 @@ function App1() {
 
     <div style={{width:"1280px", margin:"auto"}}>
       <div className="row">
-        <div style={{marginLeft:"60px"}} className='font-a'>
+        <div style={{marginLeft:"68px"}} className='font-a'>
           <h6 >Most Popular</h6>
           <h4 className='font__color-a'>인기상품</h4>
       </div>
