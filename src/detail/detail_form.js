@@ -31,6 +31,11 @@ const Detail_form = () => {
                 <div className="detail_container4">
                     <Detail_shoes2></Detail_shoes2>
                 </div>
+
+                <div className="detail_container4">
+                    <Detail_shoes2></Detail_shoes2>
+                </div>
+                
                 <div style={{height:"50px"}}></div>
                 <Footer></Footer>
             </div>
