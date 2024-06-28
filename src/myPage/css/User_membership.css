@@ -1,0 +1,65 @@
+/*  */
+div{
+    display: block;
+    unicode-bidi: isolate;
+}
+img{
+    height: 60px;
+    width: 60px;
+    margin-right: 12px;
+}
+.user_membership{
+    display: flex;
+    flex-direction: column;
+}
+
+.user_detail{
+    display: flex;
+}
+.user-info{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.info-box{
+    flex-grow: 1;
+}
+
+.info-but{
+    margin-left: auto;
+}
+
+.name{
+    color: #000;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -.2.7px;
+    line-height: 21px;
+    width: 50%;
+}
+.email{
+    margin: 0;
+
+}
+.info-but{
+    border: 1px solid #d3d3d3;
+    height: 36px;
+    line-height: 34px;
+    background-color: white;
+    font-size: 12px;
+    padding: 0 14px;
+    align-items: center;
+    display: inline-flex;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 7px;
+}
+.email{
+    color: rgba(34, 34, 34, .5);
+    font-size: 14px;
+    letter-spacing: -.05px;;
+    line-height: 18px;
+}

@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App1 from './main/app1';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import MyPage from './login/js/Mypage.js';
+import MyPage from './myPage/js/Mypage.js';
 import Main from './main/app1.js';
 import Detail_form from './detail/detail_form.js'
 import Buy_form from './detail/buy_form.js';

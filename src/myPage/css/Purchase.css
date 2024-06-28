@@ -1,0 +1,11 @@
+/* 구매내역css */
+.purchase_list_tab{
+    background-color: #fafafa;
+    border-radius: 12px;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+.purchase_list.all{
+    
+}
