@@ -16,6 +16,7 @@ import Men from './main/men.js';
 import Women from './main/women';
 import Shope from './main/shopeitem/shope';
 import Shopeshoes from './main/shopeitem/shopeshoes';
+import Profile from './myPage/js/profile.js';
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
         <Route path='/join' element={<Join/>}/>
         <Route path='/login/find_email' element={<FindEmail/>}/>
         <Route path='/login/find_password' element={<FindPw />}/>
-        <Route path='/register_form'></Route>
+        <Route path='/profile-edit' element={<Profile/>}></Route>
         <Route path='/products/:id' element={<Detail_form></Detail_form>}></Route>
         <Route path='/buy' element={<Buy_form></Buy_form>}></Route>
         <Route path='/sell' element={<Detail_Chart></Detail_Chart>}></Route>

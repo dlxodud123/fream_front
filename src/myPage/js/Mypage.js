@@ -6,7 +6,7 @@ import '../css/Purchase.css';
 import '../css/Selling.css';
 import Header from '../../common/header';
 import Footer from '../../common/footer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 
@@ -14,6 +14,7 @@ import { useState } from 'react';
 const MyPage = () => {
   let [userId, setUserId] = useState();
   let [email, setEmail] = useState();
+  let navigate = useNavigate();
 
 
 return (
@@ -24,7 +25,7 @@ return (
       <div className="col-sm-3">
         <div className="mypage">
           <h2>마이페이지</h2>
-        </div> 
+        </div>
         <div>
           <h2 className="snb_title">쇼핑 정보</h2>
             <ul className="menu">
@@ -80,7 +81,7 @@ return (
             </div>
             <div>
               <button type="button" className="info-but" onClick={()=>{
-                
+                navigate('/profile-edit')
               }}>프로필관리</button>
             </div>
           </div>
@@ -88,7 +89,7 @@ return (
       </div>
 
       <div className='shortcut_grid'>
-        <div className=''>
+
         <div className="container text-center">
           <div className="row row-cols-3 row row-cols-4 row row-cols-6">
             <div className="col">
@@ -117,7 +118,7 @@ return (
             </div>
           </div>
         </div>
-        </div>
+        
       </div>
 
 
