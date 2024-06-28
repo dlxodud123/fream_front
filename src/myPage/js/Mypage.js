@@ -246,4 +246,4 @@ return (
     );
   };
 
-export default {MyPage};
+export default MyPage;
