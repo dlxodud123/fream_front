@@ -34,24 +34,7 @@ const Detail_form = () => {
     return(
         <>
             <div className="body1">
-
-                {/* <img src={`${process.env.PUBLIC_URL}/images/kream_img001.jpg`} alt="asdf"></img> */}
-                {/* {
-                    shoes && (
-                        <div>
-                            <p>{shoes.prid}</p>
-                            <p>{shoes.nameKor}</p>
-                            <p>{shoes.nameEng}</p>
-                            <p>{shoes.category}</p>
-                            <p>{shoes.brand}</p>
-                            <p>{shoes.color}</p>
-                            <p>{shoes.gender}</p>
-                            <p>{shoes.price}</p>
-                            <img src={`${process.env.PUBLIC_URL}/images/${shoes.imgName}`} alt={shoes.nameKor} />
-                        </div>
-                    )
-                } */}
-                <Detail_header final_size={final_size} setFinal_Size={setFinal_Size}></Detail_header>
+                <Detail_header main_info_shoes={main_info_shoes} final_size={final_size} setFinal_Size={setFinal_Size}></Detail_header>
                 <div className="detail_container">
                     <Detail_img detail_main_image={main_info_shoes.imgName}></Detail_img>
                     <div style={{height:"1680px", width:"1px",marginLeft:"40px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
