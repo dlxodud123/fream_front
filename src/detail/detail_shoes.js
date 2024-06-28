@@ -6,6 +6,7 @@ const Detail_shoes = () => {
     const loadMore = () => {
         setCount(count + 5);
     };
+    
     const [shoes, setShoes] = useState(data);
     const [count, setCount] = useState(5);
 

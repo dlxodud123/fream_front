@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Detail_shoes from "./detail_shoes.js";
 import Detail_shoes2 from "./detail_shoes2.js";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Detail_form = () => {
     let [final_size, setFinal_Size] = useState("모든 사이즈");
@@ -16,26 +17,41 @@ const Detail_form = () => {
     let [shoes, setShoes] = useState();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`http://192.168.0.1:3000/products/${id}`);
-                const data = await response.json();
-                setShoes(data[0]);
-                console.log(data[0]);
-            } catch (error) {
-                console.error("Error fetching data:", error);
+        axios.get(`http://192.168.42.142:3001/products/${id}`)
+        .then((data) => {
+            if (data.data && data.data.length > 0) {
+                setShoes(data.data[0]);
+                console.log("prid : ", data.data[0]);  // prid 로그
+            } else {
+                console.log("데이터가 비어 있음");
             }
-        };
-
-        fetchData();
-    }, [id]);
+        })
+        .catch((error) => {
+            console.log("실패함", error);  // 에러 로그
+        });
+      }, [id]);
 
     return(
         <>
             <div className="body1">
 
                 {/* <img src={`${process.env.PUBLIC_URL}/images/kream_img001.jpg`} alt="asdf"></img> */}
-
+                {/* {
+                    shoes && (
+                        <div>
+                            <p>{shoes.prid}</p>
+                            <p>{shoes.nameKor}</p>
+                            <p>{shoes.nameEng}</p>
+                            <p>{shoes.category}</p>
+                            <p>{shoes.brand}</p>
+                            <p>{shoes.color}</p>
+                            <p>{shoes.gender}</p>
+                            <p>{shoes.price}</p>
+                            <img src={`${process.env.PUBLIC_URL}/images/${shoes.imgName}`} alt={shoes.nameKor} />
+                        </div>
+                    )
+                    
+                } */}
                 <Detail_header final_size={final_size} setFinal_Size={setFinal_Size}></Detail_header>
                 <div className="detail_container">
                     <Detail_img className="detail_img"></Detail_img>

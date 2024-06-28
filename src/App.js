@@ -33,7 +33,7 @@ function App() {
         <Route path='/login/find_email' element={<FindEmail/>}/>
         <Route path='/login/find_password' element={<FindPw />}/>
         <Route path='/register_form'></Route>
-        <Route path='/product/:id' element={<Detail_form></Detail_form>}></Route>
+        <Route path='/products/:id' element={<Detail_form></Detail_form>}></Route>
         <Route path='/buy' element={<Buy_form></Buy_form>}></Route>
         <Route path='/sell' element={<Detail_Chart></Detail_Chart>}></Route>
       </Routes>
