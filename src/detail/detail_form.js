@@ -14,20 +14,20 @@ const Detail_form = () => {
     let [final_size, setFinal_Size] = useState("모든 사이즈");
     const {id} = useParams();
 
-    let [shoes, setShoes] = useState();
+    let [main_info_shoes, setMain_info_shoes] = useState([]);
 
     useEffect(() => {
         axios.get(`http://192.168.42.142:3001/products/${id}`)
         .then((data) => {
             if (data.data && data.data.length > 0) {
-                setShoes(data.data[0]);
-                console.log("prid : ", data.data[0]);  // prid 로그
+                setMain_info_shoes(data.data[0]);
+                console.log("data : ", data.data[0]);  
             } else {
                 console.log("데이터가 비어 있음");
             }
         })
         .catch((error) => {
-            console.log("실패함", error);  // 에러 로그
+            console.log("실패함", error);  
         });
       }, [id]);
 
@@ -50,13 +50,12 @@ const Detail_form = () => {
                             <img src={`${process.env.PUBLIC_URL}/images/${shoes.imgName}`} alt={shoes.nameKor} />
                         </div>
                     )
-                    
                 } */}
                 <Detail_header final_size={final_size} setFinal_Size={setFinal_Size}></Detail_header>
                 <div className="detail_container">
-                    <Detail_img className="detail_img"></Detail_img>
+                    <Detail_img detail_main_image={main_info_shoes.imgName}></Detail_img>
                     <div style={{height:"1680px", width:"1px",marginLeft:"40px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
-                    <Detail_info final_size={final_size} setFinal_Size={setFinal_Size} className="detail_info"></Detail_info>
+                    <Detail_info main_info_shoes={main_info_shoes} final_size={final_size} setFinal_Size={setFinal_Size} className="detail_info"></Detail_info>
                 </div>
                 <div className="detail_cotainer2">
                     <Detail_shoes></Detail_shoes>

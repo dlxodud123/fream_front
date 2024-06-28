@@ -14,19 +14,27 @@ import guar_img2 from './../img/detail-page/guar2.png';
 
 const Detail_info = (props) => {
 
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-US').format(price);
+    };
+
+    const formatGender = (gender) => {
+        return 
+    }
+
     return(
         <div className="detail_info_form">
             <div className="detail_info">
                 <div className="price_container">
                     <p style={{fontSize:"15px", height:"2px", color:"rgb(34,34,34)"}}>즉시 구매가</p>
-                    <p style={{fontSize:"30px", height:"24px", color:"rgb(34,34,34)", fontWeight:"bold"}}>209,000원</p>
+                    <p style={{fontSize:"30px", height:"24px", color:"rgb(34,34,34)", fontWeight:"bold"}}>{formatPrice(props.main_info_shoes.price)}원</p>
                 </div>
                 <div className="title_container">
                     <div>
-                        <p style={{fontSize:"20px", marginBottom:"0px"}}>Adidas x Hikari Shibata Gazelle Indoor Core White Night Grey</p>
+                        <p style={{fontSize:"20px", marginBottom:"0px"}}>{props.main_info_shoes.nameEng}</p>
                     </div>
                     <div>
-                        <p style={{color:"rgba(0,0,0,0.5)"}}>아디다스 x 히카리 시바타 가젤 인도어 코어 화이트 나이트 그레이</p>
+                        <p style={{color:"rgba(0,0,0,0.5)"}}>{props.main_info_shoes.nameKor}</p>
                     </div>
                 </div>
 
@@ -40,7 +48,7 @@ const Detail_info = (props) => {
                             최근 거래가
                         </div>
                         <div style={{textAlign:"left"}}>
-                            290,000원
+                            {formatPrice(props.main_info_shoes.price)}원
                         </div>
                     </div>
                     
@@ -53,7 +61,7 @@ const Detail_info = (props) => {
                             발매가
                         </div>
                         <div style={{textAlign:"left"}}>
-                            290,000원
+                            {formatPrice(props.main_info_shoes.price)}원
                         </div>
                     </div>
 
@@ -66,7 +74,7 @@ const Detail_info = (props) => {
                             모델번호
                         </div>
                         <div style={{textAlign:"left"}}>
-                            IH9985
+                            {props.main_info_shoes.prid}
                         </div>
                     </div>
 
@@ -92,7 +100,7 @@ const Detail_info = (props) => {
                             대표 색상
                         </div>
                         <div style={{textAlign:"left"}}>
-                            Yellow
+                            {props.main_info_shoes.color}
                         </div>
                     </div>
 
