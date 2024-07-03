@@ -35,7 +35,7 @@ function App() {
         <Route path='/login/find_password' element={<FindPw />}/>
         <Route path='/profile-edit' element={<Profile/>}></Route>
         <Route path='/products/:id' element={<Detail_form></Detail_form>}></Route>
-        <Route path='/buy' element={<Buy_form></Buy_form>}></Route>
+        <Route path='/buy/:data/:size' element={<Buy_form></Buy_form>}></Route>
         <Route path='/sell' element={<Detail_Chart></Detail_Chart>}></Route>
       </Routes>
     </div>
