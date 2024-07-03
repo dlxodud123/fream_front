@@ -32,7 +32,7 @@ return (
       <div className='user_membership'>
         <div className='user_detail'>
           <div className='blank-por'>
-            <img src={require('../../img/login-page/blank_profile.4347742.png')}></img>
+            <img className='img_blank' src={require('../../img/login-page/blank_profile.4347742.png')}></img>
           </div>
           
           <div className="user-info">

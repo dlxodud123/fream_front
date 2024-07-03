@@ -1,9 +1,6 @@
 /*  */
-div{
-    display: block;
-    unicode-bidi: isolate;
-}
-img{
+
+.img_blank{
     height: 60px;
     width: 60px;
     margin-right: 12px;
