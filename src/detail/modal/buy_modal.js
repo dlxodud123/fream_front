@@ -6,24 +6,31 @@ const Buy_modal = (props) => {
     const [buyModal, setBuyModal] = useState(false);    
     const [buyBtn, setBuyBtn] = useState(0);
 
-    let data = props.main_info_shoes;
-    let size = props.final_size;
+    let data = encodeURIComponent(JSON.stringify(props.main_info_shoes));
 
     useEffect(() => {
         setBuyBtn(parseInt(props.final_size));
         props.setFinal_Size(props.final_size);
     }, [props.final_size]);
+    
+    useEffect(() => {
+        if (props.final_size  === "모든 사이즈") {
+            props.setFinal_Size("모든 사이즈");
+        }else{
+            props.setFinal_Size(buyBtn);
+        }
+    }, [])
 
     const Buy_modal_btn = styled.button`
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
     const buy_link = () => {
-        window.location.href = `/buy/${props.main_info_shoes}/${props.final_size}`;
+        window.location.href = `/buy/${data}/${buyBtn}`;
     }
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US').format(price);
     };
-
+    console.log("확인용 : ", props.main_info_shoes);
     return(
         <>  
             <button onClick={() => setBuyModal(true)} style={{width:"275px", height:"60px", display:"flex", color:"white", backgroundColor:"rgb(239, 98, 83)", borderRadius:"10px", fontWeight:"bold"}}>
@@ -33,6 +40,8 @@ const Buy_modal = (props) => {
                     <div style={{fontSize:"17px" ,height:"20px", marginTop:"8px"}} >{formatPrice(props.main_info_shoes.price)}원</div>
                     <div style={{fontWeight:"lighter", fontSize:"12px", textAlign:"left"}}>즉시 구매가</div>
                 </div>
+                {props.main_info_shoes.price}
+
             </button>
             {   
                 buyModal &&
@@ -98,7 +107,6 @@ const Buy_modal = (props) => {
                             :
                             <div></div>
                         }
-
                     </div>
                 </div>
             }

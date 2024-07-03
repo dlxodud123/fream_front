@@ -15,8 +15,8 @@ import { useParams } from 'react-router-dom';
 
 const Buy_form = () => {
 
-    let {size} = useParams(); 
-    let {data} = useParams();
+    let {size, data} = useParams(); 
+    let parseData = JSON.parse(decodeURIComponent(data));
 
     let [deliveryBtn, setDeliveryBtn] = useState(1);
     let [paymentBtn, setPaymentBtn] = useState();
@@ -31,13 +31,16 @@ const Buy_form = () => {
         width: 210px;
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
+
+    console.log(data[0]);
+
     return(
         <>
             <Header></Header>
             <div className='buy_all'>
                 <div className="buy_container">
                     {size}
-                    {data.price}
+                    {parseData.price}
                     <div style={{height:"30px", backgroundColor:"#f4f4f4"}}/>
                     <div className='buy_content'>
                         <img style={{width:"100px",borderRadius:"15px" , float:"left", marginTop:"25px", marginBottom:"25px", marginLeft:"25px"}} src={img}>
