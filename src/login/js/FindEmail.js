@@ -9,18 +9,23 @@ const FindEmail = () => {
 
     let [phonNumber, setPhoneNumber] = useState('');
     let [findEmailBut, setFindEmailBut] = useState('findEmailBut')
+    let [phonNum, setPhonNum] = useState('');
+    
+    const phonChange =(e) =>{
+        setPhonNum(e.target.value);//phonNum입력값 전송
+        console.log(phonNum);
 
-    const phonChange =(event) =>{
-        const { value } = event.target;
+        const { value } = e.target;
         const filterPhon = value.replace(/[^\d]/g, '');
         setPhoneNumber(filterPhon);
-
-        {if(/^010\d{7,8}$/.test(filterPhon)){
+        {
+        if(/^010\d{7,8}$/.test(filterPhon)){
             setFindEmailBut('emailBut')
         }else{
             setFindEmailBut('findEmailBut');
         }}
     }
+
 
 
 return(
@@ -39,7 +44,8 @@ return(
                     <h3 className='title'>휴대폰 번호</h3>
                     <div className='input_item'>
                         <input
-                            type='tel' 
+                            id='phone'
+                            type='tel'
                             placeholder='가입하신 휴대폰 번호' 
                             className='input_tel'
                             value={phonNumber}
@@ -48,7 +54,7 @@ return(
                     </div>
                 </div>
                 <div className='input_but'>
-                    <Button className={findEmailBut}>이메일 아이디 찾기</Button>
+                    <Button className={findEmailBut} onClick={phonChange}>이메일 아이디 찾기</Button>
                 </div>
             </div>
         </div>

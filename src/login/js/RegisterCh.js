@@ -1,35 +1,72 @@
+import React, { useState } from 'react';
 import $ from 'jquery';
-import './Join.js';
 
-function rddCheck(userId) {
-    let data = document.getElementById('userId').value;
-    // console.log(':::::::::ffff',data);
-    $.ajax({
-        type: "POST",
-        url: "http://8080/auth/rddCheck",
-        data: JSON.stringify( data ),
-        contentType: "application/json",
-        success: function (response) {
-            if (userId == "") {
-                alert("아이디를 입력해주세요");
-                return;
+const LoginForm = () => {
+    const [userId, setUserId] = useState('');
+    const [userPw, setUserPw] = useState('');
+    const [error, setError] = useState(null);
+    const [token, setToken] = useState(null);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setError(null);
+
+        $.ajax({
+            url: "http://43.200.110.19:8080/auth/loginCheck",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ userId, userPw }),
+            success: function (data) {
+                const jwtToken = data;
+                if (jwtToken) {
+                    setToken(jwtToken);
+                    console.log("success");
+                    localStorage.setItem('jwtToken', jwtToken);
+                } else {
+                    console.log("fail");
+                    setError('Login failed. Please check your credentials.');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('There was an error logging in!', error);
+                setError('An error occurred during login. Please try again.');
             }
-            if (response == 0) {
-                alert("적합한 아이디입니다");
-                document.getElementById("userId").readOnly = true;
-                document.getElementById("checkRedundancy").disabled = true;
-                document.getElementById("signupButton").disabled = false;
-                document.getElementById("checkMark").hidden = false;
-                document.getElementById("xMark").hidden = true;
-            } else {
-                alert("중복된 아이디가 존재합니다.");
-            }
-        },
-        error: function (xhr, status, error) {
-            console.log("URL sent:", this.url);
-        }
-    });
-}
+        });
+    };
+
+    return (
+        <div>
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="userId">User ID:</label>
+                    <input
+                        type="text"
+                        id="userId"
+                        value={userId}
+                        onChange={(e) => setUserId(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="userPw">Password:</label>
+                    <input
+                        type="password"
+                        id="userPw"
+                        value={userPw}
+                        onChange={(e) => setUserPw(e.target.value)}
+                        required
+                    />
+                </div>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <button type="submit">Login</button>
+            </form>
+            {token && <p>Login successful! Token: {token}</p>}
+        </div>
+    );
+};
+
+
 
 
 function registerCheck(formData) {
@@ -61,7 +98,7 @@ function registerCheck(formData) {
     }
 
     $.ajax({
-        url: "http://8080/auth/registerCheck",
+        url: "http://43.200.110.19:8080/auth/rddCheck",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(formData),
@@ -80,4 +117,4 @@ function registerCheck(formData) {
     });
 }
 
-export {rddCheck, registerCheck };
+export { LoginForm, registerCheck };

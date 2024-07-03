@@ -38,7 +38,7 @@ function Detail_header(props){
             <div className='detail_top_inner'>
               <div style={{ display:"flex", marginLeft:"1008px", width:"232px"}}>
                 <div><a style={{color:"grey", textDecoration:"none", fontSize:"14px"}} href='#'>고객센터</a></div>
-                <div style={{marginLeft:"20px"}}><a style={{color:"grey", textDecoration:"none", fontSize:"14px"}} href='#'>마이페이지</a></div>
+                <div style={{marginLeft:"20px"}}><a style={{color:"grey", textDecoration:"none", fontSize:"14px"}} href='/myPage'>마이페이지</a></div>
                 <div style={{marginLeft:"20px"}}><a style={{color:"grey", textDecoration:"none", fontSize:"14px"}} href='/login'>로그인</a></div>
               </div>
             </div>

@@ -6,9 +6,10 @@ import Col from 'react-bootstrap/Col';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../common/footer';
-import handleLogin from './Token';
+import {LoginForm} from './RegisterCh.js';
 
 const LoginPage = () => {
+
     let [idEmail, setIdEmail] = useState(''); //입력한 아이디 값
     let [newPassw, setNewPassw] = useState('');
     let [classCh, setclassCh] = useState('login_data');
@@ -16,6 +17,7 @@ const LoginPage = () => {
     let msg = <p className='input_error'>이메일 주소를 정확히 입력해 주세요</p>
     const isButtonActive = classCh ==='login_data'&& passw === 'login_data' && idEmail !== '' && newPassw !=='';
     const navigate = useNavigate();
+
     return(
         
     <div className='login_all'>
@@ -26,9 +28,11 @@ const LoginPage = () => {
                     <h2>KREAM</h2>
                     <p>KICKS RULE EVERYTHING AROUND ME</p>
                 </div>
+                
                 <div className={classCh}>
                     <p>이메일 주소</p>
                     <input 
+                        id='userId'
                         type='email'
                         placeholder='예)kream@kream.co.kr' 
                         onChange={(e)=>{
@@ -37,6 +41,7 @@ const LoginPage = () => {
                             const regex = /^[^@]+@[^@]+\.[^@]{1,}$/;
                                 if(regex.test(idEmail)){
                                     setclassCh('login_data')
+                                    console.log(idEmail)
                                 }else{
                                     setclassCh('login_dataE')
                                 }
@@ -48,7 +53,8 @@ const LoginPage = () => {
 
                 <div className={passw}>
                     <p>비밀번호</p>
-                    <input 
+                    <input
+                    id='userPw'
                         type='password' 
                         onChange={(a)=>{
                             setNewPassw(a.target.value);
@@ -56,6 +62,7 @@ const LoginPage = () => {
                             const pwPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{7,15}$/;
                                 if(pwPattern.test(newPassw)){
                                 setPassw('login_data')
+                                console.log(newPassw)
                             }else{
                                 setPassw('passw');
                             }
@@ -69,7 +76,7 @@ const LoginPage = () => {
                     className={`loginBut${isButtonActive ? '_active' : ''}`}
                     variant="secondary" 
                     size="lg" 
-                    onClick={handleLogin}>
+                    onClick={LoginForm}>
                 로그인</Button>
                 
                 <Row className='row'>
@@ -79,10 +86,10 @@ const LoginPage = () => {
                 </Row>
                 
              
-                <button type="button" className="btn btn-outline-dark">
-                    {/* <img className='kaImg'  ></img> */}
-                    <div className='kaImg'></div>
-                카카오 로그인</button>
+                <button type="button" className="btn btn-outline-dark">                    
+                <span className='kaImg'></span>
+                    카카오 로그인
+                </button>
             </div>
         </div>
         <div>

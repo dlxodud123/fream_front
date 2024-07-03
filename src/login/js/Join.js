@@ -2,15 +2,14 @@ import '../css/Join.css';
 import Header from '../../common/header';
 import Footer from '../../common/footer';
 import { useState } from 'react';
-import { rddCheck, registerCheck } from './RegisterCh.js';
+import { LoginForm, registerCheck } from './RegisterCh.js';
 
 const Join = () => {
 
-    let [idEmail, setIdEmail] = useState('');
-    let [classCh, setclassCh] = useState('input_data');
-    let [passw, setPassw] = useState('input_data');
+    let [clasCh, setclasCh] = useState('register_input');
     let [registerBtn, setRegisterBtn] = useState('registerBtn');
-    let msg = <p className='input_error'>이메일 주소를 정확히 입력해 주세요</p>
+    let msg = <p className='inputError'>이메일 주소를 정확히 입력해 주세요</p>
+    let [isFormValid, setIsFormValid] = useState(false)
     const [selectedOption, setSelectedOption] = useState('');
 
     const [formData, setFormData] = useState({
@@ -28,28 +27,23 @@ const Join = () => {
         setFormData({
           ...formData,
           [name]: value
-        });
-
-        const regex = /^[^@]+@[^@]+\.[^@]{1,}$/;
-        if(regex.test(idEmail)){
-            setclassCh('login_data')
-        }else{
-            setclassCh('login_dataE')
-        }
+        }); 
         
-
+        const isAllFieldsFilled = Object.values(formData).every(field => field !== '');
+        setIsFormValid(isAllFieldsFilled);
+        
     };
-
+    
     return(
     <div>
         <Header/>
         <div className='join'>
         <div className='join_area'>
-            <div className='register'>
+            <div className='register_ti'>
                 <h2>회원가입</h2>
             </div>
-            <div className={classCh}>
-                <p>ID</p>
+            <div className='register_input'>
+                <h3>ID</h3>
                 <div className='input_item'>
                     <input
                         id='userId'
@@ -57,13 +51,13 @@ const Join = () => {
                         name='userId'
                         value={formData.userId}
                         onChange={handleChange} />
-                    <button className='rddCheckBtn' onClick={rddCheck}>아이디 조회</button>
                 </div>
+                    <button className='rddCheckBtn' onClick={LoginForm}>아이디 조회</button>
             </div>
 
-            <div className={classCh}>
-                <p>비밀번호*</p>
-                <div className={passw}>
+            <div className={clasCh}>
+                <h3>비밀번호*</h3>
+                <div>
                 <input
                     id='userPw'
                     type='password'
@@ -75,8 +69,8 @@ const Join = () => {
                 </div>
             </div>
 
-            <div className={classCh}>
-                <p>User Name</p>
+            <div className='register_input'>
+                <h3>User Name</h3>
                 <div className='input_item'>
                     <input
                         id='userName'
@@ -86,11 +80,10 @@ const Join = () => {
                         onChange={handleChange}
                     />
                 </div>
-                {classCh == 'login_dataE' ? msg : null}
             </div>
 
-            <div className={classCh}>
-                <p>이메일 주소*</p>
+            <div className={clasCh}>
+                <h3>이메일 주소*</h3>
                 <div className='input_item'>
                     <input
                         id='email'
@@ -101,10 +94,11 @@ const Join = () => {
                         onChange={handleChange}
                     />
                 </div>
+                {clasCh == 'inputError' ? msg : null}
             </div>
 
-            <div className={classCh}>
-                <p>Phone</p>
+            <div className='register_input'>
+                <h3>Phone</h3>
                 <div className='input_item'>
                     <input
                         id='phone'
@@ -116,8 +110,8 @@ const Join = () => {
                 </div>
             </div>
 
-            <div className={classCh}>
-                <p>Age</p>
+            <div className='register_input'>
+                <h3>Age</h3>
                 <div className='input_item'>
                 <input
                     id='age'
@@ -129,8 +123,8 @@ const Join = () => {
                 </div>
             </div>
 
-            <div className={classCh}>
-                <p>Gender</p>
+            <div className='register_input'>
+                <h3>Gender</h3>
                 <div style={{display:"flex"}}>
                 <div className='radio_group'>
                     <label className='radio_label'>
@@ -159,10 +153,8 @@ const Join = () => {
                     </label>
                 </div>
                 </div>
-                <button className='registerBtn' onClick={registerCheck}
-                onChange={
-                    ()=>{}
-                }>가입하기</button>
+                <button className={isFormValid ? 'register': 'registerBtn'} onClick={registerCheck}
+                onChange={registerCheck}>가입하기</button>
             </div>
         </div>
         </div>
