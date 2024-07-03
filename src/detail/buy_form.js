@@ -12,6 +12,7 @@ import kakao_img from "./../img/detail-page/kakao_pay.png";
 import toss_img from "./../img/detail-page/toss_pay.png";
 import payco_img from "./../img/detail-page/payco_pay.png";
 import { useParams } from 'react-router-dom';
+import Buy_delivery_modal from './modal/buy_delivery_modal';
 
 const Buy_form = () => {
 
@@ -23,7 +24,7 @@ const Buy_form = () => {
 
     const DeliveryButton = styled.button`
         height: 70px;
-        width: 650px;
+        width: 650px;   
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
     const PaymentButton = styled.button`
@@ -65,7 +66,11 @@ const Buy_form = () => {
                         <div style={{width:"200px", paddingTop:"30px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold"}}>
                             배송 주소
                         </div>
-                        <div style={{display:"flex", paddingTop:"10px"}}>
+                        <div>
+                            <Buy_delivery_modal></Buy_delivery_modal>
+                            
+                        </div>
+                        {/* <div style={{display:"flex", paddingTop:"10px"}}>
                             <div style={{width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>받는 분</div><div>이태영</div>
                         </div>
                         <div style={{display:"flex", paddingTop:"5px"}}>
@@ -73,7 +78,7 @@ const Buy_form = () => {
                         </div>
                         <div style={{display:"flex", paddingTop:"5px"}}>
                             <div style={{width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>배송 주소</div><div>(01388) 서울 도봉구 해등로 242-11 (쌍문동, 성원아파트) 105동 502호</div>
-                        </div>
+                        </div> */}
                         <div style={{marginTop:"15px"}}>
                             <Buy_request_modal></Buy_request_modal>
                         </div>

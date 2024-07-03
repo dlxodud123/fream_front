@@ -1,5 +1,5 @@
 import "./css/detail_form.css";
-import Footer from "../common/footer";
+import Footer from "../common/footer.js";
 import Detail_header from "../common/detail_header.js";
 import Detail_img from "./detail_img.js";
 import Detail_info from "./detail_info.js";
