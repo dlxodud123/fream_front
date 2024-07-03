@@ -7,8 +7,10 @@ import FilterComponent from "./FilterComponent";
 import { Shopeitem } from "./shopeitem";
 import shoesitems from "../shoesitemdata/shoesitemdata";
 import '../css/main.css'; // Ensure this is imported to apply the CSS
+import { data } from 'jquery';
 
 function Shope() {
+  let [shopdata, setShopData] = useState([]);
   let navigate = useNavigate();
   const [count, setCount] = useState(6);
   const [isLoadMoreVisible, setIsLoadMoreVisible] = useState(true);
@@ -71,6 +73,21 @@ function Shope() {
     },
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://192.168.0.13:3001/shop');
+        const data = await response.json();
+        setShopData(data); // 데이터 설정
+        console.log(data); // 상태 업데이트 후의 데이터를 로그로 출력
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  },[]);
+
   const handleFiltersChange = (newFilters) => {
     setFilters(newFilters);
   };
@@ -102,7 +119,7 @@ function Shope() {
     };
   }, [isLoadMoreVisible]);
 
-  const filteredItems = shoesitems.filter((item) => {
+  const filteredItems = shopdata.filter((item) => {
     const { MAN, WOMAN } = filters.gender;
     const selectedColors = Object.keys(filters.color).filter(color => filters.color[color]);
     const selectedBrands = Object.keys(filters.brand).filter(brand => filters.brand[brand]);
@@ -123,16 +140,22 @@ function Shope() {
   return (
     <>
       <Shoesheader />
-      <div style={{paddingTop:'120px'}}></div>
+      <div style={{ paddingTop: '120px' }}></div>
       <AdvancedExample />
       <div style={{ display: 'flex', width: "1280px", margin: "auto" }}>
-        <FilterComponent onFiltersChange={handleFiltersChange} />
-        <div style={{width:'1200px'}} className="">
-          <div style={{display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '20px'}} className="">
-            {filteredItems.slice(0, count).map((shoesitemsimg, i) => (
-              <Shopeitem key={shoesitemsimg.id} shoesitemsimg={shoesitemsimg} i={i + 1} />
+        <FilterComponent shopdata={filters} onFiltersChange={handleFiltersChange} />
+        <div style={{ width: '1200px' }} className="">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '20px'
+          }} className="">
+            {/* {shopdata.slice(0, count).map((item,i)=>{
+              console.log("item:"+item);
+                 <Shopeitem key={item.id} shopdata={item} i={i+1}/>
+            })} */}
+            {filteredItems.map((item, i) => (
+              <Shopeitem key={i} shopdata={item} i={i + 1} />
             ))}
           </div>
           {isLoadMoreVisible && count < filteredItems.length && (

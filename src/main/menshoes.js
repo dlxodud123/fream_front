@@ -5,7 +5,7 @@ function Menshoes(props){
     return(
         <>
       <div style={{textAlign:"center"}} className="col-md-4">
-         <img className="img-a-1" src={props.menshoes.img}/>
+         <img style={{background:"#f4f4f4"}} className="img-a-1" src={props.menshoes.img}/>
         <h6>{props.menshoes.maker}</h6>
         <h4>{props.menshoes.title}</h4>
         <h6>{props.menshoes.price}</h6>
