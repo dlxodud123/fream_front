@@ -9,10 +9,6 @@
     padding: 0 24px;
     height: 100vh;
 }
-.register h2{
-    font-weight: bold;
-    padding: 0 0 46px;
-}
 .join_area{
     position: relative;
     margin-top: 40px;
@@ -21,105 +17,38 @@
     text-align: center;
     padding: 24px 0 40px;
 }
-.input_error{
-    color:red;
-    font-size: 11px;;
+.register_ti h2{
+    font-weight: bold;
+    padding: 0 0 46px;
+}
+.register_input{
     margin: 0;
-}
-.input_data{
     padding: 0 0 32px;
+
 }
-.input_dataE{
-    padding: 0 0 32px;
+.register_input h3{ 
+  text-align: left;  
+  color :#000;
+  font-size: 13px;
+  letter-spacing: -.07px;
+  line-height: 18px;
 }
-input{
-    padding: 9px 0 8px;
-    margin: 0;
+.register_input input{
+    border: none; 
+    border-bottom: 1px solid gray;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    padding: 5px;
+    margin-bottom: 10px;
 }
-.input_data p{ 
-    text-align: left;  
-    color :#000;
-  }
-  .input_data input{
-      border: none; 
-      border-bottom: 1px solid #a9a9a9;
-      box-sizing: border-box;
-      width: 100%;
-      outline: none;
-      padding: 5px;
-      margin-bottom: 10px;
-  }
-  
-  .input_dataE p{
-    text-align: left;  
-    color: red;
-  }
-  .input_dataE input{
-      border: none; 
-      border-bottom: 1px solid red;
-      box-sizing: border-box;
-      width: 100%;
-      outline: none;
-      padding: 5px;
-  }
-  .inputPassw p{
-      text-align: left;  
-      color: red;
-      }
-  .inputPassw input{
-      border: none; 
-      border-bottom: 1px solid red;
-      box-sizing: border-box;
-      width: 100%;
-      outline: none;
-      padding: 5px;
-  }
+
   ::placeholder{
       color:#a9a9a9;
   }
-  .input_data input:focus{
+  .register_input input:focus{
       border-bottom: 2px solid black;
   }
-  .input-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .input-container input {
-    padding-right: 24px; /* 아이콘 공간 확보 */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 8px;
-    outline: none;
-  }
-  .input-with-icon input {
-    display: inline-block;
-    padding: 0;
-  }
-  .btnS{
-    position: absolute;
-    right: 0;
-    transform: translateY(-30%);
-    border: none;
-    background-color: white;
-  }
-  
-  .input-container svg {
-    pointer-events: none; /* 아이콘 위에 마우스 이벤트 방지 */
-    }
-
-    .radio_group {
-        text-align: left; /* 부모 요소에서 왼쪽 정렬 */
-        margin-bottom: 8px; /* 각 라디오 버튼 그룹 사이의 간격 */
-        margin-right: 8px;
-    }
-    
-    .radio_label {
-        justify-content: left; /* label 내부 요소를 왼쪽 정렬 */
-        display: flex;
-    }
-    
     .radioGroup{
         margin-left:6px ;
         padding-left: 6px;
@@ -132,6 +61,7 @@ input{
         background-color: #ebebeb; 
         border-radius: 7px;
         justify-content: center;
+        border: none;
     }
     .registerBtn{
         width: 100%;
@@ -141,28 +71,16 @@ input{
         padding: 10px 0 ;
         cursor:auto ;
         border-radius: 7px;
+        cursor: auto !important;
     }
 
-
-
-
-    
-
-
-    .findEmailBut{
-        width: 100%;
-        margin: 15px 0;
-        background-color: #ebebeb !important;
-        border: none ;
-        padding: 10px 0 ;
-        cursor:auto !important;
-    }
-    
-    .findEmailBut_active {
-        width: 100%;
-        margin: 15px 0;
-        background-color: black;
-        border: none ;
-        padding: 10px 0 ;
-        cursor: pointer;
-    }
+.register{
+    width: 100%;
+    margin: 15px 0;
+    background-color: #000;
+    color: white;
+    border: none ;
+    padding: 10px 0 ;
+    cursor:auto ;
+    border-radius: 7px;
+}

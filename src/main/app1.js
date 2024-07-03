@@ -3,7 +3,7 @@ import React, { useState ,useEffect} from 'react';
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
-import { MyPage } from '../login/js/Mypage';
+import { MyPage } from '../myPage/js/Mypage.js';
 import App from '../App';
 // import data from '../data/data';
 import header from '../common/header';

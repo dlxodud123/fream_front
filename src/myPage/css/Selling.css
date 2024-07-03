@@ -1,0 +1,7 @@
+.selling{
+    background-color: #fafafa;
+    border-radius: 12px;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}

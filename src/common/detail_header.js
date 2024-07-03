@@ -9,6 +9,16 @@ function Detail_header(props){
 
     const [scrollPosition, setScrollPosition] = useState(0);
 
+    const formatGender = (gender) => {
+      if (gender === "MAN") {
+          return "";
+      }else if (gender === "WOMAN"){
+          return "(W)";
+      }else{
+          return "";
+      }
+    }
+
     useEffect(() => {
         const onScroll = () => {
           setScrollPosition(window.scrollY);
@@ -28,7 +38,7 @@ function Detail_header(props){
             <div className='detail_top_inner'>
               <div style={{ display:"flex", marginLeft:"1008px", width:"232px"}}>
                 <div><a style={{color:"grey", textDecoration:"none", fontSize:"14px"}} href='#'>고객센터</a></div>
-                <div style={{marginLeft:"20px"}}><a style={{color:"grey", textDecoration:"none", fontSize:"14px"}} href='#'>마이페이지</a></div>
+                <div style={{marginLeft:"20px"}}><a style={{color:"grey", textDecoration:"none", fontSize:"14px"}} href='/myPage'>마이페이지</a></div>
                 <div style={{marginLeft:"20px"}}><a style={{color:"grey", textDecoration:"none", fontSize:"14px"}} href='/login'>로그인</a></div>
               </div>
             </div>
@@ -51,15 +61,15 @@ function Detail_header(props){
                 :
                 <div className="scroll_container">
                     <div style={{width:"660px", display:"flex"}}>
-                        <div><img src={img} style={{width:"65px", height:"65px", marginTop:"10px", borderRadius:"10px", backgroundColor:"#f4f4f4"}}></img></div>
+                        <div><img src={`${process.env.PUBLIC_URL}/images/${props.main_info_shoes.imgName}`} style={{width:"65px", height:"65px", marginTop:"10px", borderRadius:"10px", backgroundColor:"#f4f4f4"}}></img></div>
                         <div style={{marginLeft:"8px", marginTop:"12px"}}>
-                            <div style={{fontSize:"18px"}}>Adidas x Hikari Shibata Gazelle Indoor Core White Night Grey</div>
-                            <div style={{fontSize:"14px", color:"rgba(0,0,0,0.5)"}}>아디다스 x 히카리 시바타 가젤 인도어 코어 화이트 나이트 그레이</div>
+                            <div style={{fontSize:"18px"}}>{formatGender(props.main_info_shoes.gender)}&nbsp;{props.main_info_shoes.nameEng}</div>
+                            <div style={{fontSize:"14px", color:"rgba(0,0,0,0.5)"}}>{formatGender(props.main_info_shoes.gender)}&nbsp;{props.main_info_shoes.nameKor}</div>
                         </div>
                     </div>
                     <div style={{width:"540px", display:"flex", marginTop:"14px"}}>
-                        <Header_buy_modal final_size={props.final_size} setFinal_Size={props.setFinal_Size}></Header_buy_modal>
-                        <Header_sell_modal final_size={props.final_size} setFinal_Size={props.setFinal_Size}></Header_sell_modal>
+                        <Header_buy_modal main_info_shoes={props.main_info_shoes} final_size={props.final_size} setFinal_Size={props.setFinal_Size}></Header_buy_modal>
+                        <Header_sell_modal main_info_shoes={props.main_info_shoes} final_size={props.final_size} setFinal_Size={props.setFinal_Size}></Header_sell_modal>
                     </div>
                 </div>
             }

@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App1 from './main/app1';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import MyPage from './login/js/Mypage.js';
+import MyPage from './myPage/js/Mypage.js';
 import Main from './main/app1.js';
 import Detail_form from './detail/detail_form.js'
 import Buy_form from './detail/buy_form.js';
@@ -16,6 +16,7 @@ import Men from './main/men.js';
 import Women from './main/women';
 import Shope from './main/shopeitem/shope';
 import Shopeshoes from './main/shopeitem/shopeshoes';
+import Profile from './myPage/js/profile.js';
 
 function App() {
 
@@ -32,9 +33,9 @@ function App() {
         <Route path='/join' element={<Join/>}/>
         <Route path='/login/find_email' element={<FindEmail/>}/>
         <Route path='/login/find_password' element={<FindPw />}/>
-        <Route path='/register_form'></Route>
+        <Route path='/profile-edit' element={<Profile/>}></Route>
         <Route path='/products/:id' element={<Detail_form></Detail_form>}></Route>
-        <Route path='/buy' element={<Buy_form></Buy_form>}></Route>
+        <Route path='/buy/:data/:size' element={<Buy_form></Buy_form>}></Route>
         <Route path='/sell' element={<Detail_Chart></Detail_Chart>}></Route>
       </Routes>
     </div>

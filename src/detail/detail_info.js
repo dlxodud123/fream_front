@@ -19,7 +19,13 @@ const Detail_info = (props) => {
     };
 
     const formatGender = (gender) => {
-        return 
+        if (gender === "MAN") {
+            return "";
+        }else if (gender === "WOMAN"){
+            return "(W)";
+        }else{
+            return "";
+        }
     }
 
     return(
@@ -31,10 +37,10 @@ const Detail_info = (props) => {
                 </div>
                 <div className="title_container">
                     <div>
-                        <p style={{fontSize:"20px", marginBottom:"0px"}}>{props.main_info_shoes.nameEng}</p>
+                        <p style={{fontSize:"20px", marginBottom:"0px"}}>{formatGender(props.main_info_shoes.gender)}&nbsp;{props.main_info_shoes.nameEng}</p>
                     </div>
                     <div>
-                        <p style={{color:"rgba(0,0,0,0.5)"}}>{props.main_info_shoes.nameKor}</p>
+                        <p style={{color:"rgba(0,0,0,0.5)"}}>{formatGender(props.main_info_shoes.gender)}&nbsp;{props.main_info_shoes.nameKor}</p>
                     </div>
                 </div>
 
@@ -106,8 +112,8 @@ const Detail_info = (props) => {
 
                 </div>
                 <div className="division_btn_container">
-                    <Buy_modal final_size={props.final_size} setFinal_Size={props.setFinal_Size}></Buy_modal>
-                    <Sell_modal final_size={props.final_size} setFinal_Size={props.setFinal_Size}></Sell_modal>
+                    <Buy_modal main_info_shoes={props.main_info_shoes} final_size={props.final_size} setFinal_Size={props.setFinal_Size}></Buy_modal>
+                    <Sell_modal main_info_shoes={props.main_info_shoes} final_size={props.final_size} setFinal_Size={props.setFinal_Size}></Sell_modal>
                 </div>
                 <div className='add_benefit'>
                     <div style={{textAlign:"left", fontWeight:"bold"}}>추가 혜택</div>

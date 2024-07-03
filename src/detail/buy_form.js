@@ -11,8 +11,13 @@ import naver_img from "./../img/detail-page/naver_pay.png";
 import kakao_img from "./../img/detail-page/kakao_pay.png";
 import toss_img from "./../img/detail-page/toss_pay.png";
 import payco_img from "./../img/detail-page/payco_pay.png";
+import { useParams } from 'react-router-dom';
 
 const Buy_form = () => {
+
+    let {size, data} = useParams(); 
+    let parseData = JSON.parse(decodeURIComponent(data));
+
     let [deliveryBtn, setDeliveryBtn] = useState(1);
     let [paymentBtn, setPaymentBtn] = useState();
 
@@ -26,11 +31,16 @@ const Buy_form = () => {
         width: 210px;
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
+
+    console.log(data[0]);
+
     return(
         <>
             <Header></Header>
             <div className='buy_all'>
                 <div className="buy_container">
+                    {size}
+                    {parseData.price}
                     <div style={{height:"30px", backgroundColor:"#f4f4f4"}}/>
                     <div className='buy_content'>
                         <img style={{width:"100px",borderRadius:"15px" , float:"left", marginTop:"25px", marginBottom:"25px", marginLeft:"25px"}} src={img}>
