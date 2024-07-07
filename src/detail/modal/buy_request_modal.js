@@ -11,6 +11,7 @@ const Buy_request_modal = () => {
     const buy_link = () => {
         window.location.href = '/buy';
     }
+    
     return(
         <>
             <button onClick={() => setBuyModal(true)} style={{width:"650px", height:"50px", marginLeft:"25px", marginTop:"10px", display:"flex"}}>
@@ -28,7 +29,7 @@ const Buy_request_modal = () => {
                             </button>
                         </div>
                         <div style={{width:"400px", height:"320px", marginLeft:"40px", marginTop:"20px"}}>
-                            <div style={{width:"400px", height:"1px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
+
                             <button onClick={() => {setPre_reqeust("요청사항 없음")}} style={{width:"400px", height:"60px", border:"none", textAlign:"left"}}>요청사항 없음</button>
                             <div style={{width:"400px", height:"1px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
                             <button onClick={() => {setPre_reqeust("문 앞에 놓아주세요")}} style={{width:"400px", height:"60px", border:"none", textAlign:"left"}}>문 앞에 놓아주세요</button>

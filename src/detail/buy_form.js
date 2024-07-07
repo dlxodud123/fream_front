@@ -1,6 +1,6 @@
 import './css/buy_form.css';
 import Footer from "../common/footer";
-import Header from "../common/header";
+import Detail_buy_header from '../common/detail_buy_header';
 import Buy_request_modal from './modal/buy_request_modal';
 import img from "../img/img5.jpg";
 import styled from 'styled-components';
@@ -13,14 +13,25 @@ import toss_img from "./../img/detail-page/toss_pay.png";
 import payco_img from "./../img/detail-page/payco_pay.png";
 import { useParams } from 'react-router-dom';
 import Buy_delivery_modal from './modal/buy_delivery_modal';
+import Buy_delivery_change_modal from './modal/buy_delivery_change_modal';
 
 const Buy_form = () => {
+    let [finalName, setFinalName] = useState();
+    let [finalNumber, setFinalNumber] = useState('');
+    let [finalZonecode, setFinalZonecode] = useState();
+    let [finalRoadaddress, setFinalRoadaddress] = useState();
+    let [finalBname, setFinalBname] = useState();
+    let [finalBuildingname, setFinalBuildingname] = useState();
+    let [finalBetterAddress, setFinalBetterAddress] = useState();
+    let [finalSaveBtn, setFinalSaveBtn] = useState(false);
 
     let {size, data} = useParams(); 
     let parseData = JSON.parse(decodeURIComponent(data));
 
     let [deliveryBtn, setDeliveryBtn] = useState(1);
     let [paymentBtn, setPaymentBtn] = useState();
+
+    let [NumberVal, setNumberVal] = useState();
 
     const DeliveryButton = styled.button`
         height: 70px;
@@ -33,15 +44,40 @@ const Buy_form = () => {
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
 
-    console.log(data[0]);
+    useEffect(() => {
+        if (finalNumber.length == 11) {
+            
+            const formatPhoneNumber4 = (number) => {
+                const cleaned = ('' + number).replace(/\D/g, '');
+                const match = cleaned.match(/^(\d{3})(\d{4})(\d{4})$/);
+                if (match) {
+                    return `${match[1]}-${match[2]}-${match[3]}`;
+                }
+                return number;
+            };
+            setNumberVal(formatPhoneNumber4(finalNumber));
+        }else if (finalNumber.length == 10){
+
+            const formatPhoneNumber3 = (number) => {
+                const cleaned = ('' + number).replace(/\D/g, '');
+                const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+                if (match) {
+                    return `${match[1]}-${match[2]}-${match[3]}`;
+                }
+                return number;
+            };
+            setNumberVal(formatPhoneNumber3(finalNumber));
+        }
+
+    }, [finalNumber])
 
     return(
         <>
-            <Header></Header>
+            <Detail_buy_header></Detail_buy_header>
             <div className='buy_all'>
                 <div className="buy_container">
-                    {size}
-                    {parseData.price}
+                    {/* {size}
+                    {parseData.price} */}
                     <div style={{height:"30px", backgroundColor:"#f4f4f4"}}/>
                     <div className='buy_content'>
                         <img style={{width:"100px",borderRadius:"15px" , float:"left", marginTop:"25px", marginBottom:"25px", marginLeft:"25px"}} src={img}>
@@ -62,65 +98,133 @@ const Buy_form = () => {
                         </div>
                     </div>
                     <div style={{height:"15px", backgroundColor:"#f4f4f4"}}/>
-                    <div className='buy_delivery'>
-                        <div style={{width:"200px", paddingTop:"30px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold"}}>
-                            배송 주소
-                        </div>
-                        <div>
-                            <Buy_delivery_modal></Buy_delivery_modal>
-                            
-                        </div>
-                        {/* <div style={{display:"flex", paddingTop:"10px"}}>
-                            <div style={{width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>받는 분</div><div>이태영</div>
-                        </div>
-                        <div style={{display:"flex", paddingTop:"5px"}}>
-                            <div style={{width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>연락처</div><div>010-3858-5430</div>
-                        </div>
-                        <div style={{display:"flex", paddingTop:"5px"}}>
-                            <div style={{width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>배송 주소</div><div>(01388) 서울 도봉구 해등로 242-11 (쌍문동, 성원아파트) 105동 502호</div>
-                        </div> */}
-                        <div style={{marginTop:"15px"}}>
-                            <Buy_request_modal></Buy_request_modal>
-                        </div>
-
-                        <div style={{width:"650px", height:"1px", backgroundColor:"rgba(0,0,0,0.1)", marginLeft:"25px", marginTop:"20px"}} />
-
-                        <div style={{width:"200px", paddingTop:"30px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold"}}>
-                            배송 방법
-                        </div>
-                        <div style={{marginTop:"10px", width:"700px"}}>
-                            <DeliveryButton active={deliveryBtn === 1} onClick={() => setDeliveryBtn(1)}>
+                    {finalSaveBtn ? (
+                        <>
+                            <div style={{height:"480px"}} className='buy_delivery'>
                                 <div style={{display:"flex"}}>
-                                    <div style={{marginLeft:"10px"}}>
-                                        <img src={delivery_img1} style={{width:"60px"}}></img>
-                                    </div>
-                                    <div style={{marginLeft:"15px", marginTop:"10px"}}>
-                                        <div style={{textAlign:'left', fontSize:"14px", display:"flex"}}>
-                                            <div style={{fontWeight:"bold"}}>일반배송</div>&nbsp;
-                                            <div>3,000원</div>
+                                    <div style={{width:"610px"}}>
+                                        <div style={{width:"200px", paddingTop:"30px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold"}}>
+                                            배송 주소
                                         </div>
-                                        <div style={{textAlign:'left', color:"rgba(0,0,0,0.5)", fontSize:"13px"}}>검수 후 배송 ・ 5-7일 내 도착 예정</div>
+                                        <div style={{display:"flex", paddingTop:"10px"}}>
+                                            <div style={{fontSize:"14px", width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>받는 분</div>
+                                            <div style={{fontSize:"14px"}}>{finalName}</div>
+                                        </div>
+                                        <div style={{display:"flex", paddingTop:"5px"}}>
+                                            <div style={{fontSize:"14px",width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>연락처</div>
+                                            <div style={{fontSize:"14px"}}>{NumberVal}</div>
+                                        </div>
+                                        <div style={{display:"flex", paddingTop:"5px"}}>
+                                            <div style={{fontSize:"14px",width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>배송 주소</div>
+                                            {/* <div style={{fontSize:"14px"}}>(01388) 서울 도봉구 해등로 242-11 (쌍문동, 성원아파트) 105동 502호</div> */}
+                                            <div style={{fontSize:"14px"}}>({finalZonecode}) {finalRoadaddress} ({finalBname}, {finalBuildingname}) {finalBetterAddress}</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button style={{width:"50px", height:"35px", marginTop:"80px", fontSize:"13px", color:"rgba(127,127,127,1)"}}>변경</button>
                                     </div>
                                 </div>
-                            </DeliveryButton>
-                        </div>
-                        <div style={{marginTop:"5px"}}>
-                            <DeliveryButton active={deliveryBtn === 2} onClick={() => setDeliveryBtn(2)}>
-                            <div style={{display:"flex"}}>
-                                <div style={{marginLeft:"10px"}}>
-                                        <img src={delivery_img2} style={{width:"60px"}}></img>
+
+                                <div style={{marginTop:"15px"}}>
+                                    <Buy_request_modal></Buy_request_modal>
                                 </div>
-                                <div style={{marginLeft:"15px", marginTop:"10px"}}>
-                                    <div style={{textAlign:'left', fontSize:"14px", display:"flex"}}>
-                                        <div style={{fontWeight:"bold"}}>창고보관</div>&nbsp;
-                                        <div>첫 30일 무료</div>
-                                    </div>
-                                <div style={{textAlign:'left', color:"rgba(0,0,0,0.5)", fontSize:"13px"}}>배송 없이 창고에 보관 ・ 빠르게 판매 가능</div>
+
+                                <div style={{width:"650px", height:"1px", backgroundColor:"rgba(0,0,0,0.1)", marginLeft:"25px", marginTop:"20px"}} />
+
+                                <div style={{width:"200px", paddingTop:"30px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold"}}>
+                                    배송 방법
                                 </div>
-                            </div> 
-                            </DeliveryButton>
-                        </div>
-                    </div>
+                                <div style={{marginTop:"10px", width:"700px"}}>
+                                    <DeliveryButton active={deliveryBtn === 1} onClick={() => setDeliveryBtn(1)}>
+                                        <div style={{display:"flex"}}>
+                                            <div style={{marginLeft:"10px"}}>
+                                                <img src={delivery_img1} style={{width:"60px"}}></img>
+                                            </div>
+                                            <div style={{marginLeft:"15px", marginTop:"10px"}}>
+                                                <div style={{textAlign:'left', fontSize:"14px", display:"flex"}}>
+                                                    <div style={{fontWeight:"bold"}}>일반배송</div>&nbsp;
+                                                    <div>3,000원</div>
+                                                </div>
+                                                <div style={{textAlign:'left', color:"rgba(0,0,0,0.5)", fontSize:"13px"}}>검수 후 배송 ・ 5-7일 내 도착 예정</div>
+                                            </div>
+                                        </div>
+                                    </DeliveryButton>
+                                </div>
+                                <div style={{marginTop:"5px"}}>
+                                    <DeliveryButton active={deliveryBtn === 2} onClick={() => setDeliveryBtn(2)}>
+                                    <div style={{display:"flex"}}>
+                                        <div style={{marginLeft:"10px"}}>
+                                                <img src={delivery_img2} style={{width:"60px"}}></img>
+                                        </div>
+                                        <div style={{marginLeft:"15px", marginTop:"10px"}}>
+                                            <div style={{textAlign:'left', fontSize:"14px", display:"flex"}}>
+                                                <div style={{fontWeight:"bold"}}>창고보관</div>&nbsp;
+                                                <div>첫 30일 무료</div>
+                                            </div>
+                                        <div style={{textAlign:'left', color:"rgba(0,0,0,0.5)", fontSize:"13px"}}>배송 없이 창고에 보관 ・ 빠르게 판매 가능</div>
+                                        </div>
+                                    </div> 
+                                    </DeliveryButton>
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div style={{height:"460px"}} className='buy_delivery'>
+                                <div style={{width:"200px", paddingTop:"30px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold"}}>
+                                    배송 주소
+                                </div>
+                                <div>
+                                    <Buy_delivery_modal setFinalName={setFinalName} setFinalNumber={setFinalNumber} setFinalZonecode={setFinalZonecode}
+                                        setFinalRoadaddress={setFinalRoadaddress} setFinalBname={setFinalBname} setFinalBuildingname={setFinalBuildingname} 
+                                        setFinalSaveBtn={setFinalSaveBtn} setFinalBetterAddress={setFinalBetterAddress}>
+                                    </Buy_delivery_modal>
+                                </div>
+                                <div style={{marginTop:"15px"}}>
+                                    <Buy_request_modal></Buy_request_modal>
+                                </div>
+
+                                <div style={{width:"650px", height:"1px", backgroundColor:"rgba(0,0,0,0.1)", marginLeft:"25px", marginTop:"20px"}} />
+
+                                <div style={{width:"200px", paddingTop:"30px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold"}}>
+                                    배송 방법
+                                </div>
+                                <div style={{marginTop:"10px", width:"700px"}}>
+                                    <DeliveryButton active={deliveryBtn === 1} onClick={() => setDeliveryBtn(1)}>
+                                        <div style={{display:"flex"}}>
+                                            <div style={{marginLeft:"10px"}}>
+                                                <img src={delivery_img1} style={{width:"60px"}}></img>
+                                            </div>
+                                            <div style={{marginLeft:"15px", marginTop:"10px"}}>
+                                                <div style={{textAlign:'left', fontSize:"14px", display:"flex"}}>
+                                                    <div style={{fontWeight:"bold"}}>일반배송</div>&nbsp;
+                                                    <div>3,000원</div>
+                                                </div>
+                                                <div style={{textAlign:'left', color:"rgba(0,0,0,0.5)", fontSize:"13px"}}>검수 후 배송 ・ 5-7일 내 도착 예정</div>
+                                            </div>
+                                        </div>
+                                    </DeliveryButton>
+                                </div>
+                                <div style={{marginTop:"5px"}}>
+                                    <DeliveryButton active={deliveryBtn === 2} onClick={() => setDeliveryBtn(2)}>
+                                    <div style={{display:"flex"}}>
+                                        <div style={{marginLeft:"10px"}}>
+                                                <img src={delivery_img2} style={{width:"60px"}}></img>
+                                        </div>
+                                        <div style={{marginLeft:"15px", marginTop:"10px"}}>
+                                            <div style={{textAlign:'left', fontSize:"14px", display:"flex"}}>
+                                                <div style={{fontWeight:"bold"}}>창고보관</div>&nbsp;
+                                                <div>첫 30일 무료</div>
+                                            </div>
+                                        <div style={{textAlign:'left', color:"rgba(0,0,0,0.5)", fontSize:"13px"}}>배송 없이 창고에 보관 ・ 빠르게 판매 가능</div>
+                                        </div>
+                                    </div> 
+                                    </DeliveryButton>
+                                </div>
+                            </div>
+                        </>
+                    )}
+
                     <div style={{height:"15px", backgroundColor:"#f4f4f4"}}/>
                     <div className='buy_payment'>
                         <div style={{width:"200px", paddingTop:"30px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold"}}>

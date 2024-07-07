@@ -15,7 +15,7 @@
     background-color: white;
     position: fixed;
     width: 520px;
-    height: 600px;
+    height: 620px;
     border-radius: 20px;
 }
 .name_input_txt{
@@ -24,4 +24,12 @@
     font-size: 15px;
     line-height: 22px;
     padding: 8px 0;
+}
+.name_input_null_txt{
+    width: 460px;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 15px;
+    line-height: 22px;
+    padding: 8px 0;
+    color: rgba(128, 128, 128, 0.7);
 }

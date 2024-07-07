@@ -1,7 +1,7 @@
 import "./../css/modal/buy_delivery_modal.css";
 import { useEffect, useState } from "react";
 
-const Buy_delivery_modal = (props) => {
+const Buy_delivery_change_modal = (props) => {
 
     let [clickBtn, setClickBtn] = useState(false);
     let [finalBtn, setFinalBtn] = useState(false);
@@ -208,4 +208,4 @@ const Buy_delivery_modal = (props) => {
     )
 }
 
-export default Buy_delivery_modal;
+export default Buy_delivery_change_modal;
