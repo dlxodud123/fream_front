@@ -40,7 +40,7 @@ const Buy_modal = (props) => {
                     <div style={{fontSize:"17px" ,height:"20px", marginTop:"8px"}} >{formatPrice(props.main_info_shoes.price)}원</div>
                     <div style={{fontWeight:"lighter", fontSize:"12px", textAlign:"left"}}>즉시 구매가</div>
                 </div>
-                {props.main_info_shoes.price}
+                {/* {props.main_info_shoes.price} */}
 
             </button>
             {   

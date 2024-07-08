@@ -33,6 +33,21 @@ const Buy_form = () => {
 
     let [NumberVal, setNumberVal] = useState();
 
+    let [finalBtn, setFinalBtn] = useState(false);
+
+    let [buy_request, setBuy_request] = useState("");
+
+    console.log(parseData.prid);
+    console.log(size);
+    console.log(finalName);
+    console.log(finalNumber);
+    console.log(finalZonecode);
+    console.log(finalRoadaddress);
+    console.log(finalBname);
+    console.log(finalBuildingname);
+    console.log(finalBetterAddress);
+    console.log(buy_request);
+
     const DeliveryButton = styled.button`
         height: 70px;
         width: 650px;   
@@ -51,7 +66,9 @@ const Buy_form = () => {
                 const cleaned = ('' + number).replace(/\D/g, '');
                 const match = cleaned.match(/^(\d{3})(\d{4})(\d{4})$/);
                 if (match) {
-                    return `${match[1]}-${match[2]}-${match[3]}`;
+                    const maskedMiddle = match[2][0] + '***';
+                    const maskedEnd = '*' + match[3].slice(1);
+                    return `${match[1]}-${maskedMiddle}-${maskedEnd}`;
                 }
                 return number;
             };
@@ -62,38 +79,63 @@ const Buy_form = () => {
                 const cleaned = ('' + number).replace(/\D/g, '');
                 const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
                 if (match) {
-                    return `${match[1]}-${match[2]}-${match[3]}`;
+                    const maskedMiddle = match[2][0] + '**';
+                    const maskedEnd = '*' + match[3].slice(1);
+                    return `${match[1]}-${maskedMiddle}-${maskedEnd}`;
                 }
                 return number;
             };
             setNumberVal(formatPhoneNumber3(finalNumber));
         }
-
     }, [finalNumber])
+
+    const formatBtn = () => {
+        setFinalSaveBtn(false);
+    }
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-US').format(price);
+    };
+
+    useEffect(() => {
+        if (finalSaveBtn) {
+            setFinalBtn(true);
+        }else{
+            setFinalBtn(false);
+        }
+    })
+
+    const formatName = (str) => {
+        return str[0] + '*'.repeat(str.length - 1);
+    };
 
     return(
         <>
             <Detail_buy_header></Detail_buy_header>
             <div className='buy_all'>
                 <div className="buy_container">
-                    {/* {size}
+                    {/* {parseData.imgName}
+                    {parseData.prid}
+                    {parseData.nameEng}
+                    {parseData.nameKor}
+                    {size} 
                     {parseData.price} */}
                     <div style={{height:"30px", backgroundColor:"#f4f4f4"}}/>
                     <div className='buy_content'>
-                        <img style={{width:"100px",borderRadius:"15px" , float:"left", marginTop:"25px", marginBottom:"25px", marginLeft:"25px"}} src={img}>
+                        <img style={{width:"100px",borderRadius:"15px" , float:"left", marginTop:"25px", marginBottom:"25px", marginLeft:"25px", backgroundColor:"rgb(244,244,244)"}} src={`${process.env.PUBLIC_URL}/images/${parseData.imgName}`}>
                         </img>
                         <div style={{marginTop:"25px", marginLeft:"15px", width:"400px", textAlign:"left"}}>
                             <div style={{fontWeight:"bold"}}>
-                                DZ4137-700
+                                {parseData.prid}
                             </div>
                             <div>
-                                (W) Jordan 1 x Travis Scott Retro Low OG SP Canary
+                                {parseData.nameEng}
                             </div>
                             <div style={{color:"rgba(0,0,0,0.5)"}}>
-                                (W) 조던 1 x 트래비스 스캇 레트로 로우 OG SP 카나리
+                                {parseData.nameKor}
                             </div>
                             <div style={{fontWeight:"bold"}}>
-                                W220
+                                {size}
                             </div>
                         </div>
                     </div>
@@ -108,7 +150,7 @@ const Buy_form = () => {
                                         </div>
                                         <div style={{display:"flex", paddingTop:"10px"}}>
                                             <div style={{fontSize:"14px", width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>받는 분</div>
-                                            <div style={{fontSize:"14px"}}>{finalName}</div>
+                                            <div style={{fontSize:"14px"}}>{formatName(finalName)}</div>
                                         </div>
                                         <div style={{display:"flex", paddingTop:"5px"}}>
                                             <div style={{fontSize:"14px",width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>연락처</div>
@@ -116,17 +158,16 @@ const Buy_form = () => {
                                         </div>
                                         <div style={{display:"flex", paddingTop:"5px"}}>
                                             <div style={{fontSize:"14px",width:"100px", marginLeft:"25px", textAlign:"left", color:"rgba(0,0,0,0.5)"}}>배송 주소</div>
-                                            {/* <div style={{fontSize:"14px"}}>(01388) 서울 도봉구 해등로 242-11 (쌍문동, 성원아파트) 105동 502호</div> */}
                                             <div style={{fontSize:"14px"}}>({finalZonecode}) {finalRoadaddress} ({finalBname}, {finalBuildingname}) {finalBetterAddress}</div>
                                         </div>
                                     </div>
                                     <div>
-                                        <button style={{width:"50px", height:"35px", marginTop:"80px", fontSize:"13px", color:"rgba(127,127,127,1)"}}>변경</button>
+                                        <button onClick={formatBtn} style={{width:"50px", height:"35px", marginTop:"80px", fontSize:"13px", color:"rgba(127,127,127,1)"}}>초기화</button>
                                     </div>
                                 </div>
 
                                 <div style={{marginTop:"15px"}}>
-                                    <Buy_request_modal></Buy_request_modal>
+                                    <Buy_request_modal setBuy_request={setBuy_request}></Buy_request_modal>
                                 </div>
 
                                 <div style={{width:"650px", height:"1px", backgroundColor:"rgba(0,0,0,0.1)", marginLeft:"25px", marginTop:"20px"}} />
@@ -297,7 +338,7 @@ const Buy_form = () => {
                                 즉시 구매가
                             </div>
                             <div style={{textAlign:"right", width:"150px", fontSize:"15px", fontWeight:"bold"}}>
-                                340,000원
+                                {formatPrice(parseData.price)}
                             </div>
                         </div>
                         <div style={{display:"flex", marginTop:"15px"}}>
@@ -313,7 +354,7 @@ const Buy_form = () => {
                                 수수료
                             </div>
                             <div style={{textAlign:"right", width:"150px", fontSize:"15px"}}>
-                                11,200원
+                                무료
                             </div>
                         </div>
                         <div style={{display:"flex", marginTop:"15px"}}>
@@ -333,13 +374,23 @@ const Buy_form = () => {
                             <div style={{display:"flex",width:"450px", color:"rgb(241, 87, 70)", fontSize:"13px", paddingLeft:"249px"}}>
                                 <div style={{fontWeight:"700"}}>주의!</div>&nbsp;<div>최근 거래가를 확인해주세요.</div>
                             </div>
-                            <div style={{textAlign:"right", fontWeight:"bold", fontSize:"20px"}}>354,200원</div>
+                            <div style={{textAlign:"right", fontWeight:"bold", fontSize:"20px"}}>{formatPrice(parseData.price+3000)}</div>
                         </div>
                     </div>
                     <div className='order_agreemnet_button'>
-                        <button style={{width:"630px", backgroundColor:"black", color:"white", marginTop:"20px", fontWeight:"bold"}}>
-                            354,200원・일반배송 결제하기
-                        </button>
+                        {finalBtn ? (
+                            <>
+                            <button style={{width:"630px", backgroundColor:"black", color:"white", marginTop:"20px", fontWeight:"bold", fontSize:"17px"}}>
+                                {formatPrice(parseData.price+3000)}원・일반배송 결제하기
+                            </button>
+                            </>
+                        ) : (
+                            <>
+                            <button disabled style={{width:"630px", backgroundColor:"rgba(127,127,127,0.4)", border:"none",color:"white", marginTop:"20px", fontWeight:"bold", fontSize:"17px"}}>
+                                {formatPrice(parseData.price+3000)}원・일반배송 결제하기
+                            </button>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

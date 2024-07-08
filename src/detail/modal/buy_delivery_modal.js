@@ -57,7 +57,7 @@ const Buy_delivery_modal = (props) => {
     const handleInputNameChange = (e) => {
         const value = e.target.value;
         setInputNameValue(value);
-        if (value.length < 2) {
+        if (value.length < 2 || value.length > 50) {
             setShowNameWarning(true);
         } else {
             setShowNameWarning(false);
@@ -123,7 +123,7 @@ const Buy_delivery_modal = (props) => {
                                 <>
                                     <div style={{textAlign:"left", fontSize:"14px", fontWeight:"bold", color:"red"}}>이름</div>
                                     <div style={{marginTop:"5px"}}>
-                                        <input style={{borderBottomColor:"red"}} onChange={handleInputNameChange} value={inputNameValue} type="text" placeholder="수령인의 이름" className="name_input_txt">
+                                        <input maxLength={50} style={{borderBottomColor:"red"}} onChange={handleInputNameChange} value={inputNameValue} type="text" placeholder="수령인의 이름" className="name_input_txt">
                                         </input>
                                     </div>
                                     <div style={{ color: "red", fontSize: "11px",fontWeight:500, textAlign:"left", height:"10px" }}>

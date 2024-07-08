@@ -1,16 +1,20 @@
 import "./../css/modal/buy_request_modal.css";
-import { useState } from "react";
-import img1 from "./../../img/img5.jpg"
+import { useEffect, useState } from "react";
 import arrow_img from "./../../img/detail-page/arrow.png";
 
-const Buy_request_modal = () => {
+const Buy_request_modal = (props) => {
     const [buyModal, setBuyModal] = useState(false);
     const [pre_request, setPre_reqeust] = useState("");
     const [request, setRequest] = useState("요청사항 없음");
+    const [requestBtn, setRequestBtn] = useState(1);
 
-    const buy_link = () => {
-        window.location.href = '/buy';
-    }
+    console.log(request)
+
+    useEffect(() => {
+        if (props.setBuy_request) {
+            props.setBuy_request(request);
+        }
+    }, [request, props.setBuy_request]);
     
     return(
         <>
@@ -30,13 +34,82 @@ const Buy_request_modal = () => {
                         </div>
                         <div style={{width:"400px", height:"320px", marginLeft:"40px", marginTop:"20px"}}>
 
-                            <button onClick={() => {setPre_reqeust("요청사항 없음")}} style={{width:"400px", height:"60px", border:"none", textAlign:"left"}}>요청사항 없음</button>
+                            <button onClick={() => {setRequestBtn(1); setPre_reqeust("요청사항 없음")}} style={{width:"400px", height:"60px", border:"none", textAlign:"left"}}>
+                                <div style={{display:"flex"}}>
+                                    {
+                                        requestBtn === 1 ? (
+                                            <>
+                                                <div style={{width:"350px", height:"30px", fontWeight:"bold", marginTop:"10px"}}>요청사항 없음</div>
+                                                <div style={{width:"50px", height:"30px", fontSize:"20px", fontWeight:"bold", marginTop:"5px"}}>✔</div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div style={{width:"350px", height:"30px", marginTop:"10px"}}>요청사항 없음</div>
+                                                <div style={{width:"50px", height:"30px"}}></div>
+                                            </>
+                                        )
+                                    }
+                                </div>
+                            </button>
                             <div style={{width:"400px", height:"1px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
-                            <button onClick={() => {setPre_reqeust("문 앞에 놓아주세요")}} style={{width:"400px", height:"60px", border:"none", textAlign:"left"}}>문 앞에 놓아주세요</button>
+
+                            <button onClick={() => {setRequestBtn(2); setPre_reqeust("문 앞에 놓아주세요")}} style={{width:"400px", height:"60px", border:"none", textAlign:"left"}}>
+                                <div style={{display:"flex"}}>
+                                    {
+                                        requestBtn === 2 ? (
+                                            <>
+                                                <div style={{width:"350px", height:"30px", fontWeight:"bold", marginTop:"10px"}}>문 앞에 놓아주세요</div>
+                                                <div style={{width:"50px", height:"30px", fontSize:"20px", fontWeight:"bold", marginTop:"5px"}}>✔</div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div style={{width:"350px", height:"30px", marginTop:"10px"}}>문 앞에 놓아주세요</div>
+                                                <div style={{width:"50px", height:"30px"}}></div>
+                                            </>
+                                        )
+                                    }
+                                </div>
+                            </button>
+                            
                             <div style={{width:"400px", height:"1px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
-                            <button onClick={() => {setPre_reqeust("경비실에 맡겨 주세요")}} style={{width:"400px", height:"60px", border:"none", textAlign:"left"}}>경비실에 맡겨 주세요</button>
+                            
+                            <button onClick={() => {setRequestBtn(3); setPre_reqeust("경비실에 맡겨 주세요")}} style={{width:"400px", height:"60px", border:"none", textAlign:"left"}}>
+                                <div style={{display:"flex"}}>
+                                    {
+                                        requestBtn === 3 ? (
+                                            <>
+                                                <div style={{width:"350px", height:"30px", fontWeight:"bold", marginTop:"10px"}}>경비실에 맡겨 주세요</div>
+                                                <div style={{width:"50px", height:"30px", fontSize:"20px", fontWeight:"bold", marginTop:"5px"}}>✔</div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div style={{width:"350px", height:"30px", marginTop:"10px"}}>경비실에 맡겨 주세요</div>
+                                                <div style={{width:"50px", height:"30px"}}></div>
+                                            </>
+                                        )
+                                    }
+                                </div>
+                            </button>
                             <div style={{width:"400px", height:"1px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
-                            <button onClick={() => {setPre_reqeust("파손 위험 상품입니다. 배송 시 주의해주세요")}} style={{width:"400px", height:"60px", border:"none", textAlign:"left"}}>파손 위험 상품입니다. 배송 시 주의해주세요</button>
+
+                            <button onClick={() => {setRequestBtn(4); setPre_reqeust("파손 위험 상품입니다. 배송 시 주의해주세요")}} style={{width:"400px", height:"60px", border:"none", textAlign:"left"}}>
+                                
+                                <div style={{display:"flex"}}>
+                                    {
+                                        requestBtn === 4 ? (
+                                            <>
+                                                <div style={{width:"350px", height:"30px", fontWeight:"bold", marginTop:"10px"}}>파손 위험 상품입니다. 배송 시 주의해주세요</div>
+                                                <div style={{width:"50px", height:"30px", fontSize:"20px", fontWeight:"bold", marginTop:"5px"}}>✔</div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div style={{width:"350px", height:"30px", marginTop:"10px"}}>파손 위험 상품입니다. 배송 시 주의해주세요</div>
+                                                <div style={{width:"50px", height:"30px"}}></div>
+                                            </>
+                                        )
+                                    }
+                                </div>
+                            </button>
                             <div style={{width:"400px", height:"1px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
                         </div>
                         <div style={{display:"flex"}}>
