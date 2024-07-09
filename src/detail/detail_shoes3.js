@@ -1,59 +1,45 @@
-import img1 from "./../img/img2.png";
-import "./css/detail_shoes.css";
+import "./css/detail_shoes3.css";
+import React, { useState } from "react";
+import data from "../data/data.js";
 
-const Detail_shoes = () => {
+const Detail_shoes3 = () => {
+    const loadMore = () => {
+        setCount(count + 5);
+    };
+    const [shoes, setShoes] = useState(data);
+    const [count, setCount] = useState(5);
+
     return(
-        <>
-            <div>
-                <p style={{fontSize:"20px", fontWeight:"bold"}}>나머지 신발 보기</p>
+        <div style={{marginTop:"70px"}}>
+            <div style={{marginLeft:"10px", marginBottom:"15px", fontWeight:"bold", fontSize:"22px"}}>
+                브랜드별 상품
             </div>
-            <div className="detail_shoes">
-                <div>
-                    <img src = {img1} alt = {'loding'} style={{width:"220px", height:"220px"}}></img>
-                    <div style={{width:"220px"}}>
-                        <div style={{fontWeight:"bold"}}>신발 이름</div>
-                        <div>상세 설명</div>
-                        <div style={{fontWeight:"bold", marginTop:"10px"}}>가격</div>
+            <div style={{display:"flex", flexWrap: "wrap"}}>
+                {shoes.slice(0, count).map((shoes, i) => ( 
+                    <div key={shoes.id} style={{  boxSizing: "border-box" }}>
+                        <Shoesitem0 shoes={shoes} i={i + 1} />
+                        {/* {(i + 1) % 5 === 0 && <div style={{  height: 0 }}></div>} */}
                     </div>
-                </div>
-                <div style={{width:"25px"}}></div>
-                <div>
-                    <img src = {img1} alt = {'loding'} style={{width:"220px", height:"220px"}}></img>
-                    <div style={{width:"220px"}}>
-                        <div style={{fontWeight:"bold"}}>신발 이름</div>
-                        <div>상세 설명</div>
-                        <div style={{fontWeight:"bold", marginTop:"10px"}}>가격</div>
-                    </div>
-                </div>
-                <div style={{width:"25px"}}></div>
-                <div>
-                    <img src = {img1} alt = {'loding'} style={{width:"220px", height:"220px"}}></img>
-                    <div style={{width:"220px"}}>
-                        <div style={{fontWeight:"bold"}}>신발 이름</div>
-                        <div>상세 설명</div>
-                        <div style={{fontWeight:"bold", marginTop:"10px"}}>가격</div>
-                    </div>
-                </div>
-                <div style={{width:"25px"}}></div>
-                <div>
-                    <img src = {img1} alt = {'loding'} style={{width:"220px", height:"220px"}}></img>
-                    <div style={{width:"220px"}}>
-                        <div style={{fontWeight:"bold"}}>신발 이름</div>
-                        <div>상세 설명</div>
-                        <div style={{fontWeight:"bold", marginTop:"10px"}}>가격</div>
-                    </div>
-                </div>
-                <div style={{width:"25px"}}></div>
-                <div>
-                    <img src = {img1} alt = {'loding'} style={{width:"220px", height:"220px"}}></img>
-                    <div style={{width:"220px"}}>
-                        <div style={{fontWeight:"bold"}}>신발 이름</div>
-                        <div>상세 설명</div>
-                        <div style={{fontWeight:"bold", marginTop:"10px"}}>가격</div>
-                    </div>
-                </div>
+                ))}
             </div>
-        </>
+            {count < data.length && (
+                <div style={{textAlign:"center"}}>
+                    <button onClick={loadMore}>더보기</button>
+                </div>
+            )}
+        </div>
     )
 }
-export default Detail_shoes;
+const Shoesitem0 = (props) => {
+    return(
+      <div style={{}}>
+        <img className="img" src={props.shoes.img} />
+        <div style={{marginLeft:"10px", marginBottom:"30px"}}>
+            <div style={{fontWeight:"bold"}}>{props.shoes.brand}Adidas</div>
+            <div style={{width:"220px"}}>{props.shoes.nameKor}Adidas x Clot Gazelle Indoor Halo Ivory Cloud White</div>
+            <div style={{fontWeight:"bold", fontSize:"18px"}}>{props.shoes.price}원</div>
+        </div>
+      </div>
+    )
+}
+export default Detail_shoes3;

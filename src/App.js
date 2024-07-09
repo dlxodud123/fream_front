@@ -6,12 +6,11 @@ import MyPage from './myPage/js/Mypage.js';
 import Main from './main/app1.js';
 import Detail_form from './detail/detail_form.js'
 import Buy_form from './detail/buy_form.js';
-import Detail_Chart from './detail/detail_chart.js';
+import Sell_form from './detail/sell_form.js';
 import LoginPage from './login/js/login.js';
 import Join from './login/js/Join.js'
 import FindEmail from './login/js/FindEmail.js';
 import FindPw from './login/js/FindPw';
-
 import Men from './main/men.js';
 import Women from './main/women';
 import Shope from './main/shopeitem/shope';
@@ -39,11 +38,15 @@ function App() {
         <Route path='/profile-edit' element={<Profile/>}></Route>
         <Route path='/products/:id' element={<Detail_form></Detail_form>}></Route>
         <Route path='/buy/:data/:size' element={<Buy_form></Buy_form>}></Route>
+<<<<<<< HEAD
         <Route path='/sell' element={<Detail_Chart></Detail_Chart>}></Route>
         {/* <Route path='/board' element={<Board></Board>}></Route>
         <Route path='/Board_form' element={<Board_form></Board_form>}></Route> */}
          <Route path="/*" element={<BoardContainer />} />
         {/* <Route path='/board/:No' element={<BoardPage></BoardPage> }></Route> */}
+=======
+        <Route path='/sell/:data/:size' element={<Sell_form></Sell_form>}></Route>
+>>>>>>> 2aa5b96876c35dae4607715d3104b2f9b2f775c6
       </Routes>
     </div>
   );

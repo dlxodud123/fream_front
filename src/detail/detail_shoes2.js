@@ -12,7 +12,7 @@ const Detail_shoes2 = () => {
     return(
         <div style={{marginTop:"70px"}}>
             <div style={{marginLeft:"10px", marginBottom:"15px", fontWeight:"bold", fontSize:"22px"}}>
-                브랜드별 상품
+                성별 상품
             </div>
             <div style={{display:"flex", flexWrap: "wrap"}}>
                 {shoes.slice(0, count).map((shoes, i) => ( 

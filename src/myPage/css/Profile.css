@@ -1,0 +1,161 @@
+/* profile.css */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.col-sm-3{
+    /* margin-right: 20px; */
+    width: 180px;
+}
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    padding: 40px 40px 160px;
+}
+
+.profile-title{
+    border-bottom: 3px solid black;
+    padding-bottom: 10px;
+}
+.title{
+    font-size: 24px;
+    line-height: 29px;
+}
+h3{
+    display: block;
+    font-weight: bold;
+    margin-block-start: 1em;
+}
+
+.user_profile{
+    align-items: center;
+    display: flex;
+    padding: 38px 0;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.profile_thumb{
+    display: flex;
+}
+
+.profileIm{
+    /* border-radius: 100%; */
+    flex: none;
+    overflow: hidden;
+    height: 90px;
+    width: 90px;
+    margin-right: 12px;
+    /* border: 1px solid; */
+}
+
+.imgChangeBtn{
+    margin-top: 12px;
+}
+
+.imgCh{
+    border: 1px solid #d3d3d3;
+    color: rgba(34, 34, 34, .8);
+    font-size: 12px;
+    height: 34px;
+    width: 100px;
+    padding: 0 14px;
+    text-align: center;
+    margin-right: 8px;
+}
+.del{
+    border: 1px solid #d3d3d3;
+    color: rgba(34, 34, 34, .8);
+    font-size: 12px;
+    height: 34px;
+    width: 70px;
+    padding: 0 14px;
+    text-align: center;
+}
+
+.profile_group{
+    max-width: 480px;
+    padding-top: 38px;
+}
+
+.titleProf{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.unit{
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 0 12px;
+    position: relative;
+}
+
+.profile_title{
+    color: rgba(34, 34, 34, .5);
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.unit_content{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.modify_id{
+    display: flex;
+    flex-grow: 1;
+    font-size: 16px;
+    padding-top: 8px;
+    margin: 0;
+}
+
+.unit_all{
+    right: 0;
+    border: 1px solid #d3d3d3;
+    color: rgba(34, 34, 34, .8);
+    font-size: 12px;
+    height: 34px;
+    width: 70px;
+    /* padding: 0 14px; */
+    text-align: center;
+}
+
+/* 모달창 */
+.input_text{
+    color: rgba(34, 34, 34, .5);
+    font-size: 11px;
+    line-height: 16px;
+    position: absolute;
+}
+
+.modify_btn_box{
+    padding-top: 28px;
+    text-align: center;
+    align-items: center;
+}
+
+.btn_cancell{
+    padding: 0 38px;
+    border: 1px solid #d3d3d3;
+    color: rgba(34, 34, 34, .8);
+    border-radius: 12px;
+    font-size: 14px;
+    height: 42px;
+}
+
+.btn_save{
+    margin-left: 8px;
+    background-color: #222;
+    font-weight: 700;
+    padding: 0 38px;
+    border: 1px solid #d3d3d3;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 14px;
+    height: 42px;
+}

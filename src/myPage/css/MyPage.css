@@ -9,9 +9,7 @@
     margin-right: auto;
     max-width: 1280px;
 }
-.snb_area{
-    padding: 40px 40px 160px ;
-}
+
 .mypage h2{
     font-size: 24px;
     font-weight: 700;
@@ -35,6 +33,10 @@
 .menu li{
     display: list-item;
     unicode-bidi: isolate;
+    color: rgba(34, 34, 34, .5);
+    font-size: 14px;
+    letter-spacing: -.15px;
+    line-height: 30px;
 }
 .user_membership{
     padding: 24px;
