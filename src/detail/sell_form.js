@@ -1,6 +1,6 @@
 import './css/buy_form.css';
 import Footer from "../common/footer";
-import Detail_buy_header from '../common/detail_buy_header';
+import Detail_sell_header from '../common/detail_sell_header';
 import Buy_request_modal from './modal/buy_request_modal';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
@@ -13,7 +13,7 @@ import payco_img from "./../img/detail-page/payco_pay.png";
 import { useParams } from 'react-router-dom';
 import Buy_delivery_modal from './modal/buy_delivery_modal';
 
-const Buy_form = () => {
+const Sell_form = () => {
     let [finalName, setFinalName] = useState();
     let [finalNumber, setFinalNumber] = useState('');
     let [finalZonecode, setFinalZonecode] = useState();
@@ -22,7 +22,6 @@ const Buy_form = () => {
     let [finalBuildingname, setFinalBuildingname] = useState();
     let [finalBetterAddress, setFinalBetterAddress] = useState();
     let [finalSaveBtn, setFinalSaveBtn] = useState(false);
-    let [finalCardBtn, setFinalCardBtn] = useState(false);
 
     let {size, data} = useParams(); 
     let parseData = JSON.parse(decodeURIComponent(data));
@@ -36,9 +35,6 @@ const Buy_form = () => {
 
     let [buy_request, setBuy_request] = useState("");
 
-    const { IMP } = window;
-    IMP.init("imp04577308");
-
     console.log(parseData.prid);
     console.log(size);
     console.log(finalName);
@@ -49,36 +45,6 @@ const Buy_form = () => {
     console.log(finalBuildingname);
     console.log(finalBetterAddress);
     console.log(buy_request);
-
-    async function onClickPayments() {
-        console.log("결제구현");
-        IMP.request_pay(
-          {
-            pg: "html5_inicis", // PG사 코드와 상점 ID
-            pay_method: "card",
-            merchant_uid: `payment-${crypto.randomUUID()}`, // 주문 고유 번호
-            name: "노르웨이 회전 의자",
-            amount: 100,
-            buyer_email: "gildong@gmail.com",
-            buyer_name: "홍길동",
-            buyer_tel: "010-4242-4242",
-            buyer_addr: "서울특별시 강남구 신사동",
-            buyer_postcode: "01181",
-          },
-          function (response) {
-            // 결제 종료 시 호출되는 콜백 함수
-            if (response.success) {
-              // 결제 성공 시 로직
-              console.log("결제 성공:", response);
-              // 결제 성공 후 처리할 로직을 작성하세요.
-            } else {
-              // 결제 실패 시 로직
-              console.log("결제 실패:", response.error_msg);
-              alert("결제에 실패하였습니다. 에러내용: " + response.error_msg);
-            }
-          }
-        );
-      }
 
     const DeliveryButton = styled.button`
         height: 70px;
@@ -143,7 +109,7 @@ const Buy_form = () => {
 
     return(
         <>
-            <Detail_buy_header></Detail_buy_header>
+            <Detail_sell_header></Detail_sell_header>
             <div className='buy_all'>
                 <div className="buy_container">
                     <div style={{height:"30px", backgroundColor:"#f4f4f4"}}/>
@@ -406,7 +372,7 @@ const Buy_form = () => {
                     <div className='order_agreemnet_button'>
                         {finalBtn ? (
                             <>
-                            <button onClick={() => onClickPayments()} style={{width:"630px", backgroundColor:"black", color:"white", marginTop:"20px", fontWeight:"bold", fontSize:"17px"}}>
+                            <button style={{width:"630px", backgroundColor:"black", color:"white", marginTop:"20px", fontWeight:"bold", fontSize:"17px"}}>
                                 {formatPrice(parseData.price+3000)}원・일반배송 결제하기
                             </button>
                             </>
@@ -425,4 +391,4 @@ const Buy_form = () => {
     )
 }
 
-export default Buy_form;
+export default Sell_form;

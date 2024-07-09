@@ -30,7 +30,7 @@ const Buy_modal = (props) => {
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US').format(price);
     };
-    console.log("확인용 : ", props.main_info_shoes);
+    // console.log("확인용 : ", props.main_info_shoes);
     return(
         <>  
             <button onClick={() => setBuyModal(true)} style={{width:"275px", height:"60px", display:"flex", color:"white", backgroundColor:"rgb(239, 98, 83)", borderRadius:"10px", fontWeight:"bold"}}>
@@ -40,8 +40,6 @@ const Buy_modal = (props) => {
                     <div style={{fontSize:"17px" ,height:"20px", marginTop:"8px"}} >{formatPrice(props.main_info_shoes.price)}원</div>
                     <div style={{fontWeight:"lighter", fontSize:"12px", textAlign:"left"}}>즉시 구매가</div>
                 </div>
-                {/* {props.main_info_shoes.price} */}
-
             </button>
             {   
                 buyModal &&

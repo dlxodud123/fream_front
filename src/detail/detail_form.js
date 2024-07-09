@@ -7,6 +7,7 @@ import Detail_size from "./detail_size.js";
 import { useEffect, useState } from "react";
 import Detail_shoes from "./detail_shoes.js";
 import Detail_shoes2 from "./detail_shoes2.js";
+import Detail_shoes3 from "./detail_shoes3.js";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -50,7 +51,7 @@ const Detail_form = () => {
                     <Detail_shoes2></Detail_shoes2>
                 </div>
                 <div className="detail_container4">
-                    <Detail_shoes2></Detail_shoes2>
+                    <Detail_shoes3></Detail_shoes3>
                 </div>
                 <div style={{height:"50px"}}></div>
                 <Footer></Footer>
