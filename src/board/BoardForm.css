@@ -1,0 +1,68 @@
+/* BoardForm.css */
+
+.board_form_container {
+    width: 1280px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.board_form_container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form_group {
+    margin-bottom: 20px;
+}
+
+.form_group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.form_group input[type="text"],
+.form_group textarea,
+.form_group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form_group textarea {
+    height: 200px;
+    resize: vertical;
+}
+
+.form_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit_button,
+.cancel_button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit_button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cancel_button {
+    background-color: #f44336;
+    color: white;
+}

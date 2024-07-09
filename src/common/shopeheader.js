@@ -38,7 +38,7 @@ function ShopHeader(){
           </div>
        
           <div>
-            <a style={{color:"black", textDecoration:"none"} } href="/shoes">신발</a>
+            <a style={{color:"black", textDecoration:"none"} } href="">신발</a>
           </div>
         </div>
         <div className='shop_inner'></div>

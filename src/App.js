@@ -17,7 +17,10 @@ import Women from './main/women';
 import Shope from './main/shopeitem/shope';
 import Shopeshoes from './main/shopeitem/shopeshoes';
 import Profile from './myPage/js/profile.js';
-
+import Board from './board/board.js';
+import Board_form from './board/board_form.js';
+import BoardPage from './board/board_Page.js';
+import BoardContainer from './board/BoardContainer.js';
 function App() {
 
   return (
@@ -37,6 +40,10 @@ function App() {
         <Route path='/products/:id' element={<Detail_form></Detail_form>}></Route>
         <Route path='/buy/:data/:size' element={<Buy_form></Buy_form>}></Route>
         <Route path='/sell' element={<Detail_Chart></Detail_Chart>}></Route>
+        {/* <Route path='/board' element={<Board></Board>}></Route>
+        <Route path='/Board_form' element={<Board_form></Board_form>}></Route> */}
+         <Route path="/*" element={<BoardContainer />} />
+        {/* <Route path='/board/:No' element={<BoardPage></BoardPage> }></Route> */}
       </Routes>
     </div>
   );

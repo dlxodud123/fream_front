@@ -3,11 +3,11 @@ div{
     display: block;
     unicode-bidi: isolate;
 }
-img{
+/* img{
     height: 60px;
     width: 60px;
     margin-right: 12px;
-}
+} */
 .user_membership{
     display: flex;
     flex-direction: column;
