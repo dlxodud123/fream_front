@@ -38,15 +38,8 @@ function App() {
         <Route path='/profile-edit' element={<Profile/>}></Route>
         <Route path='/products/:id' element={<Detail_form></Detail_form>}></Route>
         <Route path='/buy/:data/:size' element={<Buy_form></Buy_form>}></Route>
-<<<<<<< HEAD
-        <Route path='/sell' element={<Detail_Chart></Detail_Chart>}></Route>
-        {/* <Route path='/board' element={<Board></Board>}></Route>
-        <Route path='/Board_form' element={<Board_form></Board_form>}></Route> */}
          <Route path="/*" element={<BoardContainer />} />
-        {/* <Route path='/board/:No' element={<BoardPage></BoardPage> }></Route> */}
-=======
         <Route path='/sell/:data/:size' element={<Sell_form></Sell_form>}></Route>
->>>>>>> 2aa5b96876c35dae4607715d3104b2f9b2f775c6
       </Routes>
     </div>
   );
