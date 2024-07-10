@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    /* background-color: white; */
+}
+.buy_history_all{
+    background-color: #f4f4f4;
+    height: 1500px;
+}
+.buy_history_container{
+    margin: auto;
+    width: 700px;
+    text-align: center;
+}
+.buy_history_content{
+    height: 570px;
+    background-color: white;
+}

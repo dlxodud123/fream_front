@@ -20,6 +20,8 @@ import Board from './board/board.js';
 import Board_form from './board/board_form.js';
 import BoardPage from './board/board_Page.js';
 import BoardContainer from './board/BoardContainer.js';
+import Buy_history_from from './detail/buy_history_form.js';
+
 function App() {
 
   return (
@@ -38,8 +40,9 @@ function App() {
         <Route path='/profile-edit' element={<Profile/>}></Route>
         <Route path='/products/:id' element={<Detail_form></Detail_form>}></Route>
         <Route path='/buy/:data/:size' element={<Buy_form></Buy_form>}></Route>
-         <Route path="/*" element={<BoardContainer />} />
+        <Route path="/*" element={<BoardContainer />} />
         <Route path='/sell/:data/:size' element={<Sell_form></Sell_form>}></Route>
+        <Route path='/buy/history' element={<Buy_history_from></Buy_history_from>}></Route>
       </Routes>
     </div>
   );
