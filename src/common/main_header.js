@@ -39,9 +39,13 @@ function MainHeader(){
             <a style={{color:"black", textDecoration:"none", marginRight:'40px'}} href="/men">남성</a>
           </div>
           <div>
-            <a style={{color:"black", textDecoration:"none"} } href="/women">여성</a>
+            <a style={{color:"black", textDecoration:"none" , marginRight:'40px'} } href="/women">여성</a>
+          </div>
+          <div>
+            <a style={{color:"black", textDecoration:"none"} } href="/board">공지사항</a>
           </div>
         </div>
+        
       </div>
         </div>
     </>

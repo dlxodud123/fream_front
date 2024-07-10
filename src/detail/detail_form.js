@@ -1,5 +1,5 @@
 import "./css/detail_form.css";
-import Footer from "../common/footer";
+import Footer from "../common/footer.js";
 import Detail_header from "../common/detail_header.js";
 import Detail_img from "./detail_img.js";
 import Detail_info from "./detail_info.js";
@@ -7,6 +7,7 @@ import Detail_size from "./detail_size.js";
 import { useEffect, useState } from "react";
 import Detail_shoes from "./detail_shoes.js";
 import Detail_shoes2 from "./detail_shoes2.js";
+import Detail_shoes3 from "./detail_shoes3.js";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -15,12 +16,16 @@ const Detail_form = () => {
     const {id} = useParams();
 
     let [main_info_shoes, setMain_info_shoes] = useState([]);
+    let [detail_shoes_gender, setDetail_shoes_gender] = useState();
+    let [detail_shoes_brand, setDetail_shoes_brand] = useState();
 
     useEffect(() => {
         axios.get(`http://192.168.42.142:3001/products/${id}`)
         .then((data) => {
             if (data.data && data.data.length > 0) {
                 setMain_info_shoes(data.data[0]);
+                setDetail_shoes_gender(data.data[0].gender);
+                setDetail_shoes_brand(data.data[0].brand);
                 console.log("data : ", data.data[0]);  
             } else {
                 console.log("데이터가 비어 있음");
@@ -41,16 +46,16 @@ const Detail_form = () => {
                     <Detail_info main_info_shoes={main_info_shoes} final_size={final_size} setFinal_Size={setFinal_Size} className="detail_info"></Detail_info>
                 </div>
                 <div className="detail_cotainer2">
-                    <Detail_shoes></Detail_shoes>
+                    <Detail_shoes ></Detail_shoes>
                 </div>
                 <div className="detail_container3">
                     <Detail_size></Detail_size>
                 </div>
                 <div className="detail_container4">
-                    <Detail_shoes2></Detail_shoes2>
+                    <Detail_shoes2 detail_shoes_brand={detail_shoes_brand}></Detail_shoes2>
                 </div>
                 <div className="detail_container4">
-                    <Detail_shoes2></Detail_shoes2>
+                    <Detail_shoes3  detail_shoes_gender={detail_shoes_gender}></Detail_shoes3>
                 </div>
                 <div style={{height:"50px"}}></div>
                 <Footer></Footer>

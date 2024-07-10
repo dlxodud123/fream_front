@@ -2,7 +2,7 @@ import './css/header.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useNavigate } from 'react-router-dom';
 
-function Detail_buy_header(){
+function Detail_sell_header(){
   let navigate = useNavigate();
     return(
         <>
@@ -19,7 +19,7 @@ function Detail_buy_header(){
                 <div style={{width:"200px", fontSize:"30px", fontWeight:"bold", marginLeft:"40px"}}>
                     <a className='italic' style={{color:"black", textDecoration:"none", fontSize:"30px"}} href="/">KREAM</a>
                 </div>
-                <div style={{width:"450px", fontWeight:"bold", fontSize:"25px", textAlign:"right"}}>배송/결제</div>
+                <div style={{width:"450px", fontWeight:"bold", fontSize:"25px", textAlign:"right"}}>주문/정산</div>
                 <div>
                     <div style={{display:"flex", marginLeft:"200px"}}>
                         <div style={{fontSize:"22px", width:"130px"}}><a style={{color:"black", textDecoration:"none"}} href="/">HOME</a></div>
@@ -33,4 +33,4 @@ function Detail_buy_header(){
     );
 }
 
-export default Detail_buy_header;
+export default Detail_sell_header;

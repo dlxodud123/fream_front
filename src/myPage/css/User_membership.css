@@ -1,10 +1,18 @@
 /*  */
+<<<<<<< HEAD
+div{
+    display: block;
+    unicode-bidi: isolate;
+}
+/* img{
+=======
 
 .img_blank{
+>>>>>>> 2aa5b96876c35dae4607715d3104b2f9b2f775c6
     height: 60px;
     width: 60px;
     margin-right: 12px;
-}
+} */
 .user_membership{
     display: flex;
     flex-direction: column;

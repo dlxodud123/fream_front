@@ -1,9 +1,9 @@
 import './css/detail_info.css';
 import { useContext, useEffect, useState } from "react";
 import LineChart from "./LineChart.js";
-import Size_modal from './modal/size_modal.js';
-import Buy_modal from "./modal/buy_modal.js";
-import Sell_modal from './modal/sell_modal.js';
+import Size_modal from '../detail/modal/size_modal.js';
+import Buy_modal from "../detail/modal/buy_modal.js";
+import Sell_modal from '../detail/modal/sell_modal.js';
 import ship_img from './../img/detail-page/ship_imfo1.png';
 import ship_img1 from './../img/detail-page/ship_imfo.png';
 import ship_img2 from './../img/detail-page/ship_imfo2.png';

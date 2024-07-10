@@ -1,21 +1,31 @@
 import './../css/modal/sell_modal.css';
 import { useEffect, useState } from "react";
-import img1 from "./../../img/img5.jpg"
 import styled from 'styled-components';
 
 const Sell_modal = (props) => {
     const [sellModal, setSellModal] = useState(false);    
     const [sellBtn, setSellBtn] = useState(0);
 
+    let data = encodeURIComponent(JSON.stringify(props.main_info_shoes));
+
     useEffect(() => {
         setSellBtn(parseInt(props.final_size));
+        props.setFinal_Size(props.final_size);
     }, [props.final_size]);
+
+    useEffect(() => {
+        if (props.final_size  === "모든 사이즈") {
+            props.setFinal_Size("모든 사이즈");
+        }else{
+            props.setFinal_Size(sellBtn);
+        }
+    }, [])
 
     const Sell_modal_btn = styled.button`
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
     const buy_link = () => {
-        window.location.href = '/sell';
+        window.location.href = `/sell/${data}/${sellBtn}`;
     }
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US').format(price);
@@ -90,12 +100,11 @@ const Sell_modal = (props) => {
                         {
                             (!(props.final_size  === "모든 사이즈") || !(Number.isNaN(sellBtn))) ? 
                             <div>
-                            <button onClick={() => buy_link()} style={{width:"420px", height:"65px", backgroundColor:'black', color:"#fff", fontWeight:"bold", marginTop:"10px"}}>{formatPrice(props.main_info_shoes.price)}</button>
-                        </div>
+                                <button onClick={() => buy_link()} style={{width:"420px", height:"65px", backgroundColor:'black', color:"#fff", fontWeight:"bold", marginTop:"10px"}}>{formatPrice(props.main_info_shoes.price)}</button>
+                            </div>
                             :
                             <div></div>
                         }
-                        
                     </div>
                 </div>
             }

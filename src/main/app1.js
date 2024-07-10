@@ -4,18 +4,18 @@ import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { MyPage } from '../myPage/js/Mypage.js';
-import App from '../App';
+import App from '../App.js';
 // import data from '../data/data';
-import header from '../common/header';
-import Header from '../common/main_header';
-import {Shoesitem0}from './Shoesitem';
-import Benner from './benner';
+import header from '../common/header.js';
+import Header from '../common/main_header.js';
+import {Shoesitem0}from './Shoesitem.js';
+import Benner from './benner.js';
 import axios from 'axios';
-import Mainbutton from './mainbutton';
-import mendata from '../mendata/mendata';
-import MainHeader from '../common/main_header';
+import Mainbutton from './mainbutton.js';
+import mendata from '../mendata/mendata.js';
+import MainHeader from '../common/main_header.js';
 
-import Footer from '../common/footer';
+import Footer from '../common/footer.js';
 
 
 
