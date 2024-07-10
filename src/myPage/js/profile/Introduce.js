@@ -47,6 +47,7 @@ function Modal_my_self ({
             <h5 className={profile_titleCh}>소개</h5>
             <div className="unit_content">
               <input
+                id="mySelf"
                 value={newMySelf}
                 onChange={(e) => setNewMySelf(e.target.value)}
                 className='inputPrfileN'

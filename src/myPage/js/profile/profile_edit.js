@@ -16,6 +16,7 @@ const Profile_edit = () =>{
     const fileInputRef = useRef(null);
     let [modalSelf, setModalSelf] = useState(false);//소개 변경스위치
 
+
     const ImgChange = (e) =>{
         const file = e.target.files[0];
         if(file) {
@@ -37,12 +38,14 @@ const Profile_edit = () =>{
     }
 
     useEffect(() => {
-        fetch(`http://192.168.42.142:3001/mypage`)
+        fetch(`http://192.168.42.142:3001/my/profile-edit`)
             .then(response => response.json())
             .then(data =>{
+                console.log(data)
                 setDate({
                     userId: data.userId,
-                    email: data.email
+                    email: data.email,
+                    mySelf: data.userBio
                 });
             })
             .catch(error =>{
