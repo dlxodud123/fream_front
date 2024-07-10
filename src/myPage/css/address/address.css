@@ -1,0 +1,28 @@
+.layer-background{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    position: absolute;
+    top: 50%; /* 화면 세로 중앙 정렬을 위해 top 50% 설정 */
+    left: 50%; /* 화면 가로 중앙 정렬을 위해 left 50% 설정 */
+    transform: translate(-50%, -50%); /* 요소의 가로/세로 길이의 절반을 이동시켜 정확히 중앙에 위치시킴 */
+}
+.content_title{
+    display: flex;
+    align-items: center;
+}
+
+.btn_box{
+    display: flex; 
+    align-items: center;
+    margin-left: auto;
+    padding-left: 30px;
+}
+.basic{
+    border-bottom: 2px solid black;
+    padding: 30px 0 29px;
+}
+.my_list{
+    align-items: center;
+    display: flex; 
+}

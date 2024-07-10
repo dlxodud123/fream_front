@@ -2,21 +2,25 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App1 from './main/app1';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import MyPage from './myPage/js/Mypage.js';
+import MyPage from './myPage/js/Mypage';
 import Main from './main/app1.js';
 import Detail_form from './detail/detail_form.js'
 import Buy_form from './detail/buy_form.js';
 import Detail_Chart from './detail/detail_chart.js';
+
 import LoginPage from './login/js/login.js';
 import Join from './login/js/Join.js'
 import FindEmail from './login/js/FindEmail.js';
 import FindPw from './login/js/FindPw';
+import Profile_edit from './myPage/js/profile/profile_edit.js';
+import Profile from './myPage/js/profile/profile.js';
+import Address from './myPage/js/addresPage/address.js'
+import Buying from './myPage/js/buying/Buying.js'
 
 import Men from './main/men.js';
 import Women from './main/women';
 import Shope from './main/shopeitem/shope';
 import Shopeshoes from './main/shopeitem/shopeshoes';
-import Profile from './myPage/js/profile.js';
 
 function App() {
 
@@ -33,11 +37,23 @@ function App() {
         <Route path='/join' element={<Join/>}/>
         <Route path='/login/find_email' element={<FindEmail/>}/>
         <Route path='/login/find_password' element={<FindPw />}/>
-        <Route path='/profile-edit' element={<Profile/>}></Route>
+        <Route path='/my/profile-edit' element={<Profile_edit/>}></Route>
+        <Route path='/my/profile' element={<Profile/>}></Route>
+        <Route path='/my/address' element={<Address/>}></Route>
+        <Route path='/my/buying' element={<Buying/>}></Route>
         <Route path='/products/:id' element={<Detail_form></Detail_form>}></Route>
         <Route path='/buy/:data/:size' element={<Buy_form></Buy_form>}></Route>
         <Route path='/sell' element={<Detail_Chart></Detail_Chart>}></Route>
       </Routes>
+
+      {/* <React.Fragment>
+        <ConnectedRouter history={history}>
+          <Route path='/signup' exact Component={Signup} />
+          <Route path='/login' exact Component={Login} />
+
+          <Route path='/oauth/kakao' Component={OAuthRedirectHandler}></Route>
+        </ConnectedRouter>
+      </React.Fragment> */}
     </div>
   );
 }
