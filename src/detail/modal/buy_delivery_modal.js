@@ -101,7 +101,7 @@ const Buy_delivery_modal = (props) => {
 
     return(
         <>
-            <button onClick={() => setDeliveryModal(true)} style={{border:"1px solid black", width:"650px", borderColor:"rgba(0,0,0,0.1)", marginTop:"10px", height:"50px", backgroundColor:"#f4f4f4"}}>
+            <button onClick={() => setDeliveryModal(true)} style={{border:"1px solid black", width:"650px", borderColor:"rgba(0,0,0,0.1)", marginTop:"10px", height:"50px", backgroundColor:"#f4f4f4", borderRadius:"10px"}}>
                 <div style={{color:"grey", textAlign:"left", marginLeft:"12px"}}>
                     주소를 추가해주세요. 
                 </div>
@@ -115,7 +115,7 @@ const Buy_delivery_modal = (props) => {
                                 새 주소 추가
                             </div>
                             <div>
-                                <button onClick={() => setDeliveryModal(false)} style={{width:"30px", height:"30px", border:"none", fontSize:"30px", fontWeight:"100", color:"rgba(0,0,0,0.5)", marginLeft:"8px"}}>x</button>
+                                <button onClick={() => setDeliveryModal(false)} style={{width:"30px", height:"30px", border:"none", fontSize:"30px", fontWeight:"100", color:"rgba(0,0,0,0.5)", marginLeft:"8px", backgroundColor:"white"}}>x</button>
                             </div>
                         </div>
                         <div style={{width:"460px", height:"450px", marginLeft:"30px", marginTop:"10px"}}>
@@ -170,7 +170,7 @@ const Buy_delivery_modal = (props) => {
                             <div style={{marginTop:"5px", display:"flex"}}>
                                 <input className={inputClassName} readOnly type="text" value={inputValue} >
                                 </input>
-                                <button onClick={() => delivery()} style={{width:"85px", height:"35px", border:"1px solid rgba(0,0,0,0.5)", fontSize:"11px", color:"rgba(0,0,0,0.7)", borderColor:"rgba(0,0,0,0.3)"}}>
+                                <button onClick={() => delivery()} style={{width:"85px", height:"35px", border:"1px solid rgba(0,0,0,0.3)", fontSize:"11px", color:"rgba(0,0,0,0.7)", borderRadius:"10px", backgroundColor:"white"}}>
                                     우편번호
                                 </button>
                             </div>
@@ -188,15 +188,15 @@ const Buy_delivery_modal = (props) => {
                             </div>
 
                             <div style={{display:"flex", marginTop:"30px", marginLeft:"105px"}}>
-                                <div><button style={{width:"120px", height:"45px", fontSize:"14px", color:"grey"}}>취소</button></div>
+                                <div><button style={{width:"120px", height:"45px", fontSize:"14px", color:"grey", borderRadius:"10px", border:"1px solid rgba(0,0,0,0.1)"}}>취소</button></div>
                                 <div style={{width:"10px"}}></div>
                                 {finalBtn ? (
                                     <>
-                                        <div><button onClick={() => saveBtnClick()} style={{width:"120px", height:"45px", fontSize:"14px", backgroundColor:"black", color:"white", border:"none", fontWeight:"bold"}}>저장하기</button></div>
+                                        <div><button onClick={() => saveBtnClick()} style={{width:"120px", height:"45px", fontSize:"14px", backgroundColor:"black", color:"white", border:"none", fontWeight:"bold", borderRadius:"10px"}}>저장하기</button></div>
                                     </>
                                 ) : (
                                     <>
-                                        <div><button disabled style={{width:"120px", height:"45px", fontSize:"14px", backgroundColor:"rgba(0,0,0,0.1)", color:"white", border:"none", fontWeight:"bold"}}>저장하기</button></div>
+                                        <div><button disabled style={{width:"120px", height:"45px", fontSize:"14px", backgroundColor:"rgba(0,0,0,0.1)", color:"white", border:"none", fontWeight:"bold", borderRadius:"10px"}}>저장하기</button></div>
                                     </>
                                 )}
                             </div>

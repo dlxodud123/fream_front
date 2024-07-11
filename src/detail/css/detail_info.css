@@ -38,13 +38,6 @@ body {
     font-weight: bold;
     font-size: "20px";
   }
-  button{
-    width: 133px;
-    height: 58px;
-    border-radius: 10px;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-  }
   .add_benefit{
     width: 560px;
     height: 114px;
