@@ -8,7 +8,7 @@ function Benner(){
           <Carousel.Item>
             <img
               className="img-a"
-              style={{ width:'100%', height: '500px', objectFit: 'cover' }}
+              style={{ width:'100%', height: '500px', objectFit: 'cover', backgroundColor:'white'}}
             />
           </Carousel.Item>
           <Carousel.Item>
