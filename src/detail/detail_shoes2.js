@@ -1,24 +1,43 @@
 import "./css/detail_shoes2.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "../data/data.js";
+import axios from "axios";
 
-const Detail_shoes2 = () => {
+const Detail_shoes2 = (props) => {
+
     const loadMore = () => {
         setCount(count + 5);
     };
+    
     const [shoes, setShoes] = useState(data);
     const [count, setCount] = useState(5);
+    
+    let brand = props.detail_shoes_brand;
+
+    // useEffect(() => {
+    //     axios.get(`http://192.168.42.142:3001/products/${brand}`)
+    //     .then((data) => {
+    //         if (data.data && data.data.length > 0) {
+    //             console.log("data : ", data.data[0]); 
+    //             setShoes(data.data[0]);
+    //         } else {
+    //             console.log("데이터가 비어 있음");
+    //         }
+    //     })
+    //     .catch((error) => {
+    //         console.log("실패함", error);  
+    //     });
+    //   }, [brand]);
 
     return(
         <div style={{marginTop:"70px"}}>
             <div style={{marginLeft:"10px", marginBottom:"15px", fontWeight:"bold", fontSize:"22px"}}>
-                성별 상품
+                브랜드별 상품
             </div>
             <div style={{display:"flex", flexWrap: "wrap"}}>
                 {shoes.slice(0, count).map((shoes, i) => ( 
                     <div key={shoes.id} style={{  boxSizing: "border-box" }}>
                         <Shoesitem0 shoes={shoes} i={i + 1} />
-                        {/* {(i + 1) % 5 === 0 && <div style={{  height: 0 }}></div>} */}
                     </div>
                 ))}
             </div>
@@ -30,6 +49,7 @@ const Detail_shoes2 = () => {
         </div>
     )
 }
+
 const Shoesitem0 = (props) => {
     return(
       <div style={{}}>

@@ -4,7 +4,7 @@ import arrow_img from "./../../img/detail-page/arrow.png";
 
 const Buy_request_modal = (props) => {
     const [buyModal, setBuyModal] = useState(false);
-    const [pre_request, setPre_reqeust] = useState("");
+    const [pre_request, setPre_reqeust] = useState("요청사항 없음");
     const [request, setRequest] = useState("요청사항 없음");
     const [requestBtn, setRequestBtn] = useState(1);
 

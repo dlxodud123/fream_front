@@ -1,4 +1,4 @@
-import '../css/Find.css';
+// import '../css/Find.css';
 import Footer from "../../common/footer";
 import Header from "../../common/header";
 import { Button } from 'react-bootstrap';

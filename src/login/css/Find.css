@@ -31,34 +31,19 @@
     padding: 0;
 }
 .input_tel{
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb !important;
     font-size: 15px;
     letter-spacing: -.15px;
     line-height: 22px;
     padding: 8px 0;
     width: 100%;
+    border: 0;
 }
 
-input{
-    background-color: transparent;
-    border: 0;
-    border-radius: 0;
-    outline: 0;
-    resize: none;
-}
 .input_but{
     padding-top: 44px;
 }
-/* .butt{
-    background-color: #ebebeb;
-    color: #fff;
-    cursor: default;
-    font-size: 16px;
-    height: 52px;
-    letter-spacing: -.16px;
-    width: 100%;
-    align-items: center;
-} */
+
 .solid{
     font-weight: 700;
 }

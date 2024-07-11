@@ -1,14 +1,30 @@
 import "./css/detail_shoes.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "../data/data.js";
+import axios from "axios";
 
 const Detail_shoes = () => {
+    
     const loadMore = () => {
         setCount(count + 5);
     };
     
     const [shoes, setShoes] = useState(data);
     const [count, setCount] = useState(5);
+
+    // useEffect(() => {
+    //     axios.get(`http://192.168.42.142:3001/products/`)
+    //     .then((data) => {
+    //         if (data.data && data.data.length > 0) {
+    //             console.log("data : ", data.data[0]);  
+    //         } else {
+    //             console.log("데이터가 비어 있음");
+    //         }
+    //     })
+    //     .catch((error) => {
+    //         console.log("실패함", error);  
+    //     });
+    //   }, []);
 
     return(
         <div >
@@ -19,7 +35,6 @@ const Detail_shoes = () => {
                 {shoes.slice(0, count).map((shoes, i) => ( 
                     <div key={shoes.id} style={{  boxSizing: "border-box" }}>
                         <Shoesitem0 shoes={shoes} i={i + 1} />
-                        {/* {(i + 1) % 5 === 0 && <div style={{  height: 0 }}></div>} */}
                     </div>
                 ))}
             </div>
@@ -31,6 +46,7 @@ const Detail_shoes = () => {
         </div>
     )
 }
+
 const Shoesitem0 = (props) => {
     return(
       <div style={{}}>
