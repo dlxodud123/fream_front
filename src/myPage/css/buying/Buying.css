@@ -1,0 +1,30 @@
+.list_tab_detail_tab{
+    border-radius: 0;
+    margin-top: 20px;
+}
+.period_search{
+    background-color: #fafafa;
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+}
+.MullnputBase_root{
+    width: 200px !important;
+}
+.d{
+    margin: 0 4px;
+    display: inline-block;
+    line-height: 52px;
+}
+.period_btn{
+    margin-left: 4px;
+}
+.btn_search{
+    background-color: black;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    width: 80px;
+    color: white;
+    font-size: 13px;
+}

@@ -2,20 +2,24 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App1 from './main/app1';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import MyPage from './myPage/js/Mypage.js';
+import MyPage from './myPage/js/Mypage';
 import Main from './main/app1.js';
 import Detail_form from './detail/detail_form.js'
 import Buy_form from './detail/buy_form.js';
+import Detail_Chart from './detail/detail_chart.js';
 import Sell_form from './detail/sell_form.js';
 import LoginPage from './login/js/login.js';
 import Join from './login/js/Join.js'
 import FindEmail from './login/js/FindEmail.js';
 import FindPw from './login/js/FindPw';
+import Profile_edit from './myPage/js/profile/profile_edit.js';
+import Profile from './myPage/js/profile/profile.js';
+import Address from './myPage/js/addresPage/address.js'
+import Buying from './myPage/js/buying/Buying.js'
 import Men from './main/men.js';
 import Women from './main/women';
 import Shope from './main/shopeitem/shope';
 import Shopeshoes from './main/shopeitem/shopeshoes';
-import Profile from './myPage/js/profile.js';
 import Board from './board/board.js';
 import Board_form from './board/board_form.js';
 import BoardPage from './board/board_Page.js';
@@ -32,7 +36,6 @@ function App() {
 
   return (
     <div className="App" >
-      
       <AppWrapper>
         <Routes>
           <Route path='/' element={<App1><Main></Main></App1>}></Route>
@@ -53,6 +56,14 @@ function App() {
           <Route path='/buy/history' element={<Buy_history_from></Buy_history_from>}></Route>
         </Routes>
       </AppWrapper>
+      {/* <React.Fragment>
+        <ConnectedRouter history={history}>
+          <Route path='/signup' exact Component={Signup} />
+          <Route path='/login' exact Component={Login} />
+
+          <Route path='/oauth/kakao' Component={OAuthRedirectHandler}></Route>
+        </ConnectedRouter>
+      </React.Fragment> */}
     </div>
   );
 }

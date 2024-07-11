@@ -126,9 +126,7 @@
         padding: 10px 0 ;
         cursor: pointer;
     }
-    img{
-        border: none;
-    }
+
     .kaImg{
         position: absolute;
         background-image: url('../../img//login-page/kakao-talk_3669973.png');

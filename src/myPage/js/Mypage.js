@@ -19,7 +19,7 @@ const MyPage = () => {
 
 
 return (
-  <div className='snb'>
+  <div>
   <Header />
     <div className='snb_area'>
     <div className="row">
@@ -42,7 +42,7 @@ return (
             </div>
             <div>
               <button type="button" className="info-but" onClick={()=>{
-                navigate('/profile-edit')
+                navigate('/my/profile-edit')
               }}>프로필관리</button>
             </div>
           </div>
@@ -195,17 +195,13 @@ return (
             </div>
           </div>
         </div>
-
-
-
-
       </div>
     </div>
   </div>
   <Footer/>
-</div>
+  </div>
     
-    );
-  };
+  );
+};
 
 export default MyPage;

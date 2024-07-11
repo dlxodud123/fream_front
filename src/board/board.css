@@ -1,5 +1,4 @@
 .board_list{
-   
     /* border-top: 1px solid black; */
     width: 1280px;
     margin: 50px auto;
@@ -25,7 +24,7 @@
   .board_content {
     
     /* margin-left: 250px; */
-    font-size: 27px;
+    font-size: 20px;
   }
   
   .board_item {

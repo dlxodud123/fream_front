@@ -35,7 +35,7 @@ function BoardList({ boardList }) {
 
   return (
     <>
-    <MainHeader></MainHeader>
+    
     <div style={{ marginTop: '100px' }} className='board_list'>
         <div className='notice'>
           <div className='notice-container'>
@@ -96,7 +96,7 @@ function BoardList({ boardList }) {
           다음
         </button>
       </div>
-      <Footer></Footer>
+    
     </>
   );
 }
