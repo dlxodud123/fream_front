@@ -22,6 +22,7 @@ const Sell_form = () => {
     let [finalBuildingname, setFinalBuildingname] = useState();
     let [finalBetterAddress, setFinalBetterAddress] = useState();
     let [finalSaveBtn, setFinalSaveBtn] = useState(false);
+    let [finalCardBtn, setFinalCardBtn] = useState(false);
 
     let {size, data} = useParams(); 
     let parseData = JSON.parse(decodeURIComponent(data));
@@ -269,24 +270,24 @@ const Sell_form = () => {
                         </div>
                         <div style={{textAlign:"left", marginLeft:"25px", marginTop:"10px"}}>
                             <div style={{display:"flex"}}>
-                                <PaymentButton active={paymentBtn === 1} onClick={() => setPaymentBtn(1)}>
+                                <PaymentButton active={paymentBtn === 1} onClick={() => {setPaymentBtn(1); setFinalCardBtn(true)}}>
                                     <div style={{float:"left", marginLeft:"15px"}}>신용카드</div>
                                 </PaymentButton>
-                                <PaymentButton active={paymentBtn === 2} onClick={() => setPaymentBtn(2)} style={{marginLeft:"10px"}}>
+                                <PaymentButton active={paymentBtn === 2} onClick={() => {setPaymentBtn(2); setFinalCardBtn(true)}} style={{marginLeft:"10px"}}>
                                     <div style={{float:"left", marginLeft:"15px"}}>네이버페이</div>
                                     <img src={naver_img} style={{width:"50px", float:"right", marginRight:"13px", marginTop:"1px"}}></img>
                                 </PaymentButton>
-                                <PaymentButton active={paymentBtn === 3} onClick={() => setPaymentBtn(3)} style={{marginLeft:"10px"}}>
+                                <PaymentButton active={paymentBtn === 3} onClick={() => {setPaymentBtn(3); setFinalCardBtn(true)}} style={{marginLeft:"10px"}}>
                                     <div style={{float:"left", marginLeft:"15px"}}>카카오페이</div>
                                     <img src={kakao_img} style={{width:"50px", float:"right", marginRight:"13px", marginTop:"2px"}}></img>
                                 </PaymentButton>
                             </div>
                             <div style={{marginTop:"5px"}}>
-                                <PaymentButton active={paymentBtn === 4} onClick={() => setPaymentBtn(4)}>
+                                <PaymentButton active={paymentBtn === 4} onClick={() => {setPaymentBtn(4); setFinalCardBtn(true)}}>
                                     <div style={{float:"left", marginLeft:"15px"}}>토스페이</div>
                                     <img src={toss_img} style={{width:"50px", float:"right", marginRight:"13px"}}></img>
                                 </PaymentButton>
-                                <PaymentButton active={paymentBtn === 5} onClick={() => setPaymentBtn(5)} style={{marginLeft:"10px"}}>
+                                <PaymentButton active={paymentBtn === 5} onClick={() => {setPaymentBtn(5); setFinalCardBtn(true)}} style={{marginLeft:"10px"}}>
                                     <div style={{float:"left", marginLeft:"15px"}}>페이코</div>
                                     <img src={payco_img} style={{width:"50px", float:"right", marginRight:"13px", marginTop:"3px"}}></img>
                                 </PaymentButton>

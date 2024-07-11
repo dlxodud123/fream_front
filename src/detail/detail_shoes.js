@@ -4,6 +4,11 @@ import data from "../data/data.js";
 import axios from "axios";
 
 const Detail_shoes = () => {
+
+    const axiosBaseURL = axios.create({
+        baseURL: process.env.NEXT_PUBLIC_API_URL,
+        withCredentials: true, // 이 부분 추가
+    });
     
     const loadMore = () => {
         setCount(count + 5);
@@ -13,10 +18,10 @@ const Detail_shoes = () => {
     const [count, setCount] = useState(5);
 
     // useEffect(() => {
-    //     axios.get(`http://192.168.42.142:3001/products/`)
+    //     axiosBaseURL.get(`http://192.168.42.142:3001/products/recent-views`)
     //     .then((data) => {
     //         if (data.data && data.data.length > 0) {
-    //             console.log("data : ", data.data[0]);  
+    //             console.log("data : ", data.data);  
     //         } else {
     //             console.log("데이터가 비어 있음");
     //         }
@@ -40,7 +45,7 @@ const Detail_shoes = () => {
             </div>
             {count < data.length && (
                 <div style={{textAlign:"center"}}>
-                    <button onClick={loadMore}>더보기</button>
+                    <button style={{width:"130px", height:"60px", borderRadius:"10px", border:"1px solid rgba(0,0,0,0.1)", backgroundColor:"white"}} onClick={loadMore}>더보기</button>
                 </div>
             )}
         </div>

@@ -5,6 +5,11 @@ import axios from "axios";
 
 const Detail_shoes2 = (props) => {
 
+    const axiosBaseURL = axios.create({
+        baseURL: process.env.NEXT_PUBLIC_API_URL,
+        withCredentials: true, // 이 부분 추가
+    });
+
     const loadMore = () => {
         setCount(count + 5);
     };
@@ -12,13 +17,13 @@ const Detail_shoes2 = (props) => {
     const [shoes, setShoes] = useState(data);
     const [count, setCount] = useState(5);
     
-    let brand = props.detail_shoes_brand;
+    let id = props.detail_shoes_id;
 
     // useEffect(() => {
-    //     axios.get(`http://192.168.42.142:3001/products/${brand}`)
+    //     axiosBaseURL.get(`http://192.168.42.142:3001/products/${id}/brand`)
     //     .then((data) => {
     //         if (data.data && data.data.length > 0) {
-    //             console.log("data : ", data.data[0]); 
+    //             console.log("data : ", data.data); 
     //             setShoes(data.data[0]);
     //         } else {
     //             console.log("데이터가 비어 있음");
@@ -43,7 +48,7 @@ const Detail_shoes2 = (props) => {
             </div>
             {count < data.length && (
                 <div style={{textAlign:"center"}}>
-                    <button onClick={loadMore}>더보기</button>
+                    <button style={{width:"130px", height:"60px", borderRadius:"10px", border:"1px solid rgba(0,0,0,0.1)", backgroundColor:"white"}} onClick={loadMore}>더보기</button>
                 </div>
             )}
         </div>
