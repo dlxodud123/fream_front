@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+/* 글꼴 설정 본고딕체 */
+/* 구글 폰트를 사용하여 'Noto Sans Korean' 폰트를 불러옵니다. 이 폰트는 100부터 900까지 다양한 굵기를 지원합니다. */
+
+html {
+  /* height: 100%; */
+  width: 100%;
+}
+
+.admin,
+body,
+#root,
+.app,
+.App,
+.content {
+  height: 100%;
+  width: 100%;
+  font-family: "Noto Sans Korean", sans-serif;
+}
+/* 기본설정 */
+/* HTML, body, #root, .app, .content 요소의 높이와 너비를 100%로 설정하고, 기본 글꼴을 'Noto Sans Korean'으로 지정합니다. */
+
+.app {
+  display: flex;
+  position: relative;
+}
+/* .app 요소 설정 */
+/* .app 요소를 flex 컨테이너로 설정하고, 위치를 상대적으로 설정합니다. */
+
+::-webkit-scrollbar {
+  /* width: 10px; */
+  width: 0; /* 세로 스크롤바 숨기기 */
+  height: 0; /* 가로 스크롤바 숨기기 */
+}
+/* 웹킷 스크롤바 설정 */
+/* 웹킷 기반 브라우저(크롬, 사파리 등)에서 사용하는 스크롤바의 너비를 10px로 설정합니다. */
+
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+/* 스크롤바 트랙 설정 */
+/* 스크롤바 트랙(스크롤바가 이동하는 경로)의 배경색을 #e0e0e0로 설정합니다. */
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+/* 스크롤바 핸들 설정 */
+/* 스크롤바 핸들(사용자가 드래그하는 부분)의 배경색을 #888로 설정합니다. */
+
+::-webkit-scrollbar-track:hover {
+  background: #555;
+}
+/* 스크롤바 트랙 호버 설정 */
+/* 스크롤바 트랙에 마우스를 올렸을 때 트랙의 배경색을 #555로 변경합니다. */

@@ -1,368 +1,353 @@
 /* App.css */
 .App {
-    margin: auto;
-    /* width: 1280px;  */
-  }
+  margin: auto;
+  /* width: 1280px;  */
+}
 .container {
-    box-shadow: 0 1px rgb(192, 188, 188); 
-    /* height: auto !important; */
-  }
-  
+  box-shadow: 0 1px rgb(192, 188, 188);
+  /* height: auto !important; */
+}
+
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: white;
-  }
-  .shop{
-    font-size: 50px;
-    font-weight: bold;
-    margin: 20px;
-    color: black;
-    text-align: center; /* 왼쪽 정렬 */
-    margin-left: 20px; /* 왼쪽으로 간격 추가 */
-    cursor: pointer; /* 마우스 커서 손모양으로 변경*/
-  
-  }
-  .shope-a{
-    box-shadow: 0 1px rgb(192, 188, 188);
-  }
-  .kream {
-    font-size: 2em;
-    font-weight: bold;
-    margin: 20px;
-    color: black;
-    text-align: left; /* 왼쪽 정렬 */
-    margin-left: 20px; /* 왼쪽으로 간격 추가 */
-    cursor: pointer; /* 마우스 커서 손모양으로 변경*/
-  }
-  .cursor{
-    cursor: pointer;
-  }
-  .img-a-1{
-  
-    /* background-image: url('./img/img1.jpg'); 이미지 파일의 경로를 설정합니다. */
-    background-size: cover; /* 이미지를 컨테이너에 맞게 조정합니다. */
-    background-position: center; /* 이미지를 가운데로 정렬합니다. */
-    background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
-    width: 70%; /* 박스의 너비를 100%로 설정하여 이미지가 가로 방향으로 가득 차도록 합니다. */
-    height: 270px; /* 박스의 높이를 원하는 값으로 설정합니다. */
-    
-    background-color: rgb(245, 239, 239); /* 메인 신발 백그라운드 배경 색상*/
-    border-radius: 25px;
-    
-  }
-  .img-mainbutton1{
-  
-    /* background-image: url('./img/main-button0.webp'); 이미지 파일의 경로를 설정합니다. */
-    background-size: cover; /* 이미지를 컨테이너에 맞게 조정합니다. */
-    background-position: center; /* 이미지를 가운데로 정렬합니다. */
-    background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
-    width: 250px; /* 박스의 너비를 100%로 설정하여 이미지가 가로 방향으로 가득 차도록 합니다. */
-    height: 130px; /* 박스의 높이를 원하는 값으로 설정합니다. */
-    border-radius: 30px;
-    border: none;
-  }
-  .img-a-3{
-  
-    background-image: url('./../../img/img3.jpg'); /* 이미지 파일의 경로를 설정합니다. */
-    background-size: contain; /* 이미지를 컨테이너에 맞게 조정합니다. */
-    background-position: center; /* 이미지를 가운데로 정렬합니다. */
-    background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
-    width: 80%; /* 박스의 너비를 100%로 설정하여 이미지가 가로 방향으로 가득 차도록 합니다. */
-    height: 300px; /* 박스의 높이를 원하는 값으로 설정합니다. */
-  }
-  .img-a{
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: white;
+}
+.shop {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 20px;
+  color: black;
+  text-align: center; /* 왼쪽 정렬 */
+  margin-left: 20px; /* 왼쪽으로 간격 추가 */
+  cursor: pointer; /* 마우스 커서 손모양으로 변경*/
+}
+.shope-a {
+  box-shadow: 0 1px rgb(192, 188, 188);
+}
+.kream {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 20px;
+  color: black;
+  text-align: left; /* 왼쪽 정렬 */
+  margin-left: 20px; /* 왼쪽으로 간격 추가 */
+  cursor: pointer; /* 마우스 커서 손모양으로 변경*/
+}
+.cursor {
+  cursor: pointer;
+}
+.img-a-1 {
+  /* background-image: url('./img/img1.jpg'); 이미지 파일의 경로를 설정합니다. */
+  background-size: cover; /* 이미지를 컨테이너에 맞게 조정합니다. */
+  background-position: center; /* 이미지를 가운데로 정렬합니다. */
+  background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
+  width: 70%; /* 박스의 너비를 100%로 설정하여 이미지가 가로 방향으로 가득 차도록 합니다. */
+  height: 270px; /* 박스의 높이를 원하는 값으로 설정합니다. */
+
+  background-color: rgb(245, 239, 239); /* 메인 신발 백그라운드 배경 색상*/
+  border-radius: 25px;
+}
+.img-mainbutton1 {
+  /* background-image: url('./img/main-button0.webp'); 이미지 파일의 경로를 설정합니다. */
+  background-size: cover; /* 이미지를 컨테이너에 맞게 조정합니다. */
+  background-position: center; /* 이미지를 가운데로 정렬합니다. */
+  background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
+  width: 250px; /* 박스의 너비를 100%로 설정하여 이미지가 가로 방향으로 가득 차도록 합니다. */
+  height: 130px; /* 박스의 높이를 원하는 값으로 설정합니다. */
+  border-radius: 30px;
+  border: none;
+}
+.img-a-3 {
+  background-image: url("./../../img/img3.jpg"); /* 이미지 파일의 경로를 설정합니다. */
+  background-size: contain; /* 이미지를 컨테이너에 맞게 조정합니다. */
+  background-position: center; /* 이미지를 가운데로 정렬합니다. */
+  background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
+  width: 80%; /* 박스의 너비를 100%로 설정하여 이미지가 가로 방향으로 가득 차도록 합니다. */
+  height: 300px; /* 박스의 높이를 원하는 값으로 설정합니다. */
+}
+.img-a {
   background-color: rgba(222, 218, 227, 0.904);
-    background-image: url('./../../img/img1.jpg'); /* 이미지 파일의 경로를 설정합니다. */
-    background-size: contain; /* 이미지를 컨테이너에 맞게 조정합니다. */
-    background-position: center; /* 이미지를 가운데로 정렬합니다. */
-    background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
-    width: 100%; /* 박스의 너비를 100%로 설정하여 이미지가 가로 방향으로 가득 차도록 합니다. */
-    height: 500px; /* 박스의 높이를 원하는 값으로 설정합니다. */
-  }
-  .img-b{
-    
-    background-image: url('./../../img/img2.png'); /* 이미지 파일의 경로를 설정합니다. */
-    background-size:  contain; /* 이미지를 박스에 완전히 보이도록 설정합니다. */
-    background-position: center; /* 이미지를 가운데로 정렬합니다. */
-    background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
-    
-  }
-  .img-c{
-    
-    background-image: url('./../../img/img3.jpg'); /* 이미지 파일의 경로를 설정합니다. */
-    background-size: contain; /* 이미지를 박스에 완전히 보이도록 설정합니다. */
-    background-position: center; /* 이미지를 가운데로 정렬합니다. */
-    background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
-  }
-  .img-d{
-    
-    background-image: url('./../../img/img4.jpg'); /* 이미지 파일의 경로를 설정합니다. */
-    background-size: contain; /* 이미지를 박스에 완전히 보이도록 설정합니다. */
-    background-position: center; /* 이미지를 가운데로 정렬합니다. */
-    background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
-  }
-  .img-e{
-    
-    background-image: url('./../../img/img5.jpg'); /* 이미지 파일의 경로를 설정합니다. */
-    background-size: contain; /* 이미지를 박스에 완전히 보이도록 설정합니다. */
-    background-position: center; /* 이미지를 가운데로 정렬합니다. */
-    background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
-    width: 100%;
-  }
-  
-  nav {
-    background-color: rgb(223, 216, 216);
-    /* box-shadow: 0 1px rgb(192, 188, 188); */
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  nav ul li {
-    margin: 0 15px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #000; /* 글씨 색상을 검은색으로 설정 */
-    padding: 10px 15px;
-    border-radius: 4px;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-  }
-  
-  nav ul li a:hover {
-    font-weight: bold;
-    text-decoration: underline; /* 밑줄 추가 */
-    text-decoration-thickness: 2px; /* 밑줄 두께 설정 */
-  }
-  
-  nav ul li a.active {
-    font-weight: bold;
-    /* text-decoration: underline; 활성화된 링크에 밑줄 추가 */
-    text-decoration-thickness: 2px; /* 밑줄 두께 설정 */
-  }
-  .nav-item1 ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center; /* 수직 중앙 정렬 */
-  }
-  
-  .nav-item1 li {
-    margin-left: 10px; /* 각 링크 사이의 간격을 조정합니다. */
-    font-size: 8px;
-  }
-  
-  .nav-item1 li:first-child {
-    margin-left: 0; /* 첫 번째 링크의 마진을 제거합니다. */
-  }
-  
-  .container{
-    box-shadow: 0 1px rgb(192, 188, 188); 
-  
-  }
-  .container1{
-    box-shadow: 0 1px rgb(192, 188, 188); 
-    margin-top: 20px;
-  }
-  .font-a{
-    padding-top: 50px;
-  }
-  .font__color-a{
-    font-size: 12px;
-    color: rgb(178, 173, 173);
-  }
-  .font__color-b{
-    font-size: 20px;
-    color: rgb(178, 173, 173);
-  }
-  .button-a{
-    padding: 10px 20px;
-    font-size: 16px;
-   align-items: center;
-  }
-  /* Add this to your CSS file */
-  .center-button {
-    
-    display: flex;
-    justify-content: center;
-    margin-top: 20px; /* Add some margin for better spacing */
-  }
-  
-  .load-more-button {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .load-more-button:hover {
-    background-color: black;
-    color: white;
-  }
-  /* p{
+  background-image: url("./../../img/img1.jpg"); /* 이미지 파일의 경로를 설정합니다. */
+  background-size: contain; /* 이미지를 컨테이너에 맞게 조정합니다. */
+  background-position: center; /* 이미지를 가운데로 정렬합니다. */
+  background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
+  width: 100%; /* 박스의 너비를 100%로 설정하여 이미지가 가로 방향으로 가득 차도록 합니다. */
+  height: 500px; /* 박스의 높이를 원하는 값으로 설정합니다. */
+}
+.img-b {
+  background-image: url("./../../img/img2.png"); /* 이미지 파일의 경로를 설정합니다. */
+  background-size: contain; /* 이미지를 박스에 완전히 보이도록 설정합니다. */
+  background-position: center; /* 이미지를 가운데로 정렬합니다. */
+  background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
+}
+.img-c {
+  background-image: url("./../../img/img3.jpg"); /* 이미지 파일의 경로를 설정합니다. */
+  background-size: contain; /* 이미지를 박스에 완전히 보이도록 설정합니다. */
+  background-position: center; /* 이미지를 가운데로 정렬합니다. */
+  background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
+}
+.img-d {
+  background-image: url("./../../img/img4.jpg"); /* 이미지 파일의 경로를 설정합니다. */
+  background-size: contain; /* 이미지를 박스에 완전히 보이도록 설정합니다. */
+  background-position: center; /* 이미지를 가운데로 정렬합니다. */
+  background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
+}
+.img-e {
+  background-image: url("./../../img/img5.jpg"); /* 이미지 파일의 경로를 설정합니다. */
+  background-size: contain; /* 이미지를 박스에 완전히 보이도록 설정합니다. */
+  background-position: center; /* 이미지를 가운데로 정렬합니다. */
+  background-repeat: no-repeat; /* 이미지 반복을 설정합니다. */
+  width: 100%;
+}
+
+.main nav {
+  background-color: rgb(223, 216, 216);
+  /* box-shadow: 0 1px rgb(192, 188, 188); */
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.main nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main nav ul li {
+  margin: 0 15px;
+}
+
+.main nav ul li a {
+  text-decoration: none;
+  color: #000; /* 글씨 색상을 검은색으로 설정 */
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.main nav ul li a:hover {
+  font-weight: bold;
+  text-decoration: underline; /* 밑줄 추가 */
+  text-decoration-thickness: 2px; /* 밑줄 두께 설정 */
+}
+
+.main nav ul li a.active {
+  font-weight: bold;
+  /* text-decoration: underline; 활성화된 링크에 밑줄 추가 */
+  text-decoration-thickness: 2px; /* 밑줄 두께 설정 */
+}
+.nav-item1 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+.nav-item1 li {
+  margin-left: 10px; /* 각 링크 사이의 간격을 조정합니다. */
+  font-size: 8px;
+}
+
+.nav-item1 li:first-child {
+  margin-left: 0; /* 첫 번째 링크의 마진을 제거합니다. */
+}
+
+.container {
+  box-shadow: 0 1px rgb(192, 188, 188);
+}
+.container1 {
+  box-shadow: 0 1px rgb(192, 188, 188);
+  margin-top: 20px;
+}
+.font-a {
+  padding-top: 50px;
+}
+.font__color-a {
+  font-size: 12px;
+  color: rgb(178, 173, 173);
+}
+.font__color-b {
+  font-size: 20px;
+  color: rgb(178, 173, 173);
+}
+.button-a {
+  padding: 10px 20px;
+  font-size: 16px;
+  align-items: center;
+}
+/* Add this to your CSS file */
+.center-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Add some margin for better spacing */
+}
+
+.load-more-button {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.load-more-button:hover {
+  background-color: black;
+  color: white;
+}
+/* p{
     text-align: center;
     font-size: 15px;
   } */
-  .center-container {
-    display: flex;
-    justify-content: center; /* Horizontal center */
-    align-items: center; /* Vertical center */
-  }
-  
-  .img-mainbutton1 {
-    max-width: 100%; /* Ensure the image scales properly */
-    height: auto;
-    width: 230px;
-  }
-  img{
-    cursor: pointer;
-  }
-  
-  /* styles.css */
-  .trend_keywords_grid {
-    border-bottom: 1px solid #e3d9d9;
-    padding: 16px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .flicking-viewport {
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .trending_keyword_slide {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
-  
-  .trending_keyword_item {
-    flex: 0 0 auto;
-    width: 100px; /* 아이템의 너비를 조정하세요 */
-    text-align: center;
-  }
-  
-  .moving-control {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 16px;
-  }
-  
-  .arrow {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    padding: 0 15px;
-    color: rgb(174, 165, 165);
-  }
-  
-  .arrow.disabled {
-    color: lightgray;
-    cursor: not-allowed;
-  }
-  
-  .page-indicator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 10px;
-  }
-  
-  .page-indicator span {
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-    border-radius: 50%;
-    background-color: rgb(220, 209, 209);
-  }
-  
-  .page-indicator .active {
-    background-color: black;
-  }
-  
-  
-  
-  /* styles.css */
-  .filter-container {
-    width: 200px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .filter-header {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .filter-section {
-    margin-bottom: 20px;
-  }
-  
-  .filter-section h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .filter-group {
-    margin-left: 10px;
-  }
-  
-  .filter-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .filter-group input {
-    margin-right: 5px;
-  }
-  
-  .toggle-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
+.center-container {
+  display: flex;
+  justify-content: center; /* Horizontal center */
+  align-items: center; /* Vertical center */
+}
 
+.img-mainbutton1 {
+  max-width: 100%; /* Ensure the image scales properly */
+  height: auto;
+  width: 230px;
+}
+img {
+  cursor: pointer;
+}
 
-  .asdf_all{
-    display: grid;
-    width: 1280px;
-    height: 325px;
-    margin: auto;
-    border: 1px solid black;
-    grid-template-columns: 800px 480px;
-    grid-template-rows: 50px 100px 200px;
-  }
-  
-  .item1:nth-child(1){
-    display: grid;
-    grid-template-columns: 400px 400px;
-    grid-template-rows: 25px 25px;
-    /* grid-columns: 1 / 2, 1fr;
+/* styles.css */
+.trend_keywords_grid {
+  border-bottom: 1px solid #e3d9d9;
+  padding: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flicking-viewport {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.trending_keyword_slide {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.trending_keyword_item {
+  flex: 0 0 auto;
+  width: 100px; /* 아이템의 너비를 조정하세요 */
+  text-align: center;
+}
+
+.moving-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.arrow {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 0 15px;
+  color: rgb(174, 165, 165);
+}
+
+.arrow.disabled {
+  color: lightgray;
+  cursor: not-allowed;
+}
+
+.page-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.page-indicator span {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: rgb(220, 209, 209);
+}
+
+.page-indicator .active {
+  background-color: black;
+}
+
+/* styles.css */
+.filter-container {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.filter-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-group {
+  margin-left: 10px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-group input {
+  margin-right: 5px;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.asdf_all {
+  display: grid;
+  width: 1280px;
+  height: 325px;
+  margin: auto;
+  border: 1px solid black;
+  grid-template-columns: 800px 480px;
+  grid-template-rows: 50px 100px 200px;
+}
+
+.item1:nth-child(1) {
+  display: grid;
+  grid-template-columns: 400px 400px;
+  grid-template-rows: 25px 25px;
+  /* grid-columns: 1 / 2, 1fr;
     grid-template-rows: 1 / 2; */
-  }
+}
