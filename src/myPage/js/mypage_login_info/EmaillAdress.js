@@ -9,13 +9,13 @@ function EmailAdress(props){
 return(
     <div>
         { emailCange == false ? (
-        <div className='unit'>
-            <h5 className='title'>이메일 주소</h5>
+        <div className='unit_Prof'>
+            <h5 className='login_info_title'>이메일 주소</h5>
             <div className='unit_content'>
                 <p className='outline'>date.email****</p>
                 <button
                     type="button"
-                    className="unitAll"
+                    className="unitAll_Btn"
                     onClick={() => { setEmailCange(true) }}
                     >변경
                 </button>
@@ -24,14 +24,16 @@ return(
         ):(
         <div className='profile_group'>
             <div className='unitCh'>
-                <h5 className='titleCh'>이메일 주소 변경</h5>
+                <h5 className='login_titleCh'>이메일 주소 변경</h5>
                 <input className={inputClassCh}
                         placeholder={'dat.email'}
                         id='email'
                         onChange={(e)=>{setInputEmail(e.target.value)
                                             {
                                             const regex = /^[^@]+@[^@]+\.[^@]{1,}$/;
-                                                if(regex.test(inputEmail)){
+                                                if(null){
+                                                    setBtnSaveCh('btnSaveChEr')
+                                                }else if(regex.test(inputEmail)){
                                                     setInputClassCh('desc_all')
                                                     setBtnSaveCh('btnSaveCh')
                                                 }else{
@@ -45,7 +47,7 @@ return(
             <div className='modify_btn_box'>
                 <button
                     type="button"
-                    className="btnCancellCh"
+                    className="cancellBtn"
                     onClick={() => { setEmailCange(false) }}
                     >취소
                 </button>

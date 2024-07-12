@@ -4,7 +4,7 @@
     border-bottom: 3px solid #222;
     padding-bottom: 16px;
 }
-.title > h3{
+.titlePoint > h3{
     font-size: 24px;
     color: #222;
     font-weight: 700;
@@ -13,21 +13,18 @@
     max-width: 480px;
     padding-top: 38px;
 }
-.profile_group{
-    padding-top: 28px;
-}
 .group_title{
     font-size: 18px;
     font-weight: 700;
 }
-.unit{
-    /* border-bottom: 1px solid #ebebeb; */
+/* .unit{ 
+    border-bottom: 1px solid #ebebeb;
     display: flex;
     flex-direction: column;
     padding: 20px 0 12px;
     position: relative;
-}
-.title{
+} */
+.login_info_title{
     color: rgba(34, 34, 34, .5);
     font-size: 13px;
     font-weight: 400;
@@ -61,10 +58,15 @@
 .desc_emailEr:focus{
     outline: none;
 }
-.unitAll{
+.unitAll_Btn{
+    align-items: center;
     font-size: 12px;
     height: 35px;
     margin: 0;
+    border-radius: 10px;
+    padding: 0 14px;
+    background-color: #fff;
+    border: 1px solid #ebebeb;
 }
 .desc_pw{
     width: 100%;
@@ -103,12 +105,12 @@
     margin: 0;
 }
 
-.titleCh{
+.login_titleCh{
     color: black;
     font-size: 13px;
     font-weight: 700;
 }
-.modify_btn_box{
+.modify_btnBox{
     padding-top: 28px;
 }
 .btnCancellCh{
@@ -138,6 +140,7 @@
     margin-left:10px; 
     background-color: #ebebeb;
     color:white;
+    border-radius: 10px;
 }
 .btnSaveCh{
     margin-left:10px; 
@@ -147,12 +150,13 @@
     font-size: 14px;
     width: 180px;
     height: 45px;
+    border-radius: 10px;
 }
 .title.befor{
     color: black;
     font-weight: 700;
 }
-.storeBtn{
+.login_storeBtnEr{
     margin-left: 15px;
     color: white;
     font-size: 14px;
@@ -160,8 +164,9 @@
     width: 120px;
     background-color: #222;
     border: none;
+    border-radius: 10px;
 }
-.storeBtnEr{
+.login_storeBtn{
     margin-left: 15px;
     color: white;
     font-size: 14px;
@@ -169,6 +174,7 @@
     width: 120px;
     background-color: #ebebeb;
     border: none;
+    border-radius: 10px;
 }
 .cancellBtn{
     padding: 0 38px;
@@ -177,4 +183,9 @@
     border-radius: 12px;
     font-size: 14px;
     height: 45px;
+}
+
+.profileGroup{
+    padding-top: 40px ;
+    padding-bottom: 160px;
 }

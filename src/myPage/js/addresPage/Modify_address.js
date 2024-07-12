@@ -16,7 +16,7 @@ function AddresLayer({ onClose }) {
       withCredentials: true,
     });
 
-    const handleSave = async () => {
+    const ModifyAddress = async () => {
       const data = {
           recipient,
           ponNum,
@@ -65,7 +65,7 @@ function AddresLayer({ onClose }) {
     <div className='layer_container'>
         <div className='layer-head---'>
         <div className='layer-header'>
-            <h2 className='title_layer'>새주소 추가</h2>
+            <h2 className='title_layer'>배송지 수정</h2>
         </div>
 
         <div className='layer_content'>  {/* class없음 */}
@@ -162,8 +162,8 @@ function AddresLayer({ onClose }) {
             </div>
             </div>
             <div className='btnLayer'>
-                <button className='outlineegrey medium' onClick={handleCancel}>취소</button>
-                <button className='outlineegrey medium save' onClick={handleSave}>저장하기</button>
+                <button className='outlineegrey medium' onClick={() => setIsEditing(false)}>취소</button>
+                <button className='outlineegrey medium save' onClick={saveEdit}>저장하기</button>
             </div>
             </div>
         </div>
@@ -171,4 +171,6 @@ function AddresLayer({ onClose }) {
 )
 }
 
-export default AddresLayer;
+export default ModifyAddress;
+
+

@@ -5,7 +5,5 @@
     display: table;
     table-layout: fixed;
     width: 100%;
-}
-.purchase_list.all{
-    
+    padding: 18px 0 ;
 }

@@ -9,7 +9,7 @@
 }
 
 
-.inventory_box .row .tab_item:not(:last-child) {
+.inventory_box .row .tab_item:not(:last-child) { 
     border-right: 1px solid #ccc;
   }
   
@@ -20,8 +20,7 @@
     max-width: 100%;
     padding-bottom: 16px;
 }
-.title{
-    
+.title_inventory{
     font-size: 18px;
 }
 .btn_txt{
@@ -34,6 +33,9 @@
     color: rgba(34, 34, 34, .5);
     font-size: 13px;
 }
+.tab_item{
+    color: black;
+}
 .tab_item.total{
     display: table-cell;
     text-align: center;
@@ -44,10 +46,10 @@
 .titl_link{
     color: rgba(34, 34, 34, .8);
 }
-a{
+.myShoping{
     color: inherit;
 }
-.count{
+.count_inventory{
     color: #31b44e;
     font-size: 18px;
     font-weight: 700;
@@ -89,3 +91,7 @@ a{
     margin-top: 2px;
     margin: 0;
 }
+.storage_sale{
+    color: black;
+}
+/* className='storage_sale' */

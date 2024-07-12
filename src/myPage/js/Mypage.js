@@ -1,4 +1,4 @@
-import '../css/MyPage.css';
+import '../css/My_Page.css';
 import '../css/Mypage_inventory.css';
 import '../css/Shortcut_grid.css';
 import '../css/User_membership.css';
@@ -38,7 +38,7 @@ return (
           <div className="user-info">
             <div className='info-box'>
               <strong className='name'>{userId}userId</strong>
-              <p className='email'>{email}emxxxx@naver.com</p>
+              <p className='email_mypage'>{email}emxxxx@naver.com</p>
             </div>
             <div>
               <button type="button" className="info-but" onClick={()=>{
@@ -52,30 +52,30 @@ return (
       <div className='shortcut_grid'>
 
         <div className="container text-center">
-          <div className="row row-cols-3 row row-cols-4 row row-cols-6">
+          <div className="row row-cols-3 row-cols-4 row-cols-6 ">
             <div className="col">
               <div className='seller-grade'></div>
-              판매자 등급
+              <span>판매자 등급</span>
             </div>
             <div className="col">
               <div className='seller-p'></div>  
-              P
+              <span>P</span>
             </div>
             <div className="col">
               <div className='seller-cupon'></div>  
-              쿠폰
+              <span>쿠폰</span>
             </div>
             <div className="col">
               <div className='seller-phon'></div>  
-              내 폰 시세
+              <span>내 폰 시세</span>
             </div>
             <div className="col">
               <div className='seller-invite'></div>  
-              친구 초대
+              <span>친구 초대</span>
             </div>
             <div className="col">
               <div className='seller-announcement'></div>  
-              공지사항
+              <span>공지사항</span>
             </div>
           </div>
         </div>
@@ -85,14 +85,14 @@ return (
 
       <div className="section">
           <div className='my_home_title'>
-            <h3 className="title">보관 판매 내역</h3>
+            <h3 className="title_inventory">보관 판매 내역</h3>
             <Link to={"/my/inventory"} className='btn_txt'>더보기</Link>
           </div>
           <div className='inventory_box'>
             <div className="row row-cols-4">
                   <div className="tab_item total">
                     <Link className='titl_link'>발송요청
-                      <div className='count'>0</div>
+                      <div className='count_inventory'>0</div>
                     </Link>
                   </div>
                   <div className="tab_item total">
@@ -127,14 +127,14 @@ return (
 
         <div className="section">
           <div className='my_home_title'>
-            <h3 className="title">구매 내역</h3>
+            <h3 className="title_inventory">구매 내역</h3>
             <Link to={"/my/bying"} className='btn_txt'>더보기</Link>
           </div>
           <div className='purchase_list_tab'>
             <div className="row row-cols-4">
               <div className="tab_item total">
                 <Link className='titl_link'>전체
-                  <div className='count'>0</div>
+                  <div className='count_inventory'>0</div>
                 </Link>
               </div>
               <div className="tab_item total">
@@ -167,14 +167,14 @@ return (
 
         <div className="section">
           <div className='my_home_title'>
-            <h3 className="title">판매 내역</h3>
+            <h3 className="title_inventory">판매 내역</h3>
             <Link to={"/my/selling"} className='btn_txt'>더보기</Link>
           </div>
           <div className='selling'>
             <div className="row row-cols-4">
               <div className="tab_item total">
                 <Link className='titl_link'>전체
-                  <div className='count'>0</div>
+                  <div className='count_inventory'>0</div>
                 </Link>
               </div>
               <div className="tab_item total">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios';
 
 function FrofilName({date,setDate}){
     const [profile_titleCh, setProfile_titleCh] = useState('profile_title')
@@ -8,11 +9,21 @@ function FrofilName({date,setDate}){
     const handleSave = () => {
       setDate(prevDate => ({
         ...prevDate,
-        profileName: profileName,
+        ProfileName: profileName,
       }));
-      setOnBtn(false);
+      const updatedData = { profileName };
+      axios.post('/my/profile-edit/ProfileName', updatedData)
+      .then(response => {
+          console.log(response.data);
+          setOnBtn(false);
+    })
+      .catch(error => {
+          console.error(error);
+          setOnBtn(false);
+        });
     };
   
+    
     const handleCancel = () => {
         setProfileName(date.profileName);
         setOnBtn(false);
@@ -40,7 +51,8 @@ function FrofilName({date,setDate}){
             <div className='group'>
                 <h5 className={profile_titleCh}>프로필 이름</h5>
                 <div className="unit_content">
-                    <input 
+                    <input
+                        id="profileName"
                         className='inputPrfileN'
                         value={profileName}
                         onChange={(e)=> setProfileName(e.target.value)}/>

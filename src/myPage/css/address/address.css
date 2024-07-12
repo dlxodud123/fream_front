@@ -1,12 +1,4 @@
-.layer-background{
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    position: absolute;
-    top: 50%; /* 화면 세로 중앙 정렬을 위해 top 50% 설정 */
-    left: 50%; /* 화면 가로 중앙 정렬을 위해 left 50% 설정 */
-    transform: translate(-50%, -50%); /* 요소의 가로/세로 길이의 절반을 이동시켜 정확히 중앙에 위치시킴 */
-}
+
 .content_title{
     display: flex;
     align-items: center;
@@ -18,11 +10,74 @@
     margin-left: auto;
     padding-left: 30px;
 }
+.address_name{
+    font-weight: 700;
+}
+.unitAll_address{
+    border-radius: 10px;
+    border: 1px solid #222;
+    font-size: 10px;
+    height: 34px;
+    line-height: 32px;
+    padding: 0 14px;
+    background-color: #fff;
+
+}
 .basic{
     border-bottom: 2px solid black;
     padding: 30px 0 29px;
+    width: 100%;
 }
-.my_list{
+.myAddress_list{
     align-items: center;
-    display: flex; 
+    position: relative;
+}
+.my_active{
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+.info_bind{
+    margin-right: 24px;
+}
+.mark{
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 8px;
+    padding: 3px 6px;
+    vertical-align: top;
+}
+.phone{
+    /* align-items: center; */
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    font-size: 15px;
+    margin: 0;
+    padding-top: 5px;
+}
+.address_box{
+    font-size: 14px;
+    padding: 4px;
+}
+.B{
+    font-size: 12px;
+    height: 34px;
+    padding: 0 14px;
+    width: 60px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #d3d3d3;
+}
+.btn_bind{
+    margin-left: auto;
+}
+.del.B{
+    margin-left: 8px;
+}
+.outlinegrey{
+    margin-right: 8px;
+    width: 100px;
 }

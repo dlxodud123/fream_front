@@ -1,18 +1,33 @@
-
-/* .layer-background{
-    background-color: rgba(34, 34, 34, .5);
-} */
+.layer_lg{
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1010;
+}
+.layer-background{
+     background-color: rgba(34, 34, 34, .5);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
 .layer-container{
     background-color: #fff;
     border-radius: 16px;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
-    left: 50%;
     position: absolute;
-    top: -100%;
-    transform: translate(-50%, -50%);
     width: 448px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .layer-title{
+    border-color: #fff;
     font-size: 18px;
     font-weight: 700;
     line-height: 22px;
@@ -20,11 +35,12 @@
     padding: 18px 20px;
     text-align: center;
 }
-.size_list{
+.info_size_list{
     overflow-y: auto;
     height: 270px;
     padding: 6px 28px 0;
 }
+
 .col.size_item{
     height: 52px;
     border: 1px solid #ededed;
@@ -43,18 +59,29 @@
     justify-content: center;
     flex: 0 0 calc(33.3333% - 8px);
 }
-.layer_btn{
+.shoes_size_layerBtn {
     display: flex;
     justify-content: center;
     padding: 24px 32px 32px;
+    position: relative; /* 다른 위치 지정 속성값도 사용 가능 */
+    z-index: 9999; /* 큰 값일수록 앞에 위치 */
+}
+.unit.to_receive{
+    position: relative; /* 다른 위치 지정 속성값도 사용 가능 */
+    z-index: 1;
+}
+.shoes_con{
+    width: 120px;
+    height: 42px;
+    border-radius: 12px;
+    padding: 0 18px;
+    background-color: #fff;
+    font-weight: 700;
+    border: none;
+    border: 1px solid #ededed;
 }
 
 .col.size_item.selected {
     border: 1px solid black;
 }
 
-.layer_btn {
-    display: flex;
-    justify-content: space-around;
-    padding: 24px 32px 32px;
-}
