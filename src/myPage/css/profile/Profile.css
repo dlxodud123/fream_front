@@ -17,13 +17,7 @@
     font-size: 18px;
     font-weight: 700;
 }
-/* .unit{ 
-    border-bottom: 1px solid #ebebeb;
-    display: flex;
-    flex-direction: column;
-    padding: 20px 0 12px;
-    position: relative;
-} */
+
 .login_info_title{
     color: rgba(34, 34, 34, .5);
     font-size: 13px;

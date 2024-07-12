@@ -3,20 +3,23 @@ import '../../css/address/addressLayer.css';
 import DaumAddress from './SerchAddress.js';
 import axios from 'axios';
 
-function AddresLayer({ onClose }) {
+function ModifyAddress({ onClose }) {
     const [recipient, setRecipient] = useState('');
     const [ponNum, setPonNum] = useState('');
     const [postcode, setPostcode] = useState('');
     const [address, setAddress] = useState('');
     const [detailAddress, setDetailAddress] = useState('');
     const [handleSearchButtonClick, setHandleSearchButtonClick] = useState(false); // 상태 변수 추가
+    const [isEditing, setIsEditing] = useState(false)
+    const [saveEdit, setSaveEdit] = useState(false)
+
 
     const axiosBaseURL = axios.create({
       baseURL: process.env.NEXT_PUBLIC_API_URL,
       withCredentials: true,
     });
 
-    const ModifyAddress = async () => {
+    const AddressDate = async () => {
       const data = {
           recipient,
           ponNum,
@@ -26,7 +29,7 @@ function AddresLayer({ onClose }) {
       };
       try {
         const response = await 
-        axiosBaseURL.get('http://localhost:3000/my/addres', {
+        axiosBaseURL.put('http://localhost:3000/my/addres', {
           //fetch('http://localhost:3000/my/profile-edit', {
               method: 'POST',
               headers: {
@@ -53,13 +56,13 @@ function AddresLayer({ onClose }) {
       setHandleSearchButtonClick(!handleSearchButtonClick);
     };
 
-      const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        if (name === 'detailAddress') {
-          setDetailAddress(value);
-        }
-      };
-      
+    const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'detailAddress') {
+        setDetailAddress(value);
+    }
+    };
+
 
     return(
     <div className='layer_container'>
@@ -162,7 +165,7 @@ function AddresLayer({ onClose }) {
             </div>
             </div>
             <div className='btnLayer'>
-                <button className='outlineegrey medium' onClick={() => setIsEditing(false)}>취소</button>
+                <button className='outlineegrey medium' onClick={handleCancel}>취소</button>
                 <button className='outlineegrey medium save' onClick={saveEdit}>저장하기</button>
             </div>
             </div>

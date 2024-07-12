@@ -10,12 +10,14 @@ import Detail_Chart from "./detail/detail_chart.js";
 import Sell_form from "./detail/sell_form.js";
 import LoginPage from "./login/js/login.js";
 import Join from "./login/js/Join.js";
+import Settlement from "./myPage/js/settlemet/SettlMain.js";
 import FindEmail from "./login/js/FindEmail.js";
 import FindPw from "./login/js/FindPw";
 import Profile_edit from "./myPage/js/profile/profile_edit.js";
 import Profile from "./myPage/js/profile/profile.js";
 import Address from "./myPage/js/addresPage/address.js";
 import Buying from "./myPage/js/buying/Buying.js";
+import Selling from "./myPage/js/selling/Sell.js";
 import Men from "./main/men.js";
 import Women from "./main/women";
 import Shope from "./main/shopeitem/shope";
@@ -89,7 +91,12 @@ function App() {
             <Route path="/join" element={<Join />} />
             <Route path="/login/find_email" element={<FindEmail />} />
             <Route path="/login/find_password" element={<FindPw />} />
-            <Route path="/profile-edit" element={<Profile />}></Route>
+            <Route path="/my/profile" element={<Profile />}></Route>
+            <Route path="/my/profile-edit" element={<Profile_edit />}></Route>
+            <Route path="/my/address" element={<Address />}></Route>
+            <Route path="/my/account" element={<Settlement />}></Route>
+            <Route path="/my/buying" element={<Buying />}></Route>
+            <Route path="/my/selling" element={<Selling />}></Route>
             <Route path="/*" element={<BoardContainer />} />
             <Route
               path="/products/:id"
@@ -109,14 +116,7 @@ function App() {
             ></Route>
           </Routes>
         </AppWrapper>
-        {/* <React.Fragment>
-        <ConnectedRouter history={history}>
-          <Route path='/signup' exact Component={Signup} />
-          <Route path='/login' exact Component={Login} />
-
-          <Route path='/oauth/kakao' Component={OAuthRedirectHandler}></Route>
-        </ConnectedRouter>
-      </React.Fragment> */}
+       
       </div>
     </AuthProvider>
   );
