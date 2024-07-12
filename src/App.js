@@ -54,14 +54,6 @@ function App() {
         <Route path='/buy/history' element={<Buy_history_from></Buy_history_from>}></Route>
       </Routes>
 
-      {/* <React.Fragment>
-        <ConnectedRouter history={history}>
-          <Route path='/signup' exact Component={Signup} />
-          <Route path='/login' exact Component={Login} />
-
-          <Route path='/oauth/kakao' Component={OAuthRedirectHandler}></Route>
-        </ConnectedRouter>
-      </React.Fragment> */}
     </div>
   );
 }

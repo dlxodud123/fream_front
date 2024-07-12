@@ -7,7 +7,7 @@ function PasswordChang({props, password}){
     let [newPw2, setNewPw2] = useState('')
     let [ filterCss1 , setFilterCss1 ] = useState('desc_pw')
     let [ filterCss2 , setFilterCss2 ] = useState('desc_pw')
-    let [storeBtn, setStoreBtn ] = useState('storeBtn')
+    let [storeBtn, setStoreBtn ] = useState('login_storeBtn')
 
     const maskPw = (password) =>{
         if(!password) return '';
@@ -25,22 +25,22 @@ function PasswordChang({props, password}){
     };
     const checkFormValidity = () => {
         if (pwPattern.test(newPw1) && pwPattern.test(newPw2)) {
-            setStoreBtn('storeBtn');
+            setStoreBtn('login_storeBtnEr');
         } else {
-            setStoreBtn('storeBtnEr');
+            setStoreBtn('login_storeBtn');
         }
     };
 
     return(
         <div>
             { handlePw == false ? ( 
-            <div className='unit'>
-                <h5 className='title'>비밀번호</h5>
+            <div className='unit_Prof'>
+                <h5 className='login_info_title'>비밀번호</h5>
                 <div className='unit_content'>
                     <p className='outline'>{maskPw(password)}</p>
                     <button
                         type="button"
-                        className="unitAll"
+                        className="unitAll_Btn"
                         onClick={() => { setHandlePw(true) }}
                         >변경
                     </button>
@@ -49,8 +49,8 @@ function PasswordChang({props, password}){
             ) : (
                 <div>
                 <div className='unitCh'>
-                    <h5 className='title befor' style={{ marginBottom: '20px' }}>비밀번호 변경</h5>
-                    <h5 className='title befor'>이전 비밀번호</h5>
+                    <h5 className='group_title' style={{ marginBottom: '20px' }}>비밀번호 변경</h5>
+                    <h5 className='login_titleCh'>이전 비밀번호</h5>
                     <input className={filterCss1}
                         placeholder='영문,숫자,특수문자 조합 8-16자'
                         onChange={(e) => {
@@ -59,7 +59,7 @@ function PasswordChang({props, password}){
                     />
                 </div>
                 <div className='unitCh'>
-                    <h5 className='title befor'>새 비밀번호</h5>
+                    <h5 className='login_titleCh'>새 비밀번호</h5>
                     <input className={filterCss2}
                         placeholder='영문,숫자,특수문자 조합 8-16자'
                         onChange={(e) =>{

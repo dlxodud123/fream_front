@@ -1,18 +1,10 @@
 /*  */
-<<<<<<< HEAD
-div{
-    display: block;
-    unicode-bidi: isolate;
-}
-/* img{
-=======
 
 .img_blank{
->>>>>>> 2aa5b96876c35dae4607715d3104b2f9b2f775c6
     height: 60px;
     width: 60px;
     margin-right: 12px;
-} */
+} 
 .user_membership{
     display: flex;
     flex-direction: column;
@@ -46,10 +38,7 @@ div{
     line-height: 21px;
     width: 50%;
 }
-.email{
-    margin: 0;
 
-}
 .info-but{
     border: 1px solid #d3d3d3;
     height: 36px;
@@ -63,9 +52,10 @@ div{
     vertical-align: middle;
     border-radius: 7px;
 }
-.email{
+.email_mypage{
     color: rgba(34, 34, 34, .5);
     font-size: 14px;
     letter-spacing: -.05px;;
     line-height: 18px;
+    margin: 0;
 }

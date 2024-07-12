@@ -29,7 +29,7 @@ const Buying = () => {
                     </div>
                     <div className="col-sm-9">
                         <div className="content_title">
-                            <div className="title">
+                            <div className="titlePoint">
                                 <h3>구매내역</h3>
                             </div>
                         </div>

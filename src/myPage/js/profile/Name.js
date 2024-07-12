@@ -1,21 +1,32 @@
+import axios from "axios";
 import { useState } from "react";
 
 
 function NameProfile_email({date, setDate}){
     const [profile_titleCh, setProfile_titleCh] = useState('profile_title')
     const [ onBtn, setOnBtn] = useState(false);
-    const [ name, setName] = useState(date.email)
+    const [ userName, setUserName] = useState(date.email)
+
 
     const handleSave = () => {
-        setDate(prevDate => ({
-          ...prevDate,
-          email: name,
-        }));
-        setOnBtn(false);
-      };
+      setDate(prevDate => ({
+        ...prevDate,
+        email: userName,
+      }));
+      const updatedData = { userName };
+      axios.post('/my/profile-edit/userName', updatedData)
+      .then(response => {
+          console.log(response.data);
+          setOnBtn(false);
+    })
+      .catch(error => {
+          console.error(error);
+          setOnBtn(false);
+        });
+    };
     
       const handleCancel = () => {
-        setName(date.email);
+        setUserName(date.email);
           setOnBtn(false);
       };
 
@@ -25,7 +36,7 @@ function NameProfile_email({date, setDate}){
             <div className='group'>
                 <h5 className={profile_titleCh}>이름</h5>
                 <div className="unit_content">
-                    <p className='modify_myslef'>{name}</p>
+                    <p className='modify_myslef'>{userName}</p>
                     <button
                         type="button"
                         className="unit_all"
@@ -41,8 +52,8 @@ function NameProfile_email({date, setDate}){
                 <div className="unit_content">
                     <input 
                         className='inputPrfileN'
-                        value={name}
-                        onChange={(e)=> setName(e.target.value)}/>
+                        value={userName}
+                        onChange={(e)=> setUserName(e.target.value)}/>
                 </div>
             </div>
             <div>

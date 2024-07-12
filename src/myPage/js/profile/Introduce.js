@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 function Modal_my_self ({
@@ -9,12 +10,22 @@ function Modal_my_self ({
     const [profile_titleCh, setProfile_titleCh] = useState('profile_title')
     const [inputCh, setInputCh] = useState('modify_textarea')
   
+    
     const handleSave = () => {
       setDate(prevDate => ({
         ...prevDate,
         mySelf: newMySelf,
       }));
-      setIsEditing(false);
+      const updatedData = { newMySelf };
+      axios.post('/my/profile-edit/introduce', updatedData)
+      .then(response => {
+          console.log(response.data);
+          setIsEditing(false);
+    })
+      .catch(error => {
+          console.error(error);
+          setIsEditing(false);
+        });
     };
   
     const handleCancel = () => {
@@ -47,7 +58,6 @@ function Modal_my_self ({
             <h5 className={profile_titleCh}>소개</h5>
             <div className="unit_content">
               <input
-                id="mySelf"
                 value={newMySelf}
                 onChange={(e) => setNewMySelf(e.target.value)}
                 className='inputPrfileN'
