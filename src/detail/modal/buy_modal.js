@@ -22,6 +22,10 @@ const Buy_modal = (props) => {
     }, [])
 
     const Buy_modal_btn = styled.button`
+        width: 133px;
+        height: 58px;
+        border-radius: 10px;
+        background-color: white;
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
     const buy_link = () => {
@@ -33,7 +37,7 @@ const Buy_modal = (props) => {
     // console.log("확인용 : ", props.main_info_shoes);
     return(
         <>  
-            <button onClick={() => setBuyModal(true)} style={{width:"275px", height:"60px", display:"flex", color:"white", backgroundColor:"rgb(239, 98, 83)", borderRadius:"10px", fontWeight:"bold"}}>
+            <button onClick={() => setBuyModal(true)} style={{width:"275px", height:"60px", display:"flex", color:"white", backgroundColor:"rgb(239, 98, 83)", borderRadius:"10px", fontWeight:"bold", border:"none"}}>
                 <div style={{width:"50px", marginTop:"16px",marginLeft:"12px", textAlign:"left", fontSize:"20px"}}>구매</div>
                 <div style={{width:"1px",height:"59px", backgroundColor:"rgba(0,0,0,0.1)"}}></div>
                 <div style={{marginLeft:"9px"}}>
@@ -100,7 +104,7 @@ const Buy_modal = (props) => {
                         {
                             (!(props.final_size  === "모든 사이즈") || !(Number.isNaN(buyBtn))) ? 
                             <div>
-                                <button onClick={() => buy_link()} style={{width:"420px", height:"65px", backgroundColor:'black', color:"#fff", fontWeight:"bold", marginTop:"10px"}}>{formatPrice(props.main_info_shoes.price)}</button>
+                                <button onClick={() => buy_link()} style={{width:"420px", height:"65px", backgroundColor:'black', color:"#fff", fontWeight:"bold", marginTop:"10px", borderRadius:"10px"}}>{formatPrice(props.main_info_shoes.price)}</button>
                             </div>
                             :
                             <div></div>

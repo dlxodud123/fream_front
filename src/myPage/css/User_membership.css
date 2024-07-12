@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*  */
 
 .img_blank{
@@ -5,6 +6,8 @@
     width: 60px;
     margin-right: 12px;
 } 
+=======
+>>>>>>> a8446e023ce1cd5021bd9cb21604da29cc5a73ed
 .user_membership{
     display: flex;
     flex-direction: column;

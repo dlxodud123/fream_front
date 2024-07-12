@@ -5,16 +5,21 @@ import axios from "axios";
 
 const Detail_shoes3 = (props) => {
 
+    const axiosBaseURL = axios.create({
+        baseURL: process.env.NEXT_PUBLIC_API_URL,
+        withCredentials: true, // 이 부분 추가
+    });
+
     const [shoes, setShoes] = useState(data);
     const [count, setCount] = useState(5);
 
-    let gender = props.detail_shoes_gender;
+    let id = props.detail_shoes_id;
 
     // useEffect(() => {
-    // axios.get(`http://192.168.42.142:3001/products/${gender}`)
+    // axiosBaseURL.get(`http://192.168.42.142:3001/products/${id}/gender`)
     // .then((data) => {
     //     if (data.data && data.data.length > 0) {
-    //         console.log("data : ", data.data[0]);  
+    //         console.log("data : ", data.data);  
     //         setShoes(data.data[0]);
     //     } else {
     //         console.log("데이터가 비어 있음");

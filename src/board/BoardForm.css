@@ -66,3 +66,8 @@
     background-color: #f44336;
     color: white;
 }
+
+.ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+    min-height: 450px;
+    margin-bottom: 20px;
+  }

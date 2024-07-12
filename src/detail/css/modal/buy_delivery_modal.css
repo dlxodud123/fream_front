@@ -20,6 +20,7 @@
 }
 .name_input_txt{
     width: 460px;
+    border: none;
     border-bottom: 1px solid #ebebeb;
     font-size: 15px;
     line-height: 22px;
@@ -27,6 +28,7 @@
 }
 .name_input_null_txt{
     width: 460px;
+    border: none;
     border-bottom: 1px solid #ebebeb;
     font-size: 15px;
     line-height: 22px;

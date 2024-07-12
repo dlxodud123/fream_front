@@ -4,8 +4,8 @@ import Detail_buy_header from '../common/detail_buy_header';
 import Buy_request_modal from './modal/buy_request_modal';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import delivery_img1 from "./../img/detail-page/ship_imfo.png"
-import delivery_img2 from "./../img/detail-page/ship_imfo2.png"
+import delivery_img1 from "./../img/detail-page/ship_imfo.png";
+import delivery_img2 from "./../img/detail-page/ship_imfo2.png";
 import naver_img from "./../img/detail-page/naver_pay.png";
 import kakao_img from "./../img/detail-page/kakao_pay.png";
 import toss_img from "./../img/detail-page/toss_pay.png";
@@ -83,11 +83,15 @@ const Buy_form = () => {
     const DeliveryButton = styled.button`
         height: 70px;
         width: 650px;   
+        background-color: white;
+        border-radius: 10px;
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
     const PaymentButton = styled.button`
         height: 70px;
         width: 210px;
+        background-color: white;
+        border-radius: 10px;
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
 
@@ -130,12 +134,14 @@ const Buy_form = () => {
     };
 
     useEffect(() => {
-        if (finalSaveBtn) {
+        console.log(finalSaveBtn);
+        console.log(finalCardBtn);
+        if (finalSaveBtn && finalCardBtn) {
             setFinalBtn(true);
         }else{
             setFinalBtn(false);
         }
-    })
+    }, [finalSaveBtn, finalCardBtn, setFinalBtn]);
 
     const formatName = (str) => {
         return str[0] + '*'.repeat(str.length - 1);
@@ -188,7 +194,7 @@ const Buy_form = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <button onClick={formatBtn} style={{width:"50px", height:"35px", marginTop:"80px", fontSize:"13px", color:"rgba(127,127,127,1)"}}>초기화</button>
+                                        <button onClick={formatBtn} style={{width:"50px", height:"35px", marginTop:"80px", fontSize:"13px", color:"rgba(127,127,127,1)", borderRadius:"10px", border:"1px solid rgba(0,0,0,0.3)", backgroundColor:"white"}}>초기화</button>
                                     </div>
                                 </div>
 
@@ -303,24 +309,24 @@ const Buy_form = () => {
                         </div>
                         <div style={{textAlign:"left", marginLeft:"25px", marginTop:"10px"}}>
                             <div style={{display:"flex"}}>
-                                <PaymentButton active={paymentBtn === 1} onClick={() => setPaymentBtn(1)}>
+                                <PaymentButton active={paymentBtn === 1} onClick={() => {setPaymentBtn(1); setFinalCardBtn(true)}}>
                                     <div style={{float:"left", marginLeft:"15px"}}>신용카드</div>
                                 </PaymentButton>
-                                <PaymentButton active={paymentBtn === 2} onClick={() => setPaymentBtn(2)} style={{marginLeft:"10px"}}>
+                                <PaymentButton active={paymentBtn === 2} onClick={() => {setPaymentBtn(2); setFinalCardBtn(true)}} style={{marginLeft:"10px"}}>
                                     <div style={{float:"left", marginLeft:"15px"}}>네이버페이</div>
                                     <img src={naver_img} style={{width:"50px", float:"right", marginRight:"13px", marginTop:"1px"}}></img>
                                 </PaymentButton>
-                                <PaymentButton active={paymentBtn === 3} onClick={() => setPaymentBtn(3)} style={{marginLeft:"10px"}}>
+                                <PaymentButton active={paymentBtn === 3} onClick={() => {setPaymentBtn(3); setFinalCardBtn(true)}} style={{marginLeft:"10px"}}>
                                     <div style={{float:"left", marginLeft:"15px"}}>카카오페이</div>
                                     <img src={kakao_img} style={{width:"50px", float:"right", marginRight:"13px", marginTop:"2px"}}></img>
                                 </PaymentButton>
                             </div>
                             <div style={{marginTop:"5px"}}>
-                                <PaymentButton active={paymentBtn === 4} onClick={() => setPaymentBtn(4)}>
+                                <PaymentButton active={paymentBtn === 4} onClick={() => {setPaymentBtn(4); setFinalCardBtn(true)}}>
                                     <div style={{float:"left", marginLeft:"15px"}}>토스페이</div>
                                     <img src={toss_img} style={{width:"50px", float:"right", marginRight:"13px"}}></img>
                                 </PaymentButton>
-                                <PaymentButton active={paymentBtn === 5} onClick={() => setPaymentBtn(5)} style={{marginLeft:"10px"}}>
+                                <PaymentButton active={paymentBtn === 5} onClick={() => {setPaymentBtn(5); setFinalCardBtn(true)}} style={{marginLeft:"10px"}}>
                                     <div style={{float:"left", marginLeft:"15px"}}>페이코</div>
                                     <img src={payco_img} style={{width:"50px", float:"right", marginRight:"13px", marginTop:"3px"}}></img>
                                 </PaymentButton>
@@ -406,13 +412,13 @@ const Buy_form = () => {
                     <div className='order_agreemnet_button'>
                         {finalBtn ? (
                             <>
-                            <button onClick={() => onClickPayments()} style={{width:"630px", backgroundColor:"black", color:"white", marginTop:"20px", fontWeight:"bold", fontSize:"17px"}}>
+                            <button onClick={() => onClickPayments()} style={{width:"630px",height:"58px", backgroundColor:"black", color:"white", marginTop:"20px", fontWeight:"bold", fontSize:"17px", borderRadius:"10px", border:"none"}}>
                                 {formatPrice(parseData.price+3000)}원・일반배송 결제하기
                             </button>
                             </>
                         ) : (
                             <>
-                            <button disabled style={{width:"630px", backgroundColor:"rgba(127,127,127,0.4)", border:"none",color:"white", marginTop:"20px", fontWeight:"bold", fontSize:"17px"}}>
+                            <button disabled style={{width:"630px", height:"58px", backgroundColor:"rgba(127,127,127,0.4)", border:"none",color:"white", marginTop:"20px", fontWeight:"bold", fontSize:"17px", borderRadius:"10px", border:"none"}}>
                                 {formatPrice(parseData.price+3000)}원・일반배송 결제하기
                             </button>
                             </>

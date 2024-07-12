@@ -35,7 +35,7 @@ function BoardList({ boardList }) {
 
   return (
     <>
-    <MainHeader></MainHeader>
+    
     <div style={{ marginTop: '100px' }} className='board_list'>
         <div className='notice'>
           <div className='notice-container'>
@@ -61,7 +61,7 @@ function BoardList({ boardList }) {
             </div>
           ))}
           <div style={{ borderTop: '1px solid black', paddingTop: '30px', textAlign: 'right' }} className='write-button-container'>
-            <button
+            <button 
               className={`write-button ${isButtonClicked ? 'clicked' : ''}`}
               onClick={handleButtonClick}
             >
@@ -72,15 +72,16 @@ function BoardList({ boardList }) {
       </div>
     
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <button
+        <button className='boardlist_button'
           disabled={currentPage === 1}
           onClick={() => handlePageChange(currentPage - 1)}
         >
           이전
         </button>
-
+        
         {Array.from({ length: totalPages }, (_, index) => (
-          <button
+         
+         <button style={{ border:'1px solid rgb(0,0,0,0.1)', backgroundColor:'white', borderRadius:'10px', width:'50px',height:'40px'}}
             key={index + 1}
             onClick={() => handlePageChange(index + 1)}
             className={currentPage === index + 1 ? 'active' : ''}
@@ -88,15 +89,16 @@ function BoardList({ boardList }) {
             {index + 1}
           </button>
         ))}
+        
 
-        <button
+        <button className='boardlist_button'
           disabled={currentPage === totalPages}
           onClick={() => handlePageChange(currentPage + 1)}
         >
           다음
         </button>
       </div>
-      <Footer></Footer>
+    
     </>
   );
 }

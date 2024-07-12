@@ -141,7 +141,7 @@ import { useState, useEffect } from "react";
 import AddresLayer from './AddresLayer.js';
 import Footer from "../../../common/footer";
 import DaumAddress from "./SerchAddress";
-import ModifyAddress from './Modify_address.js;'
+// import ModifyAddress from './Modify_address.js;'
 
 const Address = () => {
     const [addressLayer, setAddressLayer] = useState(false);
@@ -282,9 +282,9 @@ const Address = () => {
                                 </div>
                             ))}
                         </div>
-                        {isEditing && <ModifyAddress onClose={toggleLayer}
+                        {/* {isEditing && <ModifyAddress onClose={toggleLayer}
                                                      setPostcode={setPostcode}
-                                                     setAddress={setAddress} />}
+                                                     setAddress={setAddress} />} */}
                         {isEditing && (
                             <div className="edit_form">
                                 <h3>주소 수정</h3>

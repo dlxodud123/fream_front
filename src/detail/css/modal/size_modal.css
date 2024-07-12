@@ -42,3 +42,10 @@ body {
     font-weight: bold;
     color: red;
   }
+  .modal_button{
+    width: 133px;
+    height: 58px;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
