@@ -41,14 +41,14 @@ const MemberUser = () => {
   };
   const modifyMember = () => {
     if (selectedIds.length === 1) {
-      navigate(`/member/modifyMember/${selectedIds[0]}`);
+      navigate(`/admin/member/modifyMember/${selectedIds[0]}`);
     } else {
       setSelectedIds([]);
       alert("선택된 ID 배열을 비우고 하나만 입력해주세요.");
     }
   };
   const createMember = () => {
-    navigate("/member/createMember");
+    navigate("/admin/member/createMember");
   };
 
   //페이지 수
