@@ -32,12 +32,12 @@ return(
 
 <div>
 <Header />
-<div className="container">
-    <div className="row">
-        <div className="col-sm-3">
+<div className="container snb_area">
+    <div className="container_box ">
+        <div className="bd-sidebar">
             <MypageList />
         </div>
-        <div className="col-sm-9">
+        <div className="box-container">
             <div className='content-title'>
                 <div className='titlePoint'>
                     <h3>로그인 정보</h3>
