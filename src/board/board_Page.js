@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import Footer from "../common/footer";
-import MainHeader from '../common/main_header';
-import './boardPage.css';
 import { useParams, useNavigate } from 'react-router-dom';
+import './boardPage.css';
 
 function BoardPage({ boardList, deleteBoardItem }) {
   const { No } = useParams();
@@ -12,88 +10,81 @@ function BoardPage({ boardList, deleteBoardItem }) {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [newCommentAuthor, setNewCommentAuthor] = useState(post.User_id);
-  const [isPostDeleted, setIsPostDeleted] = useState(false);
 
+  if (!post) {
+    return <div>해당 게시물을 찾을 수 없습니다.</div>;
+  }
+
+  // 댓글 추가 핸들러
   const handleAddComment = () => {
+    if (newComment.trim() === "") return;
+
     const newCommentData = {
       id: comments.length + 1,
       author: newCommentAuthor,
       content: newComment,
       likes: 0,
-      dislikes: 0
+      dislikes: 0,
     };
-    setComments([...comments, newCommentData]);
-    setNewComment("");
+
+    setComments(prevComments => {
+      const isDuplicate = prevComments.some(comment => comment.content === newCommentData.content);
+      if (isDuplicate) return prevComments;
+
+      return [...prevComments, newCommentData];
+    });
+
+    setNewComment(""); // Clear the input after adding comment
   };
 
+  // 댓글 삭제 핸들러
   const handleDeleteComment = (id) => {
     if (window.confirm("정말 댓글을 삭제하시겠습니까?")) {
-      setComments(comments.filter(comment => comment.id !== id));
+      setComments(prevComments => prevComments.filter(comment => comment.id !== id));
     }
   };
 
+  // 게시글 삭제 핸들러
   const handleDeletePost = () => {
     if (window.confirm("게시글을 삭제하시겠습니까?")) {
       deleteBoardItem(post.No);
-      setIsPostDeleted(true);
       navigate("/board");
     }
   };
 
-  const handleLike = (id) => {
-    setComments(
-      comments.map(comment =>
-        comment.id === id ? { ...comment, likes: comment.likes + 1 } : comment
-      )
-    );
-  };
-
-  const handleDislike = (id) => {
-    setComments(
-      comments.map(comment =>
-        comment.id === id ? { ...comment, dislikes: comment.dislikes + 1 } : comment
-      )
-    );
-  };
-
-  const handleKeyPress = (e) => {
+  // Enter 키 다운 핸들러
+  const handleKeyDown = (e) => {
+    if (e.isComposing || e.keyCode === 229) return;
     if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
       handleAddComment();
     }
   };
 
-  // if (isPostDeleted) {
-  //   return (
-  //     <>
-  //       <MainHeader />
-  //       <div className="board_Page_container" style={{ marginTop: '80px', textAlign: 'center' }}>
-  //         <h2>게시글이 삭제되었습니다.</h2>
-  //       </div>
-  //       <Footer />
-  //     </>
-  //   );
-  // }
+  // 줄바꿈 문자를 HTML <br>로 변환하는 함수
+  const formatCommentContent = (content) => {
+    return content
+      .split('\n')
+      .map((line, index) => (
+        <React.Fragment key={index}>
+          {line}
+          <br />
+        </React.Fragment>
+      ));
+  };
 
   return (
     <>
-   
       <div className="board_Page_container" style={{ marginTop: '80px' }}>
         <div>작성시간: {post.작성시간}</div>
         <div>작성자: {post.User_id}</div>
         <div>조회수: 134</div>
-        <button style={{ marginLeft: '350px' }} className="board_Page_button">수정</button>
+        <button style={{ marginLeft: '350px' }} className="board_Page_button" onClick={() => navigate(`/edit/${post.No}`)}>수정</button>
         <button style={{ marginRight: '100px' }} className="board_Page_button" onClick={handleDeletePost}>삭제</button>
       </div>
       <div className="board_Page_container2">글제목: {post.제목}</div>
       <div className="board_Page_container1">
-        <p>{post.글내용}</p>
-        <p>dsfsdgfghdfhfgh</p>
-        <p>dsfsdgfghdfhfgh</p>
-        <p>dsfsdgfghdfhfgh</p>
-        <p>dsfsdgfghdfhfgh</p>
+        <div dangerouslySetInnerHTML={{ __html: post.content }} />
       </div>
-
       <div className="board_Page_comment_section">
         <div className="board_Page_comment_form">
           <div style={{ fontSize: "20px", marginBottom: "20px" }}>사용자: {newCommentAuthor}</div>
@@ -101,21 +92,21 @@ function BoardPage({ boardList, deleteBoardItem }) {
             placeholder="댓글을 입력하세요"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
           ></textarea>
-          <button onClick={handleAddComment}>댓글 달기</button>
+          <button style={{borderRadius:'10px', backgroundColor:'white', border:'1px solid rgb(0,0,0,0.1)'}} onClick={handleAddComment}>등록</button>
         </div>
         <ul className="board_Page_comment_list">
           {comments.map(comment => (
             <li key={comment.id} className="board_Page_comment_item">
               <div className="board_Page_comment_content">
-                <strong>{comment.author}</strong>
-                <p>{comment.content}</p>
+                <strong style={{display:'flex'}}>🌈{comment.author} <div style={{marginLeft:'10px', border:'1px solid red', color:'red', borderRadius:'10px', padding:'1px', marginTop:'-1px',fontSize:'12px',paddingLeft:'8px',paddingRight:'8px'}}><p style={{margin:'2px'}}>사용자</p></div></strong>
+                <p>{formatCommentContent(comment.content)}</p>
               </div>
               <div className="board_Page_comment_actions">
-                <button onClick={() => handleLike(comment.id)}>👍좋아요 {comment.likes}</button>
-                <button onClick={() => handleDislike(comment.id)}>👎싫어요 {comment.dislikes}</button>
-                <button onClick={() => handleDeleteComment(comment.id)} style={{ marginLeft: '10px' }}>댓글삭제</button>
+                <button onClick={() => setComments(comments.map(c => c.id === comment.id ? { ...c, likes: c.likes + 1 } : c))}>👍좋아요 {comment.likes}</button>
+                <button onClick={() => setComments(comments.map(c => c.id === comment.id ? { ...c, dislikes: c.dislikes + 1 } : c))}>👎싫어요 {comment.dislikes}</button>
+                <button onClick={() => handleDeleteComment(comment.id)} style={{ marginLeft: '10px' }}>❌댓글삭제</button>
               </div>
             </li>
           ))}

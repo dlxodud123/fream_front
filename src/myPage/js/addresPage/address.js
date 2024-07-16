@@ -100,12 +100,12 @@ const Address = () => {
     return (
         <div>
             <Header />
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-3">
+            <div className="container snb_area">
+                <div className="container_box">
+                    <div className="bd-sidebar">
                         <MypageList />
                     </div>
-                    <div className="col-sm-9">
+                    <div className="box-container">
                         <div className="content_title">
                             <div className="titlePoint">
                                 <h3>주소록</h3>
