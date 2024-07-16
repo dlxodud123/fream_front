@@ -87,7 +87,6 @@ return(
 
 <div>
     <Header />
-    <div className="container snb_area">
         <div className="container_box">
             <div className="bd-sidebar">
                 <MypageList />
@@ -144,9 +143,6 @@ return(
                 </div>
                     </div>
                 </div>
-
-            </div>
-
         <Footer />
 </div>
 

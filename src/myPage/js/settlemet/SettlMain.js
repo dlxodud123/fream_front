@@ -198,12 +198,11 @@ const SettlementMain = () => {
   return (
     <div>
       <Header />
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-3">
+        <div className="container_box">
+          <div className="bd-sidebar">
             <MypageList />
           </div>
-          <div className="col-sm-9">
+          <div className="box-container">
             <div className="account_width">
               <div className="titlePoint">
                 <h3>정산 계좌 </h3>
@@ -299,7 +298,6 @@ const SettlementMain = () => {
             </div>
           </div>
         </div>
-      </div>
       <Footer />
     </div>
   );
