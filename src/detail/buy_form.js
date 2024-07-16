@@ -10,8 +10,9 @@ import naver_img from "./../img/detail-page/naver_pay.png";
 import kakao_img from "./../img/detail-page/kakao_pay.png";
 import toss_img from "./../img/detail-page/toss_pay.png";
 import payco_img from "./../img/detail-page/payco_pay.png";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Buy_delivery_modal from "./modal/buy_delivery_modal";
+import axios from "axios";
 
 const Buy_form = () => {
   let [finalName, setFinalName] = useState();
@@ -25,7 +26,7 @@ const Buy_form = () => {
   let [finalCardBtn, setFinalCardBtn] = useState(false);
 
   let { size, data } = useParams();
-  let parseData = JSON.parse(decodeURIComponent(data));
+  let parseData = JSON.parse(decodeURIComponent(data)); //데이터 파싱
 
   let [deliveryBtn, setDeliveryBtn] = useState(1);
   let [paymentBtn, setPaymentBtn] = useState();
@@ -37,7 +38,7 @@ const Buy_form = () => {
   let [buy_request, setBuy_request] = useState("");
 
   const { IMP } = window;
-  IMP.init("imp04577308");
+  IMP.init("imp25812042");
 
   console.log(parseData.prid);
   console.log(size);
@@ -51,26 +52,94 @@ const Buy_form = () => {
   console.log(buy_request);
 
   async function onClickPayments() {
+    console.log(parseData);
     console.log("결제구현");
     IMP.request_pay(
       {
         pg: "html5_inicis", // PG사 코드와 상점 ID
         pay_method: "card",
         merchant_uid: `payment-${crypto.randomUUID()}`, // 주문 고유 번호
-        name: "노르웨이 회전 의자",
-        amount: 100,
-        buyer_email: "gildong@gmail.com",
-        buyer_name: "홍길동",
-        buyer_tel: "010-4242-4242",
-        buyer_addr: "서울특별시 강남구 신사동",
-        buyer_postcode: "01181",
+        name: parseData.nameKor,
+        amount: parseData.price,
+        buyer_email: "pickjog@naver.com",
+        buyer_name: finalName,
+        buyer_tel: finalNumber,
+        buyer_addr: `${finalRoadaddress} ${finalBuildingname} ${finalBetterAddress}`,
+        buyer_postcode: finalZonecode,
       },
-      function (response) {
+      async function (response) {
+        // 토큰에서 userId 가져오기
+        async function getUserIdFromToken() {
+          const token = localStorage.getItem("jwtToken");
+          const response = await axios.post(
+            "http://localhost:3001/auth/verifyToken",
+            { token: token }
+          );
+          if (response.data.valid) {
+            const userId = response.data.userId; // 사용자 ID
+            return userId;
+          } else {
+            throw new Error("Token is invalid");
+          }
+        }
         // 결제 종료 시 호출되는 콜백 함수
         if (response.success) {
           // 결제 성공 시 로직
           console.log("결제 성공:", response);
-          // 결제 성공 후 처리할 로직을 작성하세요.
+          const userId = await getUserIdFromToken(); // userId 추출
+          const productIds = [parseData.prid]; // 상품 ID 배열
+          const quantities = [1]; // 수량 배열, 각 상품에 대해 1로 설정
+          const shoessize = [size];
+          const paymentInfo = {
+            impUid: response.imp_uid, // 아임포트 거래 ID
+            merchantUid: response.merchant_uid, // 상점 거래 ID
+            paidAmount: response.paid_amount, // 결제 금액
+            status: response.status, // 결제 상태
+            buyerName: response.buyer_name, // 구매자 이름
+            buyerTel: response.buyer_tel, // 구매자 전화번호
+            buyerEmail: response.buyer_email, // 구매자 이메일
+            buyerAddr: response.buyer_addr, // 구매자 주소
+            buyerPostcode: response.buyer_postcode, // 구매자 우편번호
+            applyNum: response.apply_num, // 카드 승인 번호
+            bankName: response.bank_name, // 은행 이름
+            cardName: response.card_name, // 카드사 이름
+            cardNumber: response.card_number, // 카드 번호
+            cardQuota: response.card_quota, // 할부 개월 수
+            currency: response.currency, // 통화
+            customData: response.custom_data, // 사용자 정의 데이터
+            paidAt: response.paid_at, // 결제 완료 시간
+            payMethod: response.pay_method, // 결제 수단
+            pgProvider: response.pg_provider, // PG 제공자
+            pgTid: response.pg_tid, // 거래 ID
+            pgType: response.pg_type, // PG 타입
+            receiptUrl: response.receipt_url, // 영수증 URL
+            productName: response.name, // 상품 이름
+            success: response.success, // 결제 성공 여부
+            userId: userId,
+            productIds: productIds,
+            quantities: quantities,
+            size: shoessize,
+          };
+
+          try {
+            const serverResponse = await axios.post(
+              "http://localhost:3001/orders/create",
+              paymentInfo
+            );
+            if (serverResponse.status === 200) {
+              console.log("Order Processed Successfully:", serverResponse.data);
+              Navigate("/success", {
+                state: { paymentDetails: serverResponse.data },
+              }); // 성공 페이지로 이동
+            } else {
+              console.error("Order Processing Failed:", serverResponse.data);
+            }
+          } catch (error) {
+            console.error(
+              "Server Communication Error:",
+              error.response ? error.response.data : error.message
+            );
+          }
         } else {
           // 결제 실패 시 로직
           console.log("결제 실패:", response.error_msg);

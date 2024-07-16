@@ -23,6 +23,7 @@ const MemberUser = () => {
         "http://localhost:3001/member/memberuser"
       ); // 실제 API 엔드포인트로 변경 필요
       setRows(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }

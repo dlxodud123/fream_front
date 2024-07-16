@@ -82,7 +82,7 @@ const LoginPage = () => {
     newPassw !== "";
 
   const { setAdminAccess } = useAuth();
-  const { token, setToken } = useState("");
+  const [token, setToken] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -95,7 +95,7 @@ const LoginPage = () => {
           url: "http://localhost:3001/auth/loginCheck",
           type: "POST",
           contentType: "application/json",
-          data: JSON.stringify({ idEmail, newPassw }),
+          data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
           success: function (data) {
             const jwtToken = data;
             if (jwtToken) {
@@ -176,7 +176,7 @@ const LoginPage = () => {
             // className={loginBut${isButtonActive ? '_active' : ''}}
             variant="secondary"
             size="lg"
-            onClick={LoginForm}
+            onClick={handleSubmit}
           >
             로그인
           </Button>
