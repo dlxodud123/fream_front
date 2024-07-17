@@ -87,7 +87,7 @@ const Detail_form = () => {
         ></Detail_header>
         <div className="detail_container">
           {/* <Detail_img detail_main_image={main_info_shoes.imgName}></Detail_img> */}
-          <Detail_img detail_main_image={mainImageUrls[0]}></Detail_img>
+          <Detail_img detail_main_image={mainImageUrls[1]}></Detail_img>
           <div
             style={{
               height: "1680px",

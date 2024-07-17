@@ -27,11 +27,18 @@ const OrderList = () => {
       const ordersWithUserNames = orders.map((order) => ({
         ...order,
         userName: order.user.username, // user 객체에서 username 추출
+        products: order.orderItems
+          .map((item) => item.product.nameKor)
+          .join(", "), // orderItems에서 product 이름을 추출하여 합침
+        productids: order.orderItems
+          .map((item) => item.product.prid)
+          .join(", "),
       }));
       console.log("ordersWithUserNames:", ordersWithUserNames);
       setRows(ordersWithUserNames);
       // setRows(response.data);
       console.log(response.data);
+      console.log(" ordersWithUserNames:", ordersWithUserNames);
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
@@ -76,7 +83,8 @@ const OrderList = () => {
       valueGetter: ({ value }) => value && new Date(value),
     },
     { field: "userName", headerName: "구매자", flex: 1 },
-    { field: "sellerProductId", headerName: "판매자 제품 ID", flex: 1 },
+    // { field: "sellerProductId", headerName: "판매자 제품 ID", flex: 1 },
+    { field: "products", headerName: "제품", flex: 2 }, // 제품 이름들을 표시하는 컬럼 추가
   ];
 
   return (
