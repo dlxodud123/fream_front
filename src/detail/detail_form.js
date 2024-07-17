@@ -13,12 +13,19 @@ import axios from "axios";
 import { UserAuthContext } from "../Auth/UserAuthContext.jsx";
 
 const Detail_form = () => {
+  const axiosBaseURL = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    withCredentials: true, // 이 부분 추가
+  });
+
   let [final_size, setFinal_Size] = useState("모든 사이즈");
   const { id } = useParams();
 
   let [main_info_shoes, setMain_info_shoes] = useState([]);
   let [detail_shoes_id, setDetail_shoes_id] = useState();
   let [mainImageUrls, setMainImageUrls] = useState([]);
+  let [linked_img, setLinked_img] = useState([]);
+
   const { userId, isInitialized } = useContext(UserAuthContext);
 
   useEffect(() => {
@@ -29,26 +36,40 @@ const Detail_form = () => {
   }, [isInitialized]);
 
   useEffect(() => {
-    axios
+    axiosBaseURL
       .get(`http://192.168.42.142:3001/products/${id}`)
       .then((data) => {
         if (data.data && data.data.length > 0) {
           setMain_info_shoes(data.data[0]);
           setDetail_shoes_id(data.data[0].prid);
+          setLinked_img(data.data[0].linkedImgName);
+
           const rawImgName = data.data[0].imgName;
           let cleanedImgName = rawImgName;
           if (rawImgName.startsWith("['") && rawImgName.endsWith("']")) {
             cleanedImgName = rawImgName.substring(2, rawImgName.length - 2);
           }
-
           const imgNameArray = cleanedImgName.split("', '");
-
           const imageUrls = imgNameArray.map((imgName) => {
             return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
           });
 
+          const rawLinkedImgName = data.data[0].linkedImgName;
+          let cleanedLinkedImgName = rawLinkedImgName;
+          if (rawLinkedImgName.startsWith("['") && rawLinkedImgName.endsWith("']")) {
+            cleanedLinkedImgName = rawLinkedImgName.substring(2, rawLinkedImgName.length - 2);
+          }
+          const linkedImgNameArray = cleanedLinkedImgName.split("', '");
+          const linkedImageUrls = linkedImgNameArray.map((imgName) => {
+            return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
+          });
+
           setMainImageUrls(imageUrls);
-          console.log("data : ", data.data[0]);
+          setLinked_img(linkedImgNameArray);
+
+          // console.log("ㅋㅋ : ", linkedImgNameArray[0])
+          // console.log("ㅋㅋㅋ : ", linkedImgNameArray)
+          // console.log("data1 : ", data.data[0].linkedImgName);
         } else {
           console.log("데이터가 비어 있음");
         }
@@ -88,7 +109,7 @@ const Detail_form = () => {
           setFinal_Size={setFinal_Size}
         ></Detail_header>
         <div className="detail_container">
-          <Detail_img detail_main_image={mainImageUrls}></Detail_img>
+          <Detail_img linked_img={linked_img} detail_main_image={mainImageUrls}></Detail_img>
           <div
             style={{
               height: "1680px",

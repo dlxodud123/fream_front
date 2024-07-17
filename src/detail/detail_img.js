@@ -8,7 +8,8 @@ const Detail_img = (props) => {
     // console.log("이미지 : " , props.detail_main_image[0]);
     // console.log("이미지 : " , props.detail_main_image[1]);
     // console.log("이미지 : " , props.detail_main_image[2]);
-  }, [props.detail_main_image])
+    console.log("asdf", props.linked_img);
+  }, [props.detail_main_image, props.linked_img])
 
   let [chooseImg, setChooseImg] = useState();
 
@@ -33,12 +34,12 @@ const Detail_img = (props) => {
         </Carousel>
         
         <div className="detail_img_info">
-          {
-            props.detail_main_image.map((img, i) => (
+          {/* {
+            props.linked_img.map((img, i) => (
               <div>
               <a href="#">
                 <img
-                  src={img}
+                  src={`${process.env.PUBLIC_URL}/linked_images/${img[i]}`}
                   style={{
                     width: "62.85px",
                     height: "62.85px",
@@ -48,7 +49,8 @@ const Detail_img = (props) => {
                 {chooseImg}
               </a>
             </div>
-          ))}
+          ))} */}
+          
           {/* <div>
             <a href="#">
               <img

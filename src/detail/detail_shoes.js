@@ -21,7 +21,7 @@ const Detail_shoes = () => {
         axiosBaseURL.get(`http://192.168.42.142:3001/products/recent-views`)
         .then((data) => {
             if (data.data && data.data.length > 0) {
-                console.log("최근 : ", data.data.length);  
+                console.log("최근 : ", data.data);  
             } else {
                 console.log("데이터가 비어 있음");
             }
