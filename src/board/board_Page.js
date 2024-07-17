@@ -3,14 +3,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./boardPage.css";
 import axios from "axios";
 
-function BoardPage({ boardList, deleteBoardItem }) {
+function BoardPage({ deleteBoardItem }) {
   const { No } = useParams();
   const navigate = useNavigate();
   useEffect(() => {}, []);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const [newCommentAuthor, setNewCommentAuthor] = useState(boardList.user);
+  const [newCommentAuthor, setNewCommentAuthor] = useState("");
   const [board, setBoard] = useState({});
+  const [writer, setWriter] = useState("");
 
   useEffect(() => {
     const fetchBoardList = async () => {
@@ -20,15 +21,16 @@ function BoardPage({ boardList, deleteBoardItem }) {
         );
         console.log(response.data);
         setBoard(response.data);
+        setWriter(response.data.user.userId);
       } catch (error) {
         console.error("Failed to fetch board list:", error);
       }
     };
 
     fetchBoardList();
-  }, []);
+  }, [No]);
 
-  if (!boardList) {
+  if (!board) {
     return <div>해당 게시물을 찾을 수 없습니다.</div>;
   }
 
@@ -95,12 +97,12 @@ function BoardPage({ boardList, deleteBoardItem }) {
     <>
       <div className="board_Page_container" style={{ marginTop: "80px" }}>
         <div>작성시간: {board.createdDate}</div>
-        <div>작성자: {board.user.email}</div>
+        <div>작성자: {writer}</div>
         <div>조회수: 134</div>
         <button
           style={{ marginLeft: "350px" }}
           className="board_Page_button"
-          onClick={() => navigate(`/edit/${boardList.No}`)}
+          onClick={() => navigate(`/edit/${board.No}`)}
         >
           수정
         </button>
