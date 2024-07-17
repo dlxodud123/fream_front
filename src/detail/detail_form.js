@@ -18,7 +18,7 @@ const Detail_form = () => {
 
   let [main_info_shoes, setMain_info_shoes] = useState([]);
   let [detail_shoes_id, setDetail_shoes_id] = useState();
-  let [mainImageUrl, setMainImageUrl] = useState("");
+  let [mainImageUrls, setMainImageUrls] = useState([]);
   const { userId, isInitialized } = useContext(UserAuthContext);
 
   useEffect(() => {
@@ -40,8 +40,13 @@ const Detail_form = () => {
           if (rawImgName.startsWith("['") && rawImgName.endsWith("']")) {
             cleanedImgName = rawImgName.substring(2, rawImgName.length - 2);
           }
-          const imageUrl = `http://localhost:3001/admin/products/files/${cleanedImgName}`;
-          setMainImageUrl(imageUrl);
+          const imgNameArray = cleanedImgName.split("', '");
+
+          const imageUrls = imgNameArray.map((imgName) => {
+            return `http://localhost:3001/admin/products/files/${imgName}`;
+          });
+
+          setMainImageUrls(imageUrls);
           console.log("data : ", data.data[0]);
         } else {
           console.log("데이터가 비어 있음");
@@ -82,7 +87,7 @@ const Detail_form = () => {
         ></Detail_header>
         <div className="detail_container">
           {/* <Detail_img detail_main_image={main_info_shoes.imgName}></Detail_img> */}
-          <Detail_img detail_main_image={mainImageUrl}></Detail_img>
+          <Detail_img detail_main_image={mainImageUrls[1]}></Detail_img>
           <div
             style={{
               height: "1680px",
