@@ -5,13 +5,15 @@ import styled from 'styled-components';
 const Sell_modal = (props) => {
     const [sellModal, setSellModal] = useState(false);    
     const [sellBtn, setSellBtn] = useState(0);
+    const [img, setImg] = useState('');
 
     let data = encodeURIComponent(JSON.stringify(props.main_info_shoes));
 
     useEffect(() => {
         setSellBtn(parseInt(props.final_size));
         props.setFinal_Size(props.final_size);
-    }, [props.final_size]);
+        setImg(props.detail_main_image);
+    }, [props.final_size, props.detail_main_image]);
 
     useEffect(() => {
         if (props.final_size  === "모든 사이즈") {
@@ -56,7 +58,7 @@ const Sell_modal = (props) => {
                             </button>
                         </div>
                         <div className={'sell_modal-title'}> 
-                            <img src={`${process.env.PUBLIC_URL}/images/${props.main_info_shoes.imgName}`} style={{height:"80px", marginLeft:"30px"}}></img>
+                            <img src={props.detail_main_image} style={{height:"80px", marginLeft:"30px", backgroundColor:"#f4f4f4"}}></img>
                             <div style={{marginLeft:"15px", textAlign:"left"}}>
                                 <div style={{fontWeight:"bold"}}>{props.main_info_shoes.prid}</div>
                                 <div><span style={{fontWeight:"bold"}}>{props.main_info_shoes.nameEng}</span><br></br><span>{props.main_info_shoes.nameKor}</span></div>

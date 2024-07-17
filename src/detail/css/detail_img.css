@@ -16,7 +16,6 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-
 .detail_img_info{
     margin-top: 20px;
     text-align: left;
@@ -24,4 +23,16 @@ body {
     grid-template-columns: 62.85px 62.85px 62.85px 62.85px 62.85px 62.85px 62.85px;
     grid-template-rows: 62.85px 62.85px;
     gap: 20px;
+}
+
+.custom-carousel .carousel-control-prev-icon,
+.custom-carousel .carousel-control-next-icon {
+  width: 30px; /* 원하는 크기로 조정 */
+  height: 30px; /* 원하는 크기로 조정 */
+}
+
+.custom-carousel .carousel-control-prev,
+.custom-carousel .carousel-control-next {
+  opacity: 1;
+  filter: invert(1);
 }

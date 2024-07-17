@@ -109,7 +109,7 @@ function App() {
                 element={<Sell_form></Sell_form>}
               ></Route>
               <Route
-                path="/buy/:data/:size"
+                path="/buy/:data/:size/:img"
                 element={<Buy_form></Buy_form>}
               ></Route>
               <Route

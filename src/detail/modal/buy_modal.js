@@ -5,13 +5,15 @@ import styled from 'styled-components';
 const Buy_modal = (props) => {
     const [buyModal, setBuyModal] = useState(false);    
     const [buyBtn, setBuyBtn] = useState(0);
+    const [image, setImage] = useState('');
 
     let data = encodeURIComponent(JSON.stringify(props.main_info_shoes));
 
     useEffect(() => {
         setBuyBtn(parseInt(props.final_size));
         props.setFinal_Size(props.final_size);
-    }, [props.final_size]);
+        setImage(props.detail_main_image);
+    }, [props.final_size, props.detail_main_image]);
     
     useEffect(() => {
         if (props.final_size  === "모든 사이즈") {
@@ -29,12 +31,11 @@ const Buy_modal = (props) => {
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
     const buy_link = () => {
-        window.location.href = `/buy/${data}/${buyBtn}`;
+        window.location.href = `/buy/${data}/${buyBtn}/${props.detail_main_image}`;
     }
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US').format(price);
     };
-    // console.log("확인용 : ", props.main_info_shoes);
     return(
         <>  
             <button onClick={() => setBuyModal(true)} style={{width:"275px", height:"60px", display:"flex", color:"white", backgroundColor:"rgb(239, 98, 83)", borderRadius:"10px", fontWeight:"bold", border:"none"}}>
@@ -56,7 +57,7 @@ const Buy_modal = (props) => {
                             </button>
                         </div>
                         <div className={'buy_modal-title'}> 
-                            <img src={`${process.env.PUBLIC_URL}/images/${props.main_info_shoes.imgName}`}style={{height:"80px", marginLeft:"30px"}}></img>
+                            <img src={props.detail_main_image} style={{height:"80px", marginLeft:"30px", backgroundColor:"#f4f4f4"}}></img>
                             <div style={{marginLeft:"15px", textAlign:"left"}}>
                                 <div style={{fontWeight:"bold"}}>{props.main_info_shoes.prid}</div>
                                 <div><span style={{fontWeight:"bold"}}>{props.main_info_shoes.nameEng}</span><br></br><span>{props.main_info_shoes.nameKor}</span></div>
