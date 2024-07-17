@@ -15,6 +15,7 @@ function BoardContainer() {
 
   const addBoardItem = (newItem) => {
     setBoardList((prevList) => [...prevList, newItem]);
+    console.log("Updated BoardList:", [...boardList, newItem]); // 업데이트된 상태 확인
   };
 
   const deleteBoardItem = (postId) => {
@@ -29,7 +30,7 @@ function BoardContainer() {
   useEffect(() => {
     const fetchBoardList = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/board");
+        const response = await axios.get("http://192.168.0.13:3001/board");
         console.log(response.data);
         setBoardList(response.data);
       } catch (error) {
@@ -38,6 +39,20 @@ function BoardContainer() {
     };
 
     fetchBoardList();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://192.168.0.13:3001/board");
+        setBoardList(response.data);
+        console.log(response.data); // 상태 업데이트 후의 데이터를 로그로 출력
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (

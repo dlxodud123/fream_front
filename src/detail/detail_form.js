@@ -18,6 +18,11 @@ const axiosBaseURL = axios.create({
 });
 
 const Detail_form = () => {
+  const axiosBaseURL = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    withCredentials: true, // 이 부분 추가
+  });
+
   let [final_size, setFinal_Size] = useState("모든 사이즈");
   const { id } = useParams();
 
@@ -25,6 +30,7 @@ const Detail_form = () => {
   let [detail_shoes_id, setDetail_shoes_id] = useState();
   let [mainImageUrls, setMainImageUrls] = useState([]);
   let [linkedImageUrls, setLinkedImageUrls] = useState([]);
+
   const { userId, isInitialized } = useContext(UserAuthContext);
 
   useEffect(() => {
@@ -36,12 +42,16 @@ const Detail_form = () => {
 
   useEffect(() => {
     axiosBaseURL
+
       .get(`http://localhost:3001/products/${id}`)
+
       .then((data) => {
         console.log("data:", data);
         if (data.data && data.data.length > 0) {
           setMain_info_shoes(data.data[0]);
           setDetail_shoes_id(data.data[0].prid);
+          // setLinked_img(data.data[0].linkedImgName);
+
           const rawImgName = data.data[0].imgName;
 
           console.log(data.data[0].imgName);
@@ -53,9 +63,24 @@ const Detail_form = () => {
           }
 
           const imgNameArray = cleanedImgName.split("', '");
-
           const imageUrls = imgNameArray.map((imgName) => {
-            return `http://localhost:3001/admin/products/files/${imgName}`;
+            return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
+          });
+
+          const rawLinkedImgName = data.data[0].linkedImgName;
+          let cleanedLinkedImgName = rawLinkedImgName;
+          if (
+            rawLinkedImgName.startsWith("['") &&
+            rawLinkedImgName.endsWith("']")
+          ) {
+            cleanedLinkedImgName = rawLinkedImgName.substring(
+              2,
+              rawLinkedImgName.length - 2
+            );
+          }
+          const linkedImgNameArray = cleanedLinkedImgName.split("', '");
+          const linkedImageUrls = linkedImgNameArray.map((imgName) => {
+            return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
           });
 
           if (data.data[0].linkedImgName) {
@@ -112,6 +137,7 @@ const Detail_form = () => {
     <>
       <div className="body1">
         <Detail_header
+          detail_main_image={mainImageUrls[0]}
           main_info_shoes={main_info_shoes}
           final_size={final_size}
           setFinal_Size={setFinal_Size}
@@ -122,6 +148,7 @@ const Detail_form = () => {
             detail_main_image={mainImageUrls[0]}
             detail_linked_images={linkedImageUrls}
           ></Detail_img>
+
           <div
             style={{
               height: "1680px",
@@ -131,6 +158,7 @@ const Detail_form = () => {
             }}
           ></div>
           <Detail_info
+            detail_main_image={mainImageUrls[0]}
             main_info_shoes={main_info_shoes}
             final_size={final_size}
             setFinal_Size={setFinal_Size}

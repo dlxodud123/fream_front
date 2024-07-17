@@ -3,7 +3,7 @@ import "./css/detail_size.css";
 const Detail_size = () => {
     return(
         <div className="detail_size">
-            <p style={{fontSize:"20px", fontWeight:"bold"}}>사이즈 정보</p>
+            <p style={{fontSize:"20px", fontWeight:"bold", marginLeft:"15px"}}>사이즈 정보</p>
             <div className="tab">
                 <table className="size_table">
                     <thead>

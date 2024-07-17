@@ -23,7 +23,7 @@ const Detail_shoes2 = (props) => {
     //     axiosBaseURL.get(`http://192.168.42.142:3001/products/${id}/brand`)
     //     .then((data) => {
     //         if (data.data && data.data.length > 0) {
-    //             console.log("data : ", data.data); 
+    //             console.log("바보 : ", data.data[0 ]); 
     //             setShoes(data.data[0]);
     //         } else {
     //             console.log("데이터가 비어 있음");
@@ -32,7 +32,7 @@ const Detail_shoes2 = (props) => {
     //     .catch((error) => {
     //         console.log("실패함", error);  
     //     });
-    //   }, [brand]);
+    //   }, [id]);
 
     return(
         <div style={{marginTop:"70px"}}>
