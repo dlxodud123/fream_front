@@ -75,8 +75,8 @@ function BoardPage({ boardList, deleteBoardItem }) {
   return (
     <>
       <div className="board_Page_container" style={{ marginTop: '80px' }}>
-        <div>작성시간: {post.작성시간}</div>
-        <div>작성자: {post.User_id}</div>
+        <div>작성시간: {post.date}</div>
+        <div>작성자: {post.user}</div>
         <div>조회수: 134</div>
         <button style={{ marginLeft: '350px' }} className="board_Page_button" onClick={() => navigate(`/edit/${post.No}`)}>수정</button>
         <button style={{ marginRight: '100px' }} className="board_Page_button" onClick={handleDeletePost}>삭제</button>
