@@ -35,7 +35,12 @@ const Detail_form = () => {
         if (data.data && data.data.length > 0) {
           setMain_info_shoes(data.data[0]);
           setDetail_shoes_id(data.data[0].prid);
-          const imageUrl = `http://localhost:3001/admin/products/files/${data.data[0].imgName}`;
+          const rawImgName = data.data[0].imgName;
+          let cleanedImgName = rawImgName;
+          if (rawImgName.startsWith("['") && rawImgName.endsWith("']")) {
+            cleanedImgName = rawImgName.substring(2, rawImgName.length - 2);
+          }
+          const imageUrl = `http://localhost:3001/admin/products/files/${cleanedImgName}`;
           setMainImageUrl(imageUrl);
           console.log("data : ", data.data[0]);
         } else {
