@@ -4,12 +4,13 @@ import Detail_header from "../common/detail_header.js";
 import Detail_img from "./detail_img.js";
 import Detail_info from "./detail_info.js";
 import Detail_size from "./detail_size.js";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Detail_shoes from "./detail_shoes.js";
 import Detail_shoes2 from "./detail_shoes2.js";
 import Detail_shoes3 from "./detail_shoes3.js";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { UserAuthContext } from "../Auth/UserAuthContext.jsx";
 
 const Detail_form = () => {
   let [final_size, setFinal_Size] = useState("모든 사이즈");
@@ -18,9 +19,16 @@ const Detail_form = () => {
   let [main_info_shoes, setMain_info_shoes] = useState([]);
   let [detail_shoes_id, setDetail_shoes_id] = useState();
   let [mainImageUrl, setMainImageUrl] = useState("");
+  const { userId, isInitialized } = useContext(UserAuthContext);
 
   useEffect(() => {
     // axios.get(`http://192.168.42.142:3001/products/${id}`)
+    if (isInitialized) {
+      logUserInteraction();
+    }
+  }, [isInitialized]);
+
+  useEffect(() => {
     axios
       .get(`http://localhost:3001/products/${id}`)
       .then((data) => {
@@ -38,6 +46,26 @@ const Detail_form = () => {
         console.log("실패함", error);
       });
   }, [id]);
+
+  const logUserInteraction = () => {
+    if (userId) {
+      axios
+        .post("http://localhost:3001/Access/logUserInteraction", null, {
+          params: {
+            userId: userId,
+            productId: id,
+          },
+        })
+        .then((response) => {
+          console.log("User interaction logged successfully");
+        })
+        .catch((error) => {
+          console.error("Error logging user interaction:", error);
+        });
+    } else {
+      console.error("User not authenticated");
+    }
+  };
 
   return (
     <>

@@ -2,61 +2,63 @@ import axios from "axios";
 import "./css/main_header.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserAuthContext } from "../Auth/UserAuthContext";
 
 function MainHeader() {
   let navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, handleLogout } = useContext(UserAuthContext);
 
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("jwtToken");
+  // useEffect(() => {
+  //   const jwtToken = localStorage.getItem("jwtToken");
 
-    if (jwtToken) {
-      axios
-        .post("http://localhost:3001/auth/verifyToken", { token: jwtToken })
-        .then((response) => {
-          if (response.data.valid) {
-            setIsLoggedIn(true);
-          } else {
-            setIsLoggedIn(false);
-          }
-        })
-        .catch((error) => {
-          console.error("Error verifying token", error);
-          setIsLoggedIn(false);
-        });
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+  //   if (jwtToken) {
+  //     axios
+  //       .post("http://localhost:3001/auth/verifyToken", { token: jwtToken })
+  //       .then((response) => {
+  //         if (response.data.valid) {
+  //           setIsLoggedIn(true);
+  //         } else {
+  //           setIsLoggedIn(false);
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error verifying token", error);
+  //         setIsLoggedIn(false);
+  //       });
+  //   } else {
+  //     setIsLoggedIn(false);
+  //   }
+  // }, []);
 
-  const handleLogout = () => {
-    const jwtToken = localStorage.getItem("jwtToken");
-    if (jwtToken) {
-      axios
-        .post(
-          "http://localhost:3001/auth/logout",
-          {},
-          {
-            headers: {
-              "token-for-blacklist": jwtToken,
-            },
-          }
-        )
-        .then((response) => {
-          if (response.data === 1) {
-            localStorage.removeItem("jwtToken"); // 로그아웃 시 JWT 토큰 제거
-            setIsLoggedIn(false);
-            navigate("/login");
-          } else {
-            console.error("Error logging out");
-          }
-        })
-        .catch((error) => {
-          console.error("Error logging out", error);
-        });
-    }
-  };
+  // const handleLogout = () => {
+  //   const jwtToken = localStorage.getItem("jwtToken");
+  //   if (jwtToken) {
+  //     axios
+  //       .post(
+  //         "http://localhost:3001/auth/logout",
+  //         {},
+  //         {
+  //           headers: {
+  //             "token-for-blacklist": jwtToken,
+  //           },
+  //         }
+  //       )
+  //       .then((response) => {
+  //         if (response.data === 1) {
+  //           localStorage.removeItem("jwtToken"); // 로그아웃 시 JWT 토큰 제거
+  //           setIsLoggedIn(false);
+  //           navigate("/login");
+  //         } else {
+  //           console.error("Error logging out");
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error logging out", error);
+  //       });
+  //   }
+  // };
   return (
     <>
       <div className="header_contianer">

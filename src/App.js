@@ -34,6 +34,7 @@ import AdminRouter from "./AdminPage/AdminRouter.js";
 import ProtectedAdminLogin from "./AdminPage/adminAccess/ProtectedAdminLogin.js";
 import AdminLogin from "./AdminPage/page/AdminLogin/adminLogin.js";
 import { AuthProvider } from "./AdminPage/adminAccess/adminAccess.jsx";
+import { UserAuthProvider } from "./Auth/UserAuthContext.jsx";
 
 function App() {
   const AppWrapper = ({ children }) => {
@@ -64,61 +65,62 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider>
-      <div className="App">
-        <AppWrapper>
-          <Routes>
-            <Route path="/Admin/*" element={<ProtectedRoute />}>
-              <Route path="*" element={<AdminRouter />} />
-            </Route>
-            <Route path="/LoginAdmin" element={<ProtectedAdminLogin />}>
-              <Route path="" element={<AdminLogin />} />
-            </Route>
-            <Route
-              path="/"
-              element={
-                <App1>
-                  <Main></Main>
-                </App1>
-              }
-            ></Route>
-            <Route path="/shop" element={<Shope></Shope>}></Route>
-            <Route path="/shop" element={<Shopeshoes />}></Route>
-            <Route path="/men" element={<Men />}></Route>
-            <Route path="/women" element={<Women></Women>}></Route>
-            <Route path="/myPage" element={<MyPage></MyPage>}></Route>
-            <Route path="/login" element={<LoginPage />}></Route>
-            <Route path="/join" element={<Join />} />
-            <Route path="/login/find_email" element={<FindEmail />} />
-            <Route path="/login/find_password" element={<FindPw />} />
-            <Route path="/my/profile" element={<Profile />}></Route>
-            <Route path="/my/profile-edit" element={<Profile_edit />}></Route>
-            <Route path="/my/address" element={<Address />}></Route>
-            <Route path="/my/account" element={<Settlement />}></Route>
-            <Route path="/my/buying" element={<Buying />}></Route>
-            <Route path="/my/selling" element={<Selling />}></Route>
-            <Route path="/*" element={<BoardContainer />} />
-            <Route
-              path="/products/:id"
-              element={<Detail_form></Detail_form>}
-            ></Route>
-            <Route
-              path="/sell/:data/:size"
-              element={<Sell_form></Sell_form>}
-            ></Route>
-            <Route
-              path="/buy/:data/:size"
-              element={<Buy_form></Buy_form>}
-            ></Route>
-            <Route
-              path="/buy/history"
-              element={<Buy_history_from></Buy_history_from>}
-            ></Route>
-          </Routes>
-        </AppWrapper>
-       
-      </div>
-    </AuthProvider>
+    <UserAuthProvider>
+      <AuthProvider>
+        <div className="App">
+          <AppWrapper>
+            <Routes>
+              <Route path="/Admin/*" element={<ProtectedRoute />}>
+                <Route path="*" element={<AdminRouter />} />
+              </Route>
+              <Route path="/LoginAdmin" element={<ProtectedAdminLogin />}>
+                <Route path="" element={<AdminLogin />} />
+              </Route>
+              <Route
+                path="/"
+                element={
+                  <App1>
+                    <Main></Main>
+                  </App1>
+                }
+              ></Route>
+              <Route path="/shop" element={<Shope></Shope>}></Route>
+              <Route path="/shop" element={<Shopeshoes />}></Route>
+              <Route path="/men" element={<Men />}></Route>
+              <Route path="/women" element={<Women></Women>}></Route>
+              <Route path="/myPage" element={<MyPage></MyPage>}></Route>
+              <Route path="/login" element={<LoginPage />}></Route>
+              <Route path="/join" element={<Join />} />
+              <Route path="/login/find_email" element={<FindEmail />} />
+              <Route path="/login/find_password" element={<FindPw />} />
+              <Route path="/my/profile" element={<Profile />}></Route>
+              <Route path="/my/profile-edit" element={<Profile_edit />}></Route>
+              <Route path="/my/address" element={<Address />}></Route>
+              <Route path="/my/account" element={<Settlement />}></Route>
+              <Route path="/my/buying" element={<Buying />}></Route>
+              <Route path="/my/selling" element={<Selling />}></Route>
+              <Route path="/*" element={<BoardContainer />} />
+              <Route
+                path="/products/:id"
+                element={<Detail_form></Detail_form>}
+              ></Route>
+              <Route
+                path="/sell/:data/:size"
+                element={<Sell_form></Sell_form>}
+              ></Route>
+              <Route
+                path="/buy/:data/:size"
+                element={<Buy_form></Buy_form>}
+              ></Route>
+              <Route
+                path="/buy/history"
+                element={<Buy_history_from></Buy_history_from>}
+              ></Route>
+            </Routes>
+          </AppWrapper>
+        </div>
+      </AuthProvider>
+    </UserAuthProvider>
   );
 }
 
