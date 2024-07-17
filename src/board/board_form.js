@@ -19,7 +19,7 @@ function BoardForm({ addBoardItem, boardList }) {
   const handleSubmit = () => {
     const newPost = {
       No: boardList.length + 1,
-      User_id: '현재 사용자', // 실제 사용자 ID로 변경 필요
+      User_id: '현재 아이디', // 실제 사용자 ID로 변경 필요
       제목: title,
       content: editorData,
       file: selectedFile,

@@ -29,7 +29,7 @@ function BoardList({ boardList }) {
           <div className='notice-container' >
             <div onClick={()=>{navigate('/announcement')}} className='icon'>⚡</div>
             <div onClick={()=>{navigate('/announcement')}}  className='text'>공지사항</div>
-            <div onClick={()=>{navigate('/announcement')}}  className='details'>: asdasdasdas</div>
+            <div onClick={()=>{navigate('/announcement')}}  className='details'>:{boardList.title}</div>
           </div>
         </div>
         <div style={{ borderBottom: '1px solid black' }} className='board_header'>
@@ -42,8 +42,8 @@ function BoardList({ boardList }) {
           {currentItems.map((board) => (
             <div className='board_item' key={board.No}>
               <Link className='board_link' to={`/board/${board.No}`}>{board.No}</Link>
-              <Link className='board_link' to={`/board/${board.No}`}>{board.제목}</Link>
-              <Link className='board_link' to={`/board/${board.No}`}>{board.User_id}</Link>
+              <Link className='board_link' to={`/board/${board.No}`}>{board.title}</Link>
+              <Link className='board_link' to={`/board/${board.No}`}>{board.user}</Link>
               <Link className='board_link' to={`/board/${board.No}`}><p style={{fontSize:'17px',}}>{board.작성시간}</p></Link>
             </div>
           ))}
