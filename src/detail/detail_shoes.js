@@ -17,19 +17,19 @@ const Detail_shoes = () => {
     const [shoes, setShoes] = useState(data);
     const [count, setCount] = useState(5);
 
-    // useEffect(() => {
-    //     axiosBaseURL.get(`http://192.168.42.142:3001/products/recent-views`)
-    //     .then((data) => {
-    //         if (data.data && data.data.length > 0) {
-    //             console.log("data : ", data.data);  
-    //         } else {
-    //             console.log("데이터가 비어 있음");
-    //         }
-    //     })
-    //     .catch((error) => {
-    //         console.log("실패함", error);  
-    //     });
-    //   }, []);
+    useEffect(() => {
+        axiosBaseURL.get(`http://192.168.42.142:3001/products/recent-views`)
+        .then((data) => {
+            if (data.data && data.data.length > 0) {
+                console.log("최근 : ", data.data.length);  
+            } else {
+                console.log("데이터가 비어 있음");
+            }
+        })
+        .catch((error) => {
+            console.log("실패함", error);  
+        });
+      }, []);
 
     return(
         <div >
@@ -43,11 +43,11 @@ const Detail_shoes = () => {
                     </div>
                 ))}
             </div>
-            {count < data.length && (
+            {/* {count < data.length && (
                 <div style={{textAlign:"center"}}>
                     <button style={{width:"130px", height:"60px", borderRadius:"10px", border:"1px solid rgba(0,0,0,0.1)", backgroundColor:"white"}} onClick={loadMore}>더보기</button>
                 </div>
-            )}
+            )} */}
         </div>
     )
 }

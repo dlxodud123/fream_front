@@ -138,7 +138,7 @@ function Detail_header(props) {
             <div style={{ width: "660px", display: "flex" }}>
               <div>
                 <img
-                  src={`${process.env.PUBLIC_URL}/images/${props.main_info_shoes.imgName}`}
+                  src={props.detail_main_image}
                   style={{
                     width: "65px",
                     height: "65px",
@@ -161,11 +161,13 @@ function Detail_header(props) {
             </div>
             <div style={{ width: "540px", display: "flex", marginTop: "14px" }}>
               <Header_buy_modal
+                detail_main_image={props.detail_main_image}
                 main_info_shoes={props.main_info_shoes}
                 final_size={props.final_size}
                 setFinal_Size={props.setFinal_Size}
               ></Header_buy_modal>
               <Header_sell_modal
+                detail_main_image={props.detail_main_image}
                 main_info_shoes={props.main_info_shoes}
                 final_size={props.final_size}
                 setFinal_Size={props.setFinal_Size}

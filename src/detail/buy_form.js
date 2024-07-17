@@ -25,7 +25,7 @@ const Buy_form = () => {
   let [finalSaveBtn, setFinalSaveBtn] = useState(false);
   let [finalCardBtn, setFinalCardBtn] = useState(false);
 
-  let { size, data } = useParams();
+  let { size, data, img } = useParams();
   let parseData = JSON.parse(decodeURIComponent(data)); //데이터 파싱
 
   let [deliveryBtn, setDeliveryBtn] = useState(1);

@@ -1,4 +1,5 @@
 import "./css/main.css";
+import React from 'react';
 import { Carousel } from 'react-bootstrap';
 
 function Benner(){

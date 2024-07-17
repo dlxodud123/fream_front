@@ -47,7 +47,7 @@ const Header_buy_modal = (props) => {
                             </button>
                         </div>
                         <div className={'buy_modal-title'}> 
-                            <img src={`${process.env.PUBLIC_URL}/images/${props.main_info_shoes.imgName}`} style={{height:"80px", marginLeft:"30px"}}></img>
+                            <img src={props.detail_main_image} style={{height:"80px", marginLeft:"30px", backgroundColor:"#f4f4f4"}}></img>
                             <div style={{marginLeft:"15px", textAlign:"left"}}>
                                 <div style={{fontWeight:"bold"}}>{props.main_info_shoes.prid}</div>
                                 <div><span style={{fontWeight:"bold"}}>{props.main_info_shoes.nameEng}</span><br></br><span>{props.main_info_shoes.nameKor}</span></div>
