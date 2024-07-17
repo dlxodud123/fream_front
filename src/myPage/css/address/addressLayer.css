@@ -6,7 +6,6 @@
     border-radius: 16px;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
     left: 50%;
-    overflow: hidden; /**/
     position: absolute;/*맨 앞으로 화면 이동*/
     top: 50%;
     transform: translate(-50%, -50%);
@@ -15,6 +14,7 @@
     padding: 18px 50px;
     background-color: #fff ;
     min-height: 44px;
+    border-radius: 15px;
 }
 .title_layer{
     color: #000;
@@ -28,10 +28,7 @@
 .delivery_bind{
     padding: 0 32px;
 }
-/* .delivery_input{
-    margin: 0;
-    padding: 0;
-} */
+
 .input_box{
     padding-top: 0;
     padding: 10px 0 14px;
@@ -44,14 +41,27 @@
 .input_item{
     position: relative;
 }
-/* .text{
+.textAddress{
     border: none;
     border-bottom: 1px solid #ebebeb;   
     font-size: 15px;
     line-height: 22px;
     padding: 8px 0;
     width: 100%;
-} */
+}
+.textAddress:focus{
+    /* border: none; */
+    outline: none;
+    border-bottom: 2px solid black;
+}
+.textAddress.Num {
+    pointer-events: none;
+  }
+  .textAddressErr {
+    color: red;
+    border-bottom: 1px solid red;
+  }
+
 .input_error{
     display: none;
 }
@@ -91,6 +101,8 @@
 .outlineegrey{
     border: 1px solid #d3d3d3;
     color: rgba(34, 34, 34, .8);
+    border-radius: 8px;
+    padding: 0 14px;
 }
 
 .medium{
@@ -104,11 +116,15 @@
     justify-content: center;
     padding: 24px 32px 32px;
 }
+.outlineegrey.medium{
+    background-color: #fff;
+}
 .outlineegrey.medium.save{
     margin-left: 8px;
     background-color: #ebebeb;
     color: #fff;
     font-weight: 700;
+;
 }
 
 /* 주소창 모델 */
@@ -153,7 +169,3 @@
 .btn-open-modal:hover {
     background-color: #0056b3;
 }
-/* .text:focus{
-    outline: none; /* 브라우저 기본 outline 제거 
-    border: none;   border 제거 
-} */

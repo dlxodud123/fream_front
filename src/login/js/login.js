@@ -37,6 +37,7 @@ const kakaoLogin = (code) => {
         console.log(res);
         const Access_Token = res.data.accessToken;
         localStorage.setItem("token", Access_Token);
+        window.alert('1');
         history.replace("/"); //로그인성공시 화면전환
       })
       .catch((err) => {
@@ -82,7 +83,7 @@ const LoginPage = () => {
     newPassw !== "";
 
   const { setAdminAccess } = useAuth();
-  const { token, setToken } = useState("");
+  const [token, setToken] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -95,7 +96,7 @@ const LoginPage = () => {
           url: "http://localhost:3001/auth/loginCheck",
           type: "POST",
           contentType: "application/json",
-          data: JSON.stringify({ idEmail, newPassw }),
+          data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
           success: function (data) {
             const jwtToken = data;
             if (jwtToken) {
@@ -176,7 +177,7 @@ const LoginPage = () => {
             // className={loginBut${isButtonActive ? '_active' : ''}}
             variant="secondary"
             size="lg"
-            onClick={LoginForm}
+            onClick={handleSubmit}
           >
             로그인
           </Button>

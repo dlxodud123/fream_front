@@ -1,7 +1,4 @@
-.list_tab_detail_tab{
-    border-radius: 0;
-    margin-top: 20px;
-}
+
 .period_search{
     background-color: #fafafa;
     border-bottom: 1px solid #ebebeb;
@@ -9,9 +6,43 @@
     justify-content: center;
     padding: 14px;
 }
-.MullnputBase_root{
-    width: 200px !important;
+.month_list{
+    margin: 0;
+    display: flex;
+    list-style: none;
 }
+.mon_btn{
+    display: flex;
+}
+.month_link{
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    display: flex;
+    font-size: 13px;
+    height: 32px;
+    justify-content: center;
+    line-height: 30px;
+    min-width: 62px;
+    padding: 0 12px;
+    white-space: nowrap;
+    margin-left: 4px;
+}
+.list_tab_detail_tab{
+    border-radius: 0;
+    margin-top: 20px;
+}
+.period_calendar_wrapper{
+display: flex;
+}
+.perion_calendar{
+    display: flex;
+    position: relative;
+}
+.period_month{
+    margin-right: 20px;
+}
+
+
 .d{
     margin: 0 4px;
     display: inline-block;
@@ -27,4 +58,210 @@
     width: 80px;
     color: white;
     font-size: 13px;
+    line-height: 30px;
+}
+
+.month_list{
+    display: flex;
+}
+.search_info{
+    padding: 12px 0;
+    display: block;
+    padding-inline-start: 40px;
+    margin: 0;
+}
+.info_item{
+    margin: 0;
+    color: rgba(34, 34, 34, .5);
+    font-size: 12px;
+}
+.purchas_head{
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    padding: 12px;
+}
+.head_product{
+    display: flex;
+}
+.btn_buyFilter{
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 24px;
+    min-width: 120px;
+    padding: 5px 30px 5px 10px;
+    position: relative;
+    text-align: left;
+}
+.buyIcon{
+    border: 1px solid #d3d3d3;
+    border-radius: 50%;
+    padding: 4px 5px;
+}
+.svg-inline--fa{
+    position: absolute;
+    right: 5px;
+}
+.head_status{
+    align-items: center;
+    display: flex;
+    margin-left: auto;
+    text-align: right;
+}
+.status_box{
+    display: block;
+    width: 140px;
+}
+.status_txt{
+    display: inline-block;
+    font-size: 13px;
+    line-height: 24px;
+    padding-right: 16px;
+    position: relative;
+    border: none;
+    background-color: #fff;
+    font-weight: 700;
+}
+.status_box.field{
+    margin-left: 10px;
+    width: 134px;
+}
+
+
+.sortUpIcon,
+.sortDownIcon{
+    height: 17px;
+    position: absolute;
+    right: -6px;
+    top: 3px;
+    width: 15px;
+}
+.sortUpIcon, .sortDownIcon {
+    color: rgba(0, 0, 0, .2) ;
+}
+.sortUpIcon.active {
+    color: black;
+}
+
+.sortDownIcon.active {
+    color: black;
+}
+
+
+
+
+.empty_area{
+    padding: 90px 0;
+    text-align: center;
+}
+.buyText{
+    color: rgba(34, 34, 34, .5);
+    font-size: 12px;
+    margin: 0;
+}
+.emptyAddBtn{
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid #d3d3d3;
+    color: rgba(34, 34, 34, .8);
+    font-size: 12px;
+    height: 34px;
+    padding: 0 14px;
+    background-color: #fff;
+}
+
+
+
+
+.tab_box{
+    width: 100%;
+    background-color: #fff;
+    border: none;
+}
+.buyEnd_on h4{
+    font-weight: 700;
+    color: red;
+}
+.buyEnd_on{
+    border-bottom: 2px solid #222;
+    width: 100%;
+}
+.buyEnd_on span{
+    font-weight: 700;
+    color: #222;
+}
+.buyEnd span{
+    color: rgba(34, 34, 34, .5);
+}
+.buyEnd h4{
+    font-weight: 700;
+}
+.col_buyBtn{
+    width: 100%;
+}
+.col_buyBtn_on{
+    border-bottom: 2px solid #222;
+    width: 100%;
+}
+.col_buyBtn_on h4{
+    font-weight: 700;
+    color: red;
+}
+.col_buyBtn_on span{
+    width: 100%;
+    font-weight: 700;
+    color: #222;
+}
+.col_buyBtn h4{
+    font-weight: 700;
+}
+.col_buyBtn span{
+    color: rgba(34, 34, 34, .5);
+}
+
+.progres_on h4{
+    font-weight: 700;
+    color: red;
+}
+.progres_on{
+    border-bottom: 2px solid #222;
+    width: 100%;
+}
+.progres_on span{
+    font-weight: 700;
+    color: #222;
+}
+.progres h4{
+    font-weight: 700;
+}
+.progres span{
+    color: rgba(34, 34, 34, .5);
+}
+.container.text-center {
+    display: flex;
+    justify-content: space-between;
+    padding: 0; /* 패딩 제거 */
+}
+
+.container.text-center .col {
+    flex: 1; /* 컬럼들이 동일한 너비를 가지도록 설정 */
+    padding: 0; /* 컬럼 내부의 패딩 제거 */
+    display: flex; /* 올바른 정렬을 위한 Flex 컨테이너 설정 */
+    justify-content: center; /* 버튼을 가운데 정렬 */
+    align-items: center; /* 버튼을 수직으로 가운데 정렬 */
+}
+
+.tab_box {
+    width: 100%; /* 버튼 너비를 100%로 설정 */
+    padding: 20px; /* 필요에 따라 버튼 내부 패딩 조정 */
+    text-align: center; /* 버튼 내부 텍스트를 가운데 정렬 */
+}
+
+@media (max-width: 960px) {
+    .period_month {
+        display: none;
+    }
 }

@@ -20,23 +20,31 @@ const OrderList = () => {
     try {
       const response = await axios.get(
         // "http://localhost:3001/adminPage/adminUser"
-        "http://localhost:3001/member/memberOrder"
+        "http://localhost:3001/member/orders"
       ); // 실제 API 엔드포인트로 변경 필요
-      setRows(response.data);
+      const orders = response.data;
+
+      const ordersWithUserNames = orders.map((order) => ({
+        ...order,
+        userName: order.user.username, // user 객체에서 username 추출
+      }));
+      console.log("ordersWithUserNames:", ordersWithUserNames);
+      setRows(ordersWithUserNames);
+      // setRows(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
   };
-  const deleteOrder = async () => {
+  const refundOrder = async (orderId) => {
     try {
-      await axios.post("http://localhost:3001/Member/deleteOrder", {
-        ids: selectedIds,
-      });
-      // 삭제 요청 후 데이터를 다시 가져옴
+      await axios.put("http://localhost:3001/orders/refundOrder", { orderId });
       fetchData();
       setSelectedIds([]);
+      alert("환불 완료");
     } catch (error) {
-      console.error("Failed to delete data:", error);
+      console.error("Failed to refund order:", error);
+      alert("환불 실패");
     }
   };
   const modifyOrder = () => {
@@ -67,7 +75,7 @@ const OrderList = () => {
       flex: 1,
       valueGetter: ({ value }) => value && new Date(value),
     },
-    { field: "userId", headerName: "사용자 ID", flex: 1 },
+    { field: "userName", headerName: "구매자", flex: 1 },
     { field: "sellerProductId", headerName: "판매자 제품 ID", flex: 1 },
   ];
 
@@ -82,16 +90,16 @@ const OrderList = () => {
           onClick={modifyOrder}
           disabled={selectedIds.length !== 1}
         >
-          정보 확인
+          주문 정보 확인
         </Button>
         {/* 정보삭제 버튼 */}
         <Button
           variant="contained"
           sx={{ backgroundColor: colors.redAccent[600] }}
-          onClick={deleteOrder}
+          onClick={() => refundOrder(selectedIds[0])}
           disabled={selectedIds.length === 0}
         >
-          정보 삭제
+          환불
         </Button>
       </Box>
       <Box
@@ -135,7 +143,7 @@ const OrderList = () => {
           pageSize={pageSize}
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           rowsPerPageOptions={[5, 10, 20]}
-          getRowId={(row) => row.ulid}
+          getRowId={(row) => row.orderId}
           onSelectionModelChange={(ids) => {
             setSelectedIds(ids);
           }}

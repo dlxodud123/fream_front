@@ -87,12 +87,11 @@ return(
 
 <div>
     <Header />
-    <div className="container">
-        <div className="row">
-            <div className="col-sm-3">
+        <div className="container_box">
+            <div className="bd-sidebar">
                 <MypageList />
             </div>
-            <div className="col-sm-9">
+            <div className="box-container">
 
                 <div className='profile-title'>
                     <div className='titlePoint'>
@@ -144,9 +143,6 @@ return(
                 </div>
                     </div>
                 </div>
-
-            </div>
-
         <Footer />
 </div>
 

@@ -21,14 +21,13 @@ const MyPage = () => {
 return (
   <div>
   <Header />
-    <div className='snb_area'>
-    <div className="row">
-      <div className="col-sm-3">
+    <div className="container_box">
+      <div className="bd-sidebar">
         <MypageList />
       </div>
 
 
-      <div className="col-sm-9">
+      <div className="box-container">
       <div className='user_membership'>
         <div className='user_detail'>
           <div className='blank-por'>
@@ -197,7 +196,6 @@ return (
         </div>
       </div>
     </div>
-  </div>
   <Footer/>
   </div>
     

@@ -1,0 +1,129 @@
+.account_width{
+    width: 480px;
+}
+.settlContent{
+    display: flex;
+}
+.account_info{
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.userInfoBox{
+    font-size: 15px;
+}
+.account_devider{
+    padding: 0 5px;
+}
+.register_accountbox{
+    background-color: #fafafa;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    box-sizing: 10px;
+    margin-top: 21px;
+    overflow: hidden;
+    padding: 15px 15px 16px;
+}
+.content_registeration{
+    width: 100%;
+}
+.bank_box{
+    padding: 10px 0 14px;
+}
+.settlTitle{
+    font-size: 13px;
+    line-height: 29px;
+    margin: 0;
+}
+.bank_list {
+    position: relative; /* 추가: 버튼을 절대 위치로 배치하기 위해 */
+}
+.bankInput{
+    padding: 6px 0 7px;
+    border: 0;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 15px;
+    line-height: 22px;
+    width: 100%;
+    background-color: transparent;
+}
+.bankInput:focus{
+    border-bottom: 2px solid black;
+    outline: none; 
+}
+.bankInput.invalid {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+.btn_dropdow{
+    position: absolute; /* 절대 위치 */
+    right: 1px; /* input 태그의 오른쪽 끝에 맞추기 */
+    top: 50%; /* 수직 가운데 정렬 */
+    transform: translateY(-50%); /* 수직 가운데 정렬 */
+    border-radius: 50px;
+    border: 1px solid #ebebeb;
+    background-color: #fff;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 2px; /* 버튼 크기 조절을 위한 padding */
+}
+.BankIcon{
+    height: 16px;
+    width: 16px;
+}
+.layer_dropdown_banks{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-height: 240px; /* 최대 높이 설정 */
+    overflow-y: auto; /* 세로 스크롤바 추가 */
+    z-index: 1000;
+    width: 100%;
+}
+.bank_list:hover .layer_dropdown_banks {
+    display: block;
+}
+.layer_dropdown{
+    max-height: 240px;
+    overflow-y: auto;
+}
+.drop_bankList{
+    cursor: pointer;
+    list-style: none;
+}
+
+.drop-item{
+    margin: 0;
+    color: rgba(34, 34, 34, .8);
+    display: block;
+    font-size: 13px;
+    padding: 11px 50px 10px 0px;
+}
+.reginster_btn_box{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+.account_store_btn{
+    border-radius: 10px;
+    width: 102px;
+    background-color: #ebebeb;
+    color: #fff;
+    font-size: 14px;
+    height: 42px;
+    padding: 0 18px;
+    border: none;
+    font-weight: 700;
+}
+.account_store_btn.active{
+    background-color: black;
+}
