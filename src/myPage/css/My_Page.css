@@ -4,14 +4,15 @@
     padding: 0;
   }
 
-  .container_snb_area {
+  /* .container_snb_area {
     max-width: 1280px;
-  }
+  } */
   .container_box{
     padding: var(--gap);
     display: flex;
     gap: var(--gap);
     flex-direction: row;
+    padding: 40px 40px 160px;
   }
 
   .bd-sidebar,
@@ -21,6 +22,7 @@
   .bd-sidebar{
     width: 140px;
     flex-shrink: 0;
+    margin-right: 20px;
   }
   .box-container{
     flex-grow: 1;
