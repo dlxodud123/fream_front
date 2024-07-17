@@ -24,7 +24,8 @@ const Detail_form = () => {
             if (data.data && data.data.length > 0) {
                 setMain_info_shoes(data.data[0]);
                 setDetail_shoes_id(data.data[0].prid);
-                console.log("data : ", data.data[0]);  
+                console.log("data : ", data.data[0]); 
+                console.log(data); 
             } else {
                 console.log("데이터가 비어 있음");
             }
