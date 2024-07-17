@@ -17,6 +17,37 @@ const Detail_img = (props) => {
         />
 
         <div className="detail_img_info">
+          {props.detail_linked_images &&
+          props.detail_linked_images.length > 0 ? (
+            props.detail_linked_images.map((linkedImage, index) => (
+              <img
+                key={index}
+                style={{
+                  width: "62.85px",
+                  height: "62.85px",
+                  border: "1px solid black",
+                  backgroundColor: "#f4f4f4",
+                }}
+                src={linkedImage}
+                alt={`linked-${index}`}
+              />
+            ))
+          ) : (
+            <div>
+              <a href="/product">
+                <img
+                  src={img}
+                  style={{
+                    width: "62.85px",
+                    height: "62.85px",
+                    border: "1px solid black",
+                    backgroundColor: "#f4f4f4",
+                  }}
+                ></img>
+              </a>
+            </div>
+          )}
+          ;
           <div>
             <a href="/product">
               <img

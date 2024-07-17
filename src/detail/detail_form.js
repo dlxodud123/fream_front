@@ -12,6 +12,11 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { UserAuthContext } from "../Auth/UserAuthContext.jsx";
 
+const axiosBaseURL = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true, // 이 부분 추가
+});
+
 const Detail_form = () => {
   let [final_size, setFinal_Size] = useState("모든 사이즈");
   const { id } = useParams();
@@ -19,6 +24,7 @@ const Detail_form = () => {
   let [main_info_shoes, setMain_info_shoes] = useState([]);
   let [detail_shoes_id, setDetail_shoes_id] = useState();
   let [mainImageUrls, setMainImageUrls] = useState([]);
+  let [linkedImageUrls, setLinkedImageUrls] = useState([]);
   const { userId, isInitialized } = useContext(UserAuthContext);
 
   useEffect(() => {
@@ -29,25 +35,50 @@ const Detail_form = () => {
   }, [isInitialized]);
 
   useEffect(() => {
-    axios
+    axiosBaseURL
       .get(`http://localhost:3001/products/${id}`)
       .then((data) => {
+        console.log("data:", data);
         if (data.data && data.data.length > 0) {
           setMain_info_shoes(data.data[0]);
           setDetail_shoes_id(data.data[0].prid);
           const rawImgName = data.data[0].imgName;
+
+          console.log(data.data[0].imgName);
+          console.log(data.data[0].linkedImgName);
           let cleanedImgName = rawImgName;
+
           if (rawImgName.startsWith("['") && rawImgName.endsWith("']")) {
             cleanedImgName = rawImgName.substring(2, rawImgName.length - 2);
           }
+
           const imgNameArray = cleanedImgName.split("', '");
 
           const imageUrls = imgNameArray.map((imgName) => {
             return `http://localhost:3001/admin/products/files/${imgName}`;
           });
 
+          if (data.data[0].linkedImgName) {
+            const rawlinkedImgName = data.data[0].linkedImgName;
+            let cleanedlinkedImgName = rawlinkedImgName;
+            if (
+              rawlinkedImgName.startsWith("['") &&
+              rawlinkedImgName.endsWith("']")
+            ) {
+              cleanedlinkedImgName = rawlinkedImgName.substring(
+                2,
+                rawlinkedImgName.length - 2
+              );
+            }
+            const linkedimgNameArray = cleanedlinkedImgName.split("', '");
+            const linkedimageUrls = linkedimgNameArray.map((imgName) => {
+              return `http://localhost:3001/admin/products/linkedfiles/${imgName}`;
+            });
+            setLinkedImageUrls(linkedimageUrls);
+          }
           setMainImageUrls(imageUrls);
-          console.log("data : ", data.data[0]);
+
+          console.log("data : ", data);
         } else {
           console.log("데이터가 비어 있음");
         }
@@ -87,7 +118,10 @@ const Detail_form = () => {
         ></Detail_header>
         <div className="detail_container">
           {/* <Detail_img detail_main_image={main_info_shoes.imgName}></Detail_img> */}
-          <Detail_img detail_main_image={mainImageUrls[1]}></Detail_img>
+          <Detail_img
+            detail_main_image={mainImageUrls[0]}
+            detail_linked_images={linkedImageUrls}
+          ></Detail_img>
           <div
             style={{
               height: "1680px",
