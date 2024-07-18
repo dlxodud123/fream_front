@@ -1,62 +1,59 @@
 /* shortcut_grid */
 
 .shortcut_grid{
-    border: 1px solid #ebebeb;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    gap: 20px;
     border-radius: 10px;
+    border: 1px solid #ebebeb;
     margin-top: 20px;
-
+    padding-bottom: 24px;
+    padding-top: 24px;
 }
-
-
-.col{
-    border-right: none !important;
-    align-items: center;
+.menu_item{
     display: flex;
+    align-items: center;
     flex-direction: column;
     padding-bottom: 16px;
     padding-top: 16px;
     row-gap: 8px;
 }
 
-.seller-grade{
+.seller-grade, .seller-p, .seller-cupon, .seller-phon, .seller-invite, .seller-announcement {
+    background-size: cover;
+    background-position: center;
+    height: 28px;
+    width: 28px;
+    margin-bottom: 6px;
+}
+
+.seller-grade {
     background-image: url('../../img/login-page/a_04fab09b01d54fddbe4566369a17cb93.png');
-    background-size: cover;
-    background-position: center;
-    height: 28px;
-    width: 28px;
 }
-.seller-p{
+
+.seller-p {
     background-image: url('../../img/login-page/a_c23b8b01de384013b4c317029d2a96dc.png');
-    background-size: cover;
-    background-position: center;
-    height: 28px;
-    width: 28px;
 }
-.seller-cupon{
+
+.seller-cupon {
     background-image: url('../../img/login-page/a_53a7d4519a3b4675a90ca9a05311bda9.png');
-    background-size: cover;
-    background-position: center;
-    height: 28px;
-    width: 28px;
 }
-.seller-phon{
+
+.seller-phon {
     background-image: url('../../img/login-page/a_0f5e5c8adf02466486ce1f79cc224523.png');
-    background-size: cover;
-    background-position: center;
-    height: 28px;
-    width: 28px;
 }
-.seller-invite{
+
+.seller-invite {
     background-image: url('../../img/login-page/a_11c460121ca54697a8267807c5a14971.png');
-    background-size: cover;
-    background-position: center;
-    height: 28px;
-    width: 28px;
 }
-.seller-announcement{
+
+.seller-announcement {
     background-image: url('../../img/login-page/a_cbb55424c3ad427c88d2b8327100e5fc.png');
-    background-size: cover;
-    background-position: center;
-    height: 28px;
-    width: 28px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .shortcut_grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }

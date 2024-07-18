@@ -9,6 +9,8 @@ import Header from '../../common/header';
 import Footer from '../../common/footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -48,45 +50,43 @@ return (
         </div>
       </div>
 
+        <div className="container_text-center">
       <div className='shortcut_grid'>
-
-        <div className="container text-center">
-          <div className="row row-cols-3 row-cols-4 row-cols-6 ">
-            <div className="col">
-              <div className='seller-grade'></div>
-              <span>판매자 등급</span>
-            </div>
-            <div className="col">
-              <div className='seller-p'></div>  
-              <span>P</span>
-            </div>
-            <div className="col">
-              <div className='seller-cupon'></div>  
-              <span>쿠폰</span>
-            </div>
-            <div className="col">
-              <div className='seller-phon'></div>  
-              <span>내 폰 시세</span>
-            </div>
-            <div className="col">
-              <div className='seller-invite'></div>  
-              <span>친구 초대</span>
-            </div>
-            <div className="col">
-              <div className='seller-announcement'></div>  
-              <span>공지사항</span>
-            </div>
+          <div className="menu_item">
+            <div className='seller-grade'></div>
+            <span>판매자 등급</span>
           </div>
-        </div>
-        
+          <div className="menu_item">
+            <div className='seller-p'></div>  
+            <span>P</span>
+          </div>
+          <div className="menu_item">
+            <div className='seller-cupon'></div>  
+            <span>쿠폰</span>
+          </div>
+          <div className="menu_item">
+            <div className='seller-phon'></div>  
+            <span>내 폰 시세</span>
+          </div>
+          <div className="menu_item">
+            <div className='seller-invite'></div>  
+            <span>친구 초대</span>
+          </div>
+          <div className="menu_item">
+            <div className='seller-announcement'></div>  
+            <span>공지사항</span>
+          </div>
+        </div>       
       </div>
 
 
       <div className="section">
-          <div className='my_home_title'>
-            <h3 className="title_inventory">보관 판매 내역</h3>
-            <Link to={"/my/inventory"} className='btn_txt'>더보기</Link>
-          </div>
+        <div className='my_home_title'>
+          <h3 className="title_inventory">보관 판매 내역</h3>
+            <Link to={"/my/inventory"} className='btn_txt'>더보기<FontAwesomeIcon icon={faChevronRight} />
+            </Link>
+        </div>
+
           <div className='inventory_box'>
             <div className="row row-cols-4">
                   <div className="tab_item total">
@@ -111,12 +111,15 @@ return (
                   </div>
             </div>
           </div>
-          <div>
+          <div className='banner_area'>
             <a className="banner-link" href='#'>
                 <div className='logo'></div>
               <div>
               <p className='banner_title'>보관 신청하기</p>
               <p className='banner_desc'>한 번에 신청하고 한 번에 발송하세요.</p>
+              </div>
+              <div className='saveIconBtn'>
+              <FontAwesomeIcon icon={faChevronRight} />
               </div>
             </a>
           </div>
@@ -127,7 +130,7 @@ return (
         <div className="section">
           <div className='my_home_title'>
             <h3 className="title_inventory">구매 내역</h3>
-            <Link to={"/my/bying"} className='btn_txt'>더보기</Link>
+            <Link to={"/my/buying"} className='btn_txt'>더보기<FontAwesomeIcon icon={faChevronRight} /></Link>
           </div>
           <div className='purchase_list_tab'>
             <div className="row row-cols-4">
@@ -167,7 +170,7 @@ return (
         <div className="section">
           <div className='my_home_title'>
             <h3 className="title_inventory">판매 내역</h3>
-            <Link to={"/my/selling"} className='btn_txt'>더보기</Link>
+            <Link to={"/my/selling"} className='btn_txt'>더보기<FontAwesomeIcon icon={faChevronRight} /></Link>
           </div>
           <div className='selling'>
             <div className="row row-cols-4">
