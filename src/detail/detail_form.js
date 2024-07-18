@@ -40,6 +40,7 @@ const Detail_form = () => {
       .get(`http://192.168.42.142:3001/products/${id}`)
       .then((data) => {
         if (data.data && data.data.length > 0) {
+          console.log("data1 : ", data.data[0].imgName);
           setMain_info_shoes(data.data[0]);
           setDetail_shoes_id(data.data[0].prid);
           setLinked_img(data.data[0].linkedImgName);
@@ -60,16 +61,19 @@ const Detail_form = () => {
             cleanedLinkedImgName = rawLinkedImgName.substring(2, rawLinkedImgName.length - 2);
           }
           const linkedImgNameArray = cleanedLinkedImgName.split("', '");
-          const linkedImageUrls = linkedImgNameArray.map((imgName) => {
-            return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
+          const linkedImageUrls = linkedImgNameArray.map((linkedImgName) => {
+            return `http://192.168.42.142:3001/admin/products/files/${linkedImgName}`;
           });
 
+          if (imageUrls) {
+            
+            console.log("안녕", imageUrls)
+          }
           setMainImageUrls(imageUrls);
-          setLinked_img(linkedImgNameArray);
-
+          setLinked_img(linkedImageUrls);
           // console.log("ㅋㅋ : ", linkedImgNameArray[0])
           // console.log("ㅋㅋㅋ : ", linkedImgNameArray)
-          // console.log("data1 : ", data.data[0].linkedImgName);
+          
         } else {
           console.log("데이터가 비어 있음");
         }

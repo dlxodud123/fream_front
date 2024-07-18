@@ -37,10 +37,10 @@ const Detail_info = (props) => {
                 </div>
                 <div className="title_container">
                     <div>
-                        <p style={{fontSize:"20px", marginBottom:"0px", marginLeft:"-15px"}}>{formatGender(props.main_info_shoes.gender)}&nbsp;{props.main_info_shoes.nameEng}</p>
+                        <p style={{fontSize:"20px", marginBottom:"0px", marginLeft:""}}>{formatGender(props.main_info_shoes.gender)}&nbsp;{props.main_info_shoes.nameEng}</p>
                     </div>
                     <div>
-                        <p style={{color:"rgba(0,0,0,0.5)", marginLeft:"-7.5px"}}>{formatGender(props.main_info_shoes.gender)}&nbsp;{props.main_info_shoes.nameKor}</p>
+                        <p style={{color:"rgba(0,0,0,0.5)", marginLeft:""}}>{formatGender(props.main_info_shoes.gender)}&nbsp;{props.main_info_shoes.nameKor}</p>
                     </div>
                 </div>
 

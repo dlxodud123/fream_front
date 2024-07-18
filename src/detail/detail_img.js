@@ -9,9 +9,10 @@ const Detail_img = (props) => {
     // console.log("이미지 : " , props.detail_main_image[1]);
     // console.log("이미지 : " , props.detail_main_image[2]);
     console.log("asdf", props.linked_img);
+    console.log("asdfasdf", props.detail_main_image);
   }, [props.detail_main_image, props.linked_img])
 
-  let [chooseImg, setChooseImg] = useState();
+  // let [chooseImg, setChooseImg] = useState();
 
   return (
     <div className="detail_img_form">
@@ -25,9 +26,6 @@ const Detail_img = (props) => {
                     style={{ width:'560px', height: '560px', objectFit: 'cover', backgroundColor:'#f4f4f4'}}
                   />
                 {i}
-                {/* {
-                  setChooseImg(i)
-                } */}
                 </Carousel.Item>
                 
             ))}
