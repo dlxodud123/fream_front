@@ -31,7 +31,7 @@ const kakaoLogin = (code) => {
   return function (dispathch, getState, { history }) {
     axios({
       method: "GET",
-      url: `http://localhost:3000/auth?code=${code}`,
+      url: `http://192.168.0.13:3000/auth?code=${code}`,
     })
       .then((res) => {
         console.log(res);
@@ -93,7 +93,7 @@ const LoginPage = () => {
     } else {
       if (idEmail)
         $.ajax({
-          url: "http://localhost:3001/auth/loginCheck",
+          url: "http://192.168.0.13:3001/auth/loginCheck",
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify({ userId: idEmail, userPw: newPassw }),

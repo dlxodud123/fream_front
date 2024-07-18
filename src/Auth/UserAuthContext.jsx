@@ -19,7 +19,7 @@ export const UserAuthProvider = ({ children }) => {
 
     if (jwtToken) {
       axios
-        .post("http://localhost:3001/auth/verifyToken", { token: jwtToken })
+        .post("http://192.168.0.13:3001/auth/verifyToken", { token: jwtToken })
         .then((response) => {
           if (response.data.valid) {
             setIsLoggedIn(true);
