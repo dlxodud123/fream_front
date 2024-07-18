@@ -35,6 +35,7 @@ import ProtectedAdminLogin from "./AdminPage/adminAccess/ProtectedAdminLogin.js"
 import AdminLogin from "./AdminPage/page/AdminLogin/adminLogin.js";
 import { AuthProvider } from "./AdminPage/adminAccess/adminAccess.jsx";
 import { UserAuthProvider } from "./Auth/UserAuthContext.jsx";
+import Style from "./style/style.jsx";
 
 function App() {
   const AppWrapper = ({ children }) => {
@@ -100,6 +101,7 @@ function App() {
               <Route path="/my/buying" element={<Buying />}></Route>
               <Route path="/my/selling" element={<Selling />}></Route>
               <Route path="/*" element={<BoardContainer />} />
+              <Route path="/Style" element={<Style />} />
               <Route
                 path="/products/:id"
                 element={<Detail_form></Detail_form>}

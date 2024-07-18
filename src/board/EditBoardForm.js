@@ -1,74 +1,122 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import './BoardForm.css';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import "./BoardForm.css";
 import Footer from "../common/footer";
-import MainHeader from '../common/main_header';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import MainHeader from "../common/main_header";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import axios from "axios";
 
 function EditBoardForm({ boardList, updateBoardItem }) {
   const { No } = useParams();
-  const post = boardList.find(post => post.No === Number(No));
-  const [title, setTitle] = useState(post ? post.제목 : '');
+  const post = boardList.find((post) => post.No === Number(No));
   const [selectedFile, setSelectedFile] = useState(null);
   const navigate = useNavigate();
-  const [editorData, setEditorData] = useState(post ? post.content : '');
+  const [editorData, setEditorData] = useState(post ? post.content : "");
   const [imageFiles, setImageFiles] = useState([]);
+  const [board, setBoard] = useState({});
+  const [writer, setWriter] = useState("");
+  const [title, setTitle] = useState(board ? board.title : "");
 
   useEffect(() => {
-    if (post) {
-      setTitle(post.제목);
-      setEditorData(post.content);
-    }
-  }, [post]);
+    const fetchBoardList = async () => {
+      try {
+        const response = await axios.get(
+          `http://192.168.0.13:3001/board/${No}`
+        );
+        console.log("응답데이터:", response.data);
+        setBoard(response.data);
+        setWriter(response.data.user.userId);
+      } catch (error) {
+        console.error("Failed to fetch board list:", error);
+      }
+    };
+    fetchBoardList();
+  }, [No]);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleSubmit = () => {
-    const updatedItem = {
-      ...post,
-      제목: title,
-      content: editorData,
-      file: selectedFile,
-    };
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", editorData);
+    if (selectedFile) {
+      formData.append("file", selectedFile);
+    }
+    formData.append("user", writer); // 현재 사용자 ID를 폼 데이터에 추가 // 실제 사용자 ID로 변경 필요
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/board",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-    updateBoardItem(updatedItem);
-    navigate("/board");
+      if (response.status === 200) {
+        const newPost = response.data;
+        navigate(`/board/${newPost.boardId}`);
+      } else {
+        console.error("Failed to create new post");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
     <>
-   
-      <div style={{ paddingTop: '50px' }}></div>
+      <div style={{ paddingTop: "50px" }}></div>
       <div className="board_form_container">
         <h1>글수정</h1>
         <div className="form_group">
           <label htmlFor="title">작성자</label>
-          <div>{post.User_id}</div>
+          <div>{writer}</div>
         </div>
         <div className="form_group">
           <label htmlFor="title">제목</label>
-          <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={board.title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </div>
         <div>
           <CKEditor
             editor={ClassicEditor}
-            data={editorData}
+            data={board.content}
             config={{
-              language: 'en',
+              language: "en",
               simpleUpload: {
-                uploadUrl: '',
+                uploadUrl: "",
               },
               toolbar: [
-                'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote',
-                'insertTable', 'mediaEmbed', 'undo', 'redo', 'imageUpload'
-              ]
+                "heading",
+                "|",
+                "bold",
+                "italic",
+                "link",
+                "bulletedList",
+                "numberedList",
+                "blockQuote",
+                "insertTable",
+                "mediaEmbed",
+                "undo",
+                "redo",
+                "imageUpload",
+              ],
             }}
-            onReady={editor => {
+            onReady={(editor) => {
               // 업로드 어댑터 등록
-              editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+              editor.plugins.get("FileRepository").createUploadAdapter = (
+                loader
+              ) => {
                 return new MyUploadAdapter(loader, imageFiles, setImageFiles);
               };
             }}
@@ -78,17 +126,25 @@ function EditBoardForm({ boardList, updateBoardItem }) {
             }}
           />
         </div>
-        <div className="form_group" style={{ marginTop: '50px' }}>
+        <div className="form_group" style={{ marginTop: "50px" }}>
           <label htmlFor="file">사진 첨부</label>
-          <input type="file" id="file" name="file" onChange={handleFileChange} />
+          <input
+            type="file"
+            id="file"
+            name="file"
+            onChange={handleFileChange}
+          />
           {selectedFile && <p>첨부된 파일: {selectedFile.name}</p>}
         </div>
         <div className="form_buttons">
-          <button className="submit_button" onClick={handleSubmit}>수정 완료</button>
-          <button className="cancel_button" onClick={() => navigate("/board")}>취소</button>
+          <button className="submit_button" onClick={handleSubmit}>
+            수정 완료
+          </button>
+          <button className="cancel_button" onClick={() => navigate("/board")}>
+            취소
+          </button>
         </div>
       </div>
-   
     </>
   );
 }
@@ -101,20 +157,22 @@ class MyUploadAdapter {
   }
 
   upload() {
-    return this.loader.file
-      .then(file => new Promise((resolve, reject) => {
-        const reader = new FileReader();
+    return this.loader.file.then(
+      (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
 
-        reader.onload = () => {
-          this.setImageFiles(prev => [...prev, file]);
-          resolve({ default: reader.result });
-        };
+          reader.onload = () => {
+            this.setImageFiles((prev) => [...prev, file]);
+            resolve({ default: reader.result });
+          };
 
-        reader.onerror = err => reject(err);
-        reader.onabort = () => reject();
+          reader.onerror = (err) => reject(err);
+          reader.onabort = () => reject();
 
-        reader.readAsDataURL(file);
-      }));
+          reader.readAsDataURL(file);
+        })
+    );
   }
 
   abort() {}

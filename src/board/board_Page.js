@@ -105,7 +105,7 @@ function BoardPage({ deleteBoardItem }) {
         <button
           style={{ marginLeft: "350px" }}
           className="board_Page_button"
-          onClick={() => navigate(`/edit/${board.No}`)}
+          onClick={() => navigate(`/edit/${board.boardId}`)}
         >
           수정
         </button>

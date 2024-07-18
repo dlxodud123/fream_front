@@ -37,7 +37,7 @@ const kakaoLogin = (code) => {
         console.log(res);
         const Access_Token = res.data.accessToken;
         localStorage.setItem("token", Access_Token);
-        window.alert('1');
+        window.alert("1");
         history.replace("/"); //로그인성공시 화면전환
       })
       .catch((err) => {
@@ -97,6 +97,9 @@ const LoginPage = () => {
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
+          xhrFields: {
+            withCredentials: true,
+          },
           success: function (data) {
             const jwtToken = data;
             if (jwtToken) {
