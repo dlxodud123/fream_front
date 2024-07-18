@@ -9,7 +9,7 @@ const Detail_img = (props) => {
     // console.log("이미지 : " , props.detail_main_image[1]);
     // console.log("이미지 : " , props.detail_main_image[2]);
     console.log("asdf", props.linked_img);
-  }, [props.detail_main_image, props.linked_img]);
+  }, [props.detail_main_image, props.detail_linked_images]);
 
   let [chooseImg, setChooseImg] = useState();
 
@@ -68,114 +68,6 @@ const Detail_img = (props) => {
             </div>
           )}
           ;
-          <div>
-            <a href="/product">
-              <img
-                src={img}
-                style={{
-                  width: "62.85px",
-                  height: "62.85px",
-                  backgroundColor: "#f4f4f4",
-                }}
-              ></img>
-            </a>
-          </div>
-          <div>
-            <a href="/product">
-              <img
-                src={img}
-                style={{
-                  width: "62.85px",
-                  height: "62.85px",
-                  backgroundColor: "#f4f4f4",
-                }}
-              ></img>
-            </a>
-          </div>
-          <div>
-            <a href="/product">
-              <img
-                src={img}
-                style={{
-                  width: "62.85px",
-                  height: "62.85px",
-                  backgroundColor: "#f4f4f4",
-                }}
-              ></img>
-            </a>
-          </div>
-          <div>
-            <a href="/product">
-              <img
-                src={img}
-                style={{
-                  width: "62.85px",
-                  height: "62.85px",
-                  backgroundColor: "#f4f4f4",
-                }}
-              ></img>
-            </a>
-          </div>
-          <div>
-            <a href="/product">
-              <img
-                src={img}
-                style={{
-                  width: "62.85px",
-                  height: "62.85px",
-                  backgroundColor: "#f4f4f4",
-                }}
-              ></img>
-            </a>
-          </div>
-          <div>
-            <a href="/product">
-              <img
-                src={img}
-                style={{
-                  width: "62.85px",
-                  height: "62.85px",
-                  backgroundColor: "#f4f4f4",
-                }}
-              ></img>
-            </a>
-          </div>
-          <div>
-            <a href="/product">
-              <img
-                src={img}
-                style={{
-                  width: "62.85px",
-                  height: "62.85px",
-                  backgroundColor: "#f4f4f4",
-                }}
-              ></img>
-            </a>
-          </div>
-          <div>
-            <a href="/product">
-              <img
-                src={img}
-                style={{
-                  width: "62.85px",
-                  height: "62.85px",
-                  backgroundColor: "#f4f4f4",
-                }}
-              ></img>
-            </a>
-          </div>
-          <div>
-            <a href="/product">
-              <img
-                src={img}
-                style={{
-                  width: "62.85px",
-                  height: "62.85px",
-                  backgroundColor: "#f4f4f4",
-                }}
-              ></img>
-            </a>
-          </div>
         </div>
       </div>
     </div>
