@@ -97,7 +97,7 @@ function BoardPage({ boardList, deleteBoardItem }) {
 
       <div className="board_Page_container" style={{ marginTop: "80px" }}>
         <div>작성시간: {board.createdDate}</div>
-        {/* <div>작성자: {board.user.userId}</div> */}
+        <div>작성자: {board.user.userId}</div>
 
         <div>조회수: 134</div>
         <button
