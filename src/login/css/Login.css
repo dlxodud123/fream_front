@@ -101,13 +101,13 @@
     }
 
 
-    .row .col:not(:last-child){
+    /* .row .col:not(:last-child){
         border-right:  1px solid #000;
         padding-right: 10px;
     }
     .row .col{
         padding-left: 10px;
-    }
+    } */
 
     .loginBut{
         width: 100%;

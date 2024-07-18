@@ -2,10 +2,10 @@ import { faCaretDown, faSortDown, faSortUp } from "@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '../../../css/buying/Buying.css';
 import { useState } from "react";
-import Modal from './modal/ModalProgres.js';
+import KanbanSell from './modal/KanbanSell.js';
 
 
-function ModalProgres(props){
+function ProgressSell(props){
     const [sortDirection1, setSortDirection1] = useState(null); 
     const [isModalProductOpen, setIsModalProductOpen] = useState(false);
     const [selectedButton, setSelectedButton] = useState('전체');
@@ -77,11 +77,11 @@ function ModalProgres(props){
                     </div>
                 )
             }
-            {isModalProductOpen && <Modal onClose={closeModalProduct}
+            {isModalProductOpen && <KanbanSell onClose={closeModalProduct}
                                                      selectedButton={selectedButton} 
                                                      setSelectedButton={setSelectedButton} />}
         </div>
     )
 }
 
-export default ModalProgres;
+export default ProgressSell;

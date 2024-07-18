@@ -7,15 +7,14 @@
     padding-bottom: 20px;
     margin-bottom: 15px;
 }
-
-
 .inventory_box .row .tab_item:not(:last-child) { 
     border-right: 1px solid #ccc;
-  }
-  
+}
 
 .my_home_title{
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 42px;
     max-width: 100%;
     padding-bottom: 16px;
@@ -24,7 +23,8 @@
     font-size: 18px;
 }
 .btn_txt{
-    display: inline-flex;
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
     margin-left: auto;
     margin-top: 3px;
@@ -32,7 +32,12 @@
     padding-top: 3px;
     color: rgba(34, 34, 34, .5);
     font-size: 13px;
+    padding-right: 5px;
+    text-decoration: none;
 }
+
+
+
 .tab_item{
     color: black;
 }
@@ -56,16 +61,28 @@
     line-height: 20px;
     margin-top: 2px;
 }
+.banner_area{
+    display: block;
+    width: 100%;
+}
 .banner-link{
     background-color: rgba(34, 34, 34, .8);
-    align-items: center;
     border-radius: 10px;
     display: flex;
     overflow: hidden;
-    padding: 13px 30px 13px 16px;
+    padding: 13px 16px;
     position: relative;
     color: white;
     text-decoration: none;
+}
+.saveIconBtn{
+    display: block;
+    padding: 13px 16px;
+    color: white;
+    position: absolute;
+    right: 8px;
+    top: 10%;
+    width: 20px;
 }
 
 .logo{
