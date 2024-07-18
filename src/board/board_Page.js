@@ -9,6 +9,7 @@ function BoardPage({ deleteBoardItem }) {
   useEffect(() => {}, []);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+
   const [newCommentAuthor, setNewCommentAuthor] = useState("");
   const [board, setBoard] = useState({});
   const [writer, setWriter] = useState("");
@@ -97,7 +98,9 @@ function BoardPage({ deleteBoardItem }) {
     <>
       <div className="board_Page_container" style={{ marginTop: "80px" }}>
         <div>작성시간: {board.createdDate}</div>
+
         <div>작성자: {writer}</div>
+
         <div>조회수: 134</div>
         <button
           style={{ marginLeft: "350px" }}
@@ -114,7 +117,9 @@ function BoardPage({ deleteBoardItem }) {
           삭제
         </button>
       </div>
+
       <div className="board_Page_container2">글제목: {board.title}</div>
+
       <div className="board_Page_container1">
         <div dangerouslySetInnerHTML={{ __html: board.content }} />
       </div>
