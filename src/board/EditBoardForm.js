@@ -16,6 +16,7 @@ function EditBoardForm({ boardList, updateBoardItem }) {
   const [imageFiles, setImageFiles] = useState([]);
   const [board, setBoard] = useState({});
   const [writer, setWriter] = useState("");
+
   const [title, setTitle] = useState(board ? board.title : "");
 
   useEffect(() => {
@@ -24,15 +25,24 @@ function EditBoardForm({ boardList, updateBoardItem }) {
         const response = await axios.get(
           `http://192.168.0.13:3001/board/${No}`
         );
+
         console.log("응답데이터:", response.data);
+
         setBoard(response.data);
         setWriter(response.data.user.userId);
       } catch (error) {
         console.error("Failed to fetch board list:", error);
       }
     };
+
     fetchBoardList();
   }, [No]);
+  useEffect(() => {
+    if (post) {
+      setTitle(post.title);
+      setEditorData(post.content);
+    }
+  }, [post]);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);

@@ -37,10 +37,11 @@ const Detail_form = () => {
 
   useEffect(() => {
     axiosBaseURL
-      .get(`http://localhost:3001/products/${id}`)
+      .get(`http://192.168.42.142:3001/products/${id}`)
       .then((data) => {
         console.log("data:", data);
         if (data.data && data.data.length > 0) {
+          console.log("data1 : ", data.data[0].imgName);
           setMain_info_shoes(data.data[0]);
           setDetail_shoes_id(data.data[0].prid);
           // setLinked_img(data.data[0].linkedImgName);
@@ -59,6 +60,8 @@ const Detail_form = () => {
           const imageUrls = imgNameArray.map((imgName) => {
             return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
           });
+          setMainImageUrls(imageUrls);
+          
           if (data.data[0].linkedImgName) {
             const rawlinkedImgName = data.data[0].linkedImgName;
             let cleanedlinkedImgName = rawlinkedImgName;
@@ -73,13 +76,10 @@ const Detail_form = () => {
             }
             const linkedimgNameArray = cleanedlinkedImgName.split("', '");
             const linkedimageUrls = linkedimgNameArray.map((imgName) => {
-              return `http://localhost:3001/admin/products/linkedfiles/${imgName}`;
+              return `http://192.168.42.142:3001/admin/products/linkedfiles/${imgName}`;
             });
             setLinkedImageUrls(linkedimageUrls);
           }
-          setMainImageUrls(imageUrls);
-
-          console.log("data : ", data);
         } else {
           console.log("데이터가 비어 있음");
         }

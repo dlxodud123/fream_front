@@ -25,6 +25,7 @@ const Detail_info = (props) => {
     } else {
       return "";
     }
+
   };
 
   return (
@@ -61,6 +62,7 @@ const Detail_info = (props) => {
             </p>
           </div>
         </div>
+
 
         <Size_modal
           final_size={props.final_size}

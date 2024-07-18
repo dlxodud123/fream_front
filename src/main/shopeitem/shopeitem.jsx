@@ -18,7 +18,9 @@ export const Shopeitem = ({ shopdata, i}) => {
           <h5  onClick={()=>navigate(`/products/${shopdata.id}`)} className="card-title cursor">{shopdata.nameKor}</h5>
           <p  onClick={()=>navigate(`/products/${shopdata.id}`)} className="card-tex cursor">{shopdata.brand}</p>
           <p  onClick={()=>navigate(`/products/${shopdata.id}`)} className="card-text cursor">{shopdata.price}</p>
+          <p onClick={()=>navigate(``)}>dsf</p>
         </div>
+    
       </div>
     </div>
   );
