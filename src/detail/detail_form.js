@@ -60,6 +60,8 @@ const Detail_form = () => {
           const imageUrls = imgNameArray.map((imgName) => {
             return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
           });
+          setMainImageUrls(imageUrls);
+          
           if (data.data[0].linkedImgName) {
             const rawlinkedImgName = data.data[0].linkedImgName;
             let cleanedlinkedImgName = rawlinkedImgName;

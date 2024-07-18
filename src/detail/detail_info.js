@@ -27,7 +27,7 @@ const Detail_info = (props) => {
             return "";
         }
     }
-
+    console.log("asdf", props.main_info_shoes.nameEng);
     return(
         <div className="detail_info_form">
             <div className="detail_info">
@@ -37,10 +37,10 @@ const Detail_info = (props) => {
                 </div>
                 <div className="title_container">
                     <div>
-                        <p style={{fontSize:"20px", marginBottom:"0px", marginLeft:""}}>{formatGender(props.main_info_shoes.gender)}&nbsp;{props.main_info_shoes.nameEng}</p>
+                        <p style={{fontSize:"20px", marginBottom:"0px"}}>{formatGender(props.main_info_shoes.gender)}{props.main_info_shoes.nameEng}</p>
                     </div>
                     <div>
-                        <p style={{color:"rgba(0,0,0,0.5)", marginLeft:""}}>{formatGender(props.main_info_shoes.gender)}&nbsp;{props.main_info_shoes.nameKor}</p>
+                        <p style={{color:"rgba(0,0,0,0.5)"}}>{formatGender(props.main_info_shoes.gender)}{props.main_info_shoes.nameKor}</p>
                     </div>
                 </div>
 
