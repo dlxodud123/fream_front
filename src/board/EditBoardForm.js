@@ -5,6 +5,7 @@ import Footer from "../common/footer";
 import MainHeader from '../common/main_header';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import axios from "axios";
 
 function EditBoardForm({ boardList, updateBoardItem }) {
   const { No } = useParams();
@@ -14,10 +15,28 @@ function EditBoardForm({ boardList, updateBoardItem }) {
   const navigate = useNavigate();
   const [editorData, setEditorData] = useState(post ? post.content : '');
   const [imageFiles, setImageFiles] = useState([]);
+  const [board, setBoard] = useState({});
+  const [writer, setWriter] = useState("");
 
   useEffect(() => {
+    const fetchBoardList = async () => {
+      try {
+        const response = await axios.get(
+          `http://192.168.0.13:3001/board/${No}`
+        );
+        console.log(response.data);
+        setBoard(response.data);
+        setWriter(response.data.user.userId);
+      } catch (error) {
+        console.error("Failed to fetch board list:", error);
+      }
+    };
+
+    fetchBoardList();
+  }, [No]);
+  useEffect(() => {
     if (post) {
-      setTitle(post.제목);
+      setTitle(post.title);
       setEditorData(post.content);
     }
   }, [post]);
@@ -46,7 +65,7 @@ function EditBoardForm({ boardList, updateBoardItem }) {
         <h1>글수정</h1>
         <div className="form_group">
           <label htmlFor="title">작성자</label>
-          <div>{post.User_id}</div>
+          <div>{writer}</div>
         </div>
         <div className="form_group">
           <label htmlFor="title">제목</label>

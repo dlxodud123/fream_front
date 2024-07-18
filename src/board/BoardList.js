@@ -53,7 +53,6 @@ function BoardList({ boardList }) {
             >
               : asdasdasdas
             </div>
-
           </div>
         </div>
         <div
@@ -67,21 +66,19 @@ function BoardList({ boardList }) {
         </div>
         <div className="board_content">
           {currentItems.map((board) => (
-
             <div className="board_item" key={board.No}>
-              <Link className="board_link" to={`/board/${board.No}`}>
+              <Link className="board_link" to={`/board/${board.boardId}`}>
                 {board.boardId}
               </Link>
-              <Link className="board_link" to={`/board/${board.No}`}>
+              <Link className="board_link" to={`/board/${board.boardId}`}>
                 {board.title}
               </Link>
-              <Link className="board_link" to={`/board/${board.No}`}>
+              <Link className="board_link" to={`/board/${board.boardId}`}>
                 {board.user.username}
               </Link>
-              <Link className="board_link" to={`/board/${board.No}`}>
+              <Link className="board_link" to={`/board/${board.boardId}`}>
                 <p style={{ fontSize: "17px" }}>{board.createdDate}</p>
               </Link>
-
             </div>
           ))}
           <div

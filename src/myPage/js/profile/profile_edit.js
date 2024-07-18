@@ -92,13 +92,12 @@ return(
                 <MypageList />
             </div>
             <div className="box-container">
-
                 <div className='profile-title'>
                     <div className='titlePoint'>
                         <h3>프로필 관리</h3>
                     </div>
                 </div>
-                
+                <div></div>
                 <div className='user_profile'>
                     <div className='profile_thumb'>
                         <div className='profileIm'>
@@ -125,7 +124,7 @@ return(
                         </div>
                     </div>
                 </div>
-                
+                <div className='profile_info'>
                 <div className='profileGroup'>
                     <h4 className='titleProf'>프로필 정보</h4>
                 <FrofilName date={date} 
@@ -142,6 +141,7 @@ return(
                     />
                 </div>
                     </div>
+                </div>
                 </div>
         <Footer />
 </div>

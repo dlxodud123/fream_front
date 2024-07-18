@@ -12,19 +12,19 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { UserAuthContext } from "../Auth/UserAuthContext.jsx";
 
-const Detail_form = () => {
-  const axiosBaseURL = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-    withCredentials: true, // 이 부분 추가
-  });
+const axiosBaseURL = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true, // 이 부분 추가
+});
 
+const Detail_form = () => {
   let [final_size, setFinal_Size] = useState("모든 사이즈");
   const { id } = useParams();
 
   let [main_info_shoes, setMain_info_shoes] = useState([]);
   let [detail_shoes_id, setDetail_shoes_id] = useState();
   let [mainImageUrls, setMainImageUrls] = useState([]);
-  let [linked_img, setLinked_img] = useState([]);
+  let [linkedImageUrls, setLinkedImageUrls] = useState([]);
 
   const { userId, isInitialized } = useContext(UserAuthContext);
 
@@ -39,41 +39,45 @@ const Detail_form = () => {
     axiosBaseURL
       .get(`http://192.168.42.142:3001/products/${id}`)
       .then((data) => {
+        console.log("data:", data);
         if (data.data && data.data.length > 0) {
           console.log("data1 : ", data.data[0].imgName);
           setMain_info_shoes(data.data[0]);
           setDetail_shoes_id(data.data[0].prid);
-          setLinked_img(data.data[0].linkedImgName);
+          // setLinked_img(data.data[0].linkedImgName);
 
           const rawImgName = data.data[0].imgName;
+
+          console.log(data.data[0].imgName);
+          console.log(data.data[0].linkedImgName);
           let cleanedImgName = rawImgName;
+
           if (rawImgName.startsWith("['") && rawImgName.endsWith("']")) {
             cleanedImgName = rawImgName.substring(2, rawImgName.length - 2);
           }
+
           const imgNameArray = cleanedImgName.split("', '");
           const imageUrls = imgNameArray.map((imgName) => {
             return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
           });
-
-          const rawLinkedImgName = data.data[0].linkedImgName;
-          let cleanedLinkedImgName = rawLinkedImgName;
-          if (rawLinkedImgName.startsWith("['") && rawLinkedImgName.endsWith("']")) {
-            cleanedLinkedImgName = rawLinkedImgName.substring(2, rawLinkedImgName.length - 2);
+          if (data.data[0].linkedImgName) {
+            const rawlinkedImgName = data.data[0].linkedImgName;
+            let cleanedlinkedImgName = rawlinkedImgName;
+            if (
+              rawlinkedImgName.startsWith("['") &&
+              rawlinkedImgName.endsWith("']")
+            ) {
+              cleanedlinkedImgName = rawlinkedImgName.substring(
+                2,
+                rawlinkedImgName.length - 2
+              );
+            }
+            const linkedimgNameArray = cleanedlinkedImgName.split("', '");
+            const linkedimageUrls = linkedimgNameArray.map((imgName) => {
+              return `http://192.168.42.142:3001/admin/products/linkedfiles/${imgName}`;
+            });
+            setLinkedImageUrls(linkedimageUrls);
           }
-          const linkedImgNameArray = cleanedLinkedImgName.split("', '");
-          const linkedImageUrls = linkedImgNameArray.map((linkedImgName) => {
-            return `http://192.168.42.142:3001/admin/products/files/${linkedImgName}`;
-          });
-
-          if (imageUrls) {
-            
-            console.log("안녕", imageUrls)
-          }
-          setMainImageUrls(imageUrls);
-          setLinked_img(linkedImageUrls);
-          // console.log("ㅋㅋ : ", linkedImgNameArray[0])
-          // console.log("ㅋㅋㅋ : ", linkedImgNameArray)
-          
         } else {
           console.log("데이터가 비어 있음");
         }
@@ -107,13 +111,18 @@ const Detail_form = () => {
     <>
       <div className="body1">
         <Detail_header
-          detail_main_image={mainImageUrls[0]}
+          detail_main_image={mainImageUrls}
           main_info_shoes={main_info_shoes}
           final_size={final_size}
           setFinal_Size={setFinal_Size}
         ></Detail_header>
         <div className="detail_container">
-          <Detail_img linked_img={linked_img} detail_main_image={mainImageUrls}></Detail_img>
+          {/* <Detail_img detail_main_image={main_info_shoes.imgName}></Detail_img> */}
+          <Detail_img
+            detail_main_image={mainImageUrls}
+            detail_linked_images={linkedImageUrls}
+          ></Detail_img>
+
           <div
             style={{
               height: "1680px",
