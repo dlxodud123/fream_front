@@ -3,9 +3,9 @@ import { faCaretDown, faSortDown, faSortUp } from "@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import ProductPurchase from "./modal/ProductPurchase";
+import SellingModal from './modal/SellingModal.js';
 
-function ModalTender(props) {
+function Selling(props) {
     const navigate = useNavigate();
     const [sortDirection1, setSortDirection1] = useState('up'); 
     const [sortDirection2, setSortDirection2] = useState(null); 
@@ -99,7 +99,7 @@ function ModalTender(props) {
                 <div className='head_status'>
                     <div className='status_box'>
                         <button className='status_txt' onClick={sort_order1}>
-                            구매 희망가
+                            판매 희망가
                             <span className="sortIcons">
                                 <FontAwesomeIcon icon={faSortUp} className={`sortUpIcon ${sortDirection1 === 'up' ? 'active' : ''}`} />
                                 <FontAwesomeIcon icon={faSortDown} className={`sortDownIcon ${sortDirection1 === 'down' ? 'active' : ''}`} />
@@ -150,11 +150,11 @@ function ModalTender(props) {
                     </div>
                 )
             }
-            {isModalProductOpen && <ProductPurchase onClose={closeModalProduct}
+            {isModalProductOpen && <SellingModal onClose={closeModalProduct}
                                                      selectedButton={selectedButton} 
                                                      setSelectedButton={setSelectedButton} />}
         </div>
     );
 }
 
-export default ModalTender;
+export default Selling;

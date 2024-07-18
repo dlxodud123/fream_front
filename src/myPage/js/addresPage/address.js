@@ -96,6 +96,22 @@ const Address = () => {
         setIsEditing(false);
         setCurrentEditIndex(null);
     };
+    const maskPhoneNumber = (phoneNumber) => { //전화번호 암호화화
+        if (!phoneNumber) return "";
+        const parts = phoneNumber.split("-");
+        if (parts.length !== 3) return phoneNumber;
+
+        const maskedPart2 = parts[1].substr(0, 1) + "●".repeat(parts[1].length - 1);
+        const maskedPart3 = parts[2].substr(0, 1) + "●".repeat(parts[2].length - 1);
+
+        return `${parts[0]}-${maskedPart2}-${maskedPart3}`;
+    };
+    const maskName = (name) => {
+        if (!name) return "";
+        const firstChar = name.charAt(0); // 첫 번째 글자 추출
+        const maskedPart = "*".repeat(name.length - 1); // 나머지 부분 마스킹
+        return firstChar + maskedPart;
+    };
 
     return (
         <div>
@@ -124,15 +140,15 @@ const Address = () => {
 
                         <div className="address_list">
                             {addressArry.map((address, index) => (
-                                <div key={index} className="address_item">
-                                    <div className="my_active">
+                                <div key={index} className={index === 0 ? "address_item" : "address_other"}>
+                                    <div className={index === 0 ? "my_active" : "active_other"}>
                                         <div className="info_bind">
                                             <div className="address_info">
                                                 <div className="name_box">
-                                                    <span className="address_name">{address.recipient}</span>
+                                                    <span className="address_name">{maskName(address.recipient)}</span>
                                                     {address.isDefault && <span className="mark">기본 배송지</span>}
                                                 </div>
-                                                <p className="phone">{address.phone}</p>
+                                                <p className="phone">{maskPhoneNumber(address.phone)}</p>
                                                 <div className="address_box">
                                                     <span>{address.postcode}</span>
                                                     <span>{address.address}</span>

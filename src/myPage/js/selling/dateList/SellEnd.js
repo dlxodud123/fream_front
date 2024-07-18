@@ -2,33 +2,42 @@ import { faCaretDown, faSortDown, faSortUp } from "@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '../../../css/buying/Buying.css';
 import { useState } from "react";
-import Modal from './modal/ModalProgres.js';
+import ModalSellEnd from "./modal/ModalSell_end.js";
 
-
-function ModalProgres(props){
+function ModalDealEnd(props){
     const [sortDirection1, setSortDirection1] = useState(null); 
+    const [sortDirection2, setSortDirection2] = useState(null); 
     const [isModalProductOpen, setIsModalProductOpen] = useState(false);
     const [selectedButton, setSelectedButton] = useState('전체');
+    const [sortedBuyBreakdown, setSortedBuyBreakdown] = useState(props.buyBreakdown);
     
     const openModalProduct = () => setIsModalProductOpen(true);
     const closeModalProduct = () => setIsModalProductOpen(false);
-    const [sortedBuyBreakdown, setSortedBuyBreakdown] = useState(props.buyBreakdown);
 
 
     const handleSort1 = () => {
+        setSortDirection2(null); // 버튼 초기화
         if (sortDirection1 === 'up') {
             setSortDirection1('down');
         } else {
             setSortDirection1('up');
         }
     };
-
+    const handleSort2 = () => {
+        setSortDirection1(null); //버튼 초기화
+        if (sortDirection2 === 'up') {
+            setSortDirection2('down');
+        } else {
+            setSortDirection2('up');
+        }
+    };
     return(
         <div>
             <div className='purchas_head'>
                 <div className='head_product'>
-                    <button className='btn_buyFilter' onClick={openModalProduct}>
-                        {selectedButton}
+                    <button className='btn_buyFilter'
+                            onClick={openModalProduct}>
+                        전체
                         <FontAwesomeIcon
                             icon={faCaretDown}
                             className="buyIcon"
@@ -39,10 +48,20 @@ function ModalProgres(props){
                     <div className='status_box'>
                         <button className='status_txt'
                             onClick={handleSort1}>
-                            상태
+                            구매일
                             <span className="sortIcons">
                                 <FontAwesomeIcon icon={faSortUp} className={`sortUpIcon ${sortDirection1 === 'up' ? 'active' : ''}`} />
                                 <FontAwesomeIcon icon={faSortDown} className={`sortDownIcon ${sortDirection1 === 'down' ? 'active' : ''}`} />
+                            </span>
+                        </button>
+                    </div>
+                    <div className='status_box field'>
+                        <button className='status_txt'
+                            onClick={handleSort2}>
+                            상태
+                            <span className="sortIcons">
+                                <FontAwesomeIcon icon={faSortUp} className={`sortUpIcon ${sortDirection2 === 'up' ? 'active' : ''}`} />
+                                <FontAwesomeIcon icon={faSortDown} className={`sortDownIcon ${sortDirection2 === 'down' ? 'active' : ''}`} />
                             </span>
                         </button>
                     </div>
@@ -66,6 +85,9 @@ function ModalProgres(props){
                                             <span style={{color:'rgba(34,34,34,.5)'}}> {item.size}</span>
                                         </div>
                                         <div className="details-right">
+                                            <div className="purchase_price">
+                                                <span>정산일{'YY/MM/DD'}</span>
+                                            </div>
                                             <div className="jonglyoil">
                                                 <span>상태{'선택'}</span>
                                             </div>
@@ -77,11 +99,11 @@ function ModalProgres(props){
                     </div>
                 )
             }
-            {isModalProductOpen && <Modal onClose={closeModalProduct}
-                                                     selectedButton={selectedButton} 
-                                                     setSelectedButton={setSelectedButton} />}
+            {isModalProductOpen && <ModalSellEnd onClose={closeModalProduct}
+                                          selectedButton={selectedButton} 
+                                          setSelectedButton={setSelectedButton}/>}
         </div>
     )
 }
 
-export default ModalProgres;
+export default ModalDealEnd;

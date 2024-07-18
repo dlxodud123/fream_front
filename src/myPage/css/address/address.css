@@ -1,4 +1,12 @@
 
+.container_box{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    padding: 40px 40px 160px;
+}
+
 .content_title{
     display: flex;
     align-items: center;
@@ -9,6 +17,19 @@
     align-items: center;
     margin-left: auto;
     padding-left: 30px;
+}
+.address_item{
+    border-bottom: 2px solid #222;
+    padding: 30px 0 29px;
+}
+.active_other{
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+.address_other{
+    border-bottom: 1px solid #ebebeb;
+    padding: 17px 0 16px;
 }
 .address_name{
     font-weight: 700;
@@ -38,6 +59,7 @@
     position: relative;
 }
 .info_bind{
+    display: flex;
     margin-right: 24px;
 }
 .mark{
