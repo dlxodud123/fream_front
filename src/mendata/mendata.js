@@ -10,7 +10,8 @@ let mendata =[
       title : "나이키 에어포스",
       content : "Born in France",
       price : "120000원",
-      img: menimg0
+      img: menimg0,
+      size : '260'
       
     },
     {
@@ -19,44 +20,48 @@ let mendata =[
         title : "나이키 에어포스",
         content : "Born in France",
         price : "120000원",
-        img: menimg1
-        
+        img: menimg1,
+        size : '260'
       },
 
       {
-        id : 1,
+        id : 2,
         maker : "나이키",
         title : "나이키 에어포스",
         content : "Born in France",
         price : "120000원",
-        img: menimg1
+        img: menimg1,
+        size : '260'
         
       },
       {
-        id : 1,
+        id : 3,
         maker : "나이키",
         title : "나이키 에어포스",
         content : "Born in France",
         price : "120000원",
-        img: menimg1
+        img: menimg1,
+        size : '260'
         
       },
       {
-        id : 1,
+        id : 4,
         maker : "나이키",
         title : "나이키 에어포스",
         content : "Born in France",
         price : "120000원",
-        img: menimg1
+        img: menimg1,
+        size : '260'
         
       },
       {
-        id : 1,
+        id : 5,
         maker : "나이키",
         title : "나이키 에어포스",
         content : "Born in France",
         price : "120000원",
-        img: menimg1
+        img: menimg1,
+        size : '260'
         
       },
         ]
