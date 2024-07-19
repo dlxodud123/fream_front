@@ -14,11 +14,11 @@ function Saved(){
         <MypageList>
         </MypageList>
         <div style={{marginLeft:'100px', paddingBottom:'20px'}}>
-        <h3 >관심</h3>
-            <div style={{borderBottom:'1px solid black'}}>
- 
+        <h3 style={{fontWeight:'bold'}}>관심</h3>
+            <div style={{borderBottom:'4px solid black', width:'1000px',borderRadius:'10px'}}>
             </div>
             </div>
+            
         </div>
      
         <Footer />

@@ -36,7 +36,7 @@ import AdminLogin from "./AdminPage/page/AdminLogin/adminLogin.js";
 import { AuthProvider } from "./AdminPage/adminAccess/adminAccess.jsx";
 import { UserAuthProvider } from "./Auth/UserAuthContext.jsx";
 import Style from "./style/style.jsx";
-
+import Saved from "./myPage/js/saved/saved.js";
 
 function App() {
   const AppWrapper = ({ children }) => {
