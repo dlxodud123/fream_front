@@ -35,6 +35,8 @@ import ProtectedAdminLogin from "./AdminPage/adminAccess/ProtectedAdminLogin.js"
 import AdminLogin from "./AdminPage/page/AdminLogin/adminLogin.js";
 import { AuthProvider } from "./AdminPage/adminAccess/adminAccess.jsx";
 import { UserAuthProvider } from "./Auth/UserAuthContext.jsx";
+import Saved from "./myPage/js/saved/saved.js";
+
 
 function App() {
   const AppWrapper = ({ children }) => {
@@ -70,6 +72,7 @@ function App() {
         <div className="App">
           <AppWrapper>
             <Routes>
+    
               <Route path="/Admin/*" element={<ProtectedRoute />}>
                 <Route path="*" element={<AdminRouter />} />
               </Route>
@@ -84,6 +87,7 @@ function App() {
                   </App1>
                 }
               ></Route>
+              <Route path="/my/saved" element={<Saved></Saved>}></Route>
               <Route path="/shop" element={<Shope></Shope>}></Route>
               <Route path="/shop" element={<Shopeshoes />}></Route>
               <Route path="/men" element={<Men />}></Route>
@@ -117,6 +121,7 @@ function App() {
                 element={<Buy_history_from></Buy_history_from>}
               ></Route>
             </Routes>
+       
           </AppWrapper>
         </div>
       </AuthProvider>
