@@ -14,6 +14,11 @@ import { Navigate, useParams } from "react-router-dom";
 import Buy_delivery_modal from "./modal/buy_delivery_modal";
 import axios from "axios";
 
+const axiosBaseURL = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true, // 이 부분 추가
+});
+
 const Buy_form = () => {
   let [finalName, setFinalName] = useState();
   let [finalNumber, setFinalNumber] = useState("");
@@ -25,8 +30,8 @@ const Buy_form = () => {
   let [finalSaveBtn, setFinalSaveBtn] = useState(false);
   let [finalCardBtn, setFinalCardBtn] = useState(false);
 
-  let { size, data, img } = useParams();
-  let parseData = JSON.parse(decodeURIComponent(data)); //데이터 파싱
+  let { size, id } = useParams();
+  // let parseData = JSON.parse(decodeURIComponent(data)); //데이터 파싱
 
   let [deliveryBtn, setDeliveryBtn] = useState(1);
   let [paymentBtn, setPaymentBtn] = useState();
@@ -37,10 +42,42 @@ const Buy_form = () => {
 
   let [buy_request, setBuy_request] = useState("");
 
+  let [mainImageUrls, setMainImageUrls] = useState("");
+  let [buyFormData, setBuyFormData] = useState([]);
+
+  useEffect(() => {
+    axiosBaseURL
+      .get(`http://192.168.42.142:3001/products/${id}`)
+      .then((data) => {
+        console.log("data:", data);
+        if (data.data && data.data.length > 0) {
+          setBuyFormData(data.data[0]);
+          // console.log("data1 : ", data.data[0].imgName);
+          // console.log(data.data[0].imgName);
+          // console.log(data.data[0].linkedImgName);
+
+          const rawImgName = data.data[0].imgName;
+          let cleanedImgName = rawImgName;
+          
+          if (rawImgName.startsWith("['") && rawImgName.endsWith("']")) {
+            cleanedImgName = rawImgName.substring(2, rawImgName.length - 2);
+          }
+          const imgNameArray = cleanedImgName.split("', '");
+          const imageUrls = imgNameArray.map((imgName) => {
+            return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
+          });
+          setMainImageUrls(imageUrls);
+        }
+      })
+      .catch((error) => {
+        console.log("실패함", error);
+      });
+  }, [id]);
+
   const { IMP } = window;
   IMP.init("imp25812042");
 
-  console.log(parseData.prid);
+  console.log(buyFormData);
   console.log(size);
   console.log(finalName);
   console.log(finalNumber);
@@ -52,15 +89,15 @@ const Buy_form = () => {
   console.log(buy_request);
 
   async function onClickPayments() {
-    console.log(parseData);
+    console.log(id);
     console.log("결제구현");
     IMP.request_pay(
       {
         pg: "html5_inicis", // PG사 코드와 상점 ID
         pay_method: "card",
         merchant_uid: `payment-${crypto.randomUUID()}`, // 주문 고유 번호
-        name: parseData.nameKor,
-        amount: parseData.price,
+        name: buyFormData.nameKor,
+        amount: buyFormData.price,
         buyer_email: "pickjog@naver.com",
         buyer_name: finalName,
         buyer_tel: finalNumber,
@@ -87,7 +124,7 @@ const Buy_form = () => {
           // 결제 성공 시 로직
           console.log("결제 성공:", response);
           const userId = await getUserIdFromToken(); // userId 추출
-          const productIds = [parseData.prid]; // 상품 ID 배열
+          const productIds = [buyFormData.prid]; // 상품 ID 배열
           const quantities = [1]; // 수량 배열, 각 상품에 대해 1로 설정
           const shoessize = [size];
           const paymentInfo = {
@@ -233,7 +270,7 @@ const Buy_form = () => {
                 marginLeft: "25px",
                 backgroundColor: "rgb(244,244,244)",
               }}
-              src={`${process.env.PUBLIC_URL}/images/${parseData.imgName}`}
+              src={mainImageUrls[0]}
             ></img>
             <div
               style={{
@@ -243,10 +280,10 @@ const Buy_form = () => {
                 textAlign: "left",
               }}
             >
-              <div style={{ fontWeight: "bold" }}>{parseData.prid}</div>
-              <div>{parseData.nameEng}</div>
+              <div style={{ fontWeight: "bold" }}>{buyFormData.prid}</div>
+              <div>{buyFormData.nameEng}</div>
               <div style={{ color: "rgba(0,0,0,0.5)" }}>
-                {parseData.nameKor}
+                {buyFormData.nameKor}
               </div>
               <div style={{ fontWeight: "bold" }}>{size}</div>
             </div>
@@ -331,7 +368,7 @@ const Buy_form = () => {
                         backgroundColor: "white",
                       }}
                     >
-                      초기화
+                      변경
                     </button>
                   </div>
                 </div>
@@ -829,7 +866,7 @@ const Buy_form = () => {
                   fontWeight: "bold",
                 }}
               >
-                {formatPrice(parseData.price)}
+                {formatPrice(buyFormData.price)}
               </div>
             </div>
             <div style={{ display: "flex", marginTop: "15px" }}>
@@ -907,7 +944,7 @@ const Buy_form = () => {
                   width: "450px",
                   color: "rgb(241, 87, 70)",
                   fontSize: "13px",
-                  paddingLeft: "249px",
+                  paddingLeft: "247px",
                 }}
               >
                 <div style={{ fontWeight: "700" }}>주의!</div>&nbsp;
@@ -920,7 +957,7 @@ const Buy_form = () => {
                   fontSize: "20px",
                 }}
               >
-                {formatPrice(parseData.price + 3000)}
+                {formatPrice(buyFormData.price + 3000)}
               </div>
             </div>
           </div>
@@ -941,7 +978,7 @@ const Buy_form = () => {
                     border: "none",
                   }}
                 >
-                  {formatPrice(parseData.price + 3000)}원・일반배송 결제하기
+                  {formatPrice(buyFormData.price + 3000)}원・일반배송 결제하기
                 </button>
               </>
             ) : (
@@ -961,7 +998,7 @@ const Buy_form = () => {
                     border: "none",
                   }}
                 >
-                  {formatPrice(parseData.price + 3000)}원・일반배송 결제하기
+                  {formatPrice(buyFormData.price + 3000)}원・일반배송 결제하기
                 </button>
               </>
             )}

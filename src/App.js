@@ -110,11 +110,11 @@ function App() {
                 element={<Detail_form></Detail_form>}
               ></Route>
               <Route
-                path="/sell/:data/:size"
+                path="/sell/:id/:size"
                 element={<Sell_form></Sell_form>}
               ></Route>
               <Route
-                path="/buy/:data/:size/:img"
+                path="/buy/:id/:size"
                 element={<Buy_form></Buy_form>}
               ></Route>
               <Route
