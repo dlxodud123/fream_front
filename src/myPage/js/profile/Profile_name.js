@@ -1,32 +1,37 @@
 import { useState } from "react";
 import axios from 'axios';
 
-function FrofilName({date,setDate}){
-    const [profile_titleCh, setProfile_titleCh] = useState('profile_title')
+function ProfileName({date,setDate}){
+    const [profileTitleClass, setProfileTitleClass] = useState('profile_title');
     const [onBtn, setOnBtn] = useState(false)
+    const [onEditMode, setOnEditMode] = useState(false);
     const [profileName, setProfileName] = useState(date.profileName);
-  
+
+    const axiosBaseURL = axios.create({
+        baseURL: process.env.NEXT_PUBLIC_API_URL,
+        withCredentials: true,
+    });
+
     const handleSave = () => {
-      setDate(prevDate => ({
-        ...prevDate,
-        ProfileName: profileName,
-      }));
-      const updatedData = { profileName };
-      axios.post('/my/profile-edit/ProfileName', updatedData)
+
+      axiosBaseURL.put('http://192.168.0.101:3001/my?profile-edit' + profileName)
       .then(response => {
-          console.log(response.data);
-          setOnBtn(false);
-    })
-      .catch(error => {
-          console.error(error);
-          setOnBtn(false);
+          console.log(response.date);
+          setDate(prevDate => ({
+            ...prevDate,
+            profileName,
+        }));
+        setOnEditMode(false);
+        })
+        .catch(error => {
+            console.error(error);
+            setOnEditMode(false);
         });
     };
   
-    
     const handleCancel = () => {
         setProfileName(date.profileName);
-        setOnBtn(false);
+        setOnEditMode(false);
     };
 
 
@@ -35,13 +40,13 @@ function FrofilName({date,setDate}){
     <div>
         { onBtn == false ? (
             <div className='group'>
-                <h5 className={profile_titleCh}>프로필 이름</h5>
+                <h5 className={profileTitleClass}>프로필 이름</h5>
                 <div className="unit_content">
-                    <p className='modify_myslef'>{profileName}</p>
+                    <p className='modify_myslef'>{date.img}</p>
                     <button
                         type="button"
                         className="unit_all"
-                        onClick={()=>{setOnBtn(true); setProfile_titleCh('changeTitle')}}
+                        onClick={() => { setOnEditMode(true); setProfileTitleClass('changeTitle'); }}
                         >변경
                     </button>
                 </div>
@@ -49,7 +54,7 @@ function FrofilName({date,setDate}){
         ):(
             <div>
             <div className='group'>
-                <h5 className={profile_titleCh}>프로필 이름</h5>
+                <h5 className={profileTitleClass}>프로필 이름</h5>
                 <div className="unit_content">
                     <input
                         id="profileName"
@@ -67,12 +72,12 @@ function FrofilName({date,setDate}){
                 저장
               </button>
             </div>
-            </div>
-            </div>
+          </div>
+        </div>
         )}
     </div>
 
     )
 }
 
-export default FrofilName;
+export default ProfileName;

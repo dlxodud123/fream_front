@@ -91,9 +91,10 @@ const LoginPage = () => {
       setAdminAccess(true);
       navigate("/LoginAdmin");
     } else {
+      //http://192.168.0.101:3001
       if (idEmail)
         $.ajax({
-          url: "http://192.168.0.13:3001/auth/loginCheck",
+          url: "/api/auth/loginCheck",
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
@@ -106,7 +107,8 @@ const LoginPage = () => {
               setToken(jwtToken);
               console.log("success");
               localStorage.setItem("jwtToken", jwtToken);
-              navigate("/");
+              navigate("/myPage");
+              // navigate("/");
             } else {
               console.log("fail");
             }
