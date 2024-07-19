@@ -19,20 +19,20 @@ const Detail_shoes2 = (props) => {
     
     let id = props.detail_shoes_id;
 
-    // useEffect(() => {
-    //     axiosBaseURL.get(`http://192.168.42.142:3001/products/${id}/brand`)
-    //     .then((data) => {
-    //         if (data.data && data.data.length > 0) {
-    //             console.log("바보 : ", data.data[0 ]); 
-    //             setShoes(data.data[0]);
-    //         } else {
-    //             console.log("데이터가 비어 있음");
-    //         }
-    //     })
-    //     .catch((error) => {
-    //         console.log("실패함", error);  
-    //     });
-    //   }, [id]);
+    useEffect(() => {
+        axiosBaseURL.get(`http://192.168.42.142:3001/products/${id}/brand`)
+        .then((data) => {
+            if (data.data && data.data.length > 0) {
+                console.log("브랜드 : ", data.data[0]); 
+                setShoes(data.data[0]);
+            } else {
+                console.log("데이터가 비어 있음");
+            }
+        })
+        .catch((error) => {
+            console.log("실패함", error);  
+        });
+      }, [id]);
 
     return(
         <div style={{marginTop:"70px"}}>

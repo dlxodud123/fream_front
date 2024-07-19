@@ -24,13 +24,13 @@ function Detail_header(props) {
     const onScroll = () => {
       setScrollPosition(window.scrollY);
     };
-
     window.addEventListener("scroll", onScroll);
-
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  // console.log("zzzzzzzzz", props.detail_main_image);
 
   return (
     <>
@@ -138,7 +138,7 @@ function Detail_header(props) {
             <div style={{ width: "660px", display: "flex" }}>
               <div>
                 <img
-                  src={props.detail_main_image}
+                  src={props.detail_main_image[0]}
                   style={{
                     width: "65px",
                     height: "65px",

@@ -9,9 +9,10 @@ const Detail_img = (props) => {
     // console.log("이미지 : " , props.detail_main_image[1]);
     // console.log("이미지 : " , props.detail_main_image[2]);
     console.log("asdf", props.linked_img);
+    console.log("asdfasdf", props.detail_main_image);
   }, [props.detail_main_image, props.detail_linked_images]);
 
-  let [chooseImg, setChooseImg] = useState();
+  // let [chooseImg, setChooseImg] = useState();
 
   return (
     <div className="detail_img_form">
@@ -28,14 +29,9 @@ const Detail_img = (props) => {
                   backgroundColor: "#f4f4f4",
                 }}
               />
-              {i}
-              {/* {
-                  setChooseImg(i)
-                } */}
             </Carousel.Item>
           ))}
         </Carousel>
-
         <div className="detail_img_info">
           {props.detail_linked_images &&
           props.detail_linked_images.length > 0 ? (
@@ -45,7 +41,6 @@ const Detail_img = (props) => {
                 style={{
                   width: "62.85px",
                   height: "62.85px",
-                  border: "1px solid black",
                   backgroundColor: "#f4f4f4",
                 }}
                 src={linkedImage}
@@ -54,7 +49,7 @@ const Detail_img = (props) => {
             ))
           ) : (
             <div>
-              <a href="/product">
+              {/* <a href="/product">
                 <img
                   src={img}
                   style={{
@@ -64,10 +59,9 @@ const Detail_img = (props) => {
                     backgroundColor: "#f4f4f4",
                   }}
                 ></img>
-              </a>
+              </a> */}
             </div>
           )}
-          ;
         </div>
       </div>
     </div>

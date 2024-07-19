@@ -29,6 +29,7 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 // 검색 아이콘
 import { useNavigate } from "react-router-dom";
+import Notification from "./Notification";
 // React Router의 네비게이션 훅
 // 자동완성 목록을 위한 페이지 목록
 const pages = [
@@ -282,24 +283,29 @@ const Topbar = () => {
 
       {/* ICONS */}
       <Box display="flex">
-        <IconButton onClick={colorMode.toggleColorMode}>
-          {theme.palette.mode === "dark" ? (
-            <DarkModeOutlinedIcon /> // 다크 모드 아이콘
-          ) : (
-            <LightModeOutlinedIcon /> // 라이트 모드 아이콘
-          )}
+        <IconButton>
+          <IconButton onClick={colorMode.toggleColorMode}>
+            {theme.palette.mode === "dark" ? (
+              <DarkModeOutlinedIcon /> // 다크 모드 아이콘
+            ) : (
+              <LightModeOutlinedIcon /> // 라이트 모드 아이콘
+            )}
+          </IconButton>
         </IconButton>
         <IconButton>
-          <NotificationsOutlinedIcon />
-          {/* // 알림 아이콘 */}
+          <Notification />
         </IconButton>
         <IconButton>
-          <SettingsOutlinedIcon />
-          {/* // 설정 아이콘 */}
+          <IconButton>
+            <SettingsOutlinedIcon />
+            {/* // 설정 아이콘 */}
+          </IconButton>
         </IconButton>
         <IconButton>
-          <PersonOutlinedIcon />
-          {/* // 사용자 아이콘 */}
+          <IconButton>
+            <PersonOutlinedIcon />
+            {/* // 사용자 아이콘 */}
+          </IconButton>
         </IconButton>
       </Box>
     </Box>
