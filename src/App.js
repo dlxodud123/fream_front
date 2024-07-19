@@ -35,8 +35,13 @@ import ProtectedAdminLogin from "./AdminPage/adminAccess/ProtectedAdminLogin.js"
 import AdminLogin from "./AdminPage/page/AdminLogin/adminLogin.js";
 import { AuthProvider } from "./AdminPage/adminAccess/adminAccess.jsx";
 import { UserAuthProvider } from "./Auth/UserAuthContext.jsx";
+
 import Payment from "./myPage/js/payment/Payment";
 import PointMain from "./myPage/js/point/PointMain";
+
+import Style from "./style/style.jsx";
+import Saved from "./myPage/js/saved/saved.js";
+
 
 function App() {
   const AppWrapper = ({ children }) => {
@@ -45,6 +50,12 @@ function App() {
 
     return <div className={isAdminRoute ? "admin" : "main"}>{children}</div>;
   };
+
+  const axiosBaseURL = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    withCredentials: true, // 이 부분 추가
+  });
+
   useEffect(() => {
     const logUserAccess = async () => {
       try {
@@ -52,7 +63,7 @@ function App() {
         const userId = localStorage.getItem("userId");
         console.log("유저임팩트");
         // 서버로 데이터 전송
-        await axios.post("http://localhost:3001/Access/logUserAccess", {
+        await axiosBaseURL.post("http://192.168.0.101:3001/Access/logUserAccess", {
           userId,
         });
       } catch (error) {
@@ -72,6 +83,7 @@ function App() {
         <div className="App">
           <AppWrapper>
             <Routes>
+    
               <Route path="/Admin/*" element={<ProtectedRoute />}>
                 <Route path="*" element={<AdminRouter />} />
               </Route>
@@ -86,6 +98,7 @@ function App() {
                   </App1>
                 }
               ></Route>
+              <Route path="/my/saved" element={<Saved></Saved>}></Route>
               <Route path="/shop" element={<Shope></Shope>}></Route>
               <Route path="/shop" element={<Shopeshoes />}></Route>
               <Route path="/men" element={<Men />}></Route>
@@ -104,6 +117,7 @@ function App() {
               <Route path="/my/payment" element={<Payment />}></Route>
               <Route path="/my/point" element={<PointMain />}></Route>
               <Route path="/*" element={<BoardContainer />} />
+              <Route path="/Style" element={<Style />} />
               <Route
                 path="/products/:id"
                 element={<Detail_form></Detail_form>}
@@ -121,6 +135,7 @@ function App() {
                 element={<Buy_history_from></Buy_history_from>}
               ></Route>
             </Routes>
+       
           </AppWrapper>
         </div>
       </AuthProvider>

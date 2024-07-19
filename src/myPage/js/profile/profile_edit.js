@@ -10,39 +10,40 @@ import NameProfile_email from './Name.js';
 import axios from 'axios';
 
 const Profile_edit = () =>{
-    const axiosBaseURL = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_API_URL,
-        withCredentials: true,
-      });
       
       let [date, setDate] = useState({});//데이터 id
       const defaultProfileImg = blank_profile;
       let [userImg, setUserImg] = useState(defaultProfileImg);//프로필 이미지변경
       const fileInputRef = useRef(null);
+
       let [modalSelf, setModalSelf] = useState(false);//소개 변경스위치
       
       
-        useEffect(() => {
-            axiosBaseURL.get('http://localhost:3000/my/profile-edit')
-
-            //fetch(`http://localhost:3000/my/profile-edit`)
-                .then(response => response.json())
-                .then(data =>{
-                    console.log(data)
-                    setDate({
-                        img: data.img,
-                        userId: data.userId,
-                        userName: data.userName,
-                        mySelf: data.userBio
-                    });
-                    if(data.img){
-                        setUserImg(data.img);
-                    }
-                })
-                .catch(error =>{
-                    console.log('profile 에러 useEffect', error);
+    const axiosBaseURL = axios.create({
+        baseURL: process.env.NEXT_PUBLIC_API_URL,
+        withCredentials: true,
+    });
+    
+      
+    useEffect(() => {
+        axiosBaseURL.get('http://192.168.0.101:3001/my/profile-edit')
+            .then(response => response.ok)
+            .then(date=>{
+                console.log("==================",date)
+                setDate({
+                    img: date.imageUrl,
+                    userId: date.userId,
+                    userName: date.userName,
+                    mySelf: date.userBio
                 });
-        }, []);
+                if(date.img){
+                    setUserImg(date.img);
+                }
+            })
+            .catch(error =>{
+                console.log('profile 에러 useEffect', error);
+            });
+    }, []);
     
 
 
@@ -53,21 +54,23 @@ const Profile_edit = () =>{
                 const formData = new FormData();
                 formData.append('file', file);
 
-                const response = await fetch('http://localhost:3000/my/profile-edit/img', {
-                    method: 'POST',
+                const response = await axiosBaseURL.post('http://192.168.0.101:3001/my/profile-edit/img', {
+                    // method: 'POST',
                     body: formData,
-                });
+                })
 
-                if (response.ok){
-                    const data = await response.json();
-                    setUserImg(data.imageUrl);
+                .then(response => response.ok)
+                .then(data => {
+                    const date = data.json()
+                    setUserImg(date.imageUrl);
                     setDate(prevState => ({
                         ...prevState,
-                        img: data.imageUrl,
+                        img: date.imageUrl,
                     }));
-                }else{
-                    console.log("업로드 실패")
-                }
+                })
+                .catch(error =>{
+                    console.log("업로드 실패 : ", error)
+                })
 
             }catch (error){
                 console.log('이미지 파일 error발생' , error)
@@ -101,7 +104,7 @@ return(
                 <div className='user_profile'>
                     <div className='profile_thumb'>
                         <div className='profileIm'>
-                            <img className='img_profile' src = {userImg} alt='Profile' />
+                            <img className='img_profile' src = {date.imageUrl} alt='Profile' />
                             <input
                                 hidden
                                 id='img'

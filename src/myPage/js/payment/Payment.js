@@ -23,14 +23,11 @@ const Payment = () => {
             .then(data =>{
                 console.log(data)
                 setDate({
-                    img: data.img,
-                    userId: data.userId,
-                    userName: data.userName,
-                    mySelf: data.userBio
+                
                 });
             })
             .catch(error =>{
-                console.log('profile 에러 useEffect', error);
+                console.log('payment 에러 useEffect', error);
             });
     }, []);
 

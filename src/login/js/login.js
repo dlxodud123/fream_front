@@ -31,13 +31,13 @@ const kakaoLogin = (code) => {
   return function (dispathch, getState, { history }) {
     axios({
       method: "GET",
-      url: `http://localhost:3000/auth?code=${code}`,
+      url: `http://192.168.0.13:3000/auth?code=${code}`,
     })
       .then((res) => {
         console.log(res);
         const Access_Token = res.data.accessToken;
         localStorage.setItem("token", Access_Token);
-        window.alert('1');
+        window.alert("1");
         history.replace("/"); //로그인성공시 화면전환
       })
       .catch((err) => {
@@ -91,19 +91,24 @@ const LoginPage = () => {
       setAdminAccess(true);
       navigate("/LoginAdmin");
     } else {
+      //http://192.168.0.101:3001
       if (idEmail)
         $.ajax({
-          url: "http://localhost:3001/auth/loginCheck",
+          url: "/api/auth/loginCheck",
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
+          xhrFields: {
+            withCredentials: true,
+          },
           success: function (data) {
             const jwtToken = data;
             if (jwtToken) {
               setToken(jwtToken);
               console.log("success");
               localStorage.setItem("jwtToken", jwtToken);
-              navigate("/");
+              navigate("/myPage");
+              // navigate("/");
             } else {
               console.log("fail");
             }

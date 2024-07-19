@@ -46,13 +46,13 @@ const Header_sell_modal = (props) => {
                             </button>
                         </div>
                         <div className={'sell_modal-title'}> 
-                            <img src={props.detail_main_image} style={{height:"80px", marginLeft:"30px", backgroundColor:"#f4f4f4"}}></img>
+                            <img src={props.detail_main_image} style={{height:"120px", marginLeft:"30px", backgroundColor:"#f4f4f4"}}></img>
                             <div style={{marginLeft:"15px", textAlign:"left"}}>
                                 <div style={{fontWeight:"bold"}}>{props.main_info_shoes.prid}</div>
-                                <div><span style={{fontWeight:"bold"}}>{props.main_info_shoes.nameEng}</span><br></br><span>{props.main_info_shoes.nameKor}</span></div>
+                                <div style={{width:"280px"}}><span style={{fontWeight:"bold"}}>{props.main_info_shoes.nameEng}</span><br></br><span>{props.main_info_shoes.nameKor}</span></div>
                             </div>
                         </div>
-
+                        <div style={{height:"20px"}}></div>
                         <div style={{width:"420px" ,height:"70px", marginLeft:"30px", display:"flex", marginTop:"10px"}}>
                             <Sell_modal_btn active={sellBtn === 220} onClick={() => setSellBtn(220)}><span className='span_font1'>220</span><br></br><span className='span_font2'>{formatPrice(props.main_info_shoes.price)}</span></Sell_modal_btn>
                             <div style={{width:"10px"}}></div>

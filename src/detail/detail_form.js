@@ -18,11 +18,6 @@ const axiosBaseURL = axios.create({
 });
 
 const Detail_form = () => {
-  const axiosBaseURL = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-    withCredentials: true, // 이 부분 추가
-  });
-
   let [final_size, setFinal_Size] = useState("모든 사이즈");
   const { id } = useParams();
 
@@ -42,12 +37,11 @@ const Detail_form = () => {
 
   useEffect(() => {
     axiosBaseURL
-
-      .get(`http://localhost:3001/products/${id}`)
-
+      .get(`http://192.168.42.142:3001/products/${id}`)
       .then((data) => {
         console.log("data:", data);
         if (data.data && data.data.length > 0) {
+          console.log("data1 : ", data.data[0].imgName);
           setMain_info_shoes(data.data[0]);
           setDetail_shoes_id(data.data[0].prid);
           // setLinked_img(data.data[0].linkedImgName);
@@ -66,23 +60,8 @@ const Detail_form = () => {
           const imageUrls = imgNameArray.map((imgName) => {
             return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
           });
-
-          const rawLinkedImgName = data.data[0].linkedImgName;
-          let cleanedLinkedImgName = rawLinkedImgName;
-          if (
-            rawLinkedImgName.startsWith("['") &&
-            rawLinkedImgName.endsWith("']")
-          ) {
-            cleanedLinkedImgName = rawLinkedImgName.substring(
-              2,
-              rawLinkedImgName.length - 2
-            );
-          }
-          const linkedImgNameArray = cleanedLinkedImgName.split("', '");
-          const linkedImageUrls = linkedImgNameArray.map((imgName) => {
-            return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
-          });
-
+          setMainImageUrls(imageUrls);
+          
           if (data.data[0].linkedImgName) {
             const rawlinkedImgName = data.data[0].linkedImgName;
             let cleanedlinkedImgName = rawlinkedImgName;
@@ -97,13 +76,10 @@ const Detail_form = () => {
             }
             const linkedimgNameArray = cleanedlinkedImgName.split("', '");
             const linkedimageUrls = linkedimgNameArray.map((imgName) => {
-              return `http://localhost:3001/admin/products/linkedfiles/${imgName}`;
+              return `http://192.168.42.142:3001/admin/products/linkedfiles/${imgName}`;
             });
             setLinkedImageUrls(linkedimageUrls);
           }
-          setMainImageUrls(imageUrls);
-
-          console.log("data : ", data);
         } else {
           console.log("데이터가 비어 있음");
         }
@@ -137,7 +113,7 @@ const Detail_form = () => {
     <>
       <div className="body1">
         <Detail_header
-          detail_main_image={mainImageUrls[0]}
+          detail_main_image={mainImageUrls}
           main_info_shoes={main_info_shoes}
           final_size={final_size}
           setFinal_Size={setFinal_Size}
@@ -145,7 +121,7 @@ const Detail_form = () => {
         <div className="detail_container">
           {/* <Detail_img detail_main_image={main_info_shoes.imgName}></Detail_img> */}
           <Detail_img
-            detail_main_image={mainImageUrls[0]}
+            detail_main_image={mainImageUrls}
             detail_linked_images={linkedImageUrls}
           ></Detail_img>
 

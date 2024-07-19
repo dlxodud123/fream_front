@@ -6,10 +6,13 @@ const NumberPlateModal = ({ onSelect }) => {
     const [randomNumbers, setRandomNumbers] = useState([]);
     const [selectedNumbers, setSelectedNumbers] = useState([]);//카드값 저장
 
-    useEffect(() => {
+    const shuffleNumbers = () => {
         const numbers = Array.from({ length: 10 }, (_, i) => i);
         const shuffledNumbers = numbers.sort(() => Math.random() - 0.5);
         setRandomNumbers(shuffledNumbers);
+    };
+    useEffect(() => {
+        shuffleNumbers(); // 컴포넌트가 마운트될 때 숫자 셔플
     }, []);
 
     const handleNumberSelect = (number) => {
@@ -36,10 +39,10 @@ const NumberPlateModal = ({ onSelect }) => {
                             {number}
                         </button>
                     ))}
-                    <button className="arrow-button" onClick={() => onSelect('back')}>
+                    <button className="arrow-button" onClick={() => onSelect('')}>
                         <FontAwesomeIcon icon={faArrowLeft} />
                     </button>
-                    <button className="arrow" onClick={() => onSelect('back')}>
+                    <button className="arrow" onClick={shuffleNumbers}>
                         <span>재배열</span>
                     </button>
                 </div>

@@ -57,6 +57,8 @@ function CardModal({ onClose }) {
                             <div className="card-btn-container">
                                 <div className="cardType">
                                     <p>카드 번호</p>
+                                <div>  
+                                    <div className="cardinput_area">
                                     <div className="cardNumInput">
                                         {cardNumber.map((num, index) => (
                                             <div key={index} className="cardNumOpen">
@@ -71,11 +73,11 @@ function CardModal({ onClose }) {
                                                 {index < cardNumber.length - 1 && <span className="divide">-</span>}
                                             </div>
                                         ))}
-                                    </div>
+                                        </div>
+                                        </div>
+                                    </div>  
                                     <p className="form_feedback">올바른 카드번호를 입력해주세요.</p>
                                 </div>
-
-
                                     <span>카드종류</span>
                                     <div className="btn_cardGroup">
                                         <button className="card-btnStyle">개인 카드</button>
