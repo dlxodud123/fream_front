@@ -9,6 +9,7 @@ import shoesitems from "../shoesitemdata/shoesitemdata";
 import '../css/main.css'; // Ensure this is imported to apply the CSS
 import { data } from 'jquery';
 
+
 function Shope() {
   let [shopdata, setShopData] = useState([]);
   let navigate = useNavigate();
