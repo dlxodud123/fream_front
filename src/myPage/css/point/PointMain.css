@@ -1,0 +1,248 @@
+
+
+
+
+.content_point{
+    display: flex;
+}
+
+.titlePoint{
+    display: flex;
+    font-size: 24px;
+}
+.btn_help{
+    display: flex;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    padding: 0;
+    margin-left: 4px;
+}
+.dashbord_point{
+    align-items: center;
+    background-color: #fafafa;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 30px;
+}
+.point_summary{
+    align-items: center;
+    display: flex;
+    flex: 1;
+    max-width: 420px;
+}
+.point_info{
+    margin: 0;
+    padding: 0;
+}
+.titlePo{
+    color: rgba(34, 34, 34, .5);
+    font-size: 13px;   
+    margin: 0;
+}
+.keepPoint,
+.extinctPoint{
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0;
+}
+.divide{
+    flex: 1;
+    height: 44px;
+}
+.divide_line{
+    background-color: rgba(34, 34, 34, .1);
+    height: 100%;
+    margin: auto;
+    width: 1px;
+}
+.register_point{
+    /* padding-left: 25px; */
+}
+.PointBtn{
+    background-color: #222;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 12px;
+    font-size: 14px;
+    height: 42px;
+    padding: 0 18px;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+.pointMsg{
+    color: rgba(34, 34, 34, .5);
+    font-size: 13px;   
+    margin: 0;
+    margin-top: 12px;
+}
+
+.point_eara{
+    border-top: 2px solid #222;
+    margin-top: 40px;
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+}
+.pointNullmsg{
+    text-align: center;
+    font-size: 14px;
+    color: rgba(34, 34, 34, .5);
+}
+.history{
+    font-size: 14px;
+    font-weight: 400;
+    padding: 15px 0;
+}
+.history.header{
+    text-align: left;
+}
+.history.Header{
+    text-align: right;
+}
+.point_empty{
+    padding-top: 150px;
+}
+
+
+/*  */
+.layer_cardContainer{
+    max-height: 100%;
+    background-color: #fff;
+    border-radius: 17px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .1);
+    width: 448px;
+}
+.modal_header{
+    font-size: 18px;
+    font-weight: 700;
+    min-height: 44px;
+    padding: 18px 50px;
+    line-height: 44px;
+}
+.point_layerContent{
+    padding: 4px 32px 36px;
+
+}
+.point_header{
+    padding: 10px 0 14px;
+}
+
+.point_header>h4{
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 700;
+}
+.pointCode{
+    border: none;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 15px;
+    line-height: 22px;
+    padding: 8px;
+    width: 100%;
+}
+.pointCode:focus{
+    outline: none;
+    border-bottom: 2px solid black;
+}
+.descriptionMsg{
+    color: rgba(34, 34, 34, .5);
+    font-size: 12px;
+    line-height: 18px;
+}
+.point-layerBtn{
+    display: flex;
+    justify-content: center;
+    padding: 24px 32px 32px;
+}
+.point-Btn{
+    width: 120px;
+    border: 1px solid #d3d3d3;
+    color: rgba(34, 34, 34, .8);
+    border-radius: 12px;
+    font-size: 14px;
+    height: 42px;
+    padding: 0 18px;
+    align-items: center;
+}
+.point-Btn.Outline{
+    background-color: #fff;
+}
+.point-Btn.solid{
+    margin-left: 8px;
+    color: #fff;
+    border: 1px solid #ebebeb;
+}
+.point-Btn.solid.active{
+    background-color: #222;
+}
+
+/*  */
+.save_po{
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.savePoint{
+    width: 100px;
+    height: 100px;
+    background-color: #222;
+    color: #fff;
+    align-content: center;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 25px;
+    margin-right: 20px;
+    flex-shrink: 0; 
+}
+.usePoint{
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    color: red;
+    align-content: center;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 25px;
+    margin-right: 20px;
+    border: 1px solid red;
+    flex-shrink: 0; 
+}
+
+.save_list{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.save_detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.point_score {
+    display: flex;
+    align-items: center;
+}
+.saveDay{
+    color: rgba(34, 34, 34, .5);
+    font-size: 20px;
+}
+.note{
+    font-weight: 700;
+}
+.point_score>p{
+    font-size: 25px;
+    font-weight: 700;
+}
+.redText {
+    color: red;
+}

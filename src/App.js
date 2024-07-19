@@ -35,6 +35,8 @@ import ProtectedAdminLogin from "./AdminPage/adminAccess/ProtectedAdminLogin.js"
 import AdminLogin from "./AdminPage/page/AdminLogin/adminLogin.js";
 import { AuthProvider } from "./AdminPage/adminAccess/adminAccess.jsx";
 import { UserAuthProvider } from "./Auth/UserAuthContext.jsx";
+import Payment from "./myPage/js/payment/Payment";
+import PointMain from "./myPage/js/point/PointMain";
 
 function App() {
   const AppWrapper = ({ children }) => {
@@ -99,6 +101,8 @@ function App() {
               <Route path="/my/account" element={<Settlement />}></Route>
               <Route path="/my/buying" element={<Buying />}></Route>
               <Route path="/my/selling" element={<Selling />}></Route>
+              <Route path="/my/payment" element={<Payment />}></Route>
+              <Route path="/my/point" element={<PointMain />}></Route>
               <Route path="/*" element={<BoardContainer />} />
               <Route
                 path="/products/:id"

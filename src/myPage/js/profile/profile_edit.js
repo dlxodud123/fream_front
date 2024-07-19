@@ -97,7 +97,7 @@ return(
                         <h3>프로필 관리</h3>
                     </div>
                 </div>
-                <div></div>
+
                 <div className='user_profile'>
                     <div className='profile_thumb'>
                         <div className='profileIm'>
