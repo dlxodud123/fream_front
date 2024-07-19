@@ -15,7 +15,7 @@ function ModalSellEnd({ onClose, selectedButton, setSelectedButton }) {
     };
 
 
-    const btns = ['전체','취소완료','배송완료','반품완료','반품거부','교환완료','교환거부'];
+    const btns = ['전체','정산완료','취소완료'];
 
     return (
         <div className="product_layer">
@@ -30,7 +30,7 @@ function ModalSellEnd({ onClose, selectedButton, setSelectedButton }) {
                                 <div className='head_product'>
                                     {btns.map((btn, index) => (
                                         <button key={index} 
-                                                className={`productBtn ${btn === '취소완료' ||btn === '반품거부' || btn === '교환거부' ? 'special' : ''} ${btn === selectedButton ? 'focused' : ''}`}
+                                                className={`productBtn ${btn === '취소완료' ? 'special' : ''} ${btn === selectedButton ? 'focused' : ''}`}
                                          onClick={() => openModalProduct(btn)}>
                                             {btn}
                                         </button>
