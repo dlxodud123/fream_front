@@ -36,6 +36,7 @@ import AdminLogin from "./AdminPage/page/AdminLogin/adminLogin.js";
 import { AuthProvider } from "./AdminPage/adminAccess/adminAccess.jsx";
 import { UserAuthProvider } from "./Auth/UserAuthContext.jsx";
 import Style from "./style/style.jsx";
+import Post from "./style/post.jsx";
 
 function App() {
   const AppWrapper = ({ children }) => {
@@ -102,6 +103,7 @@ function App() {
               <Route path="/my/selling" element={<Selling />}></Route>
               <Route path="/*" element={<BoardContainer />} />
               <Route path="/Style" element={<Style />} />
+              <Route path="/post" element={<Post />} />
               <Route
                 path="/products/:id"
                 element={<Detail_form></Detail_form>}

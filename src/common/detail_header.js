@@ -116,7 +116,10 @@ function Detail_header(props) {
                 </a>
               </div>
               <div style={{ fontSize: "22px", width: "130px" }}>
-                <a style={{ color: "black", textDecoration: "none" }} href="#">
+                <a
+                  style={{ color: "black", textDecoration: "none" }}
+                  href="/style"
+                >
                   STYLE
                 </a>
               </div>
