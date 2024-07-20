@@ -33,7 +33,7 @@ function ShopHeader() {
                   textDecoration: "none",
                   fontSize: "14px",
                 }}
-                href="/#"
+                href="/myPage"
               >
                 마이페이지
               </a>

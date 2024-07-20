@@ -8,9 +8,10 @@ import MypageList from './MypageList.js';
 import Header from '../../common/header';
 import Footer from '../../common/footer';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 
 
@@ -18,6 +19,28 @@ const MyPage = () => {
   let [userId, setUserId] = useState();
   let [email, setEmail] = useState();
   let navigate = useNavigate();
+
+  const [ date , setDate ] =useState([]);
+  const axiosBaseURL = axios.create({
+        baseURL: process.env.NEXT_PUBLIC_API_URL,
+        withCredentials: true,
+    });
+    useEffect(() => {
+        axiosBaseURL.get('http://192.168.0.101:3001/myPage')
+            .then(response => response)
+            .then(date =>{
+                console.log(date)
+                setDate({
+                    img: date.img,
+                    userId: date.userId,
+                    userName: date.userName,
+                    mySelf: date.userBio
+                });
+            })
+            .catch(error =>{
+                console.log('mypag에러', error);
+            });
+    }, []);
 
 
 return (
@@ -38,8 +61,8 @@ return (
           
           <div className="user-info">
             <div className='info-box'>
-              <strong className='name'>{userId}userId</strong>
-              <p className='email_mypage'>{email}emxxxx@naver.com</p>
+              <strong className='name'>{date.userId}</strong>
+              <p className='email_mypage'>{date.email}</p>
             </div>
             <div>
               <button type="button" className="info-but" onClick={()=>{
@@ -52,30 +75,48 @@ return (
 
         <div className="container_text-center">
       <div className='shortcut_grid'>
+          <button className='mypage_pageMove'
+                  onClick={''}>
+            <div className="menu_item">
+              <div className='seller-grade'></div>
+              <span>판매자 등급</span>
+            </div>
+          </button>
+          <button className='mypage_pageMove'>
           <div className="menu_item">
-            <div className='seller-grade'></div>
-            <span>판매자 등급</span>
-          </div>
+              <div className='seller-p'></div>  
+              <span>P</span>
+            </div>
+          </button>
+
+          <button className='mypage_pageMove'>
           <div className="menu_item">
-            <div className='seller-p'></div>  
-            <span>P</span>
-          </div>
+              <div className='seller-cupon'></div>  
+              <span>쿠폰</span>
+            </div>  
+          </button>
+        
+          <button className='mypage_pageMove'>
           <div className="menu_item">
-            <div className='seller-cupon'></div>  
-            <span>쿠폰</span>
-          </div>
-          <div className="menu_item">
-            <div className='seller-phon'></div>  
-            <span>내 폰 시세</span>
-          </div>
-          <div className="menu_item">
-            <div className='seller-invite'></div>  
-            <span>친구 초대</span>
-          </div>
-          <div className="menu_item">
-            <div className='seller-announcement'></div>  
-            <span>공지사항</span>
-          </div>
+              <div className='seller-phon'></div>  
+              <span>내 폰 시세</span>
+            </div>
+          </button>
+
+          <button className='mypage_pageMove'>
+            <div className="menu_item">
+              <div className='seller-invite'></div>  
+              <span>친구 초대</span>
+            </div>
+          </button>
+
+          <button className='mypage_pageMove'>
+            <div className="menu_item">
+              <div className='seller-announcement'></div>  
+              <span>공지사항</span>
+            </div>
+          </button>
+
         </div>       
       </div>
 
@@ -90,22 +131,22 @@ return (
           <div className='inventory_box'>
             <div className="row row-cols-4">
                   <div className="tab_item total">
-                    <Link className='titl_link'>발송요청
+                    <Link to={""} className='titl_link'>발송요청
                       <div className='count_inventory'>0</div>
                     </Link>
                   </div>
                   <div className="tab_item total">
-                    <Link className='tab_item'>판매대기
+                    <Link to={""} className='tab_item'>판매대기
                       <div>0</div>
                     </Link>
                   </div>
                   <div className="tab_item total">
-                    <Link className='tab_item'>판매 중
+                    <Link to={""} className='tab_item'>판매 중
                       <div>0</div>
                     </Link>
                   </div>
                   <div className="tab_item total">
-                    <Link className='tab_item'>정산완료
+                    <Link to={""} className='tab_item'>정산완료
                       <div>0</div>
                     </Link>
                   </div>

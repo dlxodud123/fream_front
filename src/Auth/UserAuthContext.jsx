@@ -19,6 +19,7 @@ export const UserAuthProvider = ({ children }) => {
 
     if (jwtToken) {
       axios
+
         .post(
           "http://192.168.0.13:3001/auth/verifyToken",
           { token: jwtToken },

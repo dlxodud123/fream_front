@@ -28,7 +28,7 @@ const MypageList = () => {
               <li className="list-item">
                 <Link to={"/my/profile-edit"} className="myShoping">프로필 관리</Link></li>
               <li className="list-item">
-                <Link to={"/my/seller-tier"} className="myShoping">판매자 등급</Link></li>
+                <Link to={"/"} className="myShoping">판매자 등급</Link></li>
               <li className="list-item">
                 <Link to={"/my/address"} className="myShoping">주소록</Link></li>
               <li className="list-item">
@@ -36,11 +36,11 @@ const MypageList = () => {
               <li className="list-item">
                 <Link to={"/my/account"} className="myShoping">판매 정산 계좌</Link></li>
               <li className="list-item">
-                <Link to={"/my/receipt"} className="myShoping">현금영수증 정보</Link></li>
+                <Link to={"/"} className="myShoping">현금영수증 정보</Link></li>
               <li className="list-item">
                 <Link to={"/my/point"} className="myShoping">포인트</Link></li>
               <li className="list-item">
-                <Link to={"/my/coupon"} className="myShoping">쿠폰</Link></li>
+                <Link to={"/"} className="myShoping">쿠폰</Link></li>
             </ul>
         </div>
     </div>

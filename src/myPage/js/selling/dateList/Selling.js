@@ -89,7 +89,7 @@ function Selling(props) {
             <div className='purchas_head'>
                 <div className='head_product'>
                     <button className='btn_buyFilter' onClick={openModalProduct}>
-                        {selectedButton}
+                        {selectedButton} {/*기본값 '전체'*/}
                         <FontAwesomeIcon
                             icon={faCaretDown}
                             className="buyIcon"

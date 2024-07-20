@@ -37,12 +37,12 @@ function EditBoardForm({ boardList, updateBoardItem }) {
 
     fetchBoardList();
   }, [No]);
-  useEffect(() => {
-    if (post) {
-      setTitle(post.title);
-      setEditorData(post.content);
-    }
-  }, [post]);
+//   useEffect(() => {
+//     if (post) {
+//       setTitle(post.title);
+//       setEditorData(post.content);
+//     }
+//   }, [post]);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -89,6 +89,7 @@ function EditBoardForm({ boardList, updateBoardItem }) {
         </div>
         <div className="form_group">
           <label htmlFor="title">제목</label>
+
           <input
             type="text"
             id="title"
@@ -96,6 +97,7 @@ function EditBoardForm({ boardList, updateBoardItem }) {
             value={board.title}
             onChange={(e) => setTitle(e.target.value)}
           />
+
         </div>
         <div>
           <CKEditor
