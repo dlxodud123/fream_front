@@ -8,7 +8,7 @@ body {
 }
 .detail_img_container{
     width: 560px;
-    height: 731px;
+    /* height: 731px; */
     position: -webkit-sticky; 
     position: sticky;
     top: 130px;
@@ -21,7 +21,7 @@ body {
     text-align: left;
     display: grid;
     grid-template-columns: 62.85px 62.85px 62.85px 62.85px 62.85px 62.85px 62.85px;
-    grid-template-rows: 62.85px 62.85px;
+    /* grid-template-rows: 62.85px 62.85px; */
     gap: 20px;
 }
 

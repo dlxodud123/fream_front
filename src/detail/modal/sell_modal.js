@@ -8,6 +8,7 @@ const Sell_modal = (props) => {
     const [img, setImg] = useState('');
 
     let data = encodeURIComponent(JSON.stringify(props.main_info_shoes));
+    let prid = props.main_info_shoes.prid;
 
     useEffect(() => {
         setSellBtn(parseInt(props.final_size));
@@ -31,7 +32,7 @@ const Sell_modal = (props) => {
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
     const buy_link = () => {
-        window.location.href = `/sell/${data}/${sellBtn}`;
+        window.location.href = `/sell/${prid}/${sellBtn}`;
     }
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US').format(price);
