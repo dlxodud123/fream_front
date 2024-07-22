@@ -37,7 +37,7 @@ const Detail_form = () => {
 
   useEffect(() => {
     axiosBaseURL
-      .get(`http://192.168.42.142:3001/products/${id}`)
+      .get(`http://localhost:3001/products/${id}`)
       .then((data) => {
         console.log("data:", data);
         if (data.data && data.data.length > 0) {
@@ -61,7 +61,7 @@ const Detail_form = () => {
             return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
           });
           setMainImageUrls(imageUrls);
-          
+
           if (data.data[0].linkedImgName) {
             const rawlinkedImgName = data.data[0].linkedImgName;
             let cleanedlinkedImgName = rawlinkedImgName;
