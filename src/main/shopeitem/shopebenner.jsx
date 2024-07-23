@@ -55,8 +55,8 @@ let [items] = useState(items1)
           ))}
         </div>
       </div>
-      <div className="moving-control">
-        <button
+      <div className="moving-control" >
+        <button style={{backgroundColor:'white'}}
           className={`arrow prev ${currentIndex === 0 ? 'disabled' : ''}`}
           onClick={handlePrev}
         >
@@ -70,7 +70,7 @@ let [items] = useState(items1)
             ></span>
           ))}
         </div>
-        <button
+        <button style={{backgroundColor:'white'}}
           className={`arrow next ${currentIndex === totalPages - 1 ? 'disabled' : ''}`}
           onClick={handleNext}
         >

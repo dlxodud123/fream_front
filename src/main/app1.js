@@ -34,7 +34,7 @@ function App1() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosBaseURL.get("http://192.168.0.101:3001/home");
+        const response = await axiosBaseURL.get("http://192.168.0.13:3001/home");
         // const data = response.data;
         setShoes(response.data);
         // console.log(response.data); // 상태 업데이트 후의 데이터를 로그로 출력
