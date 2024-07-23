@@ -6,33 +6,37 @@ import AddresLayer from './AddresLayer.js';
 import Footer from "../../../common/footer";
 import DaumAddress from "./SerchAddress";
 import ModifyAddress from './Modify_address.js';
+import axios from "axios";
 
 const Address = () => {
-    const [addressLayer, setAddressLayer] = useState(false);
+    let [date, setDate] = useState({});//데이터
+
     const [addressArry, setAddressArry] = useState([]); // 주소 데이터를 저장할 배열
-    const [isEditing, setIsEditing] = useState(false);
+    const [addressLayer, setAddressLayer] = useState(false);//새 배송지 모달창 열기
+    const [modiLayer, setModiLayer] = useState(false);//수정 모달창 열기
+
     const [currentEditIndex, setCurrentEditIndex] = useState(null);
     const [postcode, setPostcode] = useState("");
     const [address, setAddress] = useState("");
     const [recipient, setRecipient] = useState("");
     const [phone, setPhone] = useState("");
 
-//   useEffect(() => {
-//         // 여기서 실제 데이터 fetch를 구현합니다. 현재는 더미 데이터를 사용합니다.
-//         const fetchData = async () => {
-//             const response = await fetch('/api/address'); // 실제 API 엔드포인트로 변경하세요
-//             const data = await response.json();
-//          setAddressArry(data);
-//         };
-//          fetchData();
-//         }, []);
+    useEffect(() => { //백앤드 get 코드
+        const setDate = async () => {
+            // 주석 처리된 실제 백엔드 호출 부분
+            // axios.get('/api/my/address')
+            //     .then(res => {
+            //         console.log("address get data : ", res.data);
+            //         setAddressArry(res.data);
+            //     })
+            //     .catch(error => {
+            //         console.log('address 에러 useEffect', error);
+            //     });
 
-
-// 더미 데이터 생성
-    useEffect(() => {
-            const fetchData = async () => {
+            // 대신 더미 데이터 사용
             const dummyData = [
                 {
+                    id: 1,
                     recipient: "홍길동",
                     phone: "010-1234-5678",
                     postcode: "12345",
@@ -40,6 +44,7 @@ const Address = () => {
                     isDefault: true
                 },
                 {
+                    id: 2,
                     recipient: "김철수",
                     phone: "010-9876-5432",
                     postcode: "67890",
@@ -47,6 +52,7 @@ const Address = () => {
                     isDefault: false
                 },
                 {
+                    id: 3,
                     recipient: "이영희",
                     phone: "010-1111-2222",
                     postcode: "54321",
@@ -55,13 +61,19 @@ const Address = () => {
                 }
             ];
             setAddressArry(dummyData);
+            console.log("Address array set:", dummyData); // 디버깅
         };
 
-        fetchData();
+        setDate();
     }, []);
 
-    const toggleLayer = () => {
-        setAddressLayer(!addressLayer);
+    const deleteAddress = async (id) => {
+        try {
+            await axios.delete(`/api/my/address/${id}`);
+            await setDate(); //주소 데이터 다시 가지고 옴
+        } catch (error) {
+            console.error('주소 삭제 실패:', error);
+        }
     };
 
     const setDefaultAddress = (index) => {
@@ -73,29 +85,6 @@ const Address = () => {
         setAddressArry(newAddressArry); // 상태 업데이트
     };
 
-    const startEditing = (index) => {
-        setCurrentEditIndex(index);
-        const addressToEdit = addressArry[index];
-        setRecipient(addressToEdit.recipient);
-        setPhone(addressToEdit.phone);
-        setPostcode(addressToEdit.postcode);
-        setAddress(addressToEdit.address);
-        setIsEditing(true);
-    };
-
-    const saveEdit = () => {
-        const newAddressArry = [...addressArry];
-        newAddressArry[currentEditIndex] = {
-            recipient,
-            phone,
-            postcode,
-            address,
-            isDefault: addressArry[currentEditIndex].isDefault
-        };
-        setAddressArry(newAddressArry);
-        setIsEditing(false);
-        setCurrentEditIndex(null);
-    };
     const maskPhoneNumber = (phoneNumber) => { //전화번호 암호화화
         if (!phoneNumber) return "";
         const parts = phoneNumber.split("-");
@@ -111,6 +100,29 @@ const Address = () => {
         const firstChar = name.charAt(0); // 첫 번째 글자 추출
         const maskedPart = "*".repeat(name.length - 1); // 나머지 부분 마스킹
         return firstChar + maskedPart;
+    };
+    const toggleAddressLayer = () => {
+        setAddressLayer(!addressLayer);
+    };
+    const toggleModiLayer = () => {
+        setModiLayer(!modiLayer);
+    };
+    const startEditing = (index) => { //모디파이모달창의 트리거 역할
+        if (index < 0 || index >= addressArry.length) {
+            console.error("Invalid index:", index);
+            return;
+        }
+        setCurrentEditIndex(index);
+        const addressToEdit = addressArry[index];
+        if (addressToEdit) {
+            setRecipient(addressToEdit.recipient);
+            setPhone(addressToEdit.phone);
+            setPostcode(addressToEdit.postcode);
+            setAddress(addressToEdit.address);
+            setModiLayer(true); // 수정 모달창 열기
+        } else {
+            console.error("Address index:", index);
+        }
     };
 
     return (
@@ -129,18 +141,18 @@ const Address = () => {
                                 <button
                                     type="button"
                                     className="unitAll_address"
-                                    onClick={() => setAddressLayer(true)}>
+                                    onClick={toggleAddressLayer}>
                                     +새 배송지 추가
                                 </button>
-                                {addressLayer && <AddresLayer onClose={toggleLayer}
-                                                              setPostcode={setPostcode}
-                                                              setAddress={setAddress}/>}
+                                {addressLayer && <AddresLayer  onClose={toggleAddressLayer}
+                                                                date={date} 
+                                                                setDate={setDate}/>}
                             </div>
                         </div>
 
                         <div className="address_list">
                             {addressArry.map((address, index) => (
-                                <div key={index} className={index === 0 ? "address_item" : "address_other"}>
+                                <div key={address.id} className={index === 0 ? "address_item" : "address_other"}>
                                     <div className={index === 0 ? "my_active" : "active_other"}>
                                         <div className="info_bind">
                                             <div className="address_info">
@@ -165,70 +177,25 @@ const Address = () => {
                                             )}
                                             <button
                                                 className="modify B"
-                                                onClick={() => startEditing(index , address)}>
+                                                onClick={()=> startEditing(index)}>
                                                 수정
                                             </button>
-                                            <button className="del B">삭제</button>
+                                            <button className="del B"
+                                                    onClick={()=>deleteAddress(address.id)}>삭제</button>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        {isEditing && <ModifyAddress onClose={toggleLayer}
-                                                     setPostcode={setPostcode}
-                                                     setAddress={setAddress}
-                                                      />}
-                        {isEditing && (
-                            <div className="edit_form">
-                                <h3>주소 수정</h3>
-                                <label>
-                                    수취인:
-                                    <input
-                                        type="text"
-                                        value={recipient}
-                                        onChange={(e) => setRecipient(e.target.value)}
-                                    />
-                                </label>
-                                <label>
-                                    전화번호:
-                                    <input
-                                        type="text"
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                    />
-                                </label>
-                                <label>
-                                    우편번호:
-                                    <input
-                                        type="text"
-                                        value={postcode}
-                                        onChange={(e) => setPostcode(e.target.value)}
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => setAddressLayer(true)}>
-                                        우편번호 찾기
-                                    </button>
-                                    {addressLayer && (
-                                        <DaumAddress
-                                            onClose={toggleLayer}
-                                            setPostcode={setPostcode}
-                                            setAddress={setAddress}
-                                        />
-                                    )}
-                                </label>
-                                <label>
-                                    주소:
-                                    <input
-                                        type="text"
-                                        value={address}
-                                        onChange={(e) => setAddress(e.target.value)}
-                                    />
-                                </label>
-                                <button type="button" onClick={saveEdit}>저장</button>
-                                <button type="button" onClick={() => setIsEditing(false)}>취소</button>
-                            </div>
-                        )}
+                        
+                        {modiLayer && <ModifyAddress
+                                        onClose={toggleModiLayer}
+                                        recipient={recipient}
+                                        phone={phone}
+                                        postcode={postcode}
+                                        address={address}
+                        />
+                        }
                     </div>
                 </div>
             <Footer />

@@ -1,24 +1,28 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 function NameProfile_email({date, setDate}){
     const [profile_titleCh, setProfile_titleCh] = useState('profile_title')
     const [ onBtn, setOnBtn] = useState(false);
-    const [ userName, setUserName] = useState(date.email)
+    const [ userName, setUserName] = useState(date.userName)
 
+    useEffect(() => {
+      setUserName(date.userName);
+    }, [date.userName]);
 
     const handleSave = () => {
       setDate(prevDate => ({
         ...prevDate,
-        email: userName,
+        userName: userName,
       }));
-      const updatedData = { userName };
-      axios.post('/my/profile-edit/userName', updatedData)
+
+      console.log(userName)
+      axios.put('/api/my/profile-edit?userName='+ userName)
       .then(response => {
           console.log(response.data);
           setOnBtn(false);
-    })
+      })
       .catch(error => {
           console.error(error);
           setOnBtn(false);
@@ -26,7 +30,7 @@ function NameProfile_email({date, setDate}){
     };
     
       const handleCancel = () => {
-        setUserName(date.email);
+        setUserName(date.userName);
           setOnBtn(false);
       };
 
@@ -40,6 +44,7 @@ function NameProfile_email({date, setDate}){
                     <button
                         type="button"
                         className="unit_all"
+                        value={userName}
                         onClick={()=>{setOnBtn(true); setProfile_titleCh('changeTitle')}}
                         >변경
                     </button>

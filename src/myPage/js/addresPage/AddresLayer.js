@@ -3,7 +3,7 @@ import '../../css/address/addressLayer.css';
 import DaumAddress from './SerchAddress.js';
 import axios from 'axios';
 
-function AddresLayer({ onClose }) {
+function AddresLayer({ onClose, date, setDate }) {
     const [recipient, setRecipient] = useState('');
     const [ponNum, setPonNum] = useState('');
     const [postcode, setPostcode] = useState('');

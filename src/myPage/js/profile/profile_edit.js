@@ -5,40 +5,33 @@ import '../../css/profile/Profile_edit.css';
 import { useState, useRef, useEffect } from 'react';
 import blank_profile from '../../../img/login-page/blank_profile.4347742.png';
 import Modal_my_self from './Introduce.js';
-import FrofilName from './Profile_name.js';
+import ProfilName from './Profile_name.js';
 import NameProfile_email from './Name.js';
 import axios from 'axios';
 
 const Profile_edit = () =>{
       
-      let [date, setDate] = useState({});//데이터 id
+      let [date, setDate] = useState({});//데이터
       const defaultProfileImg = blank_profile;
       let [userImg, setUserImg] = useState(defaultProfileImg);//프로필 이미지변경
       const fileInputRef = useRef(null);
 
       let [modalSelf, setModalSelf] = useState(false);//소개 변경스위치
-      
-      
-    const axiosBaseURL = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_API_URL,
-        withCredentials: true,
-    });
     
       
     useEffect(() => {
-        axiosBaseURL.get('http://192.168.0.101:3001/my/profile-edit')
-            .then(response => response.ok)
-            .then(date=>{
-                console.log("==================",date)
+        axios.get('/api/my/profile-edit')
+            // .then(response => console.log(response))
+            .then(res=>{
+                console.log("==================",res.data)
                 setDate({
-                    img: date.imageUrl,
-                    userId: date.userId,
-                    userName: date.userName,
-                    mySelf: date.userBio
+                    img: res.data.imageUrl || defaultProfileImg,
+                    userId: res.data.userId,
+                    userName: res.data.username,
+                    profileName: res.data.profileName,
+                    userBio: res.data.userBio
                 });
-                if(date.img){
-                    setUserImg(date.img);
-                }
+                setUserImg(res.data.imageUrl || defaultProfileImg); 
             })
             .catch(error =>{
                 console.log('profile 에러 useEffect', error);
@@ -54,7 +47,7 @@ const Profile_edit = () =>{
                 const formData = new FormData();
                 formData.append('file', file);
 
-                const response = await axiosBaseURL.post('http://192.168.0.101:3001/my/profile-edit/img', {
+                const response = await axios.post('/api/my/profile-edit?img=', {
                     // method: 'POST',
                     body: formData,
                 })
@@ -67,6 +60,7 @@ const Profile_edit = () =>{
                         ...prevState,
                         img: date.imageUrl,
                     }));
+                    
                 })
                 .catch(error =>{
                     console.log("업로드 실패 : ", error)
@@ -75,7 +69,9 @@ const Profile_edit = () =>{
             }catch (error){
                 console.log('이미지 파일 error발생' , error)
             }
+            
         }
+        
     };
     const clickImgBnt = () =>{
         if(fileInputRef.current){
@@ -100,11 +96,10 @@ return(
                         <h3>프로필 관리</h3>
                     </div>
                 </div>
-
                 <div className='user_profile'>
                     <div className='profile_thumb'>
                         <div className='profileIm'>
-                            <img className='img_profile' src = {date.imageUrl} alt='Profile' />
+                            <img className='img_profile' src = {userImg} alt='Profile' />
                             <input
                                 hidden
                                 id='img'
@@ -115,7 +110,7 @@ return(
                     </div>
                         
                     <div className='profile-box'>
-                        <strong className='name'>userId{date.userId}</strong>
+                        <strong className='name'>{date.userId}</strong>
                         <div className='imgChangeBtn'>
                             <button type="file" className="imgCh" onClick={clickImgBnt}>이미지변경</button>
                             <button 
@@ -130,8 +125,9 @@ return(
                 <div className='profile_info'>
                 <div className='profileGroup'>
                     <h4 className='titleProf'>프로필 정보</h4>
-                <FrofilName date={date} 
-                            setDate={setDate}/>
+                <ProfilName date={date} 
+                            setDate={setDate}
+                            />
                 
                 <NameProfile_email date={date}
                                    setDate={setDate} />

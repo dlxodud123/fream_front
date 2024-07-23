@@ -35,13 +35,13 @@ import ProtectedAdminLogin from "./AdminPage/adminAccess/ProtectedAdminLogin.js"
 import AdminLogin from "./AdminPage/page/AdminLogin/adminLogin.js";
 import { AuthProvider } from "./AdminPage/adminAccess/adminAccess.jsx";
 import { UserAuthProvider } from "./Auth/UserAuthContext.jsx";
-
 import Payment from "./myPage/js/payment/Payment";
 import PointMain from "./myPage/js/point/PointMain";
-
 import Style from "./style/style.jsx";
+import Post from "./style/post.jsx";
 import Saved from "./myPage/js/saved/saved.js";
 
+import PrivateRoute from "./myPage/PrivateRoute";
 
 function App() {
   const AppWrapper = ({ children }) => {
@@ -103,31 +103,32 @@ function App() {
               <Route path="/shop" element={<Shopeshoes />}></Route>
               <Route path="/men" element={<Men />}></Route>
               <Route path="/women" element={<Women></Women>}></Route>
-              <Route path="/myPage" element={<MyPage></MyPage>}></Route>
               <Route path="/login" element={<LoginPage />}></Route>
               <Route path="/join" element={<Join />} />
               <Route path="/login/find_email" element={<FindEmail />} />
               <Route path="/login/find_password" element={<FindPw />} />
-              <Route path="/my/profile" element={<Profile />}></Route>
-              <Route path="/my/profile-edit" element={<Profile_edit />}></Route>
-              <Route path="/my/address" element={<Address />}></Route>
-              <Route path="/my/account" element={<Settlement />}></Route>
-              <Route path="/my/buying" element={<Buying />}></Route>
-              <Route path="/my/selling" element={<Selling />}></Route>
-              <Route path="/my/payment" element={<Payment />}></Route>
-              <Route path="/my/point" element={<PointMain />}></Route>
+              <Route path="/myPage" element={ <PrivateRoute><MyPage/></PrivateRoute>}></Route>
+              <Route path="/my/profile" element={<PrivateRoute><Profile /></PrivateRoute>}></Route>
+              <Route path="/my/profile-edit" element={ <PrivateRoute><Profile_edit /></PrivateRoute>}></Route>
+              <Route path="/my/address" element={ <PrivateRoute><Address /></PrivateRoute>}></Route>
+              <Route path="/my/account" element={ <PrivateRoute><Settlement /></PrivateRoute>}></Route>
+              <Route path="/my/buying" element={ <PrivateRoute><Buying /></PrivateRoute>}></Route>
+              <Route path="/my/selling" element={ <PrivateRoute><Selling /></PrivateRoute>}></Route>
+              <Route path="/my/payment" element={ <PrivateRoute><Payment /></PrivateRoute>}></Route>
+              <Route path="/my/point" element={ <PrivateRoute><PointMain /></PrivateRoute>}></Route>
               <Route path="/*" element={<BoardContainer />} />
               <Route path="/Style" element={<Style />} />
+              <Route path="/post" element={<Post />} />
               <Route
                 path="/products/:id"
                 element={<Detail_form></Detail_form>}
               ></Route>
               <Route
-                path="/sell/:data/:size"
+                path="/sell/:id/:size"
                 element={<Sell_form></Sell_form>}
               ></Route>
               <Route
-                path="/buy/:data/:size/:img"
+                path="/buy/:id/:size"
                 element={<Buy_form></Buy_form>}
               ></Route>
               <Route
