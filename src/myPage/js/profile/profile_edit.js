@@ -24,13 +24,14 @@ const Profile_edit = () =>{
             .then(res=>{
                 console.log("==================",res.data)
                 setDate({
-                    img: res.data.imageUrl || defaultProfileImg,
+                    img: res.data.profileUrl || defaultProfileImg,
                     userId: res.data.userId,
                     userName: res.data.username,
                     profileName: res.data.profileName,
                     userBio: res.data.userBio
                 });
-                setUserImg(res.data.imageUrl || defaultProfileImg); 
+                setUserImg(res.data.profileUrl || defaultProfileImg); 
+                console.log("ffffffff",date.img)
             })
             .catch(error =>{
                 console.log('profile 에러 useEffect', error);
@@ -72,13 +73,10 @@ const Profile_edit = () =>{
         const file = e.target.files[0];
         if (file) {
             try {
-                
                 formData.append('file', file);
-                
                 console.log('file', file);
                 console.log("fileeeeeee : ",formData.get('file'));
                 // console.log(formData);
-    
                 const response = await axios.put('/api/my/profile-edit/img', formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
@@ -104,6 +102,9 @@ const Profile_edit = () =>{
         }
     }
 
+    const baseUrl = '/api/upload/ProfileImg/';
+    const imageUrl = userImg.startsWith('/upload/ProfileImg/') ? baseUrl + userImg.split('/upload/ProfileImg/')[1] : userImg;
+
 return(
 
 <div>
@@ -121,7 +122,7 @@ return(
                 <div className='user_profile'>
                     <div className='profile_thumb'>
                         <div className='profileIm'>
-                            <img className='img_profile' src = {userImg} alt='Profile' />
+                            <img className='img_profile' src ={imageUrl}  alt='Profile' />{/*`/api/+${userImg}` */}
                             <input
                                 hidden
                                 id='img'

@@ -43,23 +43,28 @@ const MyPage = () => {
   useEffect(() => {
     axios.get('/api/myPage')
       .then(res => {
-        console.log("ㅇㅇㅇㅇㅇㅇㅇㅇㅇ", res.data);
+        console.log("Response Data:", res.data);
+        const profileImg = res.data.profileUrl || defaultProfileImg; // 기본 이미지로 설정
+
         setDate({
-          img: res.data.imageUrl,
+          img: profileImg,
           userId: res.data.userId,
           userEmail: res.data.email,
           profileName: res.data.profileName,
           userBio: res.data.userBio
         });
+        setUserImg(profileImg); // 상태 업데이트
       })
       .catch(error => {
         console.log('profile 에러 useEffect', error);
       });
-  }, []);
+  }, [isInitialized, isLoggedIn, navigate, defaultProfileImg]);
 
   if (!isInitialized) {
     return <div></div>;
   }
+  const baseUrl = '/api/upload/ProfileImg/';
+  const imageUrl = userImg.startsWith('/upload/ProfileImg/') ? baseUrl + userImg.split('/upload/ProfileImg/')[1] : userImg;
 
 return (
   <div>
@@ -76,7 +81,7 @@ return (
       <div className='user_membership'>
         <div className='user_detail'>
           <div className='blank-por'>
-            <img className='img_blank' src={userImg}></img>
+            <img className='img_blank' src={imageUrl}></img>
           </div>
           
           <div className="user-info">
