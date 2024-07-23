@@ -11,6 +11,9 @@ import point_img from "./../img/detail-page/point.png";
 import guar_img from "./../img/detail-page/guar.png";
 import guar_img1 from "./../img/detail-page/guar1.png";
 import guar_img2 from "./../img/detail-page/guar2.png";
+import { BsBookmark } from "react-icons/bs";
+import { BsBookmarkFill } from "react-icons/bs";
+import Shopmodal from "../main/shopeitem/shopmodal.js";
 
 const Detail_info = (props) => {
   const formatPrice = (price) => {
@@ -26,6 +29,22 @@ const Detail_info = (props) => {
       return "";
     }
 
+  };
+
+  let [interestModal, setInterestModal] = useState(false);
+
+  const [isChecked, setIsChecked] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleToggle = () => {
+    setIsChecked(!isChecked);
+    if (!isChecked) {
+      setShowModal(true);
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -196,6 +215,21 @@ const Detail_info = (props) => {
             final_size={props.final_size}
             setFinal_Size={props.setFinal_Size}
           ></Sell_modal>
+        </div>
+        <div style={{height:"100px"}}>
+          <button onClick={() => {setInterestModal(true); setShowModal(true)}} style={{width:"560px", height:"70px", marginTop:"15px", borderRadius:"10px", backgroundColor:"white", border:"1px solid rgba(0,0,0,0.1)"}}>
+            <BsBookmark size={22} />관심상품<BsBookmarkFill size={22} />
+          </button>
+          {interestModal ? (
+            <Shopmodal isChecked={isChecked} 
+            setIsChecked={setIsChecked} 
+            closeModal={closeModal}
+            showModal={showModal}></Shopmodal>
+          ) : (
+            <>
+            </>
+          )
+          }
         </div>
         <div className="add_benefit">
           <div style={{ textAlign: "left", fontWeight: "bold" }}>추가 혜택</div>

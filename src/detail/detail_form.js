@@ -37,7 +37,7 @@ const Detail_form = () => {
 
   useEffect(() => {
     axiosBaseURL
-      .get(`http://localhost:3001/products/${id}`)
+      .get(`http://192.168.42.142:3001/products/${id}`)
       .then((data) => {
         console.log("data:", data);
         if (data.data && data.data.length > 0) {
@@ -127,7 +127,7 @@ const Detail_form = () => {
 
           <div
             style={{
-              height: "1680px",
+              height: "1800px", //1680
               width: "1px",
               marginLeft: "40px",
               backgroundColor: "rgba(0,0,0,0.1)",

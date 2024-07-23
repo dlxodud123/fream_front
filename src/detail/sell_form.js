@@ -32,7 +32,6 @@ const Sell_form = () => {
   let [finalCardBtn, setFinalCardBtn] = useState(false);
 
   let { size, id } = useParams();
-  // let parseData = JSON.parse(decodeURIComponent(data)); //데이터 파싱
 
   let [deliveryBtn, setDeliveryBtn] = useState(1);
   let [paymentBtn, setPaymentBtn] = useState();
@@ -46,7 +45,17 @@ const Sell_form = () => {
   let [mainImageUrls, setMainImageUrls] = useState("");
   let [buyFormData, setBuyFormData] = useState([]);
 
-//   let [accountModal, setAccountModal] = useState(false);
+  let [accountModalOn, setAccountModalOn] = useState(false);
+
+  let [finalAccountHolderValue, setFinalAccountHolderValue] = useState('');
+  let [finalSelectedValue, setFinalSelectedValue] = useState('');
+  let [finalAccountHolderNumberValue, setFinalAccountHolderNumberValue] = useState('');
+
+  // useEffect(() => {
+  //   console.log(finalAccountHolderValue);
+  //   console.log(finalSelectedValue);
+  //   console.log(finalAccountHolderNumberValue);
+  // }, [finalAccountHolderValue, finalSelectedValue, finalAccountHolderNumberValue])
 
   useEffect(() => {
     axiosBaseURL
@@ -80,16 +89,16 @@ const Sell_form = () => {
   const { IMP } = window;
   IMP.init("imp25812042");
 
-  console.log(buyFormData);
-  console.log(size);
-  console.log(finalName);
-  console.log(finalNumber);
-  console.log(finalZonecode);
-  console.log(finalRoadaddress);
-  console.log(finalBname);
-  console.log(finalBuildingname);
-  console.log(finalBetterAddress);
-  console.log(buy_request);
+  // console.log(buyFormData);
+  // console.log(size);
+  // console.log(finalName);
+  // console.log(finalNumber);
+  // console.log(finalZonecode);
+  // console.log(finalRoadaddress);
+  // console.log(finalBname);
+  // console.log(finalBuildingname);
+  // console.log(finalBetterAddress);
+  // console.log(buy_request);
 
   async function onClickPayments() {
     console.log(id);
@@ -243,14 +252,15 @@ const Sell_form = () => {
   };
 
   useEffect(() => {
-    console.log(finalSaveBtn);
-    console.log(finalCardBtn);
-    if (finalSaveBtn && finalCardBtn) {
+    // console.log("1번", finalSaveBtn);
+    // console.log("2번", finalCardBtn);
+    // console.log("3번", accountModalOn)
+    if (finalSaveBtn && finalCardBtn && accountModalOn) {
       setFinalBtn(true);
     } else {
       setFinalBtn(false);
     }
-  }, [finalSaveBtn, finalCardBtn, setFinalBtn]);
+  }, [finalSaveBtn, finalCardBtn, setFinalBtn, accountModalOn]);
 
   const formatName = (str) => {
     return str[0] + "*".repeat(str.length - 1);
@@ -292,9 +302,67 @@ const Sell_form = () => {
             </div>
           </div>
           <div style={{ height: "15px", backgroundColor: "#f4f4f4" }} />
+
           {finalSaveBtn ? (
             <>
-              <div style={{ height: "480px" }} className="buy_delivery">
+              {accountModalOn ? (
+                  <>
+                    <div style={{width:"700px", height:"150px", backgroundColor:"white", display:"flex"}}>
+                      <div>
+                          <div style={{width:"200px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold", paddingTop:"30px", height:"70px"}}>
+                              판매 정산 계좌
+                          </div>
+                          <div style={{display:"flex"}}>
+                            <div style={{width:"100px",textAlign:"left", marginLeft:"25px", fontSize:"15px", color:"rgba(0,0,0,0.4)"}}>
+                              계좌
+                            </div>
+                            <div style={{width:"300px", textAlign:"left", fontSize:"15px"}}>
+                              {finalSelectedValue} {finalAccountHolderNumberValue}
+                            </div>
+                          </div>
+                          <div style={{display:"flex"}}>
+                            <div style={{width:"100px",textAlign:"left", marginLeft:"25px", fontSize:"15px", color:"rgba(0,0,0,0.4)"}}>
+                              예금주
+                            </div>
+                            <div style={{width:"300px", textAlign:"left", fontSize:"15px"}}>
+                              {finalAccountHolderValue}
+                            </div>
+                          </div>
+                      </div>
+                      <div style={{marginLeft:"180px", marginTop:"70px"}}>
+                        <button style={{width:"60px", height:"40px", borderRadius:"10px", border:"1px solid rgba(0,0,0,0.2)", backgroundColor:"white", color:"rgba(0,0,0,0.6)", fontSize:"15px"}} onClick={() => setAccountModalOn(false)}>변경</button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div style={{width:"700px", height:"150px", backgroundColor:"white", display:"flex"}}>
+                      <div>
+                          <div style={{width:"200px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold", paddingTop:"30px", height:"70px"}}>
+                              판매 정산 계좌
+                          </div>
+                          <div style={{width:"300px",textAlign:"left", marginLeft:"25px", fontSize:"15px"}}>
+                              등록된 판매 정산 계좌가 없습니다.
+                          </div>
+                          <div style={{width:"300px",textAlign:"left", marginLeft:"25px", fontSize:"15px"}}>
+                              새 계좌번호를 추가해주세요!
+                          </div>
+                      </div>
+                      <div style={{width:"350px"}}>
+                        <Sell_account_modal
+                          setAccountModalOn={setAccountModalOn}
+                          setFinalAccountHolderValue={setFinalAccountHolderValue}
+                          setFinalSelectedValue={setFinalSelectedValue}
+                          setFinalAccountHolderNumberValue={setFinalAccountHolderNumberValue}
+                        ></Sell_account_modal>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+              <div style={{height:"20px", backgroundColor:"#f4f4f4"}}></div>
+
+              <div style={{ height: "400px" }} className="buy_delivery">
                 <div style={{ display: "flex" }}>
                   <div style={{ width: "610px" }}>
                     <div
@@ -441,49 +509,43 @@ const Sell_form = () => {
                     </div>
                   </DeliveryButton>
                 </div>
-                <div style={{ marginTop: "5px" }}>
-                  {/* <DeliveryButton
-                    active={deliveryBtn === 2}
-                    onClick={() => setDeliveryBtn(2)}
-                  >
-                    <div style={{ display: "flex" }}>
-                      <div style={{ marginLeft: "10px" }}>
-                        <img
-                          src={delivery_img2}
-                          style={{ width: "60px" }}
-                        ></img>
-                      </div>
-                      <div style={{ marginLeft: "15px", marginTop: "10px" }}>
-                        <div
-                          style={{
-                            textAlign: "left",
-                            fontSize: "14px",
-                            display: "flex",
-                          }}
-                        >
-                          <div style={{ fontWeight: "bold" }}>창고보관</div>
-                          &nbsp;
-                          <div>첫 30일 무료</div>               
-                        </div>
-                        <div
-                          style={{
-                            textAlign: "left",
-                            color: "rgba(0,0,0,0.5)",
-                            fontSize: "13px",
-                          }}
-                        >
-                          배송 없이 창고에 보관 ・ 빠르게 판매 가능
-                        </div>
-                      </div>
-                    </div>
-                  </DeliveryButton> */}
-                </div>
+                <div style={{ marginTop: "5px" }}></div>
               </div>
             </>
           ) : (
             <>
-            {
-                <div style={{width:"700px", height:"150px", backgroundColor:"white", display:"flex"}}>
+              {accountModalOn ? (
+                <>
+                  <div style={{width:"700px", height:"150px", backgroundColor:"white", display:"flex"}}>
+                    <div>
+                        <div style={{width:"200px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold", paddingTop:"30px", height:"70px"}}>
+                            판매 정산 계좌
+                        </div>
+                        <div style={{display:"flex"}}>
+                          <div style={{width:"100px",textAlign:"left", marginLeft:"25px", fontSize:"15px", color:"rgba(0,0,0,0.4)"}}>
+                            계좌
+                          </div>
+                          <div style={{width:"300px", textAlign:"left", fontSize:"15px"}}>
+                            {finalSelectedValue} {finalAccountHolderNumberValue}
+                          </div>
+                        </div>
+                        <div style={{display:"flex"}}>
+                          <div style={{width:"100px",textAlign:"left", marginLeft:"25px", fontSize:"15px", color:"rgba(0,0,0,0.4)"}}>
+                            예금주
+                          </div>
+                          <div style={{width:"300px", textAlign:"left", fontSize:"15px"}}>
+                            {finalAccountHolderValue}
+                          </div>
+                        </div>
+                    </div>
+                    <div style={{marginLeft:"180px", marginTop:"70px"}}>
+                      <button style={{width:"60px", height:"40px", borderRadius:"10px", border:"1px solid rgba(0,0,0,0.2)", backgroundColor:"white", color:"rgba(0,0,0,0.6)", fontSize:"15px"}} onClick={() => setAccountModalOn(false)}>변경</button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div style={{width:"700px", height:"150px", backgroundColor:"white", display:"flex"}}>
                     <div>
                         <div style={{width:"200px", marginLeft:"25px", textAlign:"left", fontSize:"20px", fontWeight:"bold", paddingTop:"30px", height:"70px"}}>
                             판매 정산 계좌
@@ -496,12 +558,17 @@ const Sell_form = () => {
                         </div>
                     </div>
                     <div style={{width:"350px"}}>
-                        <Sell_account_modal></Sell_account_modal>
+                      <Sell_account_modal
+                        setAccountModalOn={setAccountModalOn}
+                        setFinalAccountHolderValue={setFinalAccountHolderValue}
+                        setFinalSelectedValue={setFinalSelectedValue}
+                        setFinalAccountHolderNumberValue={setFinalAccountHolderNumberValue}
+                      ></Sell_account_modal>
                     </div>
-                </div>
-            }
+                  </div>
+                </>
+              )}  
               
-
               <div style={{height:"20px", backgroundColor:"#f4f4f4"}}></div>
 
               <div style={{ height: "380px" }} className="buy_delivery">
@@ -529,6 +596,7 @@ const Sell_form = () => {
                     setFinalBetterAddress={setFinalBetterAddress}
                   ></Buy_delivery_modal>
                 </div>
+
                 <div style={{ marginTop: "15px" }}>
                   <Buy_request_modal></Buy_request_modal>
                 </div>
@@ -881,7 +949,7 @@ const Sell_form = () => {
                   fontSize: "15px",
                 }}
               >
-                즉시 구매가
+                즉시 판매가
               </div>
               <div
                 style={{
@@ -891,7 +959,7 @@ const Sell_form = () => {
                   fontWeight: "bold",
                 }}
               >
-                {formatPrice(buyFormData.price)}
+                {formatPrice(buyFormData.price)}원
               </div>
             </div>
             <div style={{ display: "flex", marginTop: "15px" }}>
@@ -945,7 +1013,7 @@ const Sell_form = () => {
               <div
                 style={{ textAlign: "right", width: "150px", fontSize: "15px" }}
               >
-                3,000원
+                선불 · 판매자 부담
               </div>
             </div>
           </div>
@@ -960,7 +1028,7 @@ const Sell_form = () => {
                 fontWeight: "bold",
               }}
             >
-              총 결제금액
+              정산금액
             </div>
             <div style={{ paddingTop: "30px" }}>
               <div
@@ -982,7 +1050,7 @@ const Sell_form = () => {
                   fontSize: "20px",
                 }}
               >
-                {formatPrice(buyFormData.price + 3000)}
+                {formatPrice(buyFormData.price)}원
               </div>
             </div>
           </div>
@@ -1003,7 +1071,7 @@ const Sell_form = () => {
                     border: "none",
                   }}
                 >
-                  {formatPrice(buyFormData.price + 3000)}원・일반배송 결제하기
+                  {formatPrice(buyFormData.price + 3000)}원・판매하기
                 </button>
               </>
             ) : (
@@ -1023,7 +1091,7 @@ const Sell_form = () => {
                     border: "none",
                   }}
                 >
-                  {formatPrice(buyFormData.price + 3000)}원・일반배송 결제하기
+                  {formatPrice(buyFormData.price + 3000)}원・판매하기
                 </button>
               </>
             )}
