@@ -8,7 +8,8 @@ const Buy_modal = (props) => {
     const [image, setImage] = useState('');
 
     let data = encodeURIComponent(JSON.stringify(props.main_info_shoes));
-
+    let prid = props.main_info_shoes.prid;
+    
     useEffect(() => {
         setBuyBtn(parseInt(props.final_size));
         props.setFinal_Size(props.final_size);
@@ -31,8 +32,8 @@ const Buy_modal = (props) => {
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
     const buy_link = () => {
-        window.location.href = `/buy/${data}/${buyBtn}/${props.detail_main_image}`;
-    }
+        window.location.href = `/buy/${prid}/${buyBtn}`;
+    };
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US').format(price);
     };

@@ -9,7 +9,7 @@ import saveListdata from '../../../../src/mendata/mendata';
 
 function Saved() {
     const [count, setCount] = useState(6); 
-    let [savedData, setSavedData] = useState(saveListdata);
+    const [savedData, setSavedData] = useState(saveListdata);
     const [clickedButton, setClickedButton] = useState(null);
     const navigate = useNavigate();
 
@@ -60,7 +60,6 @@ function Saved() {
     });
 
     const handleDelete = (id) => {
-        console.log(`Deleting item with id: ${id}`);
         setSavedData(savedData.filter(item => item.id !== id));
     };
 
@@ -79,10 +78,13 @@ function Saved() {
                         </div>
                         <div style={{ marginTop: '15px', marginLeft: '7px' }}>
                             <p style={{ color: 'rgba(0,0,0,0.5)', fontSize: '14px' }}>전체123</p>
-
-                            {savedData.slice(0, count).map((item, i) => (
-                                <SavedList key={item.id} Saveddata={item} onDelete={handleDelete} />
-                            ))}
+                            {savedData.length === 0 ? (
+                                <p style={{ textAlign: 'center', fontSize: '20px', color: 'rgba(0,0,0,0.5)' }}>관련 상품이 존재하지 않습니다</p>
+                            ) : (
+                                savedData.slice(0, count).map((item, i) => (
+                                    <SavedList key={item.id} Saveddata={item} onDelete={handleDelete} />
+                                ))
+                            )}
                         </div>
                     </div>
                 </div>

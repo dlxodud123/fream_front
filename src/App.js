@@ -40,7 +40,6 @@ import PointMain from "./myPage/js/point/PointMain";
 import Style from "./style/style.jsx";
 import Post from "./style/post.jsx";
 import Saved from "./myPage/js/saved/saved.js";
-
 import PrivateRoute from "./myPage/PrivateRoute";
 
 function App() {
