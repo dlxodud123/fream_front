@@ -1,3 +1,4 @@
+import React, { useEffect, useState, useContext } from 'react';
 import '../css/My_Page.css';
 import '../css/Mypage_inventory.css';
 import '../css/Shortcut_grid.css';
@@ -8,40 +9,51 @@ import MypageList from './MypageList.js';
 import Header from '../../common/header';
 import Footer from '../../common/footer';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import blank_profile from '../../img/login-page/blank_profile.4347742.png';
+import { UserAuthContext } from '../../Auth/UserAuthContext.jsx';
 
 
 
 const MyPage = () => {
-  let [userId, setUserId] = useState();
+  const { isLoggedIn, isInitialized, userId, handleLogout } = useContext(UserAuthContext);
+  const navigate = useNavigate();
+  // let [userId, setUserId] = useState();
   let [email, setEmail] = useState();
-  let navigate = useNavigate();
-
+  const defaultProfileImg = blank_profile;
+  let [userImg, setUserImg] = useState(defaultProfileImg);//프로필 이미지변경
   const [ date , setDate ] =useState([]);
-  const axiosBaseURL = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_API_URL,
-        withCredentials: true,
-    });
-    useEffect(() => {
-        axiosBaseURL.get('http://192.168.0.101:3001/myPage')
-            .then(response => response)
-            .then(date =>{
-                console.log(date)
-                setDate({
-                    img: date.img,
-                    userId: date.userId,
-                    userName: date.userName,
-                    mySelf: date.userBio
-                });
-            })
-            .catch(error =>{
-                console.log('mypag에러', error);
-            });
-    }, []);
 
+  useEffect(() => {
+    if (isInitialized && !isLoggedIn) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+    }
+  }, [isInitialized, isLoggedIn, navigate]);
+
+  useEffect(() => {
+    axios.get('/api/myPage')
+      .then(res => {
+        console.log("==================", res.data);
+        setDate({
+          img: res.data.imageUrl || defaultProfileImg,
+          userId: res.data.userId,
+          userName: res.data.username,
+          profileName: res.data.profileName,
+          userBio: res.data.userBio
+        });
+        setUserImg(res.data.imageUrl || defaultProfileImg); // 데이터가 없을 경우 기본 이미지 사용
+      })
+      .catch(error => {
+        console.log('profile 에러 useEffect', error);
+      });
+  }, []);
+
+  if (!isInitialized) {
+    return <div></div>;
+  }
 
 return (
   <div>
@@ -53,10 +65,12 @@ return (
 
 
       <div className="box-container">
+      {isLoggedIn ? (
+            <>
       <div className='user_membership'>
         <div className='user_detail'>
           <div className='blank-por'>
-            <img className='img_blank' src={require('../../img/login-page/blank_profile.4347742.png')}></img>
+            <img className='img_blank' src={userImg}></img>
           </div>
           
           <div className="user-info">
@@ -75,8 +89,7 @@ return (
 
         <div className="container_text-center">
       <div className='shortcut_grid'>
-          <button className='mypage_pageMove'
-                  onClick={''}>
+          <button className='mypage_pageMove'>
             <div className="menu_item">
               <div className='seller-grade'></div>
               <span>판매자 등급</span>
@@ -116,7 +129,6 @@ return (
               <span>공지사항</span>
             </div>
           </button>
-
         </div>       
       </div>
 
@@ -176,7 +188,8 @@ return (
           <div className='purchase_list_tab'>
             <div className="row row-cols-4">
               <div className="tab_item total">
-                <Link className='titl_link'>전체
+                <Link className='titl_link'
+                      to={'/'}>전체
                   <div className='count_inventory'>0</div>
                 </Link>
               </div>
@@ -197,12 +210,19 @@ return (
               </div>
             </div>
           </div>
+        </div>
+        <div>
+        { date.length == 0 ? (
           <div>
-            <div className='purchase_list all'>
-  
-            </div>
-
+              <div className='myPageMain'>
+                  <p className='paymentNull'>거래 내역이 없습니다.</p>
+              </div>
           </div>
+          ) : (
+              <div>
+
+              </div>
+          )}
         </div>
 
         
@@ -238,11 +258,29 @@ return (
             </div>
           </div>
         </div>
+        <div>
+        { date.length == 0 ? (
+          <div>
+              <div className='myPageMain'>
+                  <p className='paymentNull'>거래 내역이 없습니다.</p>
+              </div>
+          </div>
+          ) : (
+              <div>
+
+              </div>
+          )}
+</div>
+            </>
+          ) : (
+            <div>
+              <p>로그인이 필요합니다.</p>
+            </div>
+          )}
+        </div>
       </div>
+      <Footer />
     </div>
-  <Footer/>
-  </div>
-    
   );
 };
 

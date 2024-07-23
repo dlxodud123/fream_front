@@ -116,7 +116,10 @@ function Detail_header(props) {
                 </a>
               </div>
               <div style={{ fontSize: "22px", width: "130px" }}>
-                <a style={{ color: "black", textDecoration: "none" }} href="#">
+                <a
+                  style={{ color: "black", textDecoration: "none" }}
+                  href="/style"
+                >
                   STYLE
                 </a>
               </div>
@@ -150,11 +153,11 @@ function Detail_header(props) {
               </div>
               <div style={{ marginLeft: "8px", marginTop: "12px" }}>
                 <div style={{ fontSize: "18px" }}>
-                  {formatGender(props.main_info_shoes.gender)}&nbsp;
+                  {formatGender(props.main_info_shoes.gender)}
                   {props.main_info_shoes.nameEng}
                 </div>
                 <div style={{ fontSize: "14px", color: "rgba(0,0,0,0.5)" }}>
-                  {formatGender(props.main_info_shoes.gender)}&nbsp;
+                  {formatGender(props.main_info_shoes.gender)}
                   {props.main_info_shoes.nameKor}
                 </div>
               </div>

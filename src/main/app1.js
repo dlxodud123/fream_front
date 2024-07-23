@@ -30,10 +30,10 @@ function App1() {
     withCredentials: true, // 이 부분 추가
   });
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
+
         const response = await axiosBaseURL.get("http://192.168.0.13:3001/home");
         // const data = response.data;
         setShoes(response.data);

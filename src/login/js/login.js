@@ -19,9 +19,11 @@ const KakaoLoginButton = ({ kakaoApiKey, redirectUri }) => {
   const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}&redirect_uri=${redirectUri}&response_type=code`;
 
   return (
-    <div className="text-center">
-      <a href={kakaoAuthUrl} target="_blank">
-        <img src="/images/kakao_login_medium_narrow.png" alt="카카오 로그인" />
+    <div className="btn btn-outline-dark">
+      <a href={kakaoAuthUrl} target="_blank" className="kakao-login-button">
+        <img className="kaImg"
+         src={require('../../img//login-page/kakao-talk_3669973.png')} alt="카카오 로그인" />
+        <span className="kakao-login-text">카카오 로그인</span>
       </a>
     </div>
   );
@@ -178,48 +180,40 @@ const LoginPage = () => {
             ) : null}
           </div>
 
-          <Button
-            // className={loginBut${isButtonActive ? '_active' : ''}}
+          <button
+            className={`loginBut${isButtonActive ? "_active" : ""}`}
             variant="secondary"
             size="lg"
             onClick={handleSubmit}
           >
             로그인
-          </Button>
-
-          <Row className="row">
-            <Col
-              onClick={() => navigate("/join")}
-              style={{ cursor: "pointer" }}
-            >
-              이메일 가입
-            </Col>
-            <Col onClick={() => navigate("/login/find_email")}>이메일 찾기</Col>
-            <Col onClick={() => navigate("/login/find_password")}>
-              비밀번호 찾기
-            </Col>
-          </Row>
-
-          <button
-            type="button"
-            className="btn btn-outline-dark"
-            onClick={() =>
-              (window.location.href = "https://kauth.kakao.com/oauth/authorize")
-            }
-          >
-            <span className="kaImg"></span>
-            카카오 로그인
           </button>
-          <div>
-            <h1>카카오 로그인</h1>
-            <KakaoLoginButton
-              kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
-              redirectUri={"http://localhost:3000/auth"}
-            />
+          <div className="loginComponent">
+            <Row className="row">
+              <Col
+                onClick={() => navigate("/join")}
+                style={{ cursor: "pointer" }}
+              >
+                이메일 가입
+              </Col>
+              <Col onClick={() => navigate("/login/find_email")}>
+                이메일 찾기</Col>
+              <Col onClick={() => navigate("/login/find_password")}>
+                비밀번호 찾기
+              </Col>
+            </Row>
           </div>
-          <div>
+
+          <KakaoLoginButton
+            kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
+            redirectUri={"http://localhost:3000/auth"}
+          />
+
+
+
+          {/* <div>
             <butC classCh="login_data" passw="login_data"></butC>
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />

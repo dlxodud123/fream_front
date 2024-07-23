@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Shoesheader from "../../common/shopeheader";
 import Footer from "../../common/footer";
 import AdvancedExample from "./shopebenner";
 import FilterComponent from "./FilterComponent";
 import { Shopeitem } from "./shopeitem";
 import shoesitems from "../shoesitemdata/shoesitemdata";
-import '../css/main.css'; // Ensure this is imported to apply the CSS
-import { data } from 'jquery';
-
+import "../css/main.css"; // Ensure this is imported to apply the CSS
+import { data } from "jquery";
 
 function Shope() {
   let [shopdata, setShopData] = useState([]);
@@ -35,7 +34,7 @@ function Shope() {
     brand: {
       Adidas: false,
       Oofos: false,
-      'Dr.Martens': false,
+      "Dr.Martens": false,
       UGG: false,
       Alexander: false,
       Keen: false,
@@ -44,7 +43,7 @@ function Shope() {
       Nike: false,
       Hermes: false,
       Fila: false,
-      'New Balance': false,
+      "New Balance": false,
       Salomon: false,
       OOFOS: false,
       Chloe: false,
@@ -77,7 +76,7 @@ function Shope() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://192.168.0.13:3001/shop');
+        const response = await fetch("http://localhost:3001/shop");
         const data = await response.json();
         setShopData(data); // 데이터 설정
         console.log(data); // 상태 업데이트 후의 데이터를 로그로 출력
@@ -87,14 +86,14 @@ function Shope() {
     };
 
     fetchData();
-  },[]);
+  }, []);
 
   const handleFiltersChange = (newFilters) => {
     setFilters(newFilters);
   };
 
   const loadMore = () => {
-    setCount(prevCount => {
+    setCount((prevCount) => {
       const newCount = prevCount + 6;
       if (newCount >= filteredItems.length) {
         setIsLoadMoreVisible(false);
@@ -113,27 +112,34 @@ function Shope() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [isLoadMoreVisible]);
 
   const filteredItems = shopdata.filter((item) => {
     const { MAN, WOMAN } = filters.gender;
-    const selectedColors = Object.keys(filters.color).filter(color => filters.color[color]);
-    const selectedBrands = Object.keys(filters.brand).filter(brand => filters.brand[brand]);
+    const selectedColors = Object.keys(filters.color).filter(
+      (color) => filters.color[color]
+    );
+    const selectedBrands = Object.keys(filters.brand).filter(
+      (brand) => filters.brand[brand]
+    );
 
-    const genderMatch = (MAN && WOMAN) || (!MAN && !WOMAN)
-      ? true
-      : MAN
-      ? item.gender === 'MAN' || item.gender === 'UNIVERSAL'
-      : WOMAN
-      ? item.gender === 'WOMAN' || item.gender === 'UNIVERSAL'
-      : true;
-    const colorMatch = selectedColors.length > 0 ? selectedColors.includes(item.color) : true;
-    const brandMatch = selectedBrands.length > 0 ? selectedBrands.includes(item.brand) : true;
+    const genderMatch =
+      (MAN && WOMAN) || (!MAN && !WOMAN)
+        ? true
+        : MAN
+        ? item.gender === "MAN" || item.gender === "UNIVERSAL"
+        : WOMAN
+        ? item.gender === "WOMAN" || item.gender === "UNIVERSAL"
+        : true;
+    const colorMatch =
+      selectedColors.length > 0 ? selectedColors.includes(item.color) : true;
+    const brandMatch =
+      selectedBrands.length > 0 ? selectedBrands.includes(item.brand) : true;
 
     return genderMatch && colorMatch && brandMatch;
   });
@@ -141,16 +147,22 @@ function Shope() {
   return (
     <>
       <Shoesheader />
-      <div style={{ paddingTop: '120px' }}></div>
+      <div style={{ paddingTop: "120px" }}></div>
       <AdvancedExample />
-      <div style={{ display: 'flex', width: "1280px", margin: "auto" }}>
-        <FilterComponent shopdata={filters} onFiltersChange={handleFiltersChange} />
-        <div style={{ width: '1200px' }} className="">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '20px'
-          }} className="">
+      <div style={{ display: "flex", width: "1280px", margin: "auto" }}>
+        <FilterComponent
+          shopdata={filters}
+          onFiltersChange={handleFiltersChange}
+        />
+        <div style={{ width: "1200px" }} className="">
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "20px",
+            }}
+            className=""
+          >
             {/* {shopdata.slice(0, count).map((item,i)=>{
               console.log("item:"+item);
                  <Shopeitem key={item.id} shopdata={item} i={i+1}/>
@@ -161,7 +173,9 @@ function Shope() {
           </div>
           {isLoadMoreVisible && count < filteredItems.length && (
             <div className="center-button">
-              <button className="load-more-button" onClick={loadMore}>더보기</button>
+              <button className="load-more-button" onClick={loadMore}>
+                더보기
+              </button>
             </div>
           )}
         </div>

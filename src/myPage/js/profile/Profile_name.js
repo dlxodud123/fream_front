@@ -1,37 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 
 function ProfileName({date,setDate}){
     const [profileTitleClass, setProfileTitleClass] = useState('profile_title');
     const [onBtn, setOnBtn] = useState(false)
-    const [onEditMode, setOnEditMode] = useState(false);
     const [profileName, setProfileName] = useState(date.profileName);
 
-    const axiosBaseURL = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_API_URL,
-        withCredentials: true,
-    });
+    useEffect(() => {
+        setProfileName(date.profileName);
+      }, [date.profileName]);
 
     const handleSave = () => {
+        setDate(prevDate => ({
+        ...prevDate,
+        profileName: profileName,
+      }));
 
-      axiosBaseURL.put('http://192.168.0.101:3001/my?profile-edit' + profileName)
-      .then(response => {
-          console.log(response.date);
-          setDate(prevDate => ({
-            ...prevDate,
-            profileName,
-        }));
-        setOnEditMode(false);
-        })
-        .catch(error => {
-            console.error(error);
-            setOnEditMode(false);
+    axios.put('/api/my/profile-edit?ProfileName=' + profileName)
+    .then(response => {
+          console.log(response.data);
+          setOnBtn(false);
+      })
+      .catch(error => {
+          console.error(error);
+          setOnBtn(false);
         });
     };
+
   
     const handleCancel = () => {
         setProfileName(date.profileName);
-        setOnEditMode(false);
+        setOnBtn(false);
     };
 
 
@@ -42,11 +41,11 @@ function ProfileName({date,setDate}){
             <div className='group'>
                 <h5 className={profileTitleClass}>프로필 이름</h5>
                 <div className="unit_content">
-                    <p className='modify_myslef'>{date.img}</p>
+                    <p className='modify_myslef'>{profileName}</p>
                     <button
                         type="button"
                         className="unit_all"
-                        onClick={() => { setOnEditMode(true); setProfileTitleClass('changeTitle'); }}
+                        onClick={() => { setOnBtn(true); setProfileTitleClass('changeTitle'); }}
                         >변경
                     </button>
                 </div>

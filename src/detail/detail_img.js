@@ -48,19 +48,7 @@ const Detail_img = (props) => {
               />
             ))
           ) : (
-            <div>
-              {/* <a href="/product">
-                <img
-                  src={img}
-                  style={{
-                    width: "62.85px",
-                    height: "62.85px",
-                    border: "1px solid black",
-                    backgroundColor: "#f4f4f4",
-                  }}
-                ></img>
-              </a> */}
-            </div>
+            <div></div>
           )}
         </div>
       </div>

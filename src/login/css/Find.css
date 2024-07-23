@@ -22,6 +22,53 @@
     letter-spacing: -.48px;
     padding-bottom: 41px;
     text-align: center;
+    font-weight: 700;
+}
+.help_title.success{
+    font-size: 24px;
+    font-weight: 700;
+}
+.emailSuccess_btn_box{
+    display: flex;
+    padding-top: 56px;
+    gap: 10px;
+}
+.email_btn, .emailSuccess_login_btn {
+    flex: 1; /* 버튼의 넓이를 동일하게 설정 */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.emailSuccess_login_btn{
+    border-radius: 12px;
+    border: 1px solid #d3d3d3;
+    height: 52px;
+    line-height: 52px;
+    /* padding: 0 25px; */
+    background-color: #222;
+    color: #fff;
+}
+.email_btn{
+    border-radius: 12px;
+    border: 1px solid #d3d3d3;
+    height: 52px;
+    padding: 0 25px;
+    background-color: #fff;
+}
+.FindEmail_success>p{
+    font-size: 18px;
+    font-weight: 700;
+    padding-top: 8px;
+}
+.FindEmail_success{
+    padding-top: 30px;
+    text-align: center;
 }
 .notice{
     padding: 40px 0 30px;
@@ -31,13 +78,17 @@
     padding: 0;
 }
 .input_tel{
-    border-bottom: 1px solid #ebebeb !important;
     font-size: 15px;
     letter-spacing: -.15px;
     line-height: 22px;
     padding: 8px 0;
     width: 100%;
     border: 0;
+    border-bottom: 1px solid #ebebeb ;
+}
+.input_tel:focus{
+    border-bottom: 2px solid #222;
+    outline: none;
 }
 
 .input_but{
@@ -57,21 +108,27 @@
     line-height: 18px;
 }
 .emailBut{
-        width: 100%;
-        margin: 15px 0;
-        background-color: #000;
-        border: none ;
-        padding: 10px 0 ;
-        cursor:auto ;
-}
-
-.findEmailBut{
+    color: #fff;
+    font-weight: 700;
+    border-radius: 12px;
     width: 100%;
     margin: 15px 0;
-    background-color: #ebebeb !important;
+    background-color: #000;
     border: none ;
     padding: 10px 0 ;
-    cursor:auto !important;
+    cursor:auto ;
+    }
+    
+.findEmailBut{
+    color: #fff;
+    font-weight: 700;
+    border-radius: 12px;
+    width: 100%;
+    margin: 15px 0;
+    background-color: #ebebeb;
+    border: none ;
+    padding: 10px 0 ;
+    cursor:auto ;
 }
 
 .findEmailBut_active {
@@ -99,4 +156,18 @@
     letter-spacing: -.07px;
     line-height: 18px;
 }
+.input_success_but{
+    display: flex;
+    justify-content: center;
+}
+.success_login_btn{
+    text-align: center;
+    border-radius: 12px;
+    height: 52px;
+    line-height: 52px;
+    min-width: 200px;
+    background-color: #222;
+    color: #fff;
+    font-weight: 700;
 
+}

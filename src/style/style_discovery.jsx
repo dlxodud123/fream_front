@@ -9,7 +9,6 @@ import StyleCategoryCard from "./styleCategoryCard";
 import Post from "./post";
 import Masonry from "masonry-layout";
 import imagesLoaded from "imagesloaded"; // imagesLoaded 임포트
-import StylePostItem from "./stylePostItem";
 
 const List = styled.div`
   display: flex;
@@ -194,48 +193,28 @@ function Style() {
           style={{
             padding: "16px 0",
             borderBottom: "1px solid #f0f0f0",
-            width: "1400px",
+            width: "1300px",
             margin: "0 auto",
           }}
         ></div>
-        <div
+        <ul
           style={{
-            display: "flex", // Flexbox 사용
-            alignItems: "center", // 교차 축을 기준으로 중앙 정렬
-            maxWidth: "1400px", // 최대 너비 제한
-            width: "100%", // 부모 컨테이너의 전체 너비를 차지하도록 설정
-            margin: "0 auto", // 중앙 정렬
-            minWidth: "1400px",
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "1300px",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              width: "100%", // 내부 div가 최상위 div의 전체 너비를 사용하도록 설정
-            }}
-          >
-            <ul
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                Width: "100%",
-              }}
-            >
-              <li style={{ listStyle: "none" }}>
-                <StyledLink>인기순</StyledLink>
-              </li>
-              <LiDecorated>
-                <StyledLink>최신순</StyledLink>
-              </LiDecorated>
-            </ul>
-          </div>
-        </div>
+          <li style={{ listStyle: "none" }}>
+            <StyledLink>인기순</StyledLink>
+          </li>
+          <LiDecorated>
+            <StyledLink>최신순</StyledLink>
+          </LiDecorated>
+        </ul>
         <Container ref={containerRef}>
           {dummyPosts.map((post) => (
-            <StylePostItem
+            <Post
               key={post.id}
-              id={post.id} // id를 prop으로 전달
               imageUrl={post.imageUrl}
               profileUrl={post.profileUrl}
               username={post.username}
@@ -245,7 +224,6 @@ function Style() {
           ))}
         </Container>
       </div>
-      <Footer />
     </>
   );
 }

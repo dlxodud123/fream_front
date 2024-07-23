@@ -46,7 +46,7 @@ const Header_sell_modal = (props) => {
                             </button>
                         </div>
                         <div className={'sell_modal-title'}> 
-                            <img src={props.detail_main_image} style={{height:"120px", marginLeft:"30px", backgroundColor:"#f4f4f4"}}></img>
+                            <img src={props.detail_main_image[0]} style={{height:"120px", marginLeft:"30px", backgroundColor:"#f4f4f4"}}></img>
                             <div style={{marginLeft:"15px", textAlign:"left"}}>
                                 <div style={{fontWeight:"bold"}}>{props.main_info_shoes.prid}</div>
                                 <div style={{width:"280px"}}><span style={{fontWeight:"bold"}}>{props.main_info_shoes.nameEng}</span><br></br><span>{props.main_info_shoes.nameKor}</span></div>
