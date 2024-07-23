@@ -12,10 +12,9 @@ import axios from 'axios';
 const Profile_edit = () =>{
       
       let [date, setDate] = useState({});//데이터
-      const defaultProfileImg = blank_profile;
+      const defaultProfileImg = blank_profile; //기본 이미지
       let [userImg, setUserImg] = useState(defaultProfileImg);//프로필 이미지변경
       const fileInputRef = useRef(null);
-
       let [modalSelf, setModalSelf] = useState(false);//소개 변경스위치
     
       
@@ -40,47 +39,70 @@ const Profile_edit = () =>{
     
 
 
-    const ImgChange = async (e) =>{
-        const file = e.target.files[0];
-        if(file) {
-            try{
-                const formData = new FormData();
-                formData.append('file', file);
-
-                const response = await axios.post('/api/my/profile-edit?img=', {
-                    // method: 'POST',
-                    body: formData,
-                })
-
-                .then(response => response.ok)
-                .then(data => {
-                    const date = data.json()
-                    setUserImg(date.imageUrl);
-                    setDate(prevState => ({
-                        ...prevState,
-                        img: date.imageUrl,
-                    }));
+    // const ImgChange = async (e) =>{
+    //     const file = e.target.files[0];
+    //     if(file) {
+    //         try{
+    //             const formData = new FormData();
+    //             formData.append('file', file);
+    //             const response = await axios.post('/api/my/profile-edit/img',{
+    //                 // method: 'POST',
+    //                 body: formData,
+    //             })
+    //             .then(response => response.ok)
+    //             .then(data => {
+    //                 const date = data
+    //                 setUserImg(date.imageUrl);
+    //                 setDate(prevState => ({
+    //                     ...prevState,
+    //                     img: date.imageUrl,
+    //                 }));
                     
-                })
-                .catch(error =>{
-                    console.log("업로드 실패 : ", error)
-                })
+    //             })
+    //             .catch(error =>{
+    //                 console.log("업로드 실패 : ", error)
+    //             })
 
-            }catch (error){
-                console.log('이미지 파일 error발생' , error)
+    //         }catch (error){
+    //             console.log('이미지 파일 error발생' , error)
+    //         }}
+    //     };
+    const ImgChange = async (e) => {
+        const formData = new FormData();
+        const file = e.target.files[0];
+        if (file) {
+            try {
+                
+                formData.append('file', file);
+                
+                console.log('file', file);
+                console.log("fileeeeeee : ",formData.get('file'));
+                // console.log(formData);
+    
+                const response = await axios.put('/api/my/profile-edit/img', formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                      },
+                });
+    
+                const data = response.data;
+                setUserImg(data.imageUrl);
+                setDate(prevState => ({
+                    ...prevState,
+                    img: data.imageUrl
+                }));
+            } catch (error) {
+                console.log('이미지 파일 업로드 에러 발생', error);
             }
-            
         }
-        
     };
+
+
     const clickImgBnt = () =>{
         if(fileInputRef.current){
             fileInputRef.current.click();
         }
     }
-
-    
-
 
 return(
 

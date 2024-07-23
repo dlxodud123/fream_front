@@ -24,44 +24,44 @@ const Address = () => {
     useEffect(() => { //백앤드 get 코드
         const setDate = async () => {
             // 주석 처리된 실제 백엔드 호출 부분
-            // axios.get('/api/my/address')
-            //     .then(res => {
-            //         console.log("address get data : ", res.data);
-            //         setAddressArry(res.data);
-            //     })
-            //     .catch(error => {
-            //         console.log('address 에러 useEffect', error);
-            //     });
+            axios.get('/api/my/address')
+                .then(res => {
+                    console.log("address get data : ", res.data);
+                    setAddressArry(res.data);
+                })
+                .catch(error => {
+                    console.log('address 에러 useEffect', error);
+                });
 
             // 대신 더미 데이터 사용
-            const dummyData = [
-                {
-                    id: 1,
-                    recipient: "홍길동",
-                    phone: "010-1234-5678",
-                    postcode: "12345",
-                    address: "서울특별시 강남구 테헤란로 123",
-                    isDefault: true
-                },
-                {
-                    id: 2,
-                    recipient: "김철수",
-                    phone: "010-9876-5432",
-                    postcode: "67890",
-                    address: "부산광역시 해운대구 해운대해변로 456",
-                    isDefault: false
-                },
-                {
-                    id: 3,
-                    recipient: "이영희",
-                    phone: "010-1111-2222",
-                    postcode: "54321",
-                    address: "대구광역시 중구 중앙대로 789",
-                    isDefault: false
-                }
-            ];
-            setAddressArry(dummyData);
-            console.log("Address array set:", dummyData); // 디버깅
+            // const dummyData = [
+            //     {
+            //         id: 1,
+            //         recipient: "홍길동",
+            //         phone: "010-1234-5678",
+            //         postcode: "12345",
+            //         address: "서울특별시 강남구 테헤란로 123",
+            //         isDefault: true
+            //     },
+            //     {
+            //         id: 2,
+            //         recipient: "김철수",
+            //         phone: "010-9876-5432",
+            //         postcode: "67890",
+            //         address: "부산광역시 해운대구 해운대해변로 456",
+            //         isDefault: false
+            //     },
+            //     {
+            //         id: 3,
+            //         recipient: "이영희",
+            //         phone: "010-1111-2222",
+            //         postcode: "54321",
+            //         address: "대구광역시 중구 중앙대로 789",
+            //         isDefault: false
+            //     }
+            // ];
+            // setAddressArry(dummyData);
+            // console.log("Address array set:", dummyData); // 디버깅
         };
 
         setDate();
@@ -70,7 +70,9 @@ const Address = () => {
     const deleteAddress = async (id) => {
         try {
             await axios.delete(`/api/my/address/${id}`);
+
             await setDate(); //주소 데이터 다시 가지고 옴
+
         } catch (error) {
             console.error('주소 삭제 실패:', error);
         }
@@ -149,7 +151,8 @@ const Address = () => {
                                                                 setDate={setDate}/>}
                             </div>
                         </div>
-
+                        {  addressArry.length >0  ? (
+                            <div>
                         <div className="address_list">
                             {addressArry.map((address, index) => (
                                 <div key={address.id} className={index === 0 ? "address_item" : "address_other"}>
@@ -188,14 +191,24 @@ const Address = () => {
                             ))}
                         </div>
                         
-                        {modiLayer && <ModifyAddress
+                        {   modiLayer && <ModifyAddress
                                         onClose={toggleModiLayer}
                                         recipient={recipient}
                                         phone={phone}
                                         postcode={postcode}
                                         address={address}
-                        />
+                            />
                         }
+                        </div>
+                        ):(
+                        <div className="address_list">
+                          <div className="addressNull">
+                            <div className='payment_eara'>
+                                <p className='paymentNull'>주소 정보가 없습니다.</p>
+                            </div>
+                          </div>
+                        </div>
+                        )}
                     </div>
                 </div>
             <Footer />
