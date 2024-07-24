@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
-function Shopmodal({ isChecked, setIsChecked, closeModal, showModal }) {
+function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
   const [selectedBoxes, setSelectedBoxes] = useState([]); // 선택된 박스의 인덱스를 배열로 관리
   const [activeBox, setActiveBox] = useState(null); // 클릭 및 누르고 있는 박스의 인덱스를 상태로 관리
+  const [finalSizeArr, setFinalSizeArr] = useState([]);
+
+  const sizeArr = [220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295];
+
+  const axiosBaseURL = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    withCredentials: true, // 이 부분 추가
+  });
 
   const handleBoxClick = (index) => {
     setSelectedBoxes(prevSelectedBoxes =>
@@ -35,6 +44,33 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal }) {
     fontWeight: selectedBoxes.includes(index) ? 'bold' : 'normal' // 선택된 박스의 글씨 굵기
   });
 
+  const finalSave = () => {
+    const token = localStorage.getItem('jwtToken');
+    const newFinalSizeArr = selectedBoxes.map((selected) => sizeArr[selected]);
+    setFinalSizeArr(newFinalSizeArr);
+    console.log("확인", typeof newFinalSizeArr);
+    axiosBaseURL
+    .post(`http://192.168.42.142:3001/wishes/toggle/${prId}/${newFinalSizeArr}`,{},
+     // 요청 본문이 필요 없는 경우 빈 객체로 전달
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+    )
+    
+      .then((data) => {
+        console.log("data:", data);
+        if (data.data && data.data.length > 0) {
+
+        }
+      })
+      .catch((error) => {
+        console.log("실패함", error);
+      });
+
+  }
+
   return (
     <>
       <div className={`modal ${showModal ? 'show' : ''}`} onClick={closeModal}>
@@ -62,7 +98,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal }) {
               <div
                 key={index}
                 style={getBoxStyle(index + 3)} // 인덱스를 고유하게 만들기 위해 추가
-                onClick={() => handleBoxClick(index + 3)}
+                onClick={() => handleBoxClick(index+3)}
                 onMouseDown={() => handleMouseDown(index + 3)}
                 onMouseUp={handleMouseUp}
               >
@@ -117,9 +153,9 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal }) {
             {[285, 290, 295].map((size, index) => (
               <div
                 key={index}
-                style={getBoxStyle(index + 12)} // 인덱스를 고유하게 만들기 위해 추가
-                onClick={() => handleBoxClick(index + 12)}
-                onMouseDown={() => handleMouseDown(index + 12)}
+                style={getBoxStyle(index + 15)} // 인덱스를 고유하게 만들기 위해 추가
+                onClick={() => handleBoxClick(index + 15)}
+                onMouseDown={() => handleMouseDown(index + 15)}
                 onMouseUp={handleMouseUp}
               >
                 {size}
@@ -145,6 +181,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal }) {
               onClick={() => {
                 // 확인 버튼 클릭 시 추가 로직을 넣을 수 있습니다.
                 closeModal(); // 모달 닫기
+                finalSave();
               }}
               style={{
                 border: '1px solid black',

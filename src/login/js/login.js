@@ -142,6 +142,7 @@ const LoginPage = () => {
   // };
 
   const handleSubmit = (e) => {
+    const token = localStorage.getItem('jwtToken');
     e.preventDefault();
     if (idEmail === "admin@kream.com" && newPassw === "admin1234!!") {
       setAdminAccess(true);
@@ -149,6 +150,7 @@ const LoginPage = () => {
     } else {
       //http://192.168.0.101:3001
       if (idEmail)
+
       $.ajax({
         url: "/api/auth/loginCheck",
         type: "POST",

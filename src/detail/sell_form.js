@@ -51,11 +51,22 @@ const Sell_form = () => {
   let [finalSelectedValue, setFinalSelectedValue] = useState('');
   let [finalAccountHolderNumberValue, setFinalAccountHolderNumberValue] = useState('');
 
-  // useEffect(() => {
-  //   console.log(finalAccountHolderValue);
-  //   console.log(finalSelectedValue);
-  //   console.log(finalAccountHolderNumberValue);
-  // }, [finalAccountHolderValue, finalSelectedValue, finalAccountHolderNumberValue])
+  useEffect(() => {
+    console.log("예금주 : ", finalAccountHolderValue);
+    console.log("은행명 : ", finalSelectedValue);
+    console.log("계좌번호 : ", finalAccountHolderNumberValue);
+    console.log("사이즈 : ", size);
+    console.log("이름 : ", finalName);
+    console.log("전화번호 : ", finalNumber);
+    console.log("주소 1 :", finalZonecode);
+    console.log("주소 1 :", finalRoadaddress);
+    console.log("주소 1 :", finalBname);
+    console.log("주소 1 :", finalBuildingname);
+    console.log("상세주소 : ", finalBetterAddress);
+    console.log("요청사항 : ", buy_request);
+  }, [finalAccountHolderValue, finalSelectedValue, finalAccountHolderNumberValue, size
+      , finalName, finalNumber, finalZonecode, finalRoadaddress, finalBname, finalBuildingname
+      , finalBetterAddress, buy_request])
 
   useEffect(() => {
     axiosBaseURL
