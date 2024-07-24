@@ -218,13 +218,15 @@ const Detail_info = (props) => {
         </div>
         <div style={{height:"100px"}}>
           <button onClick={() => {setInterestModal(true); setShowModal(true)}} style={{width:"560px", height:"70px", marginTop:"15px", borderRadius:"10px", backgroundColor:"white", border:"1px solid rgba(0,0,0,0.1)"}}>
-            <BsBookmark size={22} />관심상품<BsBookmarkFill size={22} />
+            <BsBookmarkFill size={22} /><label style={{}}>&nbsp;관심상품</label>
           </button>
           {interestModal ? (
             <Shopmodal isChecked={isChecked} 
             setIsChecked={setIsChecked} 
             closeModal={closeModal}
-            showModal={showModal}></Shopmodal>
+            showModal={showModal}
+            prId={props.main_info_shoes.prid}
+            ></Shopmodal>
           ) : (
             <>
             </>

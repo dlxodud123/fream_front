@@ -46,10 +46,11 @@ const Detail_form = () => {
           setDetail_shoes_id(data.data[0].prid);
           // setLinked_img(data.data[0].linkedImgName);
 
-          const rawImgName = data.data[0].imgName;
-
           console.log(data.data[0].imgName);
           console.log(data.data[0].linkedImgName);
+          
+          const rawImgName = data.data[0].imgName;
+
           let cleanedImgName = rawImgName;
 
           if (rawImgName.startsWith("['") && rawImgName.endsWith("']")) {
@@ -148,10 +149,10 @@ const Detail_form = () => {
           <Detail_size></Detail_size>
         </div>
         <div className="detail_container4">
-          <Detail_shoes2 detail_shoes_id={detail_shoes_id}></Detail_shoes2>
+          <Detail_shoes2 id={id}></Detail_shoes2>
         </div>
         <div className="detail_container4">
-          <Detail_shoes3 detail_shoes_id={detail_shoes_id}></Detail_shoes3>
+          <Detail_shoes3 id={id}></Detail_shoes3>
         </div>
         <div style={{ height: "50px" }}></div>
         <Footer></Footer>
