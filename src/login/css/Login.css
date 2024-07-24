@@ -99,10 +99,12 @@
         border: none;
         font-weight: bold;
     }
-    .kakao-login-button{
-        text-decoration: none; /* 링크 밑줄 제거 */
+    /* .kakao-login-button{
+        text-decoration: none; /* 링크 밑줄 제거 
         color: #222;
-    }
+        background-color: #fff;
+        border: none;
+    } */
 
     .loginComponent .row{
         display: flex;

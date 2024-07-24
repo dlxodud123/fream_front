@@ -144,11 +144,18 @@
     border: none;
 }
 .cardNumOpen>input :focus{
-    border: none;
+    outline: none;
 }
-.cardNumHide{
 
+.cardInput {
+    border: none; 
+    outline: none; 
 }
+.cardInput:focus {
+    border: none; 
+    box-shadow: none; 
+}
+
 .divide{
     color: #909090;
     font-size: 14px;
@@ -166,7 +173,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -174,8 +180,7 @@
 }
 
 .modal-content {
-    background: white;
-    padding: 20px;
+    padding: 0;
     border-radius: 8px;
     text-align: center;
 }
@@ -217,4 +222,61 @@
     border: none;
     font-size: 30px;
     width: 100%; /* 버튼을 그리드 셀의 너비에 맞추기 */
+}
+
+.layer-background.card-input {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cardContainer_arae.card-bady {
+    overflow-y: auto; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+.card-btn-container {
+    max-height: 400px;
+    overflow-y: auto; 
+    padding-right: 10px; 
+}
+
+/* 숫자 버튼 */
+.modalNum-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* 모달창을 가장 위에 표시 */
+}
+
+.modalNum-content {
+    position: absolute;
+    bottom: 320px; /* 원하는 위치 조정 */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1001; /* 카드번호 입력 필드보다 위에 표시 */
+    width: 490px;
+}
+
+
+.number-button:last-of-type {
+    border-bottom-left-radius: 12px; /* 아래 왼쪽 모서리 둥글기 */
+    border-bottom-right-radius: 12px; /* 아래 오른쪽 모서리 둥글기 */
+}
+
+.expiration.period{
+    width: 100%;
+}
+.expiration.period:focus {
+    border: none; 
+    box-shadow: none; 
+    outline: none;
 }
