@@ -1,418 +1,411 @@
-
-.period_search{
-    background-color: #fafafa;
-    border-bottom: 1px solid #ebebeb;
-    display: flex;
-    justify-content: center;
-    padding: 14px;
+.period_search {
+  background-color: #fafafa;
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  justify-content: center;
+  padding: 14px;
 }
-.month_list{
-    margin: 0;
-    display: flex;
-    list-style: none;
+.month_list {
+  margin: 0;
+  display: flex;
+  list-style: none;
 }
-.mon_btn{
-    display: flex;
+.mon_btn {
+  display: flex;
 }
-.month_link{
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    display: flex;
-    font-size: 13px;
-    height: 32px;
-    justify-content: center;
-    line-height: 30px;
-    min-width: 62px;
-    padding: 0 12px;
-    white-space: nowrap;
-    margin-left: 4px;
+.month_link {
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  display: flex;
+  font-size: 13px;
+  height: 32px;
+  justify-content: center;
+  line-height: 30px;
+  min-width: 62px;
+  padding: 0 12px;
+  white-space: nowrap;
+  margin-left: 4px;
 }
-.list_tab_detail_tab{
-    border-radius: 0;
-    margin-top: 20px;
+.list_tab_detail_tab {
+  border-radius: 0;
+  margin-top: 20px;
 }
-.period_calendar_wrapper{
-display: flex;
+.period_calendar_wrapper {
+  display: flex;
 }
-.perion_calendar{
-    display: flex;
-    position: relative;
+.perion_calendar {
+  display: flex;
+  position: relative;
 }
-.period_month{
-    margin-right: 20px;
-}
-
-
-.d{
-    margin: 0 4px;
-    display: inline-block;
-    line-height: 52px;
-}
-.period_btn{
-    margin-left: 4px;
-}
-.btn_search{
-    background-color: black;
-    border: 1px solid #d3d3d3;
-    border-radius: 5px;
-    width: 80px;
-    color: white;
-    font-size: 13px;
-    line-height: 30px;
+.period_month {
+  margin-right: 20px;
 }
 
-.month_list{
-    display: flex;
+.d {
+  margin: 0 4px;
+  display: inline-block;
+  line-height: 52px;
 }
-.search_info{
-    padding: 12px 0;
-    display: block;
-    padding-inline-start: 40px;
-    margin: 0;
+.period_btn {
+  margin-left: 4px;
+}
+.btn_search {
+  background-color: black;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  width: 80px;
+  color: white;
+  font-size: 13px;
+  line-height: 30px;
+}
+
+.month_list {
+  display: flex;
+}
+.search_info {
+  padding: 12px 0;
+  display: block;
+  padding-inline-start: 40px;
+  margin: 0;
 }
 /* .row .col:not(:last-child){
         border-right:  1px solid #000;
         padding-right: 10px;
     } */
-.info_item{
-    margin: 0;
-    color: rgba(34, 34, 34, .5);
-    font-size: 12px;
+.info_item {
+  margin: 0;
+  color: rgba(34, 34, 34, 0.5);
+  font-size: 12px;
 }
-.purchas_head{
-    align-items: center;
-    border-bottom: 1px solid #ebebeb;
-    display: flex;
-    padding: 12px;
+.purchas_head {
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  padding: 12px;
 }
-.head_product{
-    display: flex;
-    flex-wrap: wrap; /* 여러 줄을 지원합니다 */
-    /* gap: 10px; 버튼 사이의 간격을 설정합니다 */
-
+.head_product {
+  display: flex;
+  flex-wrap: wrap; /* 여러 줄을 지원합니다 */
+  /* gap: 10px; 버튼 사이의 간격을 설정합니다 */
 }
-.btn_buyFilter{
-    border-radius: 12px;
-    display: inline-block;
-    font-size: 13px;
-    line-height: 24px;
-    min-width: 120px;
-    padding: 5px 30px 5px 10px;
-    position: relative;
-    background-color: #fff;
-    border: 1px solid #d3d3d3;
-    text-align: left;
+.btn_buyFilter {
+  border-radius: 12px;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 24px;
+  min-width: 120px;
+  padding: 5px 30px 5px 10px;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  text-align: left;
 }
-.buyIcon{
-    position: absolute;
-    right: 5px;
-    top: 6px;
-    border: 1px solid #d3d3d3;
-    border-radius: 50%;
-    padding: 3px 5px;
+.buyIcon {
+  position: absolute;
+  right: 5px;
+  top: 6px;
+  border: 1px solid #d3d3d3;
+  border-radius: 50%;
+  padding: 3px 5px;
 }
-.svg-inline--fa.fa-sort{
-    position: absolute;
-    right: 5px;
+.svg-inline--fa.fa-sort {
+  position: absolute;
+  right: 5px;
 }
-.head_status{
-    align-items: center;
-    display: flex;
-    margin-left: auto;
-    text-align: right;
+.head_status {
+  align-items: center;
+  display: flex;
+  margin-left: auto;
+  text-align: right;
 }
-.status_box{
-    display: block;
-    width: 140px;
+.status_box {
+  display: block;
+  width: 140px;
 }
-.status_txt{
-    display: inline-block;
-    font-size: 13px;
-    line-height: 24px;
-    padding-right: 16px;
-    position: relative;
-    border: none;
-    background-color: #fff;
-    font-weight: 700;
+.status_txt {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 24px;
+  padding-right: 16px;
+  position: relative;
+  border: none;
+  background-color: #fff;
+  font-weight: 700;
 }
-.status_box.field{
-    margin-left: 10px;
-    width: 134px;
+.status_box.field {
+  margin-left: 10px;
+  width: 134px;
 }
-
 
 .sortUpIcon,
-.sortDownIcon{
-    height: 17px;
-    position: absolute;
-    right: -6px;
-    top: 3px;
-    width: 15px;
+.sortDownIcon {
+  height: 17px;
+  position: absolute;
+  right: -6px;
+  top: 3px;
+  width: 15px;
 }
-.sortUpIcon, .sortDownIcon {
-    color: rgba(0, 0, 0, .2) ;
+.sortUpIcon,
+.sortDownIcon {
+  color: rgba(0, 0, 0, 0.2);
 }
 .sortUpIcon.active {
-    color: black;
+  color: black;
 }
 
 .sortDownIcon.active {
-    color: black;
+  color: black;
 }
 
-
-
-
-.empty_area{
-    padding: 90px 0;
-    text-align: center;
+.empty_area {
+  padding: 90px 0;
+  text-align: center;
 }
-.buyText{
-    color: rgba(34, 34, 34, .5);
-    font-size: 12px;
-    margin: 0;
+.buyText {
+  color: rgba(34, 34, 34, 0.5);
+  font-size: 12px;
+  margin: 0;
 }
-.emptyAddBtn{
-    margin-top: 12px;
-    border-radius: 10px;
-    border: 1px solid #d3d3d3;
-    color: rgba(34, 34, 34, .8);
-    font-size: 12px;
-    height: 34px;
-    padding: 0 14px;
-    background-color: #fff;
-}
-
-
-
-
-.tab_box{
-    width: 100%;
-    background-color: #fff;
-    border: none;
-}
-.buyEnd_on h4{
-    font-weight: 700;
-    color: red;
-}
-.buyEnd_on{
-    border-bottom: 2px solid #222;
-    width: 100%;
-}
-.buyEnd_on span{
-    font-weight: 700;
-    color: #222;
-}
-.buyEnd span{
-    color: rgba(34, 34, 34, .5);
-}
-.buyEnd h4{
-    font-weight: 700;
-}
-.col_buyBtn{
-    width: 100%;
-}
-.col_buyBtn_on{
-    border-bottom: 2px solid #222;
-    width: 100%;
-}
-.col_buyBtn_on h4{
-    font-weight: 700;
-    color: red;
-}
-.col_buyBtn_on span{
-    width: 100%;
-    font-weight: 700;
-    color: #222;
-}
-.col_buyBtn h4{
-    font-weight: 700;
-}
-.col_buyBtn span{
-    color: rgba(34, 34, 34, .5);
-}
-
-.progres_on h4{
-    font-weight: 700;
-    color: red;
-}
-.progres_on{
-    border-bottom: 2px solid #222;
-    width: 100%;
-}
-.progres_on span{
-    font-weight: 700;
-    color: #222;
-}
-.progres h4{
-    font-weight: 700;
-}
-.progres span{
-    color: rgba(34, 34, 34, .5);
-}
-.container.text-center {
-    display: flex;
-    justify-content: space-between;
-    padding: 0; /* 패딩 제거 */
-}
-
-.container.text-center .col {
-    flex: 1; /* 컬럼들이 동일한 너비를 가지도록 설정 */
-    padding: 0; /* 컬럼 내부의 패딩 제거 */
-    display: flex; /* 올바른 정렬을 위한 Flex 컨테이너 설정 */
-    justify-content: center; /* 버튼을 가운데 정렬 */
-    align-items: center; /* 버튼을 수직으로 가운데 정렬 */
+.emptyAddBtn {
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid #d3d3d3;
+  color: rgba(34, 34, 34, 0.8);
+  font-size: 12px;
+  height: 34px;
+  padding: 0 14px;
+  background-color: #fff;
 }
 
 .tab_box {
-    width: 100%; /* 버튼 너비를 100%로 설정 */
-    padding: 20px; /* 필요에 따라 버튼 내부 패딩 조정 */
-    text-align: center; /* 버튼 내부 텍스트를 가운데 정렬 */
+  width: 100%;
+  background-color: #fff;
+  border: none;
+}
+.buyEnd_on h4 {
+  font-weight: 700;
+  color: red;
+}
+.buyEnd_on {
+  border-bottom: 2px solid #222;
+  width: 100%;
+}
+.buyEnd_on span {
+  font-weight: 700;
+  color: #222;
+}
+.buyEnd span {
+  color: rgba(34, 34, 34, 0.5);
+}
+.buyEnd h4 {
+  font-weight: 700;
+}
+.col_buyBtn {
+  width: 100%;
+}
+.col_buyBtn_on {
+  border-bottom: 2px solid #222;
+  width: 100%;
+}
+.col_buyBtn_on h4 {
+  font-weight: 700;
+  color: red;
+}
+.col_buyBtn_on span {
+  width: 100%;
+  font-weight: 700;
+  color: #222;
+}
+.col_buyBtn h4 {
+  font-weight: 700;
+}
+.col_buyBtn span {
+  color: rgba(34, 34, 34, 0.5);
+}
+
+.progres_on h4 {
+  font-weight: 700;
+  color: red;
+}
+.progres_on {
+  border-bottom: 2px solid #222;
+  width: 100%;
+}
+.progres_on span {
+  font-weight: 700;
+  color: #222;
+}
+.progres h4 {
+  font-weight: 700;
+}
+.progres span {
+  color: rgba(34, 34, 34, 0.5);
+}
+.container.text-center {
+  display: flex;
+  justify-content: space-between;
+  padding: 0; /* 패딩 제거 */
+}
+
+.container.text-center .col {
+  flex: 1; /* 컬럼들이 동일한 너비를 가지도록 설정 */
+  padding: 0; /* 컬럼 내부의 패딩 제거 */
+  display: flex; /* 올바른 정렬을 위한 Flex 컨테이너 설정 */
+  justify-content: center; /* 버튼을 가운데 정렬 */
+  align-items: center; /* 버튼을 수직으로 가운데 정렬 */
+}
+
+.tab_box {
+  width: 100%; /* 버튼 너비를 100%로 설정 */
+  padding: 20px; /* 필요에 따라 버튼 내부 패딩 조정 */
+  text-align: center; /* 버튼 내부 텍스트를 가운데 정렬 */
 }
 
 @media (max-width: 960px) {
-    .period_month {
-        display: none;
-    }
+  .period_month {
+    display: none;
+  }
 }
-
-
 
 /*  */
 .product_layer {
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 1010;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1010;
 }
 
 .productLayer_container {
-    background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 0 rgba(0, 0, 0, .1);
-    left: 50%;
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .title_product {
-    display: block;
-    background-color: #fff;
-    color: #000;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 22px;
-    min-height: 44px;
-    padding: 18px 50px;
-    text-align: center;
-    width: 500px;
+  display: block;
+  background-color: #fff;
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  min-height: 44px;
+  padding: 18px 50px;
+  text-align: center;
+  width: 500px;
 }
 
 .productCho {
-    display: flex; 
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 4px 26px 26px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 4px 26px 26px;
 }
 
 .productBtn {
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    border-radius: 12px;
-    padding: 15px 34px;
-    font-size: 14px;
-    line-height: 20px;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    margin: 6px;
-    align-items: center; 
-    flex: 0 1 calc(33.333% - 12px);
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 12px;
+  padding: 15px 34px;
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  margin: 6px;
+  align-items: center;
+  flex: 0 1 calc(33.333% - 12px);
 }
-.productBtn.focused, .productBtn:focus {
-    border: 1px solid #222;
+.productBtn.focused,
+.productBtn:focus {
+  border: 1px solid #222;
 }
 .productBtn.focused {
-    border: 1px solid #222;
+  border: 1px solid #222;
 }
 
 .productBtn.special {
-    color: red;
+  color: red;
 }
 
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
 }
 
 .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 18px;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 /*  */
 
-.buyListBox{
-    align-items: center;
-    display: flex;
-    padding: 38px 0;
-    width: 100%;
+.buyListBox {
+  align-items: center;
+  display: flex;
+  padding: 38px 0;
+  width: 100%;
 }
 
 .buyListImg {
-    border: 1px solid black;
-    width: 200px;
-    height: 200px;
-    border-radius: 20px;
-    margin-right: 16px;
+  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  margin-right: 16px;
+  overflow: hidden;
 }
 
 .shoes_inputBox {
-    display: flex;
-    flex-direction: column;
-    font-size: 20px;
-    margin-right: 16px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  margin-right: 16px;
 }
 
 .buyListItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .details-right {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 
 .purchase_price {
-    margin-right: 50px;
+  margin-right: 50px;
 }
-
+.jonglyoil {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* span 요소들이 좌측 정렬되도록 설정 */
+}
 /*  */
-
-

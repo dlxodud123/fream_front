@@ -58,10 +58,10 @@ function App() {
     const logUserAccess = async () => {
       try {
         // 로컬 스토리지에서 데이터 가져오기 (예: 사용자 ID)
-        const userId = localStorage.getItem("userId");
+        const userId = localStorage.getItem("jwtToken");
         console.log("유저임팩트");
         // 서버로 데이터 전송
-        await axiosBaseURL.post("http://192.168.0.101:3001/Access/logUserAccess", {
+        await axiosBaseURL.post("http://localhost:3001/Access/logUserAccess", {
           userId,
         });
       } catch (error) {
@@ -81,7 +81,6 @@ function App() {
         <div className="App">
           <AppWrapper>
             <Routes>
-    
               <Route path="/Admin/*" element={<ProtectedRoute />}>
                 <Route path="*" element={<AdminRouter />} />
               </Route>
@@ -134,7 +133,6 @@ function App() {
                 element={<Buy_history_from></Buy_history_from>}
               ></Route>
             </Routes>
-       
           </AppWrapper>
         </div>
       </AuthProvider>
