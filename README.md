@@ -11,8 +11,6 @@ Back-End
 김준형,구영모,이소래,이지혜
 
 사용한 기술
-![optimize](https://github.com/user-attachments/assets/14d104b1-1551-4502-a765-ae230f7e9c0d)
-
 
 Front-End
 React, Javascript, Styled-Component
