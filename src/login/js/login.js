@@ -8,9 +8,6 @@ import Footer from "../../common/footer";
 import { LoginForm } from "./RegisterCh.js";
 import { useDispatch  } from "react-redux";
 import axios from "axios";
-// const { setAdminAccess } = useAuth();
-// import $ from "jquery";
-// import { useAuth } from "../../AdminPage/adminAccess/adminAccess.jsx"
 import $ from "jquery";
 import { useAuth } from "../../AdminPage/adminAccess/adminAccess.jsx";
 
@@ -18,16 +15,7 @@ const KakaoLoginButton = ({ kakaoApiKey, redirectUri }) => {
   const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}&redirect_uri=${redirectUri}&response_type=code`;
 
   const handleKakaoLogin = () => {
-    const width = 500;
-    const height = 600;
-    const left = window.screen.width / 2 - width / 2;
-    const top = window.screen.height / 2 - height / 2;
-
-    window.open(
-      kakaoAuthUrl,
-      "kakaoLogin",
-      `width=${width},height=${height},top=${top},left=${left}`
-    );
+    window.location.href =kakaoAuthUrl;
   };
   return (
     <div className="btn btn-outline-dark">
@@ -53,30 +41,12 @@ const LoginPage = () => {
   let [passw, setPassw] = useState("login_data"); //password class변경용
   let [newPassw, setNewPassw] = useState("");
   let msg = <p className="input_error">이메일 주소를 정확히 입력해 주세요</p>;
+  const [isButtonActive, setIsButtonActive] = useState(false);
   
 
   const { setAdminAccess } = useAuth();
   const [token, setToken] = useState("");
 
-  
-  // useEffect(() => {
-  //   const url = new URL(window.location.href);
-  //   const code = url.searchParams.get("code");
-
-  //   const handleKakaoLogin = async () => {
-  //     if (code) {
-  //       const result = await dispatch(kakaoLogin(code));
-  //       const token = result?.accessToken;
-  //       if (token) {
-  //         navigate("/");
-  //         window.history.replaceState(null, null, '/'); // URL에서 인증 코드를 제거
-  //       } else {
-  //         alert("로그인 실패");
-  //       }
-  //     }
-  //   };
-  //   handleKakaoLogin();
-  // }, [dispatch, navigate]);
 
 
   useEffect(() => {
@@ -90,11 +60,9 @@ const LoginPage = () => {
         dispatch(kakaoLogin(code));
       }
     };
-    console.log("dddddddddddddd",handleMessage)
   
     window.addEventListener('message', handleMessage);
   
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('message', handleMessage);
     };
@@ -111,35 +79,13 @@ const LoginPage = () => {
   
         localStorage.setItem("token", Access_Token);
         dispatch({ type: "LOGIN_SUCCESS", payload: Access_Token });
-        navigate("/"); // Redirect to the main page
+        navigate("/");
       } catch (err) {
         console.log("Error:", err);
         window.alert("로그인 실패");
       }
     };
   };
-
-
-  // const kakaoLogin = (code) => {
-  //   return async function (dispatch) {
-  //     try {
-  //       const res = await axios.get(`http://192.168.0.13:3000/auth?code=${code}`);
-  //       console.log("Response:", res);
-
-  //       const Access_Token = res.data.accessToken;
-  //       console.log("Access Token:", Access_Token);
-
-  //       localStorage.setItem("token", Access_Token);
-  //       dispatch({ type: "LOGIN_SUCCESS", payload: Access_Token });
-  //       return { accessToken: Access_Token };
-
-  //     } catch (err) {
-  //       console.log("errr", err);
-  //       window.alert("로그인 실패");
-  //       return null;
-  //     }
-  //   };
-  // };
 
   const handleSubmit = (e) => {
     const token = localStorage.getItem('jwtToken');
@@ -176,9 +122,13 @@ const LoginPage = () => {
       });
     }
   }
-  const isButtonActive = classCh === "login_data" && passw === "login_data" &&
-                         idEmail !== "" && newPassw !== "";
-
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      if (classCh === "login_data" && passw === "login_data" && idEmail !== "" && newPassw !== "") {
+        setIsButtonActive(true);
+      }
+    }
+  };
   return (
     <div className="login_all">
       <Header />
@@ -197,17 +147,15 @@ const LoginPage = () => {
               placeholder="예)kream@kream.co.kr"
               onChange={(e) => {
                 setIdEmail(e.target.value);
-                {
-                  const regex = /^[^@]+@[^@]+\.[^@]{1,}$/;
-                  if (regex.test(idEmail)) {
-                    setclassCh("login_data");
-                    console.log(idEmail);
-                  } else {
-                    setclassCh("login_dataE");
-                  }
+                const regex = /^[^@]+@[^@]+\.[^@]{1,}$/;
+                if (regex.test(e.target.value)) {
+                  setclassCh("login_data");
+                } else {
+                  setclassCh("login_dataE");
                 }
               }}
-            ></input>
+              onKeyDown={handleKeyPress}
+            />
             {classCh == "login_dataE" ? msg : null}
           </div>
 
@@ -229,6 +177,7 @@ const LoginPage = () => {
                   }
                 }
               }}
+              onKeyDown={handleKeyPress}
             ></input>
             {passw == "passw" ? (
               <div className="passEr">

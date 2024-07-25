@@ -37,7 +37,7 @@ function PasswordChang({date, userPw}){
             <div className='unit_Prof'>
                 <h5 className='login_info_title'>비밀번호</h5>
                 <div className='unit_content'>
-                    <p className='outline'>{maskPw(date.userPw)}</p>
+                    <p className='outline'>●●●●●●●●●</p>
                     <button
                         type="button"
                         className="unitAll_Btn"

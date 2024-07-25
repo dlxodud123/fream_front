@@ -1,6 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import NumberPlateModal from './NumberModal.js'; // 번호판 모달 컴포넌트 임포트
 import PersonalCard from "./division/personal_card.js";
+import CorporationCard from "./division/Corporation_card.js";
+import axios from "axios";
 
 function CardModal({ onClose }) {
     const [cardNumber, setCardNumber] = useState(['', '', '', '']);
@@ -13,11 +15,33 @@ function CardModal({ onClose }) {
     const [showPinInput, setShowPinInput] = useState(false);
     const [showExpirationDateInput, setShowExpirationDateInput] = useState(false);
     const [showDateOfBirthInput, setShowDateOfBirthInput] = useState(false);
-    const [personalCardOpen, setPersonalCardOpen] =useState(false)
+    const [personalCardOpen, setPersonalCardOpen] =useState(false);
+    const [corporationCard, setCorporationCard] =useState(false);
+    const [isFormComplete, setIsFormComplete] = useState(false); 
+    const [businessNumber, setBusinessNumber] = useState(''); // 사업자 등록번호 상태 추가
 
-    const handleInputChange = () =>{
-        setPersonalCardOpen(prev => !prev)
-    }
+
+    // 입력값 초기화 함수
+    const resetCardData = () => {
+        setCardNumber(['', '', '', '']);
+        setPin('');
+        setExpirationDate('');
+        setDateOfBirth('');
+        setBusinessNumber(''); // 법인 카드의 경우
+    };
+
+    const handlePersonalCard = () => {
+        resetCardData();
+        setPersonalCardOpen(true);
+        setCorporationCard(false);
+    };
+
+    const handleCorporationCard = () => {
+        resetCardData();
+        setCorporationCard(true);
+        setPersonalCardOpen(false);
+    };
+
 
 
     const handleContainerClick = (event) => {
@@ -73,12 +97,6 @@ function CardModal({ onClose }) {
         }
     };
 
-    // const handleInputClick = (index) => {
-    //     if (index === 2 || index === 3) {
-    //         setCurrentInputIndex(index);
-    //         setShowNumberPlateModal(true);
-    //     }
-    // };
     const handleInputClick = (index) => {
         setCurrentInputIndex(index);
         if (index >= 2 && index <= 3) {
@@ -155,6 +173,62 @@ function CardModal({ onClose }) {
         }
     };
 
+    //사업자등록번호 코드
+    const handleBusinessNumberChange = (event) => {
+        let value = event.target.value.replace(/\D/g, ''); // 모든 비숫자 문자를 제거
+        if (value.length > 10) value = value.slice(0, 10); // 최대 10자리로 제한
+        if (value.length > 3 && value.length <= 5) {
+            value = value.slice(0, 3) + '-' + value.slice(3);
+        } else if (value.length > 5) {
+            value = value.slice(0, 3) + '-' + value.slice(3, 5) + '-' + value.slice(5);
+        }
+        setBusinessNumber(value);
+    };
+
+    // 모든 필드가 채워졌는지 확인하는 useEffect
+    useEffect(() => {
+        const isComplete = () => {
+            if (personalCardOpen) {
+                return cardNumber.every(num => num.length === 4) &&
+                       pin.length === 2 &&
+                       expirationDate.length === 5 &&
+                       dateOfBirth.length >= 10;
+            } else if (corporationCard) {
+                return cardNumber.every(num => num.length === 4) &&
+                       expirationDate.length === 5 &&
+                       businessNumber.length === 12;
+            }
+            return false;
+        };
+
+        setIsFormComplete(isComplete());
+    }, [cardNumber, pin, expirationDate, dateOfBirth, businessNumber, personalCardOpen, corporationCard]);
+
+    // Form data 전송 함수
+    const handleSubmit = async () => {
+        const data = personalCardOpen ? {
+            cardNumber: cardNumber.join('-'),
+            pin,
+            expirationDate,
+            dateOfBirth
+        } : {
+            cardNumber: cardNumber.join('-'),
+            pin,
+            expirationDate,
+            businessNumber
+        };
+
+        try {
+            const response = await axios.post('https://your-backend-url.com/api/submit', data);
+            console.log('Success:', response.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+
+
+
 
     return (
         <div className="product_layer">
@@ -189,20 +263,41 @@ function CardModal({ onClose }) {
                                         handleDateChange={handleDateChange}
                                     />
                                 )}
-                        </div>
+                                {corporationCard && (
+                                    <CorporationCard
+                                        cardNumber={cardNumber}
+                                        inputRefs={inputRefs}
+                                        handleCardNumberChange={handleCardNumberChange}
+                                        handleInputClick={handleInputClick}
+                                        showPinInput={showPinInput}
+                                        pin={pin}
+                                        handlePinChange={handlePinChange}
+                                        showExpirationDateInput={showExpirationDateInput}
+                                        expirationDate={expirationDate}
+                                        handleExpirationDateChange={handleExpirationDateChange}
+                                        showDateOfBirthInput={showDateOfBirthInput}
+                                        businessNumber={businessNumber}
+                                        handleBusinessNumberChange={handleBusinessNumberChange}
+                                    />
+                                )}
                         <span>카드종류</span>
-                                <div className="btn_cardGroup">
-                                    <button className="card-btnStyle"
-                                            onClick={handleInputChange}>개인 카드</button>
-                                    <button className="card-btnStyle">법인 카드</button>
-                                </div>
-                                <p className="btnMsg">법인카드가 개인 명의인 경우 개인 카드를 선택해주세요.</p>
-                    </div>
-                        <div className="NextBtn_box">
-                            <button className="Next_btn">다음</button>
+                            <div className="btn_cardGroup">
+                                <button className={`card-btn-style${personalCardOpen ? ' active' : ''}`} 
+                                        onClick={handlePersonalCard}>개인 카드</button>
+                                <button className={`card-btnStyle${corporationCard ? ' active' : ''}`} 
+                                        onClick={handleCorporationCard}>법인 카드</button>
+                            </div>
+                            <p className="btnMsg">법인카드가 개인 명의인 경우 개인 카드를 선택해주세요.</p>
                         </div>
+                    </div>
+                    <div className="NextBtn_box">
+                        <button className={`Next_btn ${isFormComplete ? 'active' : ''}`} 
+                                onClick={handleSubmit}
+                                disabled={!isFormComplete}>다음
+                        </button>
+                    </div>
+                    </div>
                 </div>
-            </div>
             {showNumberPlateModal && (
                 <NumberPlateModal 
                     onClose={() => setShowNumberPlateModal(false)} 

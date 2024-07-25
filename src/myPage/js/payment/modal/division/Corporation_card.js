@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PersonalCard({
+function CorporationCard({
     cardNumber,
     inputRefs,
     handleCardNumberChange,
@@ -12,32 +12,32 @@ function PersonalCard({
     expirationDate,
     handleExpirationDateChange,
     showDateOfBirthInput,
-    dateOfBirth,
-    handleDateChange
+    businessNumber, 
+    handleBusinessNumberChange 
 }) {
     return(
-    <div>
+        <div>
         <div className="cardType">
             {showDateOfBirthInput && (
                 <div className="cardType">
-                    <p>생년월일</p>
+                    <p>사업자 등록번호</p>
                     <div className="cardinput_area">
                         <div className="cardNumInput">
                             <div className="cardNumOpen">
                                 <input
                                     type="tel"
-                                    value={dateOfBirth}
-                                    onChange={handleDateChange}
-                                    placeholder="YYYY/MM/DD"
+                                    value={businessNumber}
+                                    onChange={handleBusinessNumberChange} 
+                                    placeholder="000-00-00000"
                                     className="expiration period"
                                 />
                             </div>
                         </div>
                     </div>
-                    <p className="form_feedback">카드 소유자 생년월일 8자리 (예:1000/12/01)</p>
+                    <p className="form_feedback">사업자 등록번호 10자리</p>
                 </div>
             )}
-            
+
             {showExpirationDateInput && (
                 <div className="cardType">
                     <p>유효기간</p>
@@ -100,8 +100,8 @@ function PersonalCard({
             </div>
             <p className="form_feedback">올바른 카드번호를 입력해주세요.</p>
         </div>
-    </div>
+        </div>
     )
 }
 
-export default PersonalCard;
+export default CorporationCard;

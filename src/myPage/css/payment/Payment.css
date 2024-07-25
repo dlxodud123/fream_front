@@ -27,10 +27,17 @@
 .unitAll_card{
     border-radius: 10px;
     background-color: #fff;
-    align-items: center;border: 1px solid #222;
-    line-height: 32px;
+    border: 1px solid #222;
     padding: 0 14px;
-    font-size: 12px;
+    font-size: 12px; /* 폰트 사이즈 설정 */
+    height: 32px; /* 버튼의 높이 설정 */
+    line-height: 32px; /* 버튼의 높이와 일치시켜 텍스트 수직 정렬 */
+    display: flex; /* Flexbox를 사용하여 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
+    line-height: 32px;
+
 }
 .layer_cardContainer{
     border-radius: 16px;
@@ -77,6 +84,7 @@
     gap: 8px;
     margin-top: 4px;
 }
+.card-btn-style,
 .card-btnStyle{
     border-radius: 12px;
     background-color: #fff;
@@ -85,6 +93,14 @@
     width: 100%;
     height: 48px;
 }
+
+.card-btn-style.active,
+.card-btnStyle.active{
+    border: 1px solid #222 !important;
+}
+
+
+
 .btnMsg{
     color: rgba(34, 34, 34, .5);
     font-size: 13px;
@@ -103,6 +119,13 @@
     height: 52px;
     width: 100%;
     border: 1px solid #ebebeb;
+}
+
+.Next_btn.active {
+    background-color: black;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 700;
 }
 
 /*  */
@@ -279,4 +302,90 @@
     border: none; 
     box-shadow: none; 
     outline: none;
+}
+
+/*  */
+.basicAccount{
+    padding: 22px 0 29px;
+    border-bottom: 2px solid #222;
+}
+.my_baxicAccount_box{
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+.accountInfo_bind{
+    display: flex;
+    margin-right: 24px;
+    align-items: center;
+}
+.accountCard_info{
+    padding: 13px 0 1px;
+}
+.card_name{
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 52px;
+    padding: 9px;
+    text-align: center;
+    margin-right: 17px;
+}
+.CardNumber{
+    /* font-size: 0; */
+    flex-direction: column;
+    margin-left: 17px;
+    align-items: center;
+}
+.num_bind_card{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.dot{
+    white-space: nowrap;
+}
+.hypahe_card{
+    background-color: #000;
+    display: inline-flex;
+    height: 1px;
+    margin-left: 4px;
+    margin-right: 2px;
+    width: 4px;
+}
+.card_lastNum{
+    display: flex;
+}
+.lastCardNum{
+    display: inline-flex;
+    font-size: 14px;
+    margin-left: 2px;
+}
+.myAccount_del{
+    margin-top: 30px;
+    margin-left: auto;
+}
+.mark_card{
+    padding: 0 6px;
+    background-color: #bbb;
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 18px;
+    vertical-align: top;
+}   
+
+.myAccountDel_btn{
+    border: 1px solid #d3d3d3;
+    font-size: 12px;
+    height: 34px;
+    color: rgba(34, 34, 34, .8);
+    padding-left: 11px;
+    padding-right: 12px;
+    border-radius: 10px;
+    padding: 0 14px;
+    background-color: #fff;
 }
