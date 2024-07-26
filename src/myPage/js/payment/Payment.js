@@ -2,7 +2,7 @@ import Header from '../../../common/header';
 import Footer from '../../../common/footer';
 import MypageList from "../MypageList";
 import '../../css/payment/Payment.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CardModal from './modal/CardModal';
 
@@ -30,6 +30,7 @@ const Payment = () => {
                 console.log('payment 에러 useEffect', error);
             });
     }, []);
+    const items = Array(3).fill(null); // 3개의 null 값을 가진 배열을 생성
 
     return(
     <div>
@@ -71,24 +72,16 @@ const Payment = () => {
                             </div>
                                 <div className='CardNumber'>
                                     <span className='num_bind_card'>
-                                    <span className='dot'>
-                                        ····
-                                        </span>
-                                        <span className='hypahe_card'>
-                                            -
-                                        </span>
-                                        <span className='dot'>
-                                        ····
-                                        </span>
-                                        <span className='hypahe_card'>
-                                            -
-                                        </span>
-                                        <span className='dot'>
-                                        ····
-                                        </span>
-                                        <span className='hypahe_card'>
-                                            -
-                                        </span>
+                                        {items.map((index) => (
+                                            <React.Fragment key={index}>
+                                            <span className='dot'>
+                                                ••••
+                                            </span>
+                                            <span className='hypahe_card'>
+                                                -
+                                            </span>
+                                            </React.Fragment>
+                                        ))}
                                         <div className='card_lastNum'>
                                             <span className='lastCardNum'>3333</span>
                                         </div>

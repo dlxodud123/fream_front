@@ -24,7 +24,7 @@ const OrderList = () => {
         "http://192.168.0.101:3001/member/orders"
       ); // 실제 API 엔드포인트로 변경 필요
       const orders = response.data;
-
+      console.log("response.data:",response.data);
       const ordersWithUserNames = orders.map((order) => ({
         ...order,
         userName: order.user.username, // user 객체에서 username 추출

@@ -26,12 +26,12 @@ const Profile_edit = () =>{
                 setDate({
                     img: res.data.profileUrl || defaultProfileImg,
                     userId: res.data.userId,
-                    userName: res.data.username,
+                    userName: res.data.userName,
                     profileName: res.data.profileName,
                     userBio: res.data.userBio
                 });
                 setUserImg(res.data.profileUrl || defaultProfileImg); 
-                console.log("ffffffff",date.img)
+                // console.log("이미지 데이터 확인 : ",date.img)
             })
             .catch(error =>{
                 console.log('profile 에러 useEffect', error);

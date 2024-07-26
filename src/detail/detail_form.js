@@ -37,7 +37,7 @@ const Detail_form = () => {
 
   useEffect(() => {
     axiosBaseURL
-      .get(`http://192.168.42.142:3001/products/${id}`)
+      .get(`/api/products/${id}`)
       .then((data) => {
         console.log("data:", data);
         if (data.data && data.data.length > 0) {

@@ -12,7 +12,8 @@ import $ from "jquery";
 import { useAuth } from "../../AdminPage/adminAccess/adminAccess.jsx";
 
 const KakaoLoginButton = ({ kakaoApiKey, redirectUri }) => {
-  const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}&redirect_uri=${redirectUri}&response_type=code`;
+  const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}
+      &redirect_uri=${redirectUri}&response_type=code`;
 
   const handleKakaoLogin = () => {
     window.location.href =kakaoAuthUrl;
@@ -30,7 +31,6 @@ const KakaoLoginButton = ({ kakaoApiKey, redirectUri }) => {
     </div>
   );
 };
-
 
 
 const LoginPage = () => {
@@ -129,6 +129,12 @@ const LoginPage = () => {
       }
     }
   };
+
+
+
+
+
+
   return (
     <div className="login_all">
       <Header />
