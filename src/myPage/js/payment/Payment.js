@@ -55,7 +55,7 @@ const Payment = () => {
                 </div>
 
             </div>
-        { date.length == 0 ? (
+        { date.length != 0 ? (
             <div>
                 <div className='payment_eara'>
                     <p className='paymentNull'>추가하신 결제 정보가 없습니다.</p>
@@ -63,7 +63,45 @@ const Payment = () => {
             </div>
         ) : (
             <div>
+                <div className='basicAccount'>
+                    <div className='my_baxicAccount_box'>
+                        <div className='accountInfo_bind'>
+                            <div className='accountCard_info'>
+                                <span className='card_name'>KB</span>
+                            </div>
+                                <div className='CardNumber'>
+                                    <span className='num_bind_card'>
+                                    <span className='dot'>
+                                        ····
+                                        </span>
+                                        <span className='hypahe_card'>
+                                            -
+                                        </span>
+                                        <span className='dot'>
+                                        ····
+                                        </span>
+                                        <span className='hypahe_card'>
+                                            -
+                                        </span>
+                                        <span className='dot'>
+                                        ····
+                                        </span>
+                                        <span className='hypahe_card'>
+                                            -
+                                        </span>
+                                        <div className='card_lastNum'>
+                                            <span className='lastCardNum'>3333</span>
+                                        </div>
+                                    </span>
+                                    <span className='mark_card'>기본결제</span>
+                                </div>
 
+                        </div>
+                        <div className='myAccount_del'>
+                            <button className='myAccountDel_btn'>삭제</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         )}
   

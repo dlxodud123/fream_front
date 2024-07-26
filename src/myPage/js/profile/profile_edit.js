@@ -38,36 +38,6 @@ const Profile_edit = () =>{
             });
     }, []);
     
-
-
-    // const ImgChange = async (e) =>{
-    //     const file = e.target.files[0];
-    //     if(file) {
-    //         try{
-    //             const formData = new FormData();
-    //             formData.append('file', file);
-    //             const response = await axios.post('/api/my/profile-edit/img',{
-    //                 // method: 'POST',
-    //                 body: formData,
-    //             })
-    //             .then(response => response.ok)
-    //             .then(data => {
-    //                 const date = data
-    //                 setUserImg(date.imageUrl);
-    //                 setDate(prevState => ({
-    //                     ...prevState,
-    //                     img: date.imageUrl,
-    //                 }));
-                    
-    //             })
-    //             .catch(error =>{
-    //                 console.log("업로드 실패 : ", error)
-    //             })
-
-    //         }catch (error){
-    //             console.log('이미지 파일 error발생' , error)
-    //         }}
-    //     };
     const ImgChange = async (e) => {
         const formData = new FormData();
         const file = e.target.files[0];

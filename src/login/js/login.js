@@ -1,91 +1,91 @@
 import "../css/Login.css";
 import Header from "../../common/header";
-import { Button } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../common/footer";
 import { LoginForm } from "./RegisterCh.js";
-import { useDispatch } from "react-redux";
+import { useDispatch  } from "react-redux";
 import axios from "axios";
-// const { setAdminAccess } = useAuth();
-// import $ from "jquery";
-// import { useAuth } from "../../AdminPage/adminAccess/adminAccess.jsx"
 import $ from "jquery";
 import { useAuth } from "../../AdminPage/adminAccess/adminAccess.jsx";
 
 const KakaoLoginButton = ({ kakaoApiKey, redirectUri }) => {
   const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}&redirect_uri=${redirectUri}&response_type=code`;
 
+  const handleKakaoLogin = () => {
+    window.location.href =kakaoAuthUrl;
+  };
   return (
     <div className="btn btn-outline-dark">
-      <a href={kakaoAuthUrl} target="_blank" className="kakao-login-button">
-        <img className="kaImg"
-         src={require('../../img//login-page/kakao-talk_3669973.png')} alt="카카오 로그인" />
+      <button onClick={handleKakaoLogin} className="btn btn-outline-dark">
+        <img
+          className="kaImg"
+          src={require("../../img/login-page/kakao-talk_3669973.png")}
+          alt="카카오 로그인"
+        />
         <span className="kakao-login-text">카카오 로그인</span>
-      </a>
+      </button>
     </div>
   );
 };
 
-const kakaoLogin = (code) => {
-  return function (dispathch, getState, { history }) {
-    axios({
-      method: "GET",
-      url: `http://192.168.0.13:3000/auth?code=${code}`,
-    })
-      .then((res) => {
-        console.log(res);
-        const Access_Token = res.data.accessToken;
-        localStorage.setItem("token", Access_Token);
-        window.alert("1");
-        history.replace("/"); //로그인성공시 화면전환
-      })
-      .catch((err) => {
-        console.log("errr", err);
-        window.alert("로그인 실패");
-        history.replace("/login");
-      });
-  };
-};
+
 
 const LoginPage = () => {
-  const dispathch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  let code = new URL(window.location.href).searchParams.get("code");
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    const code = url.searchParams.get("code");
-
-    const handleKakaoLogin = async () => {
-      if (code) {
-        const result = await dispathch(kakaoLogin(code));
-        const token = result.payload?.accessToken;
-        if (token) {
-          navigate("/");
-        } else {
-          alert("로그인 실패");
-        }
-      }
-    };
-    handleKakaoLogin();
-  }, [dispathch, navigate]);
-
   let [idEmail, setIdEmail] = useState(""); //입력한 아이디 값
   let [classCh, setclassCh] = useState("login_data");
   let [passw, setPassw] = useState("login_data"); //password class변경용
   let [newPassw, setNewPassw] = useState("");
   let msg = <p className="input_error">이메일 주소를 정확히 입력해 주세요</p>;
-  const isButtonActive =
-    classCh === "login_data" &&
-    passw === "login_data" &&
-    idEmail !== "" &&
-    newPassw !== "";
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  
 
   const { setAdminAccess } = useAuth();
   const [token, setToken] = useState("");
+
+
+
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.origin !== 'http://localhost:3000') {
+        return; 
+      }
+  
+      const { code } = event.data;
+      if (code) {
+        dispatch(kakaoLogin(code));
+      }
+    };
+  
+    window.addEventListener('message', handleMessage);
+  
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [dispatch]);
+  
+  const kakaoLogin = (code) => {
+    return async (dispatch) => {
+      try {
+        const res = await axios.get(`http://192.168.0.13:3000/auth?code=${code}`);
+        console.log("Response:", res);
+  
+        const Access_Token = res.data.accessToken;
+        console.log("Access Token:", Access_Token);
+  
+        localStorage.setItem("token", Access_Token);
+        dispatch({ type: "LOGIN_SUCCESS", payload: Access_Token });
+        navigate("/");
+      } catch (err) {
+        console.log("Error:", err);
+        window.alert("로그인 실패");
+      }
+    };
+  };
 
   const handleSubmit = (e) => {
     const token = localStorage.getItem('jwtToken');
@@ -96,14 +96,14 @@ const LoginPage = () => {
     } else {
       //http://192.168.0.101:3001
       if (idEmail)
+<<<<<<< HEAD
         $.ajax({
-          url: "/auth/loginCheck",
+          url: "http://192.168.0.13:3001/auth/loginCheck",
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
           xhrFields: {
             withCredentials: true,
-            
           },
           success: function (data) {
             const jwtToken = data;
@@ -121,9 +121,41 @@ const LoginPage = () => {
             console.error("There was an error logging in!", error);
           },
         });
+=======
+
+      $.ajax({
+        url: "/api/auth/loginCheck",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
+        xhrFields: {
+          withCredentials: true,
+        },
+        success: function (data) {
+          const jwtToken = data;
+          if (jwtToken) {
+            setToken(jwtToken);
+            console.log("success");
+            localStorage.setItem("jwtToken", jwtToken);
+            navigate("/");
+          } else {
+            console.log("fail");
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error("There was an error logging in!", error);
+        },
+      });
+    }
+  }
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      if (classCh === "login_data" && passw === "login_data" && idEmail !== "" && newPassw !== "") {
+        setIsButtonActive(true);
+      }
+>>>>>>> 5a650b3ab6d7857d73df27763e2d226734303e56
     }
   };
-
   return (
     <div className="login_all">
       <Header />
@@ -142,17 +174,15 @@ const LoginPage = () => {
               placeholder="예)kream@kream.co.kr"
               onChange={(e) => {
                 setIdEmail(e.target.value);
-                {
-                  const regex = /^[^@]+@[^@]+\.[^@]{1,}$/;
-                  if (regex.test(idEmail)) {
-                    setclassCh("login_data");
-                    console.log(idEmail);
-                  } else {
-                    setclassCh("login_dataE");
-                  }
+                const regex = /^[^@]+@[^@]+\.[^@]{1,}$/;
+                if (regex.test(e.target.value)) {
+                  setclassCh("login_data");
+                } else {
+                  setclassCh("login_dataE");
                 }
               }}
-            ></input>
+              onKeyDown={handleKeyPress}
+            />
             {classCh == "login_dataE" ? msg : null}
           </div>
 
@@ -174,6 +204,7 @@ const LoginPage = () => {
                   }
                 }
               }}
+              onKeyDown={handleKeyPress}
             ></input>
             {passw == "passw" ? (
               <div className="passEr">
@@ -210,12 +241,6 @@ const LoginPage = () => {
             kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
             redirectUri={"http://localhost:3000/auth"}
           />
-
-
-
-          {/* <div>
-            <butC classCh="login_data" passw="login_data"></butC>
-          </div> */}
         </div>
       </div>
       <Footer />

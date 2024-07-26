@@ -15,20 +15,29 @@ const NumberPlateModal = ({ onSelect }) => {
         shuffleNumbers(); // 컴포넌트가 마운트될 때 숫자 셔플
     }, []);
 
+    // const handleNumberSelect = (number) => {
+    //     if (selectedNumbers.length < 4) {
+    //         const newSelectedNumbers = [...selectedNumbers, number];
+    //         setSelectedNumbers(newSelectedNumbers);
+    //         if (newSelectedNumbers.length === 4) {
+    //             onSelect(newSelectedNumbers);
+    //         }
+    //     }
+    // };
     const handleNumberSelect = (number) => {
         if (selectedNumbers.length < 4) {
             const newSelectedNumbers = [...selectedNumbers, number];
             setSelectedNumbers(newSelectedNumbers);
             if (newSelectedNumbers.length === 4) {
-                onSelect(newSelectedNumbers);
+                const plate = newSelectedNumbers.join(''); // 배열을 문자열로 변환
+                onSelect(plate);
             }
         }
     };
 
     return (
-        <div className="modal-background" onClick={() => onSelect([])}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                <h3>숫자 선택</h3>
+        <div className="modalNum-background" onClick={() => onSelect([])}>
+            <div className="modalNum-content" onClick={(e) => e.stopPropagation()}>
                 <div className="number-buttons-container">
                     {randomNumbers.map((number) => (
                         <button
