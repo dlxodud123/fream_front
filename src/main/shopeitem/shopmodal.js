@@ -197,7 +197,6 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
             </div>
             <div
 
-              onClick={() => confirmToggle(selectedBoxes)}
 
               onClick={() => {
                 // 확인 버튼 클릭 시 추가 로직을 넣을 수 있습니다.
