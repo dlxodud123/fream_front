@@ -14,8 +14,21 @@ import guar_img2 from "./../img/detail-page/guar2.png";
 import { BsBookmark } from "react-icons/bs";
 import { BsBookmarkFill } from "react-icons/bs";
 import Shopmodal from "../main/shopeitem/shopmodal.js";
+import { UserAuthContext } from "../Auth/UserAuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Detail_info = (props) => {
+  let [interestModal, setInterestModal] = useState(false);
+
+  const { isLoggedIn, handleLogout } = useContext(UserAuthContext);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (interestModal && !isLoggedIn) {
+        navigate('/login');
+    }
+  }, [interestModal, isLoggedIn, navigate]);
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-US").format(price);
   };
@@ -31,7 +44,6 @@ const Detail_info = (props) => {
 
   };
 
-  let [interestModal, setInterestModal] = useState(false);
 
   const [isChecked, setIsChecked] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -220,7 +232,7 @@ const Detail_info = (props) => {
           <button onClick={() => {setInterestModal(true); setShowModal(true)}} style={{width:"560px", height:"70px", marginTop:"15px", borderRadius:"10px", backgroundColor:"white", border:"1px solid rgba(0,0,0,0.1)"}}>
             <BsBookmarkFill size={22} /><label style={{}}>&nbsp;관심상품</label>
           </button>
-          {interestModal ? (
+          {interestModal && isLoggedIn ? (
             <Shopmodal isChecked={isChecked} 
             setIsChecked={setIsChecked} 
             closeModal={closeModal}
@@ -346,14 +358,115 @@ const Detail_info = (props) => {
             style={{ width: "560px", height: "100px" }}
           ></img>
         </div>
-        {/* <div style={{width:"560px", textAlign:"left", fontWeight:"bold", marginLeft:"50px"}}>
-                    시세
-                </div> */}
-        <div className="parentDiv">
+        {
+          isLoggedIn ? (
+            <div className="parentDiv">
+              <LineChart></LineChart>
+            </div>
+          ) : (
+            <>
+              <div className="parentDiv">
+                <div style={{opacity:"0.1"}}>
+                  <LineChart></LineChart>
+                </div>
+              </div>
+              <div style={{backgroundColor:"black", zIndex:"2", opacity:"1"}}>
+                <div style={{width:"100px", height:"100px", border:"1px solid black",margin:'0px auto',marginTop:'-250px'}}>
+                </div>
+              </div>
+            </>
+          )
+        }
+        {/* <div className="parentDiv">
           <LineChart></LineChart>
-        </div>
+        </div> */}
+        {/* marginTop: "16px" */}
         <div className="guarantee">
-          <div style={{ display: "flex", marginTop: "16px" }}>
+          {
+            isLoggedIn ? (
+              <>
+                <div style={{ display: "flex", marginTop: "16px" }}>
+                  <div>
+                    <img src={guar_img} style={{ width: "45px" }}></img>
+                  </div>
+                  <div
+                    style={{
+                      textAlign: "left",
+                      fontSize: "13px",
+                      marginLeft: "20px",
+                      marginTop: "3px",
+                    }}
+                  >
+                    <div style={{ fontWeight: "bold" }}>100% 정품 보증</div>
+                    <div
+                      style={{
+                        marginTop: "5px",
+                        color: "rgba(0,0,0,0.5)",
+                        fontSize: "12px",
+                      }}
+                    >
+                      KREAM에서 검수한 상품이 정품이 아닐 경우, 구매가의 3배를
+                      보상합니다.
+                    </div>
+                  </div>
+                </div>
+                <div style={{ display: "flex", marginTop: "16px" }}>
+                  <div>
+                    <img
+                      src={guar_img1}
+                      style={{ width: "45px", marginTop: "7px" }}
+                    ></img>
+                  </div>
+                  <div
+                    style={{
+                      textAlign: "left",
+                      fontSize: "13px",
+                      marginLeft: "20px",
+                      marginTop: "3px",
+                    }}
+                  >
+                    <div style={{ fontWeight: "bold" }}>엄격한 다중 검수</div>
+                    <div
+                      style={{
+                        marginTop: "5px",
+                        color: "rgba(0,0,0,0.5)",
+                        fontSize: "12px",
+                      }}
+                    >
+                      모든 상품은 검수센터에 도착한 후, 상품별 전문가 그룹의 체계적인
+                      시스템을 거쳐 검수를 진행합니다.
+                    </div>
+                  </div>
+                </div>
+                <div style={{ display: "flex", marginTop: "16px" }}>
+                  <div>
+                    <img src={guar_img2} style={{ width: "45px" }}></img>
+                  </div>
+                  <div
+                    style={{
+                      textAlign: "left",
+                      fontSize: "13px",
+                      marginLeft: "20px",
+                      marginTop: "3px",
+                    }}
+                  >
+                    <div style={{ fontWeight: "bold" }}>정품 인증 패키지</div>
+                    <div
+                      style={{
+                        marginTop: "5px",
+                        color: "rgba(0,0,0,0.5)",
+                        fontSize: "12px",
+                      }}
+                    >
+                      검수에 합격한 경우에 한하여 KREAM의 정품 인증 패키지가 포함된
+                      상품이 배송됩니다.
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div style={{ display: "flex", marginTop: "200px" }}>
             <div>
               <img src={guar_img} style={{ width: "45px" }}></img>
             </div>
@@ -431,6 +544,11 @@ const Detail_info = (props) => {
               </div>
             </div>
           </div>
+              </>
+            )
+          }
+          
+
         </div>
       </div>
     </div>

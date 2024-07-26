@@ -1,8 +1,13 @@
 import './../css/modal/buy_modal.css';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from 'styled-components';
+import { UserAuthContext } from '../../Auth/UserAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Buy_modal = (props) => {
+    const { isLoggedIn, handleLogout } = useContext(UserAuthContext);
+    const navigate = useNavigate();
+
     const [buyModal, setBuyModal] = useState(false);    
     const [buyBtn, setBuyBtn] = useState(0);
     const [image, setImage] = useState('');
@@ -10,6 +15,12 @@ const Buy_modal = (props) => {
     let data = encodeURIComponent(JSON.stringify(props.main_info_shoes));
     let prid = props.main_info_shoes.prid;
     
+    useEffect(() => {
+        if (buyModal && !isLoggedIn) {
+            navigate('/login');
+        }
+    }, [buyModal, isLoggedIn, navigate]);
+
     useEffect(() => {
         setBuyBtn(parseInt(props.final_size));
         props.setFinal_Size(props.final_size);
@@ -48,7 +59,7 @@ const Buy_modal = (props) => {
                 </div>
             </button>
             {   
-                buyModal &&
+                buyModal && isLoggedIn ? (
                 <div className={'buy_modal-container'}>
                     <div className={'buy_modal-content'}>
                         <div style={{height:"55px" , display:"flex"}}>
@@ -113,6 +124,10 @@ const Buy_modal = (props) => {
                         }
                     </div>
                 </div>
+                ) : (
+                    <>
+                    </>
+                )
             }
         </>
     )

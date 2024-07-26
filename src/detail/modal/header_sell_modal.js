@@ -1,15 +1,28 @@
 import './../css/modal/sell_modal.css';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import img1 from "./../../img/img5.jpg"
 import styled from 'styled-components';
+import { UserAuthContext } from '../../Auth/UserAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Header_sell_modal = (props) => {
+    const { isLoggedIn, handleLogout } = useContext(UserAuthContext);
+    const navigate = useNavigate();
+
     const [sellModal, setSellModal] = useState(false);    
     const [sellBtn, setSellBtn] = useState();
+
+    let prid = props.main_info_shoes.prid;
 
     useEffect(() => {
         setSellBtn(parseInt(props.final_size));
     }, [props.final_size]);
+
+    useEffect(() => {
+        if (sellModal && !isLoggedIn) {
+            navigate('/login');
+        }
+    }, [sellModal, isLoggedIn, navigate]);
 
     const Sell_modal_btn = styled.button`
         width: 133px;
@@ -19,7 +32,7 @@ const Header_sell_modal = (props) => {
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
     const buy_link = () => {
-        window.location.href = '/sell';
+        window.location.href = `/sell/${prid}/${sellBtn}`;
     }
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US').format(price);
@@ -36,7 +49,7 @@ const Header_sell_modal = (props) => {
                 </div>
             </button>
             {   
-                sellModal &&
+                sellModal && isLoggedIn ? (
                 <div className={'sell_modal-container'}>
                     <div className={'sell_modal-content'}>
                         <div style={{height:"55px" , display:"flex"}}>
@@ -96,6 +109,9 @@ const Header_sell_modal = (props) => {
                         </div>
                     </div>
                 </div>
+                ) : (
+                    <></>
+                )
             }
         </>
     )
