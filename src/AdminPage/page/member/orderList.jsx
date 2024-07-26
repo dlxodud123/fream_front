@@ -21,15 +21,20 @@ const OrderList = () => {
       const response = await axios.get(
         // "http://localhost:3001/adminPage/adminUser"
         "http://localhost:3001/member/orders"
+        // "http://192.168.0.101:3001/member/orders"
       ); // 실제 API 엔드포인트로 변경 필요
       const orders = response.data;
-
+      console.log("console.log(response.data)", response.data);
       const ordersWithUserNames = orders.map((order) => ({
         ...order,
         userName: order.user.username, // user 객체에서 username 추출
-        products: order.orderItems
-          .map((item) => item.product.nameKor)
-          .join(", "), // orderItems에서 product 이름을 추출하여 합침
+        // products: order.orderItems
+        //   .map((item) => item.product.nameKor)
+        //   .join(", "), // orderItems에서 product 이름을 추출하여 합침
+        products: order.productName,
+        // order.orderItems[0].product
+        //   ? order.orderItems.map((item) => item.product.nameKor).join(", ")
+        //   : order.productName, // orderItems에 product 객체가 존재하는 경우와 아닌 경우를 구분
         productids: order.orderItems
           .map((item) => item.product.prid)
           .join(", "),

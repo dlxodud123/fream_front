@@ -6,17 +6,68 @@ import { useEffect, useState } from 'react';
 import EmailAdress from '../mypage_login_info/EmaillAdress.js'
 import PasswordChang from '../mypage_login_info/PasswordCh.js'
 import Layer from '../mypage_login_info/Layer.js'
+import axios from 'axios';
 
 const Profile = () =>{
-    const [ password, setPassword ] = useState('');
-    const [ user_size , setuser_size] = useState('')
-    useEffect(() => { //비번
-        const fetchPw = async () => {
-            const beforePw = 'nn'; //API 호출
-            setPassword(beforePw);
-        };
-        fetchPw();
+    let [date, setDate] = useState({});//데이터
+    // const [isEditing, setIsEditing] = useState(false);
+
+    useEffect(() => {
+        axios.get('/api/my/profile-edit')
+            // .then(response => console.log(response))
+            .then(res=>{
+                console.log("로그인 정보 : ",res.data)
+                setDate({
+                    userEmail: res.data.email,
+                    userPw: res.data.userPw,
+                    userPhone: res.data.phone,
+                    userSize: res.data.userSize,
+                    textMsg: res.data.receiveEmail,
+                    emailMsg: res.data.receiveMessage
+                });
+                setReceiveEmail(res.data.receiveEmail);
+                setReceiveMessage(res.data.receiveMessage);
+            })
+            .catch(error =>{
+                console.log('profile 에러 useEffect', error);
+            });
     }, []);
+
+  
+    const handleSave = () => {
+    setDate(prevDate => ({
+        ...prevDate,
+        userEmail: userEmail,
+        userPw: userPw,
+        userPhone: userPhone,
+        userSize: userSize,
+        textMsg: receiveEmail,
+        emailMsg: receiveMessage
+    }));
+        axios.put('/api/my/profile-edit?introduce=', {
+        userEmail: userEmail,
+        userPw: userPw,
+        userPhone: userPhone,
+        userSize: userSize,
+        textMsg: receiveEmail,
+        emailMsg: receiveMessage
+    })
+    .then(response => {
+    console.log(response.data);
+    })
+    .catch(error => {
+    console.error(error);
+        });
+    };
+
+    const [user_size , setuser_size] = useState('');
+    const [userEmail, setUserEmail] = useState(date.email);
+    const [userPw, seUserPw] = useState(date.userPw);
+    const [userPhone, setUserPhone] = useState(date.phone);
+    const [userSize, setUserSize] = useState(date.userSize);
+    const [receiveEmail, setReceiveEmail] = useState('1');
+    const [receiveMessage, setReceiveMessage] = useState('1');
+
 
     const [isLayer, setIsLayer] = useState(false);
     const toggleLayer = () => {
@@ -26,6 +77,30 @@ const Profile = () =>{
     const [selectedSize, setSelectedSize] = useState('');
     const handleConfirmSize = (size) => {
         setSelectedSize(size);
+    };
+    
+    const handleTextMsgChange = (e) => {
+        const value = e.target.value;
+        setReceiveMessage(value);
+        axios.put('/api/my/profile', { receiveMessage: value })
+            .then(response => {
+                console.log('Text message :', response.data);
+            })
+            .catch(error => {
+                console.error('수신동의 error :', error);
+            });
+    };
+
+    const handleEmailMsgChange = (e) => {
+        const value = e.target.value;
+        setReceiveEmail(value);
+        axios.put('/api/my/profile', { receiveEmail: value })
+            .then(response => {
+                console.log('Email preference updated:', response.data);
+            })
+            .catch(error => {
+                console.error('Error updating email preference:', error);
+            });
     };
 
 return(
@@ -45,9 +120,9 @@ return(
             <div className='profile_info'>
                 <div className='profile_group'>
                     <h4 className='group_title'>내 계정</h4>
-                    <EmailAdress />
+                    <EmailAdress date={date} userEmail={userEmail}/>
                     
-                    <PasswordChang password={password}/>
+                    <PasswordChang date={date} userPw={userPw}/>
                 </div>
                
                 <div className='profile_group' style={{paddingTop: '58px'}}>
@@ -55,11 +130,11 @@ return(
                     <div className='unit_Prof'>
                         <h5 className='login_info_title'>휴대폰 번호</h5>
                         <div className='unit_content'>
-                            <p className='outline'>이거 모름</p>
+                            <p className='outline'>{date.userPhone}</p>
                             <button
                                 type="button"
                                 className="unitAll_Btn"
-                                onClick={() => { }}
+                                onClick={handleSave}
                                 >변경
                             </button>
                         </div>
@@ -67,7 +142,7 @@ return(
                     <div className='unit_Prof'>
                         <h5 className='login_info_title'>신발 싸이즈</h5>
                         <div className='unit_content'>
-                            <p className='outline'>{selectedSize}</p>
+                            <p className='outline'>{date.userSize}</p>
                             <button 
                                 type="button"
                                 className="unitAll_Btn"
@@ -76,7 +151,7 @@ return(
                             </button>
                         </div>
                     </div>
-                            {isLayer && <Layer onClose={toggleLayer} onConfirm={handleConfirmSize} user_size={user_size} />}
+                    {isLayer && <Layer onClose={toggleLayer} onConfirm={handleConfirmSize} user_size={user_size} />}
                 </div>
                 <div style={{paddingTop: '58px', paddingBottom: '160px' }}>
                     <h4 className='group_title'>광고성 정보 수신</h4>
@@ -86,13 +161,15 @@ return(
                             <span>수신 동의</span>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" 
-                                    name="msgOption" id="inlineRadio1" value="1" />
+                                        name="msgOption" id="inlineRadio1" value="1"
+                                        checked={receiveMessage === '1'} onChange={handleTextMsgChange} />
                                 <label class="form-check-label" for="inlineRadio1" />
                             </div>
                             <span className='label_txt'>수신거부</span>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" 
-                                    name="msgOption" id="inlineRadio2" value="0" />
+                                        name="msgOption" id="inlineRadio2" value="0" 
+                                        checked={receiveMessage === '0'} onChange={handleTextMsgChange} />
                                 <label class="form-check-label" for="inlineRadio2" />
                             </div>
                         </div>
@@ -103,13 +180,15 @@ return(
                             <span>수신 동의</span>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" 
-                                    name="emailOption" id="inlineRadio1" value="1" />
+                                    name="emailOption" id="inlineRadio1" value="1" 
+                                    checked={receiveEmail === '1'} onChange={handleEmailMsgChange} />
                                 <label class="form-check-label" for="inlineRadio1" />
                             </div>
                             <span className='label_txt'>수신거부</span>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" 
-                                    name="emailOption" id="inlineRadio2" value="0" />
+                                    name="emailOption" id="inlineRadio2" value="0" 
+                                    checked={receiveEmail === '0'} onChange={handleEmailMsgChange} />
                                 <label class="form-check-label" for="inlineRadio2" />
                             </div>
                         </div>

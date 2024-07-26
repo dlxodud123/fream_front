@@ -3,7 +3,10 @@
     margin: 0;
     padding: 0;
   }
-
+  .moveMypage{
+    border: none;
+    background-color: #fff;
+  }
   .container_box {
     display: flex;
     margin-left: auto;
@@ -49,6 +52,11 @@
     vertical-align: top;
   }
   
+  .title_inventory{
+    font-weight: 700;
+  }
+
+
   .menu {
     list-style: none;
     padding: 0;
@@ -77,4 +85,7 @@
   .mypage_pageMove{
     background-color: #fff;
     border: none;
+  }
+  .myPageMain{
+    padding: 90px 0;
   }

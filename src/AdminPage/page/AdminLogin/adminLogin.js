@@ -39,16 +39,20 @@ const AdminLogin = () => {
   const handleLogin = () => {
     // 일반 로그인 로직 추가
     axios
-      .post("http://localhost:3001/adminPage/loginCheck", {
+      .post("http://localhost:3001/adminPage/login", {
         // email: idEmail,
         // password: newPassw,
         userId: id,
         userPw: newPassw,
       })
       .then((response) => {
-        // 성공 시 처리
-        console.log(response.data);
-        if (response.data == 1) {
+        console.log("관리자로그인:", response.data);
+        const token = response.data;
+        if (token) {
+          // 토큰을 로컬 스토리지에 저장
+          localStorage.setItem("adminToken", token);
+
+          // 성공적으로 로그인한 후, 관리자 페이지로 이동
           setSuccessAdmin(true);
           navigate("/admin/");
         } else {
@@ -60,6 +64,21 @@ const AdminLogin = () => {
         console.error("There was an error logging in!", error);
         alert("로그인 중 오류가 발생했습니다.");
       });
+    // .then((response) => {
+    //   // 성공 시 처리
+    //   console.log(response.data);
+    //   if (response.data == 1) {
+    //     setSuccessAdmin(true);
+    //     navigate("/admin/");
+    //   } else {
+    //     alert("로그인 실패: " + response.data.message);
+    //   }
+    // })
+    // .catch((error) => {
+    //   // 에러 처리
+    //   console.error("There was an error logging in!", error);
+    //   alert("로그인 중 오류가 발생했습니다.");
+    // });
   };
 
   return (

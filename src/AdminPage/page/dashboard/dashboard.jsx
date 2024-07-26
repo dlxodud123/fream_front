@@ -28,6 +28,7 @@ const Dashboard = () => {
   const [orderDeliveryCount, setOrderDeliveryCount] = useState(0);
   const [orderDoneCount, setOrderDoneCount] = useState(0);
   const [newSellCount, setnewSellCount] = useState(0);
+  const [soldSellCount, setSoldSellCount] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [Browser, setBrowser] = useState(0);
   const [os, setOs] = useState(0);
@@ -103,6 +104,17 @@ const Dashboard = () => {
         console.error("Error fetching unsold products", error);
       }
     };
+    const fetchSoldProducts = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/admin/products/sold"
+        );
+        console.log("신규판매:", response.data);
+        setSoldSellCount(response.data.length);
+      } catch (error) {
+        console.error("Error fetching unsold products", error);
+      }
+    };
     // const fetchOrdersComparison = async () => {
     //   try {
     //     const response = await axios.get(
@@ -141,9 +153,10 @@ const Dashboard = () => {
     const fetchOrdersToday = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/dashboard/orders-daily-comparison"
+          "/api/dashboard/orders-daily-comparison"
         );
         setOrdersToday(response.data);
+        console.log("OrdersToday:", response.data);
       } catch (error) {
         console.error("Error fetching orders today", error);
       }
@@ -152,9 +165,10 @@ const Dashboard = () => {
     const fetchUsersToday = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/dashboard/users-daily-comparison"
+          "/api/dashboard/users-daily-comparison"
         );
         setUsersToday(response.data);
+        console.log("UsersToday:", response.data);
       } catch (error) {
         console.error("Error fetching users today", error);
       }
@@ -163,9 +177,10 @@ const Dashboard = () => {
     const fetchStylesToday = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/dashboard/styles-daily-comparison"
+          "/api/dashboard/styles-daily-comparison"
         );
         setStylesToday(response.data);
+        console.log("StylesToday:", response.data);
       } catch (error) {
         console.error("Error fetching styles today", error);
       }
@@ -184,7 +199,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <Box m="20px">
+    <Box m="20px" maxWidth={"1200px"} minWidth={"1200px"}>
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="대시보드" subtitle="Welcome to your dashboard" />
@@ -261,7 +276,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <SellerBox
-            title={orderReadyCount}
+            title={newSellCount}
             subtitle="상품 판매 대기"
             progress="0.75"
             increase="+14%"
@@ -272,19 +287,8 @@ const Dashboard = () => {
             }
           />
           <SellerBox
-            title={orderDeliveryCount}
-            subtitle="배송중"
-            progress="0.75"
-            increase="+14%"
-            icon={
-              <LocalShippingIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "50px" }}
-              />
-            }
-          />
-          <SellerBox
-            title={orderDoneCount}
-            subtitle="배송 완료"
+            title={soldSellCount}
+            subtitle="판매 완료"
             progress="0.75"
             increase="+14%"
             icon={
@@ -306,8 +310,8 @@ const Dashboard = () => {
             // title={usersComparison.difference.usersDifference}
             title={usersToday.newUsersToday}
             subtitle="신규회원"
-            progress="0.75"
-            increase="+14%"
+            progress={usersToday.progress}
+            increase={`${usersToday.userGrowthRate}%`}
             icon={
               <PeopleIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -326,8 +330,8 @@ const Dashboard = () => {
             // title={stylesComparison.difference.stylesDifference}
             title={stylesToday.newStylesToday}
             subtitle="신규 스타일"
-            progress="0.75"
-            increase="+14%"
+            progress={stylesToday.progress}
+            increase={`${stylesToday.styleGrowthRate}%`}
             icon={
               <RateReviewIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -345,8 +349,8 @@ const Dashboard = () => {
           <StatBox
             title="보류"
             subtitle="신규 문의"
-            progress="0.75"
-            increase="+14%"
+            progress={usersToday.progress}
+            increase={`${usersToday.userGrowthRate}%`}
             icon={
               <QuestionAnswerIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -365,8 +369,8 @@ const Dashboard = () => {
             // title={ordersComparison.difference.ordersDifference}
             title={ordersToday.newOrdersToday}
             subtitle="전날 대비 판매량"
-            progress="0.75"
-            increase="+14%"
+            progress={ordersToday.progress}
+            increase={`${ordersToday.orderGrowthRate}%`}
             icon={
               <StorefrontIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -394,7 +398,7 @@ const Dashboard = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Revenue Generated
+                접속자별 브라우저
               </Typography>
               <Typography
                 variant="h3"
@@ -417,7 +421,7 @@ const Dashboard = () => {
             // m="-20px 0 0 0"
             m="0"
           >
-            <AccessBrowser isDashboard={true} setBrowser />
+            <AccessBrowser isDashboard={true} setBrowser={setBrowser} />
           </Box>
         </Box>
         <Box
@@ -447,7 +451,7 @@ const Dashboard = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Revenue Generated
+                접속자별 운영체제
               </Typography>
               <Typography
                 variant="h3"
@@ -470,7 +474,7 @@ const Dashboard = () => {
             // m="-20px 0 0 0"
             m="0"
           >
-            <AccessOS isDashboard={true} setOs />
+            <AccessOS isDashboard={true} setOs={setOs} />
           </Box>
         </Box>
       </Box>

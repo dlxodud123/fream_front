@@ -5,7 +5,9 @@ const MypageList = () => {
     return(
     <div>
         <div className="mypage_List">
-          <h2>마이페이지</h2>
+          <button className="moveMypage">
+            <h2>마이페이지</h2>
+          </button>
         </div>
         <div>
           <h2 className="snb_title">쇼핑 정보</h2>

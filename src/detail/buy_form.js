@@ -77,16 +77,17 @@ const Buy_form = () => {
   const { IMP } = window;
   IMP.init("imp25812042");
 
-  console.log(buyFormData);
-  console.log(size);
-  console.log(finalName);
-  console.log(finalNumber);
-  console.log(finalZonecode);
-  console.log(finalRoadaddress);
-  console.log(finalBname);
-  console.log(finalBuildingname);
-  console.log(finalBetterAddress);
-  console.log(buy_request);
+  useEffect(() => {
+    console.log(size);
+    console.log(finalName);
+    console.log(finalNumber);
+    console.log(finalZonecode);
+    console.log(finalRoadaddress);
+    console.log(finalBname);
+    console.log(finalBuildingname);
+    console.log(finalBetterAddress);
+    console.log(buy_request);
+  }, [size, finalName, finalNumber, finalZonecode, finalRoadaddress, finalBname, finalBuildingname, finalBetterAddress, buy_request])
 
   async function onClickPayments() {
     console.log(id);

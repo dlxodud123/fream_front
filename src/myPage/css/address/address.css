@@ -98,8 +98,12 @@
 }
 .del.B{
     margin-left: 8px;
+    
 }
 .outlinegrey{
     margin-right: 8px;
     width: 100px;
+}
+.addressNull{
+    padding-top: 30px;
 }

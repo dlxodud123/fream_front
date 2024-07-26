@@ -21,7 +21,8 @@ export const UserAuthProvider = ({ children }) => {
       axios
 
         .post(
-          "http://192.168.0.13:3001/auth/verifyToken",
+          // "http://192.168.0.13:3001/auth/verifyToken",
+          "/api/auth/verifyToken",
           { token: jwtToken },
           { withCredentials: true }
         )

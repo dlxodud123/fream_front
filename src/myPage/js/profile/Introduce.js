@@ -1,32 +1,32 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function Modal_my_self ({
-    date,
-    setDate,
-  }) {
-    const [newMySelf, setNewMySelf] = useState(date.mySelf); //자기소개
+function Modal_my_self ({ date,setDate }) {
+    const [newMySelf, setNewMySelf] = useState(date.userBio); //자기소개
     const [isEditing, setIsEditing] = useState(false);
     const [profile_titleCh, setProfile_titleCh] = useState('profile_title')
     const [inputCh, setInputCh] = useState('modify_textarea')
   
-    
+    useEffect(() => {
+      setNewMySelf(date.newMySelf);
+    }, [date.newMySelf]);
+
     const handleSave = () => {
       setDate(prevDate => ({
         ...prevDate,
         mySelf: newMySelf,
       }));
-      const updatedData = { newMySelf };
-      axios.post('/my/profile-edit/introduce', updatedData)
-      .then(response => {
-          console.log(response.data);
-          setIsEditing(false);
-    })
-      .catch(error => {
-          console.error(error);
-          setIsEditing(false);
-        });
-    };
+      // console.log(newMySelf)
+        axios.put('/api/my/profile-edit' ,{introduce:newMySelf} )
+        .then(response => {
+        console.log(response.data);
+        setIsEditing(false);
+        })
+        .catch(error => {
+        console.error(error);
+        setIsEditing(false);
+            });
+        };
   
     const handleCancel = () => {
       setNewMySelf(date.mySelf);
@@ -40,7 +40,7 @@ function Modal_my_self ({
           <div className='group'>
             <h5 className={profile_titleCh}>소개</h5>
               <div className="unit_content">
-                <p className='modify_myslef'>{date.mySelf || '나를 소개하세요'}</p>
+                <p className='modify_myslef'>{newMySelf || '나를 소개하세요'}</p>
                 <button
                     type="button"
                     className="unit_all"

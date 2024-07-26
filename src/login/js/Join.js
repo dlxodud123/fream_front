@@ -15,6 +15,7 @@ const Join = () => {
   const idCheck = () => {
     $.ajax({
       url: "http://localhost:3001/auth/rddCheck",
+
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify(formData),
@@ -62,6 +63,7 @@ const Join = () => {
 
     $.ajax({
       url: "http://localhost:3001/auth/registerCheck",
+
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify(formData),
