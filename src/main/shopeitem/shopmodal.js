@@ -80,21 +80,6 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
           <div className="modalbox" style={{ height: '500px', overflowY: 'auto', boxSizing: 'content-box', paddingRight: '16px' }}>
             <span className="close" onClick={closeModal}>&times;</span>
 
-<<<<<<< HEAD
-            <div style={{ display: 'flex', marginRight: '20px' }}>
-              {[220, 225, 230].map((size, index) => (
-                <div
-                  key={index}
-                  style={getBoxStyle(index)}
-                  onClick={() => handleBoxClick(index)}
-                  onMouseDown={() => handleMouseDown(index)}
-                  onMouseUp={handleMouseUp}
-                >
-                  {size}
-                </div>
-              ))}
-            </div>
-=======
           <div style={{ display: 'flex', marginRight: '20px' }}>
             {[235, 240, 245].map((size, index) => (
               <div
@@ -108,7 +93,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
               </div>
             ))}
           </div>
->>>>>>> 5a650b3ab6d7857d73df27763e2d226734303e56
+
 
             <div style={{ display: 'flex', marginRight: '20px' }}>
               {[235, 240, 245].map((size, index) => (
@@ -152,7 +137,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
               ))}
             </div>
 
-<<<<<<< HEAD
+
             <div style={{ display: 'flex', marginRight: '20px' }}>
               {[270, 275, 280].map((size, index) => (
                 <div
@@ -180,7 +165,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
                 </div>
               ))}
             </div>
-=======
+
           <div style={{ display: 'flex', marginRight: '20px' }}>
             {[285, 290, 295].map((size, index) => (
               <div
@@ -194,7 +179,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
               </div>
             ))}
           </div>
->>>>>>> 5a650b3ab6d7857d73df27763e2d226734303e56
+
           </div>
           <div style={{ display: 'flex', textAlign: 'center', marginLeft: '80px', marginTop: '40px' }}>
             <div
@@ -211,15 +196,15 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
               <p>취소</p>
             </div>
             <div
-<<<<<<< HEAD
+
               onClick={() => confirmToggle(selectedBoxes)}
-=======
+
               onClick={() => {
                 // 확인 버튼 클릭 시 추가 로직을 넣을 수 있습니다.
                 closeModal(); // 모달 닫기
                 finalSave();
               }}
->>>>>>> 5a650b3ab6d7857d73df27763e2d226734303e56
+
               style={{
                 border: '1px solid black',
                 width: '130px',
