@@ -1,14 +1,25 @@
 import './../css/modal/sell_modal.css';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from 'styled-components';
+import { UserAuthContext } from '../../Auth/UserAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Sell_modal = (props) => {
+    const { isLoggedIn, handleLogout } = useContext(UserAuthContext);
+    const navigate = useNavigate();
+
     const [sellModal, setSellModal] = useState(false);    
     const [sellBtn, setSellBtn] = useState(0);
     const [img, setImg] = useState('');
 
     let data = encodeURIComponent(JSON.stringify(props.main_info_shoes));
     let prid = props.main_info_shoes.prid;
+
+    useEffect(() => {
+        if (sellModal && !isLoggedIn) {
+            navigate('/login');
+        }
+    }, [sellModal, isLoggedIn, navigate]);
 
     useEffect(() => {
         setSellBtn(parseInt(props.final_size));
@@ -49,7 +60,7 @@ const Sell_modal = (props) => {
                 </div>
             </button>
             {   
-                sellModal &&
+                sellModal && isLoggedIn ? (
                 <div className={'sell_modal-container'}>
                     <div className={'sell_modal-content'}>
                         <div style={{height:"55px" , display:"flex"}}>
@@ -114,6 +125,9 @@ const Sell_modal = (props) => {
                         }
                     </div>
                 </div>
+                ) : (
+                    <></>
+                )
             }
         </>
     )
