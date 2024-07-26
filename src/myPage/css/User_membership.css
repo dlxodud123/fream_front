@@ -4,6 +4,7 @@
     height: 60px;
     width: 60px;
     margin-right: 12px;
+    border-radius: 50%;
 } 
 
 .user_membership{

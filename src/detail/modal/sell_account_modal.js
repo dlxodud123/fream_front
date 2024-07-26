@@ -1,13 +1,14 @@
 import './../css/modal/sell_account_modal.css';
 import { useEffect, useState } from "react";
 
-const Sell_account_modal = () => {
+const Sell_account_modal = (props) => {
     let [accountModal, setAccountModal] = useState(false);
 
     let [selectedValue, setSelectedValue] = useState('');
 
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
+        props.setFinalSelectedValue(event.target.value)
     };
 
     let [accountHolderNumberValue, setAccountHolderNumberValue] = useState('');
@@ -15,6 +16,7 @@ const Sell_account_modal = () => {
         const value = e.target.value;
         if (!isNaN(value) && value !== '') {
             setAccountHolderNumberValue(value);
+            props.setFinalAccountHolderNumberValue(value);
         } else if (value === '') {
             setAccountHolderNumberValue('');
         }
@@ -25,28 +27,13 @@ const Sell_account_modal = () => {
     const handleAccountHolder = (e) => {
         const value = e.target.value;
         setAccountHolderValue(value);
+        props.setFinalAccountHolderValue(value)
         if (value.length < 2 || value.length > 50) {
             setAccountHolderWarning(true);
         } else {
             setAccountHolderWarning(false);
         }
     }
-
-    useEffect(() => {
-        if (selectedValue == '') {
-            console.log("asdfsadf");
-        }
-        if (accountHolderNumberValue == '') {
-            console.log("aaasssddd");
-        }
-        // console.log(selectedValue);
-        // console.log(accountHolderNumberValue);
-        // console.log(accountHolderValue);
-        if (!accountHolderWarning) {
-            console.log("qwwcvxb");
-        }
-        // console.log(accountHolderWarning);
-    }, [selectedValue, accountHolderNumberValue, accountHolderValue,accountHolderWarning])
 
     return(
         <>
@@ -110,20 +97,16 @@ const Sell_account_modal = () => {
                                 {!(accountHolderValue === '') & !(selectedValue === '') & !(accountHolderNumberValue === '') & !accountHolderWarning ? (
                                     <>
                                         <div>
-                                            <button style={{width:"120px", height:"50px", borderRadius:"10px", border:"none", backgroundColor:"rgba(0,0,0,1)", fontWeight:"bold", color:"white"}}>변경하기</button>
+                                            <button onClick={() => props.setAccountModalOn(true)} style={{width:"120px", height:"50px", borderRadius:"10px", border:"none", backgroundColor:"rgba(0,0,0,1)", fontWeight:"bold", color:"white"}}>변경하기</button>
                                         </div> 
                                     </>
                                 ) : (
                                     <>
-                                        asdf
+                                        <div>
+                                            <button disabled style={{width:"120px", height:"50px", borderRadius:"10px", border:"none", backgroundColor:"rgba(0,0,0,0.1)", fontWeight:"bold", color:"white"}}>변경하기</button>
+                                        </div>
                                     </>
                                 )}
-                                {/* <div>
-                                    <button style={{width:"120px", height:"50px", borderRadius:"10px", border:"none", backgroundColor:"rgba(0,0,0,0.1)", fontWeight:"bold", color:"white"}}>변경하기</button>
-                                </div>
-                                <div>
-                                    <button style={{width:"120px", height:"50px", borderRadius:"10px", border:"none", backgroundColor:"rgba(0,0,0,1)", fontWeight:"bold", color:"white"}}>변경하기</button>
-                                </div> */}
                             </div>
                         </div>
                     </>

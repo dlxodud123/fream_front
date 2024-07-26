@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 
-function PasswordChang({props, password}){
+function PasswordChang({date, userPw}){
     let [handlePw , setHandlePw] = useState(false);
     let [newPw1, setNewPw1] = useState('')
     let [newPw2, setNewPw2] = useState('')
@@ -9,9 +9,9 @@ function PasswordChang({props, password}){
     let [ filterCss2 , setFilterCss2 ] = useState('desc_pw')
     let [storeBtn, setStoreBtn ] = useState('login_storeBtn')
 
-    const maskPw = (password) =>{
-        if(!password) return '';
-        return '●'.repeat(password.length);
+    const maskPw = (userPw) =>{
+        if(!userPw) return '';
+        return '●'.repeat(userPw.length);
     }
     const pwPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16}$/;
     const handlePwChange = (e, setPw, setCss) => {
@@ -37,7 +37,7 @@ function PasswordChang({props, password}){
             <div className='unit_Prof'>
                 <h5 className='login_info_title'>비밀번호</h5>
                 <div className='unit_content'>
-                    <p className='outline'>{maskPw(password)}</p>
+                    <p className='outline'>●●●●●●●●●</p>
                     <button
                         type="button"
                         className="unitAll_Btn"

@@ -3,7 +3,10 @@
     margin: 0;
     padding: 0;
   }
-
+  .moveMypage{
+    border: none;
+    background-color: #fff;
+  }
   .container_box {
     display: flex;
     margin-left: auto;

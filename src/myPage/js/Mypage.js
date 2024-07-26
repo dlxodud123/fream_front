@@ -24,7 +24,14 @@ const MyPage = () => {
   let [email, setEmail] = useState();
   const defaultProfileImg = blank_profile;
   let [userImg, setUserImg] = useState(defaultProfileImg);//프로필 이미지변경
-  const [ date , setDate ] =useState([]);
+  const [date, setDate] = useState({
+    img: '',
+    userId: '',
+    userName: '',
+    profileName: '',
+    userBio: ''
+  });
+  
 
   useEffect(() => {
     if (isInitialized && !isLoggedIn) {
@@ -36,24 +43,28 @@ const MyPage = () => {
   useEffect(() => {
     axios.get('/api/myPage')
       .then(res => {
-        console.log("==================", res.data);
+        console.log("Response Data:", res.data);
+        const profileImg = res.data.profileUrl || defaultProfileImg; // 기본 이미지로 설정
+
         setDate({
-          img: res.data.imageUrl || defaultProfileImg,
+          img: profileImg,
           userId: res.data.userId,
-          userName: res.data.username,
+          userEmail: res.data.email,
           profileName: res.data.profileName,
           userBio: res.data.userBio
         });
-        setUserImg(res.data.imageUrl || defaultProfileImg); // 데이터가 없을 경우 기본 이미지 사용
+        setUserImg(profileImg); // 상태 업데이트
       })
       .catch(error => {
         console.log('profile 에러 useEffect', error);
       });
-  }, []);
+  }, [isInitialized, isLoggedIn, navigate, defaultProfileImg]);
 
   if (!isInitialized) {
     return <div></div>;
   }
+  const baseUrl = '/api/upload/ProfileImg/';
+  const imageUrl = userImg.startsWith('/upload/ProfileImg/') ? baseUrl + userImg.split('/upload/ProfileImg/')[1] : userImg;
 
 return (
   <div>
@@ -70,13 +81,13 @@ return (
       <div className='user_membership'>
         <div className='user_detail'>
           <div className='blank-por'>
-            <img className='img_blank' src={userImg}></img>
+            <img className='img_blank' src={imageUrl}></img>
           </div>
           
           <div className="user-info">
             <div className='info-box'>
               <strong className='name'>{date.userId}</strong>
-              <p className='email_mypage'>{date.email}</p>
+              <p className='email_mypage'>{date.userEmail}</p>
             </div>
             <div>
               <button type="button" className="info-but" onClick={()=>{

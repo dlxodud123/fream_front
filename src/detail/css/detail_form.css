@@ -4,7 +4,8 @@
       background-color: white;
   }
   .detail_container{
-    height: 1680px;
+    /* height: 1680px; */
+    height: 1800px;
     width: 1200px;
     margin: auto;
     margin-top: 120px;

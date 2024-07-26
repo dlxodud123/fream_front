@@ -5,7 +5,7 @@ body {
   }
   .detail_info_form{
     width: 599px;
-    /* height: 1850px; */
+    height: 1800px;
     /* overflow-y: auto;  */
   }
   .detail_info_form::-webkit-scrollbar {
