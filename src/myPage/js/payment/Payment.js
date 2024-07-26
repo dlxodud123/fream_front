@@ -2,7 +2,7 @@ import Header from '../../../common/header';
 import Footer from '../../../common/footer';
 import MypageList from "../MypageList";
 import '../../css/payment/Payment.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CardModal from './modal/CardModal';
 
@@ -30,6 +30,7 @@ const Payment = () => {
                 console.log('payment 에러 useEffect', error);
             });
     }, []);
+    const items = Array(3).fill(null); // 3개의 null 값을 가진 배열을 생성
 
     return(
     <div>
@@ -55,7 +56,7 @@ const Payment = () => {
                 </div>
 
             </div>
-        { date.length == 0 ? (
+        { date.length != 0 ? (
             <div>
                 <div className='payment_eara'>
                     <p className='paymentNull'>추가하신 결제 정보가 없습니다.</p>
@@ -63,7 +64,37 @@ const Payment = () => {
             </div>
         ) : (
             <div>
+                <div className='basicAccount'>
+                    <div className='my_baxicAccount_box'>
+                        <div className='accountInfo_bind'>
+                            <div className='accountCard_info'>
+                                <span className='card_name'>KB</span>
+                            </div>
+                                <div className='CardNumber'>
+                                    <span className='num_bind_card'>
+                                        {items.map((index) => (
+                                            <React.Fragment key={index}>
+                                            <span className='dot'>
+                                                ••••
+                                            </span>
+                                            <span className='hypahe_card'>
+                                                -
+                                            </span>
+                                            </React.Fragment>
+                                        ))}
+                                        <div className='card_lastNum'>
+                                            <span className='lastCardNum'>3333</span>
+                                        </div>
+                                    </span>
+                                    <span className='mark_card'>기본결제</span>
+                                </div>
 
+                        </div>
+                        <div className='myAccount_del'>
+                            <button className='myAccountDel_btn'>삭제</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         )}
   

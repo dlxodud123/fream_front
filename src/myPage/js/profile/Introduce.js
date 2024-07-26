@@ -17,7 +17,7 @@ function Modal_my_self ({ date,setDate }) {
         mySelf: newMySelf,
       }));
       // console.log(newMySelf)
-        axios.put('/api/my/profile-edit' ,{introduce:newMySelf} )
+        axios.put('/api/my/profile-edit?introduce='+newMySelf )
         .then(response => {
         console.log(response.data);
         setIsEditing(false);

@@ -26,48 +26,18 @@ const Profile_edit = () =>{
                 setDate({
                     img: res.data.profileUrl || defaultProfileImg,
                     userId: res.data.userId,
-                    userName: res.data.username,
+                    userName: res.data.userName,
                     profileName: res.data.profileName,
                     userBio: res.data.userBio
                 });
                 setUserImg(res.data.profileUrl || defaultProfileImg); 
-                console.log("ffffffff",date.img)
+                // console.log("이미지 데이터 확인 : ",date.img)
             })
             .catch(error =>{
                 console.log('profile 에러 useEffect', error);
             });
     }, []);
     
-
-
-    // const ImgChange = async (e) =>{
-    //     const file = e.target.files[0];
-    //     if(file) {
-    //         try{
-    //             const formData = new FormData();
-    //             formData.append('file', file);
-    //             const response = await axios.post('/api/my/profile-edit/img',{
-    //                 // method: 'POST',
-    //                 body: formData,
-    //             })
-    //             .then(response => response.ok)
-    //             .then(data => {
-    //                 const date = data
-    //                 setUserImg(date.imageUrl);
-    //                 setDate(prevState => ({
-    //                     ...prevState,
-    //                     img: date.imageUrl,
-    //                 }));
-                    
-    //             })
-    //             .catch(error =>{
-    //                 console.log("업로드 실패 : ", error)
-    //             })
-
-    //         }catch (error){
-    //             console.log('이미지 파일 error발생' , error)
-    //         }}
-    //     };
     const ImgChange = async (e) => {
         const formData = new FormData();
         const file = e.target.files[0];

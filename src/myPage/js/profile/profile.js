@@ -44,7 +44,7 @@ const Profile = () =>{
         textMsg: receiveEmail,
         emailMsg: receiveMessage
     }));
-        axios.put('/api/my/profile-edit?introduce=', {
+        axios.put('/api/my/profile', {
         userEmail: userEmail,
         userPw: userPw,
         userPhone: userPhone,
@@ -63,6 +63,7 @@ const Profile = () =>{
     const [user_size , setuser_size] = useState('');
     const [userEmail, setUserEmail] = useState(date.email);
     const [userPw, seUserPw] = useState(date.userPw);
+    const [newPw, setNewPw] = useState(date.userPw);
     const [userPhone, setUserPhone] = useState(date.phone);
     const [userSize, setUserSize] = useState(date.userSize);
     const [receiveEmail, setReceiveEmail] = useState('1');
@@ -120,9 +121,9 @@ return(
             <div className='profile_info'>
                 <div className='profile_group'>
                     <h4 className='group_title'>내 계정</h4>
-                    <EmailAdress date={date} userEmail={userEmail}/>
+                    <EmailAdress date={date} setDate={setDate}/>
                     
-                    <PasswordChang date={date} userPw={userPw}/>
+                    <PasswordChang date={date} setDate={setDate} />
                 </div>
                
                 <div className='profile_group' style={{paddingTop: '58px'}}>

@@ -8,26 +8,15 @@ import Footer from "../../common/footer";
 import { LoginForm } from "./RegisterCh.js";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-// const { setAdminAccess } = useAuth();
-// import $ from "jquery";
-// import { useAuth } from "../../AdminPage/adminAccess/adminAccess.jsx"
 import $ from "jquery";
 import { useAuth } from "../../AdminPage/adminAccess/adminAccess.jsx";
 
 const KakaoLoginButton = ({ kakaoApiKey, redirectUri }) => {
-  const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}&redirect_uri=${redirectUri}&response_type=code`;
+  const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}
+      &redirect_uri=${redirectUri}&response_type=code`;
 
   const handleKakaoLogin = () => {
-    const width = 500;
-    const height = 600;
-    const left = window.screen.width / 2 - width / 2;
-    const top = window.screen.height / 2 - height / 2;
-
-    window.open(
-      kakaoAuthUrl,
-      "kakaoLogin",
-      `width=${width},height=${height},top=${top},left=${left}`
-    );
+    window.location.href = kakaoAuthUrl;
   };
   return (
     <div className="btn btn-outline-dark">
@@ -51,6 +40,7 @@ const LoginPage = () => {
   let [passw, setPassw] = useState("login_data"); //password class변경용
   let [newPassw, setNewPassw] = useState("");
   let msg = <p className="input_error">이메일 주소를 정확히 입력해 주세요</p>;
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
   const { setAdminAccess } = useAuth();
   const [token, setToken] = useState("");
@@ -85,11 +75,9 @@ const LoginPage = () => {
         dispatch(kakaoLogin(code));
       }
     };
-    console.log("dddddddddddddd", handleMessage);
 
     window.addEventListener("message", handleMessage);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("message", handleMessage);
     };
@@ -108,7 +96,7 @@ const LoginPage = () => {
 
         localStorage.setItem("token", Access_Token);
         dispatch({ type: "LOGIN_SUCCESS", payload: Access_Token });
-        navigate("/"); // Redirect to the main page
+        navigate("/");
       } catch (err) {
         console.log("Error:", err);
         window.alert("로그인 실패");
@@ -147,6 +135,7 @@ const LoginPage = () => {
       if (idEmail)
         $.ajax({
           url: "/api/auth/loginCheck",
+
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
@@ -170,11 +159,63 @@ const LoginPage = () => {
         });
     }
   };
-  const isButtonActive =
-    classCh === "login_data" &&
-    passw === "login_data" &&
-    idEmail !== "" &&
-    newPassw !== "";
+  // const isButtonActive =
+  //   classCh === "login_data" &&
+  //   passw === "login_data" &&
+  //   idEmail !== "" &&
+  //   newPassw !== "";
+
+  //     $.ajax({
+  //       url: "/api/auth/loginCheck",
+  //       type: "POST",
+  //       contentType: "application/json",
+  //       data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
+  //       xhrFields: {
+  //         withCredentials: true,
+  //       },
+  //       success: function (data) {
+  //         const jwtToken = data;
+  //         if (jwtToken) {
+  //           setToken(jwtToken);
+  //           console.log("success");
+  //           localStorage.setItem("jwtToken", jwtToken);
+  //           navigate("/");
+  //         } else {
+  //           console.log("fail");
+  //         }
+  //       },
+  //       error: function (xhr, status, error) {
+  //         console.error("There was an error logging in!", error);
+  //       },
+  //     });
+  //   }
+  // }
+  useEffect(() => {
+    const isButtonActive = 
+      classCh === "login_data" && 
+      passw === "login_data" && 
+      idEmail !== "" && 
+      newPassw !== "";
+    setIsButtonActive(isButtonActive);
+  }, [classCh, passw, idEmail, newPassw]);
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+  // const handleKeyPress = (e) => {
+  //   if (e.key === "Enter") {
+  //     if (
+  //       classCh === "login_data" &&
+  //       passw === "login_data" &&
+  //       idEmail !== "" &&
+  //       newPassw !== ""
+  //     ) {
+  //       setIsButtonActive(true);
+  //     }
+  //   }
+  // };
 
   return (
     <div className="login_all">
@@ -194,17 +235,15 @@ const LoginPage = () => {
               placeholder="예)kream@kream.co.kr"
               onChange={(e) => {
                 setIdEmail(e.target.value);
-                {
-                  const regex = /^[^@]+@[^@]+\.[^@]{1,}$/;
-                  if (regex.test(idEmail)) {
-                    setclassCh("login_data");
-                    console.log(idEmail);
-                  } else {
-                    setclassCh("login_dataE");
-                  }
+                const regex = /^[^@]+@[^@]+\.[^@]{1,}$/;
+                if (regex.test(e.target.value)) {
+                  setclassCh("login_data");
+                } else {
+                  setclassCh("login_dataE");
                 }
               }}
-            ></input>
+              onKeyDown={handleKeyPress}
+            />
             {classCh == "login_dataE" ? msg : null}
           </div>
 
@@ -226,6 +265,7 @@ const LoginPage = () => {
                   }
                 }
               }}
+              onKeyDown={handleKeyPress}
             ></input>
             {passw == "passw" ? (
               <div className="passEr">

@@ -1,11 +1,24 @@
 import './../css/modal/buy_modal.css';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import img1 from "./../../img/img5.jpg"
 import styled from 'styled-components';
+import { UserAuthContext } from '../../Auth/UserAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Header_buy_modal = (props) => {
+    const { isLoggedIn, handleLogout } = useContext(UserAuthContext);
+    const navigate = useNavigate();
+
     const [buyModal, setBuyModal] = useState(false);    
     const [buyBtn, setBuyBtn] = useState();
+
+    let prid = props.main_info_shoes.prid;
+
+    useEffect(() => {
+        if (buyModal && !isLoggedIn) {
+            navigate('/login');
+        }
+    }, [buyModal, isLoggedIn, navigate]);
 
     useEffect(() => {
         setBuyBtn(parseInt(props.final_size));
@@ -20,7 +33,7 @@ const Header_buy_modal = (props) => {
         border: ${(props) => (props.active ? '1px black solid' : '1px rgba(0,0,0,0.1) solid')};
     `;
     const buy_link = () => {
-        window.location.href = '/buy';
+        window.location.href = `/buy/${prid}/${buyBtn}`;
     }
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US').format(price);
@@ -37,7 +50,7 @@ const Header_buy_modal = (props) => {
                 </div>
             </button>
             {   
-                buyModal &&
+                buyModal && isLoggedIn ? (
                 <div className={'buy_modal-container'}>
                     <div className={'buy_modal-content'}>
                         <div style={{height:"55px" , display:"flex"}}>
@@ -97,6 +110,10 @@ const Header_buy_modal = (props) => {
                         </div>
                     </div>
                 </div>
+                ) : (
+                    <>
+                    </>
+                )
             }
         </>
     )

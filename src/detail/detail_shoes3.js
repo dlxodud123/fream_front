@@ -16,7 +16,7 @@ const Detail_shoes3 = (props) => {
     useEffect(() => {
         // console.log("성별 id", props.id);
         axiosBaseURL
-        .get(`http://192.168.42.142:3001/products/${props.id}/gender`)
+        .get(`/api/products/${props.id}/gender`)
         .then((data) => {
             if (data.data && data.data.length > 0) {
                 // console.log("성별 : ", data.data[0]);  

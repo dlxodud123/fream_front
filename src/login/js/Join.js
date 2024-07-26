@@ -6,33 +6,77 @@ import { LoginForm, registerCheck } from "./RegisterCh.js";
 import $ from "jquery";
 
 const Join = () => {
-  let [clasCh, setclasCh] = useState("register_input");
   let [registerBtn, setRegisterBtn] = useState("registerBtn");
-  let msg = <p className="inputError">이메일 주소를 정확히 입력해 주세요</p>;
+  let msg = <p className="inputError">* 이메일 주소를 정확히 입력해 주세요</p>;
   let [isFormValid, setIsFormValid] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [idChecked, setIdChecked] = useState(false); // 아이디 조회 여부 상태 추가
+  let [clasCh, setClasCh] = useState("register_input");
+  let [isEmailValid, setIsEmailValid] = useState(true); // 추가된 상태 변수
 
+
+  const [formData, setFormData] = useState({
+    userId: "",
+    userPw: "",
+    userName: "",
+    email: "",
+    phone: "",
+    age: "",
+    gender: "",
+  });
+  // const idCheck = () => {
+  //   $.ajax({
+  //     // url: "http://192.168.0.101:3001/auth/rddCheck",
+  //     url: "http://43.200.110.19:8080/auth/rddCheck",
+  //     type: "POST",
+  //     contentType: "application/json",
+  //     data: JSON.stringify(formData),
+  //     success: function (response) {
+  //       console.log(response.code);
+  //       if (response == 0) {
+  //         console.log("ok");
+  //         alert("사용가능한 ID입니다..");
+  //       } else {
+  //         console.log("not ok");
+  //         alert("다시 입력해주세요.");
+  //       }
+  //     },
+  //   });
+  // };
   const idCheck = () => {
     $.ajax({
       url: "http://localhost:3001/auth/rddCheck",
 
       type: "POST",
       contentType: "application/json",
-      data: JSON.stringify(formData),
+      // formData 대신 userId만 전송
+      data: JSON.stringify({ userId: formData.userId }), 
       success: function (response) {
         console.log(response.code);
-        if (response == 0) {
+        if (response.code == 0) {
           console.log("ok");
-          alert("사용가능한 ID입니다..");
+          alert("사용가능한 ID입니다.");
+          setFormData((prevData) => ({
+            ...prevData,
+            // ID 확인 후 이메일 필드 업데이트
+            email: prevData.userId, 
+          }));
+          setIdChecked(true); // 아이디 조회 완료 상태로 설정
         } else {
           console.log("not ok");
-          alert("다시 입력해주세요.");
+          alert("중복된 아이디 입니다.");
+          setIdChecked(false); // 아이디 조회 실패 상태로 설정
         }
       },
     });
   };
 
+
   const reg = () => {
+    if (!idChecked) {
+      alert("아이디 조회를 완료해 주세요.");
+      return;
+    }
+
     console.log(formData);
     const { userId, userPw, userName, email, phone, age, gender } = formData;
 
@@ -81,29 +125,34 @@ const Join = () => {
       },
     });
   };
-
-  const [formData, setFormData] = useState({
-    userId: "",
-    userPw: "",
-    userName: "",
-    email: "",
-    phone: "",
-    age: "",
-    gender: "",
-  });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
+  // setFormData((prevData) => {
+  //   const newData = {
+  //     ...prevData,
+  //     [name]: value,
+  // };
     setFormData({
       ...formData,
       [name]: value,
     });
 
     const isAllFieldsFilled = Object.values(formData).every(
+  // const isAllFieldsFilled = Object.values(newData).every(
       (field) => field !== ""
     );
     setIsFormValid(isAllFieldsFilled);
+
+    if (name === "userId") {
+      const regex = /^[^@]+@[^@]+\.[^@]{1,}$/;
+      setIsEmailValid(regex.test(value));
+    }
+
+
+  // return newData; //+++
   };
+
+
 
   return (
     <div>
@@ -114,14 +163,16 @@ const Join = () => {
             <h2>회원가입</h2>
           </div>
           <div className="register_input">
-            <h3>ID</h3>
+            <h3>아이디{!isEmailValid && msg}</h3>
             <div className="input_item">
               <input
                 id="userId"
-                type="text"
+                type="email"
                 name="userId"
                 value={formData.userId}
                 onChange={handleChange}
+                placeholder="예) kream@kream.co.kr"
+                className={`join_${isEmailValid  ? 'loginid' : 'loginIdE'}`} 
               />
             </div>
             <button className="rddCheckBtn" onClick={() => idCheck()}>
@@ -144,7 +195,7 @@ const Join = () => {
           </div>
 
           <div className="register_input">
-            <h3>User Name</h3>
+            <h3>이름</h3>
             <div className="input_item">
               <input
                 id="userName"
@@ -157,22 +208,22 @@ const Join = () => {
           </div>
 
           <div className={clasCh}>
-            <h3>이메일 주소*</h3>
+            <h3>이메일 주소</h3>
             <div className="input_item">
               <input
                 id="email"
                 type="email"
-                placeholder="예)kream@kream.co.kr"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                placeholder="자동으로 입력 됩니다."
+                readOnly
               />
             </div>
-            {clasCh == "inputError" ? msg : null}
           </div>
 
           <div className="register_input">
-            <h3>Phone</h3>
+            <h3>핸드폰 번호</h3>
             <div className="input_item">
               <input
                 id="phone"
@@ -185,7 +236,7 @@ const Join = () => {
           </div>
 
           <div className="register_input">
-            <h3>Age</h3>
+            <h3>나이</h3>
             <div className="input_item">
               <input
                 id="age"
@@ -198,7 +249,7 @@ const Join = () => {
           </div>
 
           <div className="register_input">
-            <h3>Gender</h3>
+            <h3>성별</h3>
             <div style={{ display: "flex" }}>
               <div className="radio_group">
                 <label className="radio_label">
@@ -210,7 +261,7 @@ const Join = () => {
                     onChange={handleChange}
                     name="gender"
                   />
-                  <label className="radioGroup">Male</label>
+                  <label className="radioGroup">남성</label>
                 </label>
               </div>
               <div className="radio_group">
@@ -223,13 +274,13 @@ const Join = () => {
                     onChange={handleChange}
                     name="gender"
                   />
-                  <label className="radioGroup">Female</label>
+                  <label className="radioGroup">여성</label>
                 </label>
               </div>
             </div>
             <button
-              className={isFormValid ? "register" : "registerBtn"}
-              onClick={() => reg()}
+              className={isFormValid && idChecked ? "register" : "registerBtn"}
+              onClick={reg}
               onChange={registerCheck}
             >
               가입하기

@@ -12,11 +12,6 @@ function AddresLayer({ onClose, date, setDate }) {
     const [handleSearchButtonClick, setHandleSearchButtonClick] = useState(false);
     const [isDefaultDelivery, setIsDefaultDelivery] = useState('0');
 
-    const axiosBaseURL = axios.create({
-      baseURL: process.env.NEXT_PUBLIC_API_URL,
-      withCredentials: true,
-    });
-
     const handleSave = async () => {
         const data = {
             recipient,
@@ -26,7 +21,7 @@ function AddresLayer({ onClose, date, setDate }) {
             detailAddress,
         };
         try {
-            const response = await axiosBaseURL.post('http://localhost:3000/my/addres', data);
+            const response = await axios.post('/api/my/addres', data);
             console.log('Success:', response.data);
           } catch (error) {
               console.error('Error:', error);
