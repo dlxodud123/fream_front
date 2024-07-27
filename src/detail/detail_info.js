@@ -41,12 +41,12 @@ const Detail_info = (props) => {
     } else {
       return "";
     }
-
   };
 
 
   const [isChecked, setIsChecked] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [prid, setPrid] = useState(props.prid);
 
   const handleToggle = () => {
     setIsChecked(!isChecked);
@@ -93,7 +93,6 @@ const Detail_info = (props) => {
             </p>
           </div>
         </div>
-
 
         <Size_modal
           final_size={props.final_size}
@@ -228,10 +227,33 @@ const Detail_info = (props) => {
             setFinal_Size={props.setFinal_Size}
           ></Sell_modal>
         </div>
-        <div style={{height:"100px"}}>
-          <button onClick={() => {setInterestModal(true); setShowModal(true)}} style={{width:"560px", height:"70px", marginTop:"15px", borderRadius:"10px", backgroundColor:"white", border:"1px solid rgba(0,0,0,0.1)"}}>
-            <BsBookmarkFill size={22} /><label style={{}}>&nbsp;관심상품</label>
+        <div style={{ height: "100px" }}>
+          <button
+            onClick={() => {
+              setInterestModal(true);
+              setShowModal(true);
+            }}
+            style={{
+              width: "560px",
+              height: "70px",
+              marginTop: "15px",
+              borderRadius: "10px",
+              backgroundColor: "white",
+              border: "1px solid rgba(0,0,0,0.1)",
+            }}
+          >
+            <BsBookmarkFill size={22} />
+            <label style={{}}>&nbsp;관심상품</label>
           </button>
+{/* <<<<<<< HEAD
+          {interestModal ? (
+            <Shopmodal
+              isChecked={isChecked}
+              setIsChecked={setIsChecked}
+              closeModal={closeModal}
+              showModal={showModal}
+              prId={props.main_info_shoes.prid}
+======= */}
           {interestModal && isLoggedIn ? (
             <Shopmodal isChecked={isChecked} 
             setIsChecked={setIsChecked} 
@@ -240,10 +262,8 @@ const Detail_info = (props) => {
             prId={props.main_info_shoes.prid}
             ></Shopmodal>
           ) : (
-            <>
-            </>
-          )
-          }
+            <></>
+          )}
         </div>
         <div className="add_benefit">
           <div style={{ textAlign: "left", fontWeight: "bold" }}>추가 혜택</div>
@@ -358,6 +378,7 @@ const Detail_info = (props) => {
             style={{ width: "560px", height: "100px" }}
           ></img>
         </div>
+
         {
           isLoggedIn ? (
             <div className="parentDiv">
@@ -381,6 +402,7 @@ const Detail_info = (props) => {
           <LineChart></LineChart>
         </div> */}
         {/* marginTop: "16px" */}
+
         <div className="guarantee">
           {
             isLoggedIn ? (

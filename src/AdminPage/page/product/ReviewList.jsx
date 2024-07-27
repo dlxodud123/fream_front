@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const SellerList = () => {
+const ReviewList = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
@@ -20,14 +20,15 @@ const SellerList = () => {
     try {
       const response = await axios.get(
         // "http://localhost:3001/adminPage/adminUser"
-        "http://localhost:3001/member/seller"
+        "http://localhost:3001/admin/products/style"
       ); // 실제 API 엔드포인트로 변경 필요
+      console.log(response.data);
       setRows(response.data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
   };
-  const deleteAdmin = async () => {
+  const deleteStyle = async () => {
     try {
       await axios.post("http://localhost:3001/member/deleteSeller", {
         ids: selectedIds,
@@ -58,21 +59,17 @@ const SellerList = () => {
   }, []);
 
   const columns = [
-    { field: "sellerProductId", headerName: "판매자 제품 ID", flex: 1 },
+    { field: "id", headerName: "스타일 ID", flex: 1 },
     { field: "userId", headerName: "사용자 ID", flex: 1 },
-    { field: "productId", headerName: "제품 ID", flex: 1 },
-    { field: "proSize", headerName: "사이즈", flex: 1 },
-    {
-      field: "isSold",
-      headerName: "판매 상태",
-      flex: 1,
-      renderCell: (params) => (params.value === "Y" ? "판매 완료" : "판매 중"),
-    },
+    { field: "content", headerName: "내용", flex: 1 },
+    { field: "likesLength", headerName: "좋아요 개수", flex: 1 },
+    { field: "productPrId", headerName: "제품 ID", flex: 1 },
+    { field: "styleDate", headerName: "스타일 날짜", flex: 1 },
   ];
 
   return (
     <Box m="20px">
-      <Header title="판매자 정보 관리" subtitle="판매자 정보 확인" />
+      <Header title="스타일 리뷰 정보" subtitle="스타일 리뷰 정보 확인" />
       <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap="20px">
         {/* 정보수정 버튼 */}
         <Button
@@ -81,16 +78,16 @@ const SellerList = () => {
           onClick={modifySeller}
           disabled={selectedIds.length !== 1}
         >
-          정보 수정
+          작성자 확인
         </Button>
         {/* 정보삭제 버튼 */}
         <Button
           variant="contained"
           sx={{ backgroundColor: colors.redAccent[600] }}
-          onClick={deleteAdmin}
+          onClick={deleteStyle}
           disabled={selectedIds.length === 0}
         >
-          정보 삭제
+          스타일 삭제
         </Button>
       </Box>
       <Box
@@ -144,4 +141,4 @@ const SellerList = () => {
   );
 };
 
-export default SellerList;
+export default ReviewList;

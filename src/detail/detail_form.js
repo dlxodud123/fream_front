@@ -140,6 +140,7 @@ const Detail_form = () => {
             final_size={final_size}
             setFinal_Size={setFinal_Size}
             className="detail_info"
+            prid={id}
           ></Detail_info>
         </div>
         <div className="detail_cotainer2">

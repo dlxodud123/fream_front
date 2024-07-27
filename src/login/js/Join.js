@@ -44,8 +44,8 @@ const Join = () => {
   // };
   const idCheck = () => {
     $.ajax({
-      // url: "http://192.168.0.101:3001/auth/rddCheck",
-      url: "http://43.200.110.19:8080/auth/rddCheck",
+      url: "http://localhost:3001/auth/rddCheck",
+
       type: "POST",
       contentType: "application/json",
       // formData 대신 userId만 전송
@@ -106,8 +106,8 @@ const Join = () => {
     }
 
     $.ajax({
-      url: "http://192.168.0.101:3001/auth/registerCheck",
-      // url: "http://43.200.110.19:8080/auth/registerCheck",
+      url: "http://localhost:3001/auth/registerCheck",
+
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify(formData),

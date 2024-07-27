@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
@@ -34,14 +34,15 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import * as PortOne from "@portone/browser-sdk/v2";
 import axios from "axios";
+import { useAuth } from "../../adminAccess/adminAccess";
 
-const admin = [
-  {
-    name: "Jun",
-    role: "mainAdmin",
-    img: "/adminPage/img/mainAdmin.png",
-  },
-];
+// const admin = [
+//   {
+//     name: "Jun",
+//     role: "mainAdmin",
+//     img: "/adminPage/img/mainAdmin.png",
+//   },
+// ];
 const apiKey = "4555333718886873";
 const secretKey =
   "bAJaWBq6CWDYZn0HOXCi5cvDhTZLZrkVJUwWFBmHuvxGC5ZiFUqQz5qy2sOEd9yAOCIZ2vCwWxcRQCTC";
@@ -124,6 +125,33 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const { logout } = useAuth(); // 로그아웃 함수 가져오기
+  const [admin, setAdmin] = useState(null); // 관리자 상태 추가
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
+
+  useEffect(() => {
+    const fetchAdminInfo = async () => {
+      const token = localStorage.getItem("adminToken");
+      if (token) {
+        try {
+          const response = await axios.get("/api/adminPage/info", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log("response.data:", response.data);
+          setAdmin(response.data);
+        } catch (error) {
+          console.error("Failed to fetch admin info:", error);
+          // logout();
+        }
+      }
+      setLoading(false); // 로딩 상태 업데이트
+    };
+
+    fetchAdminInfo();
+  }, [logout]);
+
   const { IMP } = window;
   IMP.init("imp25812042");
   async function onClickCertification() {
@@ -185,6 +213,10 @@ const Sidebar = () => {
       }
     );
   }
+  const handleLogout = () => {
+    logout();
+    Navigate("/Login"); // 로그아웃 후 로그인 페이지로 이동
+  };
 
   async function onClickcancelPayments() {
     console.log("환불");
@@ -197,6 +229,9 @@ const Sidebar = () => {
       }
     };
     await handleCancelPayment();
+  }
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -259,7 +294,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={admin[0].img}
+                  src={`http://localhost:3001/adminPage/files/${admin.profilePicture}`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -270,10 +305,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  {admin[0].name}
+                  {admin.name}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  {admin[0].role}
+                  {admin.role}
                 </Typography>
                 <Box
                   style={{
@@ -308,10 +343,7 @@ const Sidebar = () => {
                       borderRadius: "10px", // 모서리를 둥글게 설정
                       cursor: "pointer",
                     }}
-                    onClick={() => {
-                      // onClickPayments();
-                      onClickPayments();
-                    }}
+                    onClick={handleLogout}
                   >
                     <Typography variant="h5" color={colors.redAccent[300]}>
                       로그아웃
@@ -329,7 +361,7 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  {admin[0].name}
+                  {/* {admin.name} */}
                 </Typography>
               </Box>
               <button

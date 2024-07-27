@@ -24,6 +24,7 @@ import ProductQnaList from "./page/product/InquiryProductList";
 import Certification from "./page/auth/Certification";
 import CertificationResult from "./page/auth/CertificationResult";
 import ProductForm from "./page/product/ProductForm";
+import ReviewList from "./page/product/ReviewList";
 function AdminRouter() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -59,12 +60,14 @@ function AdminRouter() {
               <Route path="/RegisterProduct" element={<ProductForm />} />
               <Route path="/modifyProduct/:id" element={<ProductForm />} />
               <Route path="/seller" element={<SellerList />} />
+              <Route path="/review" element={<ReviewList />} />
               <Route path="/ProductQna" element={<ProductQnaList />} />
               <Route path="/certification" element={<Certification />} />
               <Route
                 path="/certification/result"
                 element={<CertificationResult />}
               />
+
               {/* <Route path="/inquiryProduct" element={<AccessReferer />} />
               <Route path="/review" element={<AccessReferer />} /> */}
             </Routes>
