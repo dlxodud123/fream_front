@@ -41,7 +41,7 @@ const FindPw = () =>{
     };
 
     function generateTemporaryPassword() {
-        const length = Math.floor(Math.random() * 9) + 8; // 8-16 자리
+        const length = 9; // 비밀번호 길이를 9자리로 설정
         const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?";
         let temporaryPassword = "";
         for (let i = 0; i < length; i++) {
@@ -50,9 +50,6 @@ const FindPw = () =>{
         }
         return temporaryPassword;
     }
-
-
-
 
     const findePassword = async () => {
         try {
@@ -73,16 +70,14 @@ const FindPw = () =>{
         }
     };
 //  이메일 전송 코드
-    const [isEmailSent, setIsEmailSent] = useState(false);
 
 const sendVerificationEmail = () => {
     const temporaryPassword = generateTemporaryPassword();
-
-// 여기서 정의해야하는 것은 위에서 만든 메일 템플릿에 지정한 변수({{ }})에 대한 값을 담아줘야한다.
         const templateParams = {
             to_email: emailAddress, //수신 이메일
-            from_name : test,
-            randomPw: `임시 비밀번호는 ${temporaryPassword} 입니다.`
+            from_name : '임시 비밀번호 전송',
+            randomPw: `임시 비밀번호는 ${temporaryPassword} 입니다.`, 
+            reply_to: 'songheeselo@gmail.com'
         };
 
         emailjs
@@ -93,8 +88,7 @@ const sendVerificationEmail = () => {
                 'hmn2jtvCHzDWF-trq', // 노출되면 안됨
             )
             .then((response) => {
-                console.log('이메일이 성공적으로 보내졌습니다:', response);
-                setIsEmailSent(true);
+                console.log('이메일 전송 완료 ', response);
              // 백엔드에 임시 비밀번호 업데이트 요청
              axios.post(`/api/login/update_password`, {
                 phonNum: inputPhoneNumber,
@@ -107,14 +101,17 @@ const sendVerificationEmail = () => {
                     setIsSuccess(true);
                 } else {
                     console.error('비밀번호 업데이트 실패:', response.data.message);
+                    setIsSuccess(false);
                 }
             })
             .catch((error) => {
                 console.error('비밀번호 업데이트 오류:', error);
+                setIsSuccess(false);
             });
         })
         .catch((error) => {
             console.error('이메일 보내기 실패:', error);
+            setIsSuccess(false); // 실패 시 상태 업데이트
         });
 };
 
@@ -175,7 +172,7 @@ const sendVerificationEmail = () => {
                     <div className='input_item'>
                         <input 
                             id='email'
-                            type='tell' 
+                            type='email' 
                             placeholder='예)kream@kream.co.kr'
                             className='input_tel'
                             value={emailAddress}

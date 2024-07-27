@@ -15,14 +15,13 @@ const Profile_edit = () =>{
       const defaultProfileImg = blank_profile; //기본 이미지
       let [userImg, setUserImg] = useState(defaultProfileImg);//프로필 이미지변경
       const fileInputRef = useRef(null);
-      let [modalSelf, setModalSelf] = useState(false);//소개 변경스위치
     
       
     useEffect(() => {
         axios.get('/api/my/profile-edit')
             // .then(response => console.log(response))
             .then(res=>{
-                console.log("==================",res.data)
+                console.log("profile_edit Date 확인 : ",res.data)
                 setDate({
                     img: res.data.profileUrl || defaultProfileImg,
                     userId: res.data.userId,
@@ -127,9 +126,7 @@ return(
                     
                 
                 <Modal_my_self date={date}
-                    setDate={setDate}
-                    modalSelf={modalSelf}
-                    setModalSelf={setModalSelf}
+                               setDate={setDate}
                     />
                 </div>
                     </div>

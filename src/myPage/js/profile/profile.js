@@ -10,11 +10,12 @@ import axios from 'axios';
 
 const Profile = () =>{
     let [date, setDate] = useState({});//데이터
-    // const [isEditing, setIsEditing] = useState(false);
+    const [isLayer, setIsLayer] = useState(false); // 신발창 열기
+    const [receiveEmail, setReceiveEmail] = useState('1');
+    const [receiveMessage, setReceiveMessage] = useState('1');
 
     useEffect(() => {
-        axios.get('/api/my/profile-edit')
-            // .then(response => console.log(response))
+        axios.get('/api/my/profile')
             .then(res=>{
                 console.log("로그인 정보 : ",res.data)
                 setDate({
@@ -33,74 +34,61 @@ const Profile = () =>{
             });
     }, []);
 
-  
-    const handleSave = () => {
-    setDate(prevDate => ({
-        ...prevDate,
-        userEmail: userEmail,
-        userPw: userPw,
-        userPhone: userPhone,
-        userSize: userSize,
-        textMsg: receiveEmail,
-        emailMsg: receiveMessage
-    }));
-        axios.put('/api/my/profile', {
-        userEmail: userEmail,
-        userPw: userPw,
-        userPhone: userPhone,
-        userSize: userSize,
-        textMsg: receiveEmail,
-        emailMsg: receiveMessage
-    })
-    .then(response => {
-    console.log(response.data);
-    })
-    .catch(error => {
-    console.error(error);
-        });
-    };
 
-    const [user_size , setuser_size] = useState('');
-    const [userEmail, setUserEmail] = useState(date.email);
-    const [userPw, seUserPw] = useState(date.userPw);
-    const [newPw, setNewPw] = useState(date.userPw);
-    const [userPhone, setUserPhone] = useState(date.phone);
-    const [userSize, setUserSize] = useState(date.userSize);
-    const [receiveEmail, setReceiveEmail] = useState('1');
-    const [receiveMessage, setReceiveMessage] = useState('1');
+    // const saveProfile = (updatedData) => {
+    //     const updatedProfile = { ...date, ...updatedData };
+    //     setDate(updatedProfile);
 
+    //     axios.put('/api/my/profile', updatedProfile)
+    //         .then(response => {
+    //             console.log('프로필 업데이트 성공:', response.data);
+    //         })
+    //         .catch(error => {
+    //             console.error('프로필 업데이트 오류:', error);
+    //         });
+    // };
 
-    const [isLayer, setIsLayer] = useState(false);
     const toggleLayer = () => {
         setIsLayer(!isLayer);
     };
     
-    const [selectedSize, setSelectedSize] = useState('');
     const handleConfirmSize = (size) => {
-        setSelectedSize(size);
-    };
-    
-    const handleTextMsgChange = (e) => {
-        const value = e.target.value;
-        setReceiveMessage(value);
-        axios.put('/api/my/profile', { receiveMessage: value })
+        const updatedProfile = { ...date, userSize: size };
+        setDate(updatedProfile);
+
+        axios.put('/api/my/profile', updatedProfile)
             .then(response => {
-                console.log('Text message :', response.data);
+                console.log('프로필 업데이트 성공:', response.data);
             })
             .catch(error => {
-                console.error('수신동의 error :', error);
+                console.error('프로필 업데이트 오류:', error);
             });
     };
 
-    const handleEmailMsgChange = (e) => {
+
+    //문자 광고성 정보수신`
+    const handleTextMsgChange = (e) => {
         const value = e.target.value;
-        setReceiveEmail(value);
-        axios.put('/api/my/profile', { receiveEmail: value })
+        setReceiveMessage(value);
+
+        axios.put('/api/my/profile', { newReceiveMsg: value })
             .then(response => {
-                console.log('Email preference updated:', response.data);
+                console.log('수신변경 성공 :', response.data);
             })
             .catch(error => {
-                console.error('Error updating email preference:', error);
+                console.error('수신동의meg error :', error);
+            });
+    };
+    //이메일 광고성 정보 수신
+    const handleEmailMsgChange = (e) => { 
+        const value = e.target.value;
+        setReceiveEmail(value);
+        axios.put('/api/my/profile', { newReceiveEmail: value })
+            .then(response => {
+                console.log('수신변경 성공:', response.data);
+            })
+            .catch(error => {
+                console.error('수신동의email error', error);
             });
     };
 
@@ -121,9 +109,9 @@ return(
             <div className='profile_info'>
                 <div className='profile_group'>
                     <h4 className='group_title'>내 계정</h4>
-                    <EmailAdress date={date} setDate={setDate}/>
-                    
-                    <PasswordChang date={date} setDate={setDate} />
+                    <EmailAdress date={date} setDate={setDate}/>  {/* 이메일 변경 */}
+                   
+                    <PasswordChang date={date} setDate={setDate} />  {/* 비밀번호 변경 */}
                 </div>
                
                 <div className='profile_group' style={{paddingTop: '58px'}}>
@@ -135,7 +123,7 @@ return(
                             <button
                                 type="button"
                                 className="unitAll_Btn"
-                                onClick={handleSave}
+                                onClick={''} 
                                 >변경
                             </button>
                         </div>
@@ -147,12 +135,15 @@ return(
                             <button 
                                 type="button"
                                 className="unitAll_Btn"
-                                onClick={toggleLayer}>
+                                onClick={toggleLayer}> 
                             변경
                             </button>
                         </div>
                     </div>
-                    {isLayer && <Layer onClose={toggleLayer} onConfirm={handleConfirmSize} user_size={user_size} />}
+                    {isLayer && <Layer onClose={toggleLayer} 
+                                       onConfirm={handleConfirmSize} 
+                                       date={date}
+                                       setDate={setDate} />}
                 </div>
                 <div style={{paddingTop: '58px', paddingBottom: '160px' }}>
                     <h4 className='group_title'>광고성 정보 수신</h4>

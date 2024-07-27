@@ -96,33 +96,6 @@ const LoginPage = () => {
     } else {
       //http://192.168.0.101:3001
       if (idEmail)
-<<<<<<< HEAD
-        $.ajax({
-          url: "http://192.168.0.13:3001/auth/loginCheck",
-          type: "POST",
-          contentType: "application/json",
-          data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
-          xhrFields: {
-            withCredentials: true,
-          },
-          success: function (data) {
-            const jwtToken = data;
-            if (jwtToken) {
-              setToken(jwtToken);
-              console.log("success");
-              localStorage.setItem("jwtToken", jwtToken);
-              navigate("/myPage");
-              // navigate("/");
-            } else {
-              console.log("fail");
-            }
-          },
-          error: function (xhr, status, error) {
-            console.error("There was an error logging in!", error);
-          },
-        });
-=======
-
       $.ajax({
         url: "/api/auth/loginCheck",
         type: "POST",
@@ -153,7 +126,6 @@ const LoginPage = () => {
       if (classCh === "login_data" && passw === "login_data" && idEmail !== "" && newPassw !== "") {
         setIsButtonActive(true);
       }
->>>>>>> 5a650b3ab6d7857d73df27763e2d226734303e56
     }
   };
 

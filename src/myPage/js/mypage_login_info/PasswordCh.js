@@ -4,8 +4,9 @@ import { useState } from 'react';
 
 function PasswordChang({date, setDate}){
     let [handlePw , setHandlePw] = useState(false);
-    const [currentPw, setCurrentPw] = useState('');
-    const [newPw, setNewPw] = useState('');
+    const [userPw, setUserPw] = useState(''); //저장되어있던 pw
+    const [oldPw, setOldPw] = useState(''); //저장확인용 pw
+    const [newPw, setNewPw] = useState(''); //새로운 pw
     let [ filterCss1 , setFilterCss1 ] = useState('desc_pw')
     let [ filterCss2 , setFilterCss2 ] = useState('desc_pw')
     let [storeBtn, setStoreBtn ] = useState('login_storeBtn')
@@ -17,32 +18,40 @@ function PasswordChang({date, setDate}){
     // }
 
 
-    const handleSave = () => {
-        axios.put('/api/my/profile?userPw='+ currentPw)
-        .then(response => {
-            if (response.data.verified) {
-                return axios.put('/api/my/profile-password', { newPassword: newPw });
+    const changePassword = async (userPw, oldPw, newPw) => {
+        try{
+            const response = await axios.put('/api/my/profile?userPw=',{
+                                    userPw : userPw ,
+                                    oldPw : oldPw,
+                                    newPw : newPw
+        })
+        
+        if (response.status === 200) {
+            const userData = response.data;
+            if (userData.verified) {
+                console.log('비밀번호 변경 성공:', userData);
+                setDate(prevDate => ({
+                    ...prevDate,
+                    userPw: newPw,
+                }));
+                setHandlePw(false);
             } else {
-                throw new Error('이전 비밀번호가 일치하지 않습니다.');
+                console.log('비밀번호 변경 실패.');
+                alert('이전 비밀번호가 일치하지 않습니다.');
             }
-        })
-        .then(response => {
-            console.log(response.data);
-            setDate(prevDate => ({
-                ...prevDate,
-                userPw: newPw,
-            }));
-            setHandlePw(false);
-            setDate(prevDate => ({
-            ...prevDate,
-            userPw : currentPw
-        }))
-        })
-        .catch(error => {
-            console.error(error);
-            alert(error.message);
-        });
+        }
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                console.log('비밀번호 변경 실패.');
+                alert('이전 비밀번호가 일치하지 않습니다.');
+            } else {
+                console.error('An error occurred:', error);
+                alert('비밀번호 변경 중 오류가 발생했습니다.');
+            }
+        }
     };
+        
+        
 
 
     const pwPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,16}$/;
@@ -58,7 +67,7 @@ function PasswordChang({date, setDate}){
 
     };
     const checkFormValidity = () => {
-        if (pwPattern.test(currentPw) && pwPattern.test(newPw)) {
+        if (pwPattern.test(userPw) && pwPattern.test(newPw)) {
             setStoreBtn('login_storeBtnEr');
         } else {
             setStoreBtn('login_storeBtn');
@@ -88,7 +97,7 @@ function PasswordChang({date, setDate}){
                     <h5 className='login_titleCh'>이전 비밀번호</h5>
                     <input className={filterCss1}
                         placeholder='현재 비밀번호를 입력하세요'
-                        onChange={(e) => handlePwChange(e, setCurrentPw, setFilterCss1)}
+                        onChange={(e) => handlePwChange(e, setUserPw, setFilterCss1)}
                     />
                 </div>
                 <div className='unitCh'>
@@ -109,7 +118,7 @@ function PasswordChang({date, setDate}){
                     <button
                         type="button"
                         className={storeBtn}
-                        onClick={handleSave}
+                        onClick={changePassword}
                     >저장
                     </button>
                 </div>

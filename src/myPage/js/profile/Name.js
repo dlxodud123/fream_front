@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+ 
 
 function NameProfile_email({date, setDate}){
+  const [ userName, setUserName] = useState(date.userName)
     const [profile_titleCh, setProfile_titleCh] = useState('profile_title')
     const [ onBtn, setOnBtn] = useState(false);
-    const [ userName, setUserName] = useState(date.userName)
 
     useEffect(() => {
       setUserName(date.userName);

@@ -8,16 +8,16 @@ function Modal_my_self ({ date,setDate }) {
     const [inputCh, setInputCh] = useState('modify_textarea')
   
     useEffect(() => {
-      setNewMySelf(date.newMySelf);
-    }, [date.newMySelf]);
+      setNewMySelf(date.userBio);
+    }, [date.userBio]);
 
     const handleSave = () => {
       setDate(prevDate => ({
         ...prevDate,
-        mySelf: newMySelf,
+        userBio: newMySelf,
       }));
       // console.log(newMySelf)
-        axios.put('/api/my/profile-edit?introduce='+newMySelf )
+        axios.put('/api/my/profile-edit?userBio=' + newMySelf )
         .then(response => {
         console.log(response.data);
         setIsEditing(false);
@@ -29,7 +29,7 @@ function Modal_my_self ({ date,setDate }) {
         };
   
     const handleCancel = () => {
-      setNewMySelf(date.mySelf);
+      setNewMySelf(date.userBio);
       setIsEditing(false);
     };
   
@@ -44,6 +44,7 @@ function Modal_my_self ({ date,setDate }) {
                 <button
                     type="button"
                     className="unit_all"
+                    value={newMySelf}
                     onClick={() => setIsEditing(true) ||
                       setProfile_titleCh('letterThickly') || 
                       setInputCh('changeTextarea')}
