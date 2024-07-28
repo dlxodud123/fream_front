@@ -83,7 +83,7 @@ const Sell_form = () => {
 
   useEffect(() => {
     axiosBaseURL
-      .get(`http://192.168.42.142:3001/products/${id}`)
+      .get(`/api/products/${id}`)
       .then((data) => {
         console.log("data:", data);
         if (data.data && data.data.length > 0) {
@@ -131,7 +131,7 @@ const Sell_form = () => {
       };
       console.log("sellerProductData:", sellerProductData);
       const serverResponse = await axios.post(
-        "http://localhost:3001/sellerProducts/create",
+        "/api/sellerProducts/create",
         sellerProductData,
         { headers }
       );

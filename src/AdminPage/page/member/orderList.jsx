@@ -20,7 +20,7 @@ const OrderList = () => {
     try {
       const response = await axios.get(
         // "http://localhost:3001/adminPage/adminUser"
-        "http://localhost:3001/member/orders"
+        "/api/member/orders"
         // "http://192.168.0.101:3001/member/orders"
       ); // 실제 API 엔드포인트로 변경 필요
       const orders = response.data;
@@ -50,7 +50,7 @@ const OrderList = () => {
   };
   const refundOrder = async (orderId) => {
     try {
-      await axios.put("http://localhost:3001/orders/refundOrder", { orderId });
+      await axios.put("/api/orders/refundOrder", { orderId });
       fetchData();
       setSelectedIds([]);
       alert("환불 완료");

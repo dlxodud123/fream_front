@@ -47,7 +47,7 @@ const Buy_form = () => {
 
   useEffect(() => {
     axiosBaseURL
-      .get(`http://192.168.42.142:3001/products/${id}`)
+      .get(`/api/products/${id}`)
       .then((data) => {
         console.log("data:", data);
         if (data.data && data.data.length > 0) {
@@ -64,7 +64,7 @@ const Buy_form = () => {
           }
           const imgNameArray = cleanedImgName.split("', '");
           const imageUrls = imgNameArray.map((imgName) => {
-            return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
+            return `/api/admin/products/files/${imgName}`;
           });
           setMainImageUrls(imageUrls);
         }
@@ -110,7 +110,7 @@ const Buy_form = () => {
         async function getUserIdFromToken() {
           const token = localStorage.getItem("jwtToken");
           const response = await axios.post(
-            "http://localhost:3001/auth/verifyToken",
+            "/api/auth/verifyToken",
             { token: token }
           );
           if (response.data.valid) {
@@ -161,7 +161,7 @@ const Buy_form = () => {
 
           try {
             const serverResponse = await axios.post(
-              "http://localhost:3001/orders/create",
+              "/api/orders/create",
               paymentInfo
             );
             if (serverResponse.status === 200) {

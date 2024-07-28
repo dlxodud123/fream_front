@@ -76,7 +76,7 @@ const AdminForm = () => {
       const fetchAdminData = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:3001/adminPage/modifyAdmin/${id}`
+            `/api/adminPage/modifyAdmin/${id}`
           );
           setAdminData(response.data);
           setReadOnly(true); // 폼을 읽기 전용으로 설정
@@ -125,7 +125,7 @@ const AdminForm = () => {
       if (id) {
         // Update existing admin
         const response = await axios.put(
-          `http://localhost:3001/adminPage/modifyAdmin/${id}`,
+          `/api/adminPage/modifyAdmin/${id}`,
           formData,
           {
             headers: {
@@ -139,7 +139,7 @@ const AdminForm = () => {
       } else {
         // Create new admin
         const response = await axios.post(
-          "http://localhost:3001/adminPage/createAdmin",
+          "/api/adminPage/createAdmin",
           formData,
           {
             headers: {

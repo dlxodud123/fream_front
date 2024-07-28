@@ -20,7 +20,7 @@ const ReviewList = () => {
     try {
       const response = await axios.get(
         // "http://localhost:3001/adminPage/adminUser"
-        "http://localhost:3001/admin/products/style"
+        "/api/admin/products/style"
       ); // 실제 API 엔드포인트로 변경 필요
       console.log(response.data);
       setRows(response.data);
@@ -30,7 +30,7 @@ const ReviewList = () => {
   };
   const deleteStyle = async () => {
     try {
-      await axios.post("http://localhost:3001/member/deleteSeller", {
+      await axios.post("/api/member/deleteSeller", {
         ids: selectedIds,
       });
       // 삭제 요청 후 데이터를 다시 가져옴

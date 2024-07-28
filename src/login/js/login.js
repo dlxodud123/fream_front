@@ -68,7 +68,7 @@ const LoginPage = () => {
     return async (dispatch) => {
       try {
         const res = await axios.get(
-          `http://192.168.0.13:3000/auth?code=${code}`
+          `/api/auth?code=${code}`
         );
         console.log("Response:", res);
 
@@ -219,7 +219,7 @@ const LoginPage = () => {
 
           <KakaoLoginButton
             kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
-            redirectUri={"http://localhost:3000/auth"}
+            redirectUri={"/api/auth"}
           />
         </div>
       </div>

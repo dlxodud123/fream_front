@@ -19,7 +19,7 @@ const ProductList = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/admin/products/list"
+        "/api/admin/products/list"
       ); // 실제 API 엔드포인트로 변경 필요
       console.log("Number of products received:", response.data.length);
       console.log(response.data);
@@ -38,7 +38,7 @@ const ProductList = () => {
     try {
       console.log(selectedIds);
       await axios.post(
-        "http://localhost:3001/admin/products/delete",
+        "/api/admin/products/delete",
         selectedIds
       );
       // 삭제 요청 후 데이터를 다시 가져옴

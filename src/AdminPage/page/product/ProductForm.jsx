@@ -123,7 +123,7 @@ const AdminForm = () => {
       const fetchProductData = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:3001/admin/products/${id}`
+            `/api/admin/products/${id}`
           );
           const data = response.data;
           setProductData(data);
@@ -187,7 +187,7 @@ const AdminForm = () => {
         // Update existing product
 
         const response = await axios.put(
-          `http://localhost:3001/admin/products/${id}`,
+          `/api/admin/products/${id}`,
           formData,
           {
             headers: {
@@ -204,7 +204,7 @@ const AdminForm = () => {
           console.log(key, value);
         }
         const response = await axios.post(
-          "http://localhost:3001/admin/products",
+          "/api/admin/products",
           formData,
           {
             headers: {

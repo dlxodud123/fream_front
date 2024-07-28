@@ -20,7 +20,7 @@ const SellerList = () => {
     try {
       const response = await axios.get(
         // "http://localhost:3001/adminPage/adminUser"
-        "http://localhost:3001/seller/sellerUser"
+        "/api/seller/sellerUser"
       ); // 실제 API 엔드포인트로 변경 필요
       setRows(response.data);
     } catch (error) {
@@ -29,7 +29,7 @@ const SellerList = () => {
   };
   const deleteSeller = async () => {
     try {
-      await axios.post("http://localhost:3001/seller/deleteSeller", {
+      await axios.post("/api/seller/deleteSeller", {
         ids: selectedIds,
       });
       // 삭제 요청 후 데이터를 다시 가져옴

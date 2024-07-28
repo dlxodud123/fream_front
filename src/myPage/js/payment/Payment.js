@@ -18,7 +18,7 @@ const Payment = () => {
         withCredentials: true,
     });
     useEffect(() => {
-        axiosBaseURL.get('http://localhost:3000/my/payment')
+        axiosBaseURL.get('/api/my/payment')
             .then(response => response)
             .then(data =>{
                 console.log(data)

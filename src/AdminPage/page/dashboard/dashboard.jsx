@@ -63,7 +63,7 @@ const Dashboard = () => {
       const orderReady = encodeURIComponent("주문된 상태");
       try {
         const response = await axios.get(
-          `http://localhost:3001/member/deliveriesAlam?status=${orderReady}`
+          `/api/member/deliveriesAlam?status=${orderReady}`
         );
         setOrderReadyCount(response.data.length);
       } catch (error) {
@@ -74,7 +74,7 @@ const Dashboard = () => {
       const orderDelivery = encodeURIComponent("배송중");
       try {
         const response = await axios.get(
-          `http://localhost:3001/member/deliveriesAlam?status=${orderDelivery}`
+          `/api/member/deliveriesAlam?status=${orderDelivery}`
         );
         setOrderDeliveryCount(response.data.length);
       } catch (error) {
@@ -85,7 +85,7 @@ const Dashboard = () => {
       const orderDone = encodeURIComponent("배송완료");
       try {
         const response = await axios.get(
-          `http://localhost:3001/member/deliveriesAlam?status=${orderDone}`
+          `/api/member/deliveriesAlam?status=${orderDone}`
         );
         setOrderDoneCount(response.data.length);
       } catch (error) {
@@ -96,7 +96,7 @@ const Dashboard = () => {
     const fetchUnsoldProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/admin/products/unsold"
+          "/api/admin/products/unsold"
         );
         console.log("신규판매:", response.data);
         setnewSellCount(response.data.length);
@@ -107,7 +107,7 @@ const Dashboard = () => {
     const fetchSoldProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/admin/products/sold"
+          "/api/admin/products/sold"
         );
         console.log("신규판매:", response.data);
         setSoldSellCount(response.data.length);

@@ -55,7 +55,7 @@ export const UserAuthProvider = ({ children }) => {
     if (jwtToken) {
       axios
         .post(
-          "http://localhost:3001/auth/logout",
+          "/api/auth/logout",
           { withCredentials: true },
           {
             headers: {

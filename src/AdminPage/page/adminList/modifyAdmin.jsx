@@ -70,7 +70,7 @@ const ModifyAdmin = () => {
     const fetchAdminData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/adminPage/modifyAdmin/${id}`
+          `/api/adminPage/modifyAdmin/${id}`
         );
         setAdminData(response.data);
       } catch (error) {

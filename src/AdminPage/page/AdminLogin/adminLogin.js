@@ -39,7 +39,7 @@ const AdminLogin = () => {
   const handleLogin = () => {
     // 일반 로그인 로직 추가
     axios
-      .post("http://localhost:3001/adminPage/login", {
+      .post("/api/adminPage/login", {
         // email: idEmail,
         // password: newPassw,
         userId: id,
