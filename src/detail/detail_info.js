@@ -22,10 +22,10 @@ const Detail_info = (props) => {
 
   const { isLoggedIn, handleLogout } = useContext(UserAuthContext);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (interestModal && !isLoggedIn) {
-        navigate('/login');
+      navigate("/login");
     }
   }, [interestModal, isLoggedIn, navigate]);
 
@@ -42,7 +42,6 @@ const Detail_info = (props) => {
       return "";
     }
   };
-
 
   const [isChecked, setIsChecked] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -245,7 +244,7 @@ const Detail_info = (props) => {
             <BsBookmarkFill size={22} />
             <label style={{}}>&nbsp;관심상품</label>
           </button>
-{/* <<<<<<< HEAD
+          {/* <<<<<<< HEAD
           {interestModal ? (
             <Shopmodal
               isChecked={isChecked}
@@ -255,11 +254,12 @@ const Detail_info = (props) => {
               prId={props.main_info_shoes.prid}
 ======= */}
           {interestModal && isLoggedIn ? (
-            <Shopmodal isChecked={isChecked} 
-            setIsChecked={setIsChecked} 
-            closeModal={closeModal}
-            showModal={showModal}
-            prId={props.main_info_shoes.prid}
+            <Shopmodal
+              isChecked={isChecked}
+              setIsChecked={setIsChecked}
+              closeModal={closeModal}
+              showModal={showModal}
+              prId={props.main_info_shoes.prid}
             ></Shopmodal>
           ) : (
             <></>
@@ -379,198 +379,201 @@ const Detail_info = (props) => {
           ></img>
         </div>
 
-        {
-          isLoggedIn ? (
+        {isLoggedIn ? (
+          <div className="parentDiv">
+            <LineChart productId={prid}></LineChart>
+          </div>
+        ) : (
+          <>
             <div className="parentDiv">
-              <LineChart></LineChart>
+              <div style={{ opacity: "0.1" }}>
+                <LineChart productId={prid}></LineChart>
+              </div>
             </div>
-          ) : (
-            <>
-              <div className="parentDiv">
-                <div style={{opacity:"0.1"}}>
-                  <LineChart></LineChart>
-                </div>
-              </div>
-              <div style={{backgroundColor:"black", zIndex:"2", opacity:"1"}}>
-                <div style={{width:"100px", height:"100px", border:"1px solid black",margin:'0px auto',marginTop:'-250px'}}>
-                </div>
-              </div>
-            </>
-          )
-        }
+            <div
+              style={{ backgroundColor: "black", zIndex: "2", opacity: "1" }}
+            >
+              <div
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  border: "1px solid black",
+                  margin: "0px auto",
+                  marginTop: "-250px",
+                }}
+              ></div>
+            </div>
+          </>
+        )}
         {/* <div className="parentDiv">
           <LineChart></LineChart>
         </div> */}
         {/* marginTop: "16px" */}
 
         <div className="guarantee">
-          {
-            isLoggedIn ? (
-              <>
-                <div style={{ display: "flex", marginTop: "16px" }}>
-                  <div>
-                    <img src={guar_img} style={{ width: "45px" }}></img>
-                  </div>
+          {isLoggedIn ? (
+            <>
+              <div style={{ display: "flex", marginTop: "16px" }}>
+                <div>
+                  <img src={guar_img} style={{ width: "45px" }}></img>
+                </div>
+                <div
+                  style={{
+                    textAlign: "left",
+                    fontSize: "13px",
+                    marginLeft: "20px",
+                    marginTop: "3px",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold" }}>100% 정품 보증</div>
                   <div
                     style={{
-                      textAlign: "left",
-                      fontSize: "13px",
-                      marginLeft: "20px",
-                      marginTop: "3px",
+                      marginTop: "5px",
+                      color: "rgba(0,0,0,0.5)",
+                      fontSize: "12px",
                     }}
                   >
-                    <div style={{ fontWeight: "bold" }}>100% 정품 보증</div>
-                    <div
-                      style={{
-                        marginTop: "5px",
-                        color: "rgba(0,0,0,0.5)",
-                        fontSize: "12px",
-                      }}
-                    >
-                      KREAM에서 검수한 상품이 정품이 아닐 경우, 구매가의 3배를
-                      보상합니다.
-                    </div>
+                    KREAM에서 검수한 상품이 정품이 아닐 경우, 구매가의 3배를
+                    보상합니다.
                   </div>
                 </div>
-                <div style={{ display: "flex", marginTop: "16px" }}>
-                  <div>
-                    <img
-                      src={guar_img1}
-                      style={{ width: "45px", marginTop: "7px" }}
-                    ></img>
-                  </div>
+              </div>
+              <div style={{ display: "flex", marginTop: "16px" }}>
+                <div>
+                  <img
+                    src={guar_img1}
+                    style={{ width: "45px", marginTop: "7px" }}
+                  ></img>
+                </div>
+                <div
+                  style={{
+                    textAlign: "left",
+                    fontSize: "13px",
+                    marginLeft: "20px",
+                    marginTop: "3px",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold" }}>엄격한 다중 검수</div>
                   <div
                     style={{
-                      textAlign: "left",
-                      fontSize: "13px",
-                      marginLeft: "20px",
-                      marginTop: "3px",
+                      marginTop: "5px",
+                      color: "rgba(0,0,0,0.5)",
+                      fontSize: "12px",
                     }}
                   >
-                    <div style={{ fontWeight: "bold" }}>엄격한 다중 검수</div>
-                    <div
-                      style={{
-                        marginTop: "5px",
-                        color: "rgba(0,0,0,0.5)",
-                        fontSize: "12px",
-                      }}
-                    >
-                      모든 상품은 검수센터에 도착한 후, 상품별 전문가 그룹의 체계적인
-                      시스템을 거쳐 검수를 진행합니다.
-                    </div>
+                    모든 상품은 검수센터에 도착한 후, 상품별 전문가 그룹의
+                    체계적인 시스템을 거쳐 검수를 진행합니다.
                   </div>
                 </div>
-                <div style={{ display: "flex", marginTop: "16px" }}>
-                  <div>
-                    <img src={guar_img2} style={{ width: "45px" }}></img>
-                  </div>
+              </div>
+              <div style={{ display: "flex", marginTop: "16px" }}>
+                <div>
+                  <img src={guar_img2} style={{ width: "45px" }}></img>
+                </div>
+                <div
+                  style={{
+                    textAlign: "left",
+                    fontSize: "13px",
+                    marginLeft: "20px",
+                    marginTop: "3px",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold" }}>정품 인증 패키지</div>
                   <div
                     style={{
-                      textAlign: "left",
-                      fontSize: "13px",
-                      marginLeft: "20px",
-                      marginTop: "3px",
+                      marginTop: "5px",
+                      color: "rgba(0,0,0,0.5)",
+                      fontSize: "12px",
                     }}
                   >
-                    <div style={{ fontWeight: "bold" }}>정품 인증 패키지</div>
-                    <div
-                      style={{
-                        marginTop: "5px",
-                        color: "rgba(0,0,0,0.5)",
-                        fontSize: "12px",
-                      }}
-                    >
-                      검수에 합격한 경우에 한하여 KREAM의 정품 인증 패키지가 포함된
-                      상품이 배송됩니다.
-                    </div>
+                    검수에 합격한 경우에 한하여 KREAM의 정품 인증 패키지가
+                    포함된 상품이 배송됩니다.
                   </div>
                 </div>
-              </>
-            ) : (
-              <>
-                <div style={{ display: "flex", marginTop: "200px" }}>
-            <div>
-              <img src={guar_img} style={{ width: "45px" }}></img>
-            </div>
-            <div
-              style={{
-                textAlign: "left",
-                fontSize: "13px",
-                marginLeft: "20px",
-                marginTop: "3px",
-              }}
-            >
-              <div style={{ fontWeight: "bold" }}>100% 정품 보증</div>
-              <div
-                style={{
-                  marginTop: "5px",
-                  color: "rgba(0,0,0,0.5)",
-                  fontSize: "12px",
-                }}
-              >
-                KREAM에서 검수한 상품이 정품이 아닐 경우, 구매가의 3배를
-                보상합니다.
               </div>
-            </div>
-          </div>
-          <div style={{ display: "flex", marginTop: "16px" }}>
-            <div>
-              <img
-                src={guar_img1}
-                style={{ width: "45px", marginTop: "7px" }}
-              ></img>
-            </div>
-            <div
-              style={{
-                textAlign: "left",
-                fontSize: "13px",
-                marginLeft: "20px",
-                marginTop: "3px",
-              }}
-            >
-              <div style={{ fontWeight: "bold" }}>엄격한 다중 검수</div>
-              <div
-                style={{
-                  marginTop: "5px",
-                  color: "rgba(0,0,0,0.5)",
-                  fontSize: "12px",
-                }}
-              >
-                모든 상품은 검수센터에 도착한 후, 상품별 전문가 그룹의 체계적인
-                시스템을 거쳐 검수를 진행합니다.
+            </>
+          ) : (
+            <>
+              <div style={{ display: "flex", marginTop: "200px" }}>
+                <div>
+                  <img src={guar_img} style={{ width: "45px" }}></img>
+                </div>
+                <div
+                  style={{
+                    textAlign: "left",
+                    fontSize: "13px",
+                    marginLeft: "20px",
+                    marginTop: "3px",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold" }}>100% 정품 보증</div>
+                  <div
+                    style={{
+                      marginTop: "5px",
+                      color: "rgba(0,0,0,0.5)",
+                      fontSize: "12px",
+                    }}
+                  >
+                    KREAM에서 검수한 상품이 정품이 아닐 경우, 구매가의 3배를
+                    보상합니다.
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div style={{ display: "flex", marginTop: "16px" }}>
-            <div>
-              <img src={guar_img2} style={{ width: "45px" }}></img>
-            </div>
-            <div
-              style={{
-                textAlign: "left",
-                fontSize: "13px",
-                marginLeft: "20px",
-                marginTop: "3px",
-              }}
-            >
-              <div style={{ fontWeight: "bold" }}>정품 인증 패키지</div>
-              <div
-                style={{
-                  marginTop: "5px",
-                  color: "rgba(0,0,0,0.5)",
-                  fontSize: "12px",
-                }}
-              >
-                검수에 합격한 경우에 한하여 KREAM의 정품 인증 패키지가 포함된
-                상품이 배송됩니다.
+              <div style={{ display: "flex", marginTop: "16px" }}>
+                <div>
+                  <img
+                    src={guar_img1}
+                    style={{ width: "45px", marginTop: "7px" }}
+                  ></img>
+                </div>
+                <div
+                  style={{
+                    textAlign: "left",
+                    fontSize: "13px",
+                    marginLeft: "20px",
+                    marginTop: "3px",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold" }}>엄격한 다중 검수</div>
+                  <div
+                    style={{
+                      marginTop: "5px",
+                      color: "rgba(0,0,0,0.5)",
+                      fontSize: "12px",
+                    }}
+                  >
+                    모든 상품은 검수센터에 도착한 후, 상품별 전문가 그룹의
+                    체계적인 시스템을 거쳐 검수를 진행합니다.
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-              </>
-            )
-          }
-          
-
+              <div style={{ display: "flex", marginTop: "16px" }}>
+                <div>
+                  <img src={guar_img2} style={{ width: "45px" }}></img>
+                </div>
+                <div
+                  style={{
+                    textAlign: "left",
+                    fontSize: "13px",
+                    marginLeft: "20px",
+                    marginTop: "3px",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold" }}>정품 인증 패키지</div>
+                  <div
+                    style={{
+                      marginTop: "5px",
+                      color: "rgba(0,0,0,0.5)",
+                      fontSize: "12px",
+                    }}
+                  >
+                    검수에 합격한 경우에 한하여 KREAM의 정품 인증 패키지가
+                    포함된 상품이 배송됩니다.
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
