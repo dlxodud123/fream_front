@@ -87,10 +87,9 @@ const LoginPage = () => {
 
 
   const handleSubmit = (e) => {
-<<<<<<< HEAD
+
     // const token = localStorage.getItem('jwtToken');
-=======
->>>>>>> 6b8f91717a9a596c04d07956a1991be188a3d064
+
     e.preventDefault();
     if (idEmail === "admin@kream.com" && newPassw === "admin1234!!") {
       setAdminAccess(true);
