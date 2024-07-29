@@ -22,7 +22,7 @@ export const UserAuthProvider = ({ children }) => {
 
         .post(
           // "http://192.168.0.13:3001/auth/verifyToken",
-          "http://192.168.0.101:3001/auth/verifyToken",
+          "http://192.168.0.13:3001/auth/verifyToken",
           { token: jwtToken },
           { withCredentials: true }
         )
