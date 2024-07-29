@@ -45,7 +45,7 @@ export const Shopeitem = ({ shopdata, i }) => {
         <div className="card-body">
           <h5 onClick={() => navigate(`/products/${shopdata.id}`)} className="card-title cursor">{shopdata.nameKor}</h5>
           <p onClick={() => navigate(`/products/${shopdata.id}`)} className="card-text cursor">{shopdata.brand}</p>
-          <p onClick={() => navigate(`/products/${shopdata.id}`)} className="card-text cursor">{shopdata.price}</p>
+          <p onClick={() => navigate(`/products/${shopdata.id}`)} className="card-text cursor">{shopdata.price}원</p>
           <div onClick={handleToggle} style={{ display: 'inline-block', cursor: 'pointer' }}>
             <div style={{ display: 'flex' }}>
               {isChecked ? <FaBookmark size={22} /> : <BiBookmark size={25} />}
