@@ -360,10 +360,12 @@ const Detail_info = (props) => {
         </div>
         {
           isLoggedIn ? (
-            <div className="parentDiv">
-              <LineChart></LineChart>
-            </div>
-          ) : (
+            <>
+              <div className="parentDiv">
+                <LineChart></LineChart>
+              </div>
+            </>
+            ) : (
             <>
               <div className="parentDiv">
                 <div style={{opacity:"0.1"}}>
