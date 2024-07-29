@@ -8,8 +8,15 @@ const PrivateRoute = ({ children }) => {
   if (!isInitialized) {
     return <div></div>;
   }
+  if (!isLoggedIn) {
+    alert("로그인 먼저 해주세요");
+    return <Navigate to="/login" />;
+  }
 
-  return isLoggedIn ? children : <Navigate to="/login" />;
+  return children;
 };
+
+//   return isLoggedIn ? children : <Navigate to="/login" />;
+// };
 
 export default PrivateRoute;

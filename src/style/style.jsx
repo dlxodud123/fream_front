@@ -237,7 +237,7 @@ function Style() {
             <StylePostItem
               key={post.id}
               id={post.id} // id를 prop으로 전달
-              imageUrl={post.imageUrl}
+              imageUrl={post.imageUrl.replace('localhost:3000', 'localhost:3001')}
               profileUrl={post.profileUrl}
               username={post.username}
               content={post.content}

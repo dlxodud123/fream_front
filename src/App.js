@@ -41,6 +41,7 @@ import Style from "./style/style.jsx";
 import Post from "./style/post.jsx";
 import Saved from "./myPage/js/saved/saved.js";
 import PrivateRoute from "./myPage/PrivateRoute";
+import TokenHandler from "./login/TokenHandler";
 
 function App() {
   const AppWrapper = ({ children }) => {
@@ -50,10 +51,6 @@ function App() {
     return <div className={isAdminRoute ? "admin" : "main"}>{children}</div>;
   };
 
-  const axiosBaseURL = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-    withCredentials: true, // 이 부분 추가
-  });
 
   useEffect(() => {
     const logUserAccess = async () => {
@@ -62,7 +59,7 @@ function App() {
         const userId = localStorage.getItem("jwtToken");
         console.log("유저임팩트");
         // 서버로 데이터 전송
-        await axiosBaseURL.post("http://localhost:3001/Access/logUserAccess", {
+        await axios.post("/api/Access/logUserAccess", {
           userId,
         });
       } catch (error) {
@@ -96,6 +93,8 @@ function App() {
                   </App1>
                 }
               ></Route>
+              {/* jwtToken 처리 라우트 */}
+        <Route path="/yourTargetPage" element={<TokenHandler />} />
               <Route path="/my/saved" element={<Saved></Saved>}></Route>
               <Route path="/shop" element={<Shope></Shope>}></Route>
               <Route path="/shop" element={<Shopeshoes />}></Route>

@@ -3,7 +3,7 @@ import Header from "../../common/header";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Footer from "../../common/footer";
 import { LoginForm } from "./RegisterCh.js";
 import { useDispatch } from "react-redux";
@@ -12,19 +12,18 @@ import $ from "jquery";
 import { useAuth } from "../../AdminPage/adminAccess/adminAccess.jsx";
 
 const KakaoLoginButton = ({ kakaoApiKey, redirectUri }) => {
-  const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}
-      &redirect_uri=${redirectUri}&response_type=code`;
+  const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}&redirect_uri=${redirectUri}&response_type=code`;
 
   const handleKakaoLogin = () => {
     window.location.href = kakaoAuthUrl;
   };
   return (
     <div className="btn btn-outline-dark">
-      <button onClick={handleKakaoLogin} className="btn btn-outline-dark">
+      <button onClick={handleKakaoLogin} 
+              className="btn btn-outline-dark">
         <img
           className="kaImg"
           src={require("../../img/login-page/kakao-talk_3669973.png")}
-          alt="카카오 로그인"
         />
         <span className="kakao-login-text">카카오 로그인</span>
       </button>
@@ -45,57 +44,98 @@ const LoginPage = () => {
   const { setAdminAccess } = useAuth();
   const [token, setToken] = useState("");
 
+  // useEffect(() => {
+  //   const handleMessage = (event) => {
+  //     if (event.origin !== "http://localhost:3000") {
+  //       return;
+  //     }
+
+  //     const { code } = event.data;
+  //     if (code) {
+  //       dispatch(kakaoLogin(code));
+  //     }
+  //   };
+
+  //   window.addEventListener("message", handleMessage);
+
+  //   return () => {
+  //     window.removeEventListener("message", handleMessage);
+  //   };
+  // }, [dispatch]);
+
+
+  // const kakaoLogin = (code) => {
+  //   return async (dispatch) => {
+  //     try {
+  //       const res = await axios.get(
+  //         `/api/auth?code=${code}`
+  //       );
+  //       console.log("Response:", res);
+
+  //       const Access_Token = res.data.accessToken;
+  //       console.log("Access Token:", Access_Token);
+
+  //       localStorage.setItem("token", Access_Token);
+  //       dispatch({ type: "LOGIN_SUCCESS", payload: Access_Token });
+  //       navigate("/");
+  //     } catch (err) {
+  //       console.log("Error:", err);
+  //       window.alert("로그인 실패");
+  //     }
+  //   };
+  // };
+  
   useEffect(() => {
-    const handleMessage = (event) => {
-      if (event.origin !== "http://localhost:3000") {
-        return;
-      }
-
-      const { code } = event.data;
-      if (code) {
-        dispatch(kakaoLogin(code));
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    return () => {
-      window.removeEventListener("message", handleMessage);
-    };
-  }, [dispatch]);
-
-  const kakaoLogin = (code) => {
-    return async (dispatch) => {
-      try {
-        const res = await axios.get(
-          `/api/auth?code=${code}`
-        );
-        console.log("Response:", res);
-
-        const Access_Token = res.data.accessToken;
-        console.log("Access Token:", Access_Token);
-
-        localStorage.setItem("token", Access_Token);
-        dispatch({ type: "LOGIN_SUCCESS", payload: Access_Token });
-        navigate("/");
-      } catch (err) {
-        console.log("Error:", err);
-        window.alert("로그인 실패");
-      }
-    };
-  };
+    // 현재 URL에서 'code' 파라미터 추출
+    const code = new URL(window.location.href).searchParams.get('code');
+    console.log("jwt : " + code)
+    
+    if (code) {
+      // 인가 코드를 백엔드 서버로 POST 요청하여 액세스 토큰 요청
+      axios.post('/api/kakaoLogin', { code })
+        .then(response => {
+          // 서버로부터 받은 액세스 토큰을 로컬 스토리지에 저장
+          // const Access_Token = response.data.jwtToken;
+          // localStorage.setItem('jwtToken', Access_Token);
+          console.log("카카오 response : ",response)
+          const jwtToken = response.jwtToken;
+          if (jwtToken) {
+            setToken(jwtToken);
+            console.log("success");
+            localStorage.setItem("jwtToken", jwtToken);
+            navigate("/");
+          } else {
+            console.log("fail");
+          }
+          // Redux 상태 업데이트
+          // dispatch({ type: "LOGIN_SUCCESS", payload: jwtToken });
+          
+          // 홈 페이지로 리다이렉트
+          navigate('/');
+        })
+        .catch(error => {
+          console.error('로그인 실패:', error);
+          window.alert('로그인 실패');
+          
+          // 에러 페이지로 리다이렉트
+          navigate('/login');
+        });
+    }
+  }, [dispatch, navigate]);
 
 
   const handleSubmit = (e) => {
+
+    // const token = localStorage.getItem('jwtToken');
+
     e.preventDefault();
     if (idEmail === "admin@kream.com" && newPassw === "admin1234!!") {
       setAdminAccess(true);
       navigate("/LoginAdmin");
     } else {
-      //http://192.168.0.101:3001
       if (idEmail)
       $.ajax({
-        url: "/api/auth/loginCheck",
+        url: "http://192.168.0.13:3001/auth/loginCheck",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
@@ -121,7 +161,11 @@ const LoginPage = () => {
   }
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
+      if (classCh === "login_data" && passw === "login_data" && idEmail !== "" && newPassw !== "") {
+        setIsButtonActive(true);
+      }
       handleSubmit(e);
+
     }
   };
   
@@ -218,9 +262,17 @@ const LoginPage = () => {
           </div>
 
           <KakaoLoginButton
+
+            // // kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
+            // kakaoApiKey={"2c38a672bc98d7bf79b19bbcaeb91eb6"}
+            // // redirectUri={"/api/auth"}
+            // redirectUri={"http://192.168.0.101:3001/kakaoLogin"}
+
             kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
             redirectUri={"/api/auth"}
+
           />
+          
         </div>
       </div>
       <Footer />

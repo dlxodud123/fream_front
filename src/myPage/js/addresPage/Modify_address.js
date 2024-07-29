@@ -3,38 +3,82 @@ import '../../css/address/addressLayer.css';
 import DaumAddress from './SerchAddress.js';
 import axios from 'axios';
 
-function ModifyAddress({onClose, recipient, phone, postcode, address, id}) {
-    const [recipientState, setRecipientState] = useState(recipient);
-    const [phoneState, setPhoneState] = useState(phone);
-    const [postcodeState, setPostcodeState] = useState(postcode);
-    const [addressState, setAddressState] = useState(address);
-    const [detailAddress, setDetailAddress] = useState('');
+function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postcode: initialPostcode, address: initialAddress, detailAddress: initialDetailAddress, isDefault: initialIsDefault, id, fetchData }) {
+    const [name, setName] = useState(initialName);
+    const [phone, setPhone] = useState(initialPhone);
+    const [postcode, setPostcode] = useState(initialPostcode);
+    const [address, setAddress] = useState(initialAddress);
+    const [detailAddress, setDetailAddress] = useState(initialDetailAddress || '');
+    const [isDefaultDelivery, setIsDefaultDelivery] = useState(initialIsDefault);
     const [handleSearchButtonClick, setHandleSearchButtonClick] = useState(false);
+
+
+    // useEffect(() => {
+    //     setName(name);
+    //     setPhone(phone);
+    //     setPostcode(postcode);
+    //     setAddress(address);
+    //     setDetailAddress(initialDetailAddress);
+    //     setIsDefaultDelivery(isDefault);
+
+    // }, [name, phone, postcode, address, initialDetailAddress, isDefault]);
+
+   
 
     const handleSave = async () => {
         try {
             await axios.put(`/api/my/address/${id}`, {
-                id: address.id,
-                recipient: recipientState,
-                phone: phoneState,
-                postcode: postcodeState,
-                address: addressState,
-                detailAddress
+                id: id,
+                name: name,
+                phone: phone,
+                postcode: postcode,
+                address: address,
+                detailAddress: detailAddress,
+                isDefault: isDefaultDelivery ? '1' : '0',
+
             });
-            onClose(); 
+            fetchData(); // 부모 컴포넌트의 주소 목록을 다시 가져오기
+            onClose(); // 모달 닫기
         } catch (error) {
             console.error("ModifyAddress :", error);
         }
     };
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        switch (name) {
+            case 'name':
+                setName(value);
+                break;
+            case 'phone':
+                setPhone(value);
+                break;
+            case 'postcode':
+                setPostcode(value);
+                break;
+            case 'address':
+                setAddress(value);
+                break;
+            case 'detailAddress':
+                setDetailAddress(value);
+                break;
+            default:
+                break;
+        }
+    };
+
 
     const handlePhoneChange = (e) => {
         const newValue = e.target.value.replace(/\D/g, ''); // 숫자 외의 문자 제거
-        setPhoneState(newValue);
+        setPhone(newValue);
     };
 
 
     const handleCancel = () => { //취소버튼
         onClose();
+    };
+
+    const handleCheckboxChange = (event) => {
+        setIsDefaultDelivery(event.target.checked);
     };
 
     return (
@@ -53,9 +97,9 @@ function ModifyAddress({onClose, recipient, phone, postcode, address, id}) {
                                     <div className="input_item">
                                         <input
                                             type="text"
-                                            name="reciever"
-                                            value={recipientState}
-                                            onChange={(e) => setRecipientState(e.target.value)}
+                                            name="name"
+                                            value={name}
+                                            onChange={handleInputChange}
                                             placeholder="수령인의 이름"
                                             className='textAddress Name'
                                         />
@@ -68,8 +112,8 @@ function ModifyAddress({onClose, recipient, phone, postcode, address, id}) {
                                     <div className="input_item">
                                         <input
                                             type="text"
-                                            name="ponNum"
-                                            value={phoneState}
+                                            name="phone"
+                                            value={phone}
                                             onChange={handlePhoneChange}
                                             placeholder="-없이 입력"
                                             className='textAddress phone'
@@ -83,15 +127,20 @@ function ModifyAddress({onClose, recipient, phone, postcode, address, id}) {
                                     <div className="input_item">
                                         <input
                                             type="text"
-                                            value={postcodeState}
+                                            value={postcode}
                                             id="sample6_postcode"
                                             name="postcode"
                                             placeholder="우편 번호를 검색하세요"
                                             className='textAddress Num'
                                             readOnly
                                         />
-                                        <button className='btn btn_zipcode small' onClick={() => setHandleSearchButtonClick(true)}>우편번호</button>
-                                        {handleSearchButtonClick && <DaumAddress onClose={() => setHandleSearchButtonClick(false)} setPostcode={setPostcodeState} setAddress={setAddressState} />}
+                                         <button className='btn btn_zipcode small' 
+                                                 onClick={() => setHandleSearchButtonClick(true)}>
+                                        우편번호</button>
+
+                                        {handleSearchButtonClick && <DaumAddress onClose={() => setHandleSearchButtonClick(false)} 
+                                                                                 setPostcode={setPostcode} 
+                                                                                 setAddress={setAddress} />}
                                     </div>
                                 </div>
 
@@ -102,7 +151,7 @@ function ModifyAddress({onClose, recipient, phone, postcode, address, id}) {
                                             type="text"
                                             id="sample6_address"
                                             name="address"
-                                            value={addressState}
+                                            value={address}
                                             placeholder="우편번호 검색 후, 자동입력 됩니다"
                                             className='textAddress Num'
                                             readOnly
@@ -118,7 +167,7 @@ function ModifyAddress({onClose, recipient, phone, postcode, address, id}) {
                                             id="sample6_detailAddress"
                                             name="detailAddress"
                                             value={detailAddress}
-                                            onChange={(e) => setDetailAddress(e.target.value)}
+                                            onChange={handleInputChange}
                                             placeholder="건물,아파트,동/호수 입력"
                                             className='textAddress'
                                         />
@@ -128,7 +177,12 @@ function ModifyAddress({onClose, recipient, phone, postcode, address, id}) {
                                 <div className='deliver_check'>
                                     <div className='checkbox'>
                                         <div className="form-check">
-                                            <input className="form-check-input" type="checkbox" value="1" />
+                                        <input
+                                                className="form-check-input"
+                                                type="checkbox"
+                                                checked={isDefaultDelivery}
+                                                onChange={handleCheckboxChange}
+                                            />
                                             <label className="form-check-label" htmlFor="flexCheckDefault">
                                                 기본배송지로 설정
                                             </label>

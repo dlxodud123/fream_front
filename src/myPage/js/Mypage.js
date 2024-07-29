@@ -33,12 +33,12 @@ const MyPage = () => {
   });
   
 
-  useEffect(() => {
-    if (isInitialized && !isLoggedIn) {
-      alert("로그인이 필요합니다.");
-      navigate("/login");
-    }
-  }, [isInitialized, isLoggedIn, navigate]);
+  // useEffect(() => {
+  //   if (isInitialized && !isLoggedIn) {
+  //     alert("로그인이 필요합니다.");
+  //     navigate("/login");
+  //   }
+  // }, [isInitialized, isLoggedIn, navigate]);
 
   useEffect(() => {
     axios.get('/api/myPage')

@@ -256,7 +256,7 @@ const Join = () => {
                   <input
                     id="gender"
                     type="radio"
-                    value="male"
+                    value="MAN"
                     checked={formData.gender === "male"}
                     onChange={handleChange}
                     name="gender"
@@ -269,7 +269,7 @@ const Join = () => {
                   <input
                     id="gender"
                     type="radio"
-                    value="female"
+                    value="WOMAN"
                     checked={formData.gender === "female"}
                     onChange={handleChange}
                     name="gender"
