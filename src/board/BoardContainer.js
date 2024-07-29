@@ -30,7 +30,7 @@ function BoardContainer() {
   useEffect(() => {
     const fetchBoardList = async () => {
       try {
-        const response = await axios.get("http://192.168.0.13:3001/board");
+        const response = await axios.get("/api/board");
         console.log(response.data);
         setBoardList(response.data);
       } catch (error) {

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BiBookmark } from "react-icons/bi";
 import { FaBookmark } from "react-icons/fa";
 import './shop.css';
 import Shopmodal from './shopmodal';
+import { UserAuthContext } from '../../Auth/UserAuthContext';
 
 export const Shopeitem = ({ shopdata, i }) => {
   const navigate = useNavigate();
@@ -11,8 +12,14 @@ export const Shopeitem = ({ shopdata, i }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedSize, setSelectedSize] = useState([]);
 
+  const { isLoggedIn } = useContext(UserAuthContext);
+
   const handleToggle = () => {
-    setShowModal(true);
+    if (isLoggedIn) {
+      setShowModal(true);
+    } else {
+      navigate('/login');
+    }
   };
 
   const closeModal = () => {
@@ -21,7 +28,7 @@ export const Shopeitem = ({ shopdata, i }) => {
 
   const confirmToggle = (sizes) => {
     setSelectedSize(sizes);
-    setIsChecked(sizes.length > 0);
+    setIsChecked(sizes.length > 0); // Change to FaBookmark if sizes are selected
     setShowModal(false);
   };
 
@@ -37,8 +44,8 @@ export const Shopeitem = ({ shopdata, i }) => {
         />
         <div className="card-body">
           <h5 onClick={() => navigate(`/products/${shopdata.id}`)} className="card-title cursor">{shopdata.nameKor}</h5>
-          <p onClick={() => navigate(`/products/${shopdata.id}`)} className="card-tex cursor">{shopdata.brand}</p>
-          <p onClick={() => navigate(`/products/${shopdata.id}`)} className="card-text cursor">{shopdata.price}</p>
+          <p onClick={() => navigate(`/products/${shopdata.id}`)} className="card-text cursor">{shopdata.brand}</p>
+          <p onClick={() => navigate(`/products/${shopdata.id}`)} className="card-text cursor">{shopdata.price}원</p>
           <div onClick={handleToggle} style={{ display: 'inline-block', cursor: 'pointer' }}>
             <div style={{ display: 'flex' }}>
               {isChecked ? <FaBookmark size={22} /> : <BiBookmark size={25} />}
@@ -47,12 +54,15 @@ export const Shopeitem = ({ shopdata, i }) => {
           </div>
         </div>
       </div>
-      <Shopmodal
-        selectedSize={selectedSize}
-        confirmToggle={confirmToggle}
-        closeModal={closeModal}
-        showModal={showModal}
-      />
+      {isLoggedIn && (
+        <Shopmodal
+          selectedSize={selectedSize}
+          confirmToggle={confirmToggle}
+          closeModal={closeModal}
+          showModal={showModal}
+          prId={shopdata.prid}
+        />
+      )}
     </div>
   );
 };

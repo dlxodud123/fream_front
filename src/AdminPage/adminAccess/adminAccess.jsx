@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         try {
           const response = await axios.post(
-            "http://localhost:3001/adminPage/loginCheck",
+            "/api/adminPage/loginCheck",
             {},
             {
               headers: {
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       try {
         await axios.post(
-          "http://localhost:3001/adminPage/logout",
+          "/api/adminPage/logout",
           {},
           {
             headers: {

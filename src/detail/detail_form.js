@@ -93,7 +93,7 @@ const Detail_form = () => {
   const logUserInteraction = () => {
     if (userId) {
       axios
-        .post("http://192.168.42.142:3001/Access/logUserInteraction", null, {
+        .post("/api/Access/logUserInteraction", null, {
           params: {
             userId: userId,
             productId: id,

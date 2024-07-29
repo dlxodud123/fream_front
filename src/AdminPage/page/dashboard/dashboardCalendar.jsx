@@ -50,7 +50,7 @@ const DashboardCalendar = (isDashboard = false) => {
     const fetchSchedules = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/schedules/${userId}`
+          `/api/schedules/${userId}`
         );
         setCurrentEvents(response.data);
       } catch (error) {
@@ -95,7 +95,7 @@ const DashboardCalendar = (isDashboard = false) => {
       };
       try {
         const response = await axios.post(
-          "http://localhost:3001/schedules",
+          "/api/schedules",
           newEvent
         );
         setCurrentEvents([...currentEvents, response.data]);
@@ -114,7 +114,7 @@ const DashboardCalendar = (isDashboard = false) => {
     )
       try {
         await axios.delete(
-          `http://localhost:3001/schedules/${selected.event.id}`
+          `/api/schedules/${selected.event.id}`
         );
         selected.event.remove();
         // 사용자에게 이벤트 삭제를 확인하고, 확인된 경우 이벤트를 제거합니다.

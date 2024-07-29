@@ -170,7 +170,7 @@ const Sell = () => {
       console.log("formattedOrderDate:", formattedOrderDate);
       return {
         id: item.product.prid,
-        image: `http://192.168.42.142:3001/admin/products/files/${item.product.productImgs[0].imgName}`,
+        image: `/api/admin/products/files/${item.product.productImgs[0].imgName}`,
         name: item.product.nameKor,
         size: "265", // 이 값은 현재 데이터에서 제공되지 않으므로 하드코딩하였습니다.
         price: item.product.price.toLocaleString(), // 가격을 콤마로 구분된 문자열로 변환합니다.
@@ -187,7 +187,7 @@ const Sell = () => {
     // axios.get("http://localhost:3000/my/buying")
     const token = localStorage.getItem("jwtToken");
     axios
-      .get("http://localhost:3001/sellerProducts/sellList", {
+      .get("/api/sellerProducts/sellList", {
         headers: {
           Authorization: `Bearer ${token}`, // 토큰을 헤더에 추가
         },

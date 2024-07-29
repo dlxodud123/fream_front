@@ -136,7 +136,7 @@ function Style() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/styles");
+        const response = await axios.get("/api/styles");
         setData(response.data);
         console.log(response.data); // 상태 업데이트 후의 데이터를 로그로 출력
       } catch (error) {

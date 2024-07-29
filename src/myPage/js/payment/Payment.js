@@ -15,7 +15,11 @@ const Payment = () => {
     const [ date , setDate ] =useState([]);
    
     useEffect(() => {
+<<<<<<< HEAD
         axios.get('/api/my/payment')
+=======
+        axiosBaseURL.get('/api/my/payment')
+>>>>>>> 2f44662f100a15e7c4ba9ca85a794e7b1485259d
             .then(response => response)
             .then(data =>{
                 console.log(data)

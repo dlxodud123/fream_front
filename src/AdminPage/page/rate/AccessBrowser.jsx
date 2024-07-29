@@ -52,7 +52,7 @@ const AccessBrowser = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/Access/browser"
+          "/api/Access/browser"
         );
 
         const transformedData = response.data.map((item) => ({

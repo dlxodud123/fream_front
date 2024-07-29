@@ -82,7 +82,7 @@ const Buying = () => {
     // axios.get("http://localhost:3000/my/buying")
     const token = localStorage.getItem("jwtToken");
     axios
-      .get("http://localhost:3001/orders/buy", {
+      .get("/api/orders/buy", {
         headers: {
           Authorization: `Bearer ${token}`, // 토큰을 헤더에 추가
         },
@@ -125,7 +125,7 @@ const Buying = () => {
       startDate: start.toISOString(), //전송
       endDate: end.toISOString(),
     };
-    const apiUrl = "http://localhost:3000/my/buying";
+    const apiUrl = "/api/my/buying";
     axios
       .post(apiUrl, data)
       .then((response) => {

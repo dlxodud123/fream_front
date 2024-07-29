@@ -16,6 +16,7 @@ const code = urlParams.get('code');
 console.log('코드 팝업 :', code);
 
 if (window.opener && !window.opener.closed) {
+
   const parentOrigin = 'http://localhost:3000';
   
   window.opener.postMessage({ code: code }, parentOrigin);

@@ -23,7 +23,7 @@ function EditBoardForm({ boardList, updateBoardItem }) {
     const fetchBoardList = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.0.13:3001/board/${No}`
+          `/api/board/${No}`
         );
 
         console.log("응답데이터:", response.data);
@@ -58,7 +58,7 @@ function EditBoardForm({ boardList, updateBoardItem }) {
     formData.append("user", writer); // 현재 사용자 ID를 폼 데이터에 추가 // 실제 사용자 ID로 변경 필요
     try {
       const response = await axios.post(
-        "http://localhost:3001/board",
+        "/api/board",
         formData,
         {
           headers: {

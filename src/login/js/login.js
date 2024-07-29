@@ -125,6 +125,9 @@ const LoginPage = () => {
 
 
   const handleSubmit = (e) => {
+
+    // const token = localStorage.getItem('jwtToken');
+
     e.preventDefault();
     if (idEmail === "admin@kream.com" && newPassw === "admin1234!!") {
       setAdminAccess(true);
@@ -132,7 +135,7 @@ const LoginPage = () => {
     } else {
       if (idEmail)
       $.ajax({
-        url: "/api/auth/loginCheck",
+        url: "http://192.168.0.13:3001/auth/loginCheck",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
@@ -259,10 +262,15 @@ const LoginPage = () => {
           </div>
 
           <KakaoLoginButton
+<<<<<<< HEAD
             // kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
             kakaoApiKey={"2c38a672bc98d7bf79b19bbcaeb91eb6"}
             // redirectUri={"/api/auth"}
             redirectUri={"http://192.168.0.101:3001/kakaoLogin"}
+=======
+            kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
+            redirectUri={"/api/auth"}
+>>>>>>> 2f44662f100a15e7c4ba9ca85a794e7b1485259d
           />
           
         </div>
