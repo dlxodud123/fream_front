@@ -4,8 +4,8 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      // target: "http://192.168.0.126:3001", 
-      target: "http://192.168.0.101:3001", 
+      // target: "http://192.168.0.126:3001",
+      target: "http://localhost:3001",
       // target: "http://localhost:3001", // 백엔드 서버 주소
       // target: "http://192.168.42.142:3001", // 백엔드 서버 주소
 
