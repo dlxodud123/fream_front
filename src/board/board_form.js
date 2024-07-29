@@ -46,7 +46,7 @@ function BoardForm({ addBoardItem, boardList }) {
     formData.append("user", userId); // 현재 사용자 ID를 폼 데이터에 추가 // 실제 사용자 ID로 변경 필요
     try {
       const response = await axios.post(
-        "http://192.168.0.13:3001/board",
+        "/api/board",
         formData,
         {
           headers: {

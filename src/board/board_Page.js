@@ -18,7 +18,7 @@ function BoardPage({ deleteBoardItem }) {
     const fetchBoardList = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.0.13:3001/board/${No}`
+          `/api/board/${No}`
         );
         console.log(response.data);
         setBoard(response.data);

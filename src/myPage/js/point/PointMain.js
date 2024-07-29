@@ -54,7 +54,7 @@ const PointMain = () => {
         withCredentials: true,
     });
     useEffect(() => {
-        axiosBaseURL.get('http://localhost:3000/my/point')
+        axiosBaseURL.get('/api/my/point')
             .then(response => response)
             .then(data =>{
                 console.log(data)

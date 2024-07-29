@@ -22,7 +22,9 @@ export const UserAuthProvider = ({ children }) => {
 
         .post(
           // "http://192.168.0.13:3001/auth/verifyToken",
-          "http://192.168.0.13:3001/auth/verifyToken",
+
+          "/api/auth/verifyToken",
+
           { token: jwtToken },
           { withCredentials: true }
         )
@@ -53,7 +55,7 @@ export const UserAuthProvider = ({ children }) => {
     if (jwtToken) {
       axios
         .post(
-          "http://localhost:3001/auth/logout",
+          "/api/auth/logout",
           { withCredentials: true },
           {
             headers: {

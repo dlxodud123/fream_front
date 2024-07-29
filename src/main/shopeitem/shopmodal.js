@@ -53,7 +53,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
     setFinalSizeArr(newFinalSizeArr);
     console.log("확인", typeof newFinalSizeArr);
     axiosBaseURL
-    .post(`http://192.168.0.13:3001/wishes/toggle/${prId}/${newFinalSizeArr}`,{},
+    .post(`/api/wishes/toggle/${prId}/${newFinalSizeArr}`,{},
      // 요청 본문이 필요 없는 경우 빈 객체로 전달
     {
       headers: {

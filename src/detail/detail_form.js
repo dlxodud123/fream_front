@@ -37,7 +37,7 @@ const Detail_form = () => {
 
   useEffect(() => {
     axiosBaseURL
-      .get(`http://192.168.42.142:3001/products/${id}`)
+      .get(`/api/products/${id}`)
       .then((data) => {
         console.log("data:", data);
         if (data.data && data.data.length > 0) {
@@ -93,7 +93,7 @@ const Detail_form = () => {
   const logUserInteraction = () => {
     if (userId) {
       axios
-        .post("http://192.168.42.142:3001/Access/logUserInteraction", null, {
+        .post("/api/Access/logUserInteraction", null, {
           params: {
             userId: userId,
             productId: id,
@@ -140,6 +140,7 @@ const Detail_form = () => {
             final_size={final_size}
             setFinal_Size={setFinal_Size}
             className="detail_info"
+            prid={id}
           ></Detail_info>
         </div>
         <div className="detail_cotainer2">

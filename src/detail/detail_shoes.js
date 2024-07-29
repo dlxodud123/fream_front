@@ -19,7 +19,7 @@ const Detail_shoes = () => {
 
     useEffect(() => {
         axiosBaseURL
-        .get(`http://192.168.42.142:3001/products/recent-views`)
+        .get(`/api/products/recent-views`)
         .then((data) => {
             if (data.data && data.data.length > 0) {
                 console.log("최근 : ", data.data);  

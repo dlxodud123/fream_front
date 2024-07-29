@@ -1,11 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const MypageList = () => {
+  const navigate = useNavigate();
+
+  const myPageMain = () => {
+    navigate('/myPage'); 
+  };
+
+
     return(
     <div>
         <div className="mypage_List">
-          <button className="moveMypage">
+          <button className="moveMypage"
+                  onClick={myPageMain}>
             <h2>마이페이지</h2>
           </button>
         </div>

@@ -53,7 +53,7 @@ const DeliveryList = () => {
     try {
       const response = await axios.get(
         // "http://localhost:3001/adminPage/adminUser"
-        "http://localhost:3001/member/deliveries"
+        "/api/member/deliveries"
       ); // 실제 API 엔드포인트로 변경 필요
       setRows(response.data);
       console.log(response.data);
@@ -63,7 +63,7 @@ const DeliveryList = () => {
   };
   const deleteDelivery = async () => {
     try {
-      await axios.post("http://localhost:3001/member/deleteDelivery", {
+      await axios.post("/api/member/deleteDelivery", {
         ids: selectedIds,
       });
       // 삭제 요청 후 데이터를 다시 가져옴
@@ -111,7 +111,7 @@ const DeliveryList = () => {
       if (updates.length > 0) {
         try {
           await axios.put(
-            "http://localhost:3001/member/modifyDelivery",
+            "/api/member/modifyDelivery",
             updates
           );
           fetchData();
