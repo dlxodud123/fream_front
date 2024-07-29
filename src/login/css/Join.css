@@ -84,3 +84,11 @@
     cursor:auto ;
     border-radius: 7px;
 }
+.inputError{
+    display: inline-block;
+    color: red;
+    text-align: center;
+    font-size: 13px;
+    margin: 0;
+    padding-left: 20px;
+}

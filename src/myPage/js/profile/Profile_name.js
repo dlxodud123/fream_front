@@ -13,7 +13,7 @@ function ProfileName({date,setDate}){
     const handleSave = () => {
         setDate(prevDate => ({
         ...prevDate,
-        profileName: profileName,
+        profileName: profileName
       }));
 
     axios.put('/api/my/profile-edit?ProfileName=' + profileName)

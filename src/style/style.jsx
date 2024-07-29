@@ -10,6 +10,7 @@ import Post from "./post";
 import Masonry from "masonry-layout";
 import imagesLoaded from "imagesloaded"; // imagesLoaded 임포트
 import StylePostItem from "./stylePostItem";
+import axios from "axios";
 
 const List = styled.div`
   display: flex;
@@ -131,13 +132,13 @@ const dummyPosts = [
 function Style() {
   const containerRef = useRef(null);
   let navigate = useNavigate();
-
+  const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/style");
-        const data = await response.json();
-        console.log(data); // 상태 업데이트 후의 데이터를 로그로 출력
+        const response = await axios.get("/api/styles");
+        setData(response.data);
+        console.log(response.data); // 상태 업데이트 후의 데이터를 로그로 출력
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -232,7 +233,7 @@ function Style() {
           </div>
         </div>
         <Container ref={containerRef}>
-          {dummyPosts.map((post) => (
+          {data.map((post) => (
             <StylePostItem
               key={post.id}
               id={post.id} // id를 prop으로 전달

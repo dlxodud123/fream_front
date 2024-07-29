@@ -22,7 +22,7 @@ const Notification = () => {
       const status = encodeURIComponent("주문된 상태");
       try {
         const response = await axios.get(
-          `http://localhost:3001/member/deliveriesAlam?status=${status}`
+          `/api/member/deliveriesAlam?status=${status}`
         );
         setOrderCount(response.data.length);
       } catch (error) {
@@ -33,7 +33,7 @@ const Notification = () => {
     const fetchUnsoldProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/admin/products/unsold"
+          "/api/admin/products/unsold"
         );
         console.log("신규판매:", response.data);
         setnewSellCount(response.data.length);

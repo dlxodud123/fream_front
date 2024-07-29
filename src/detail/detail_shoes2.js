@@ -20,7 +20,7 @@ const Detail_shoes2 = (props) => {
     useEffect(() => {
         // console.log("브랜드 id", props.id);
         axiosBaseURL
-        .get(`http://192.168.42.142:3001/products/${props.id}/brand`)
+        .get(`/api/products/${props.id}/brand`)
         .then((data) => {
             if (data.data && data.data.length > 0) {
                 console.log("브랜드 : ", data.data); 

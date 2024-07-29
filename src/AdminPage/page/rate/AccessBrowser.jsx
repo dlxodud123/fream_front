@@ -4,16 +4,55 @@ import { tokens } from "../../theme";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const AccessBrowser = ({ isCustomLineColors = false, isDashboard = false }) => {
+const AccessBrowser = ({
+  isCustomLineColors = false,
+  isDashboard = false,
+  setBrowser,
+}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [data, setData] = useState([]);
+  const calculateDifference = (data) => {
+    if (!data || data.length === 0) return 0;
+
+    const currentDate = new Date();
+    const yesterday = new Date(currentDate);
+    const twoDaysAgo = new Date(currentDate);
+
+    yesterday.setDate(currentDate.getDate() - 1);
+    twoDaysAgo.setDate(currentDate.getDate() - 2);
+
+    const yesterdayData = data.map((item) => ({
+      ...item,
+      data: item.data.filter(
+        (point) => point.x.toDateString() === yesterday.toDateString()
+      ),
+    }));
+
+    const twoDaysAgoData = data.map((item) => ({
+      ...item,
+      data: item.data.filter(
+        (point) => point.x.toDateString() === twoDaysAgo.toDateString()
+      ),
+    }));
+
+    const yesterdayTotal = yesterdayData.reduce(
+      (sum, item) => sum + (item.data[0]?.y || 0),
+      0
+    );
+    const twoDaysAgoTotal = twoDaysAgoData.reduce(
+      (sum, item) => sum + (item.data[0]?.y || 0),
+      0
+    );
+
+    return yesterdayTotal - twoDaysAgoTotal;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/Access/browser"
+          "/api/Access/browser"
         );
 
         const transformedData = response.data.map((item) => ({
@@ -23,15 +62,29 @@ const AccessBrowser = ({ isCustomLineColors = false, isDashboard = false }) => {
             y: point.y,
           })),
         }));
+        if (isDashboard) {
+          const currentDate = new Date();
+          const tenDaysAgo = new Date();
+          tenDaysAgo.setDate(currentDate.getDate() - 10);
 
-        setData(transformedData);
+          const filteredData = transformedData.map((item) => ({
+            ...item,
+            data: item.data.filter((point) => point.x >= tenDaysAgo),
+          }));
+
+          setData(filteredData);
+          setBrowser(calculateDifference(filteredData));
+        } else {
+          setData(transformedData);
+          setBrowser(calculateDifference(transformedData));
+        }
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [isDashboard]);
 
   // 현재 날짜 기준 기본 범위 설정
   const currentDate = new Date();
@@ -57,13 +110,21 @@ const AccessBrowser = ({ isCustomLineColors = false, isDashboard = false }) => {
       : defaultEndDate;
 
   return (
-    <div style={{ height: 1000, width: "100%", overflowX: "scroll" }}>
+    <div
+      style={{
+        height: isDashboard ? 300 : 1000,
+        width: "100%",
+        overflowX: "scroll",
+      }}
+    >
       <div
         style={{
-          width: data[0]?.data.length * 50 || 1000,
-          height: "800px",
+          width: isDashboard
+            ? data[0]?.data.length * 20 || 800
+            : data[0]?.data.length * 50 || 1000,
+          height: isDashboard ? 300 : 800,
           paddingTop: "30px",
-          paddingRight: "30px",
+          paddingRight: isDashboard ? "50px" : "30px", // 더 많은 오른쪽 패딩 추가
         }}
       >
         <ResponsiveLine
@@ -101,8 +162,12 @@ const AccessBrowser = ({ isCustomLineColors = false, isDashboard = false }) => {
               },
             },
           }}
-          colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }}
-          margin={{ top: 50, right: 110, bottom: 100, left: 60 }}
+          colors={isDashboard ? { scheme: "nivo" } : { scheme: "nivo" }}
+          margin={
+            isDashboard
+              ? { left: 30, bottom: 100, right: 100 }
+              : { top: 50, right: 110, bottom: 100, left: 60 }
+          }
           xScale={{
             type: "time",
             format: "%Y-%m-%d %H:%M:%S",
@@ -123,20 +188,20 @@ const AccessBrowser = ({ isCustomLineColors = false, isDashboard = false }) => {
           axisRight={null}
           axisBottom={{
             orient: "bottom",
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 45,
+            tickSize: isDashboard ? 1 : 5,
+            tickPadding: isDashboard ? 1 : 5,
+            tickRotation: isDashboard ? 0 : 45,
             legend: isDashboard ? undefined : "Date",
             legendOffset: 36,
             legendPosition: "middle",
-            format: "%Y-%m-%d %H:%M:%S", // Format the ticks to show the full date and time
+            format: isDashboard ? "%m-%d" : "%Y-%m-%d %H:%M:%S", // Format the ticks to show the full date and time
             tickValues: "every 1 day", // Set tick values to display every day
           }}
           axisLeft={{
             orient: "left",
-            tickValues: 5,
+            tickValues: isDashboard ? 10 : 5,
             tickSize: 3,
-            tickPadding: 5,
+            tickPadding: isDashboard ? 3 : 5,
             tickRotation: 0,
             legend: isDashboard ? undefined : "count",
             legendOffset: -40,

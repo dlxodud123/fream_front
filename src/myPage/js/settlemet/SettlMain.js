@@ -73,7 +73,7 @@ const SettlementMain = () => {
   //get date
   const fetchData = () => {
     axios
-      .get("http://localhost:3000/my/account")
+      .get("/api/my/account")
       .then((response) => {
         // 데이터를 받아온 후 상태 업데이트
         setData({
@@ -98,7 +98,7 @@ const SettlementMain = () => {
     };
 
     axios
-      .post("http://localhost:3000/my/addres", dataToSend)
+      .post("/api/my/addres", dataToSend)
       .then((response) => {
         console.log("Data sent successfully");
         // 입력값 초기화

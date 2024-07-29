@@ -25,19 +25,19 @@ function App1() {
   const loadMore = () => {
     setCount(count + 3); // Increase count by 3
   };
-  const axiosBaseURL = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-    withCredentials: true, // 이 부분 추가
-  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // const response = await axiosBaseURL.get(
+        //   "http://localhost:3001/home"
+        //   // "http://43.200.110.19:8080/home"
+        // );
+        const response = await axios.get("/api/home");
+        const data = response.data;
 
-        const response = await axiosBaseURL.get("http://192.168.0.13:3001/home");
-        // const data = response.data;
         setShoes(response.data);
-        // console.log(response.data); // 상태 업데이트 후의 데이터를 로그로 출력
+        console.log(response.data); // 상태 업데이트 후의 데이터를 로그로 출력
       } catch (error) {
         console.error("Error fetching data:", error);
       }

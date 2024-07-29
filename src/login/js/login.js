@@ -6,16 +6,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../common/footer";
 import { LoginForm } from "./RegisterCh.js";
-import { useDispatch  } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import $ from "jquery";
 import { useAuth } from "../../AdminPage/adminAccess/adminAccess.jsx";
 
 const KakaoLoginButton = ({ kakaoApiKey, redirectUri }) => {
-  const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}&redirect_uri=${redirectUri}&response_type=code`;
+  const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoApiKey}
+      &redirect_uri=${redirectUri}&response_type=code`;
 
   const handleKakaoLogin = () => {
-    window.location.href =kakaoAuthUrl;
+    window.location.href = kakaoAuthUrl;
   };
   return (
     <div className="btn btn-outline-dark">
@@ -31,8 +32,6 @@ const KakaoLoginButton = ({ kakaoApiKey, redirectUri }) => {
   );
 };
 
-
-
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,41 +41,40 @@ const LoginPage = () => {
   let [newPassw, setNewPassw] = useState("");
   let msg = <p className="input_error">이메일 주소를 정확히 입력해 주세요</p>;
   const [isButtonActive, setIsButtonActive] = useState(false);
-  
 
   const { setAdminAccess } = useAuth();
   const [token, setToken] = useState("");
 
-
-
   useEffect(() => {
     const handleMessage = (event) => {
-      if (event.origin !== 'http://localhost:3000') {
-        return; 
+      if (event.origin !== "http://localhost:3000") {
+        return;
       }
-  
+
       const { code } = event.data;
       if (code) {
         dispatch(kakaoLogin(code));
       }
     };
-  
-    window.addEventListener('message', handleMessage);
-  
+
+    window.addEventListener("message", handleMessage);
+
     return () => {
-      window.removeEventListener('message', handleMessage);
+      window.removeEventListener("message", handleMessage);
     };
   }, [dispatch]);
-  
+
   const kakaoLogin = (code) => {
     return async (dispatch) => {
       try {
-        const res = await axios.get(`http://192.168.0.13:3000/auth?code=${code}`);
+        const res = await axios.get(
+          `/api/auth?code=${code}`
+        );
         console.log("Response:", res);
-  
+
         const Access_Token = res.data.accessToken;
         console.log("Access Token:", Access_Token);
-  
+
         localStorage.setItem("token", Access_Token);
         dispatch({ type: "LOGIN_SUCCESS", payload: Access_Token });
         navigate("/");
@@ -87,8 +85,8 @@ const LoginPage = () => {
     };
   };
 
+
   const handleSubmit = (e) => {
-    const token = localStorage.getItem('jwtToken');
     e.preventDefault();
     if (idEmail === "admin@kream.com" && newPassw === "admin1234!!") {
       setAdminAccess(true);
@@ -126,8 +124,20 @@ const LoginPage = () => {
       if (classCh === "login_data" && passw === "login_data" && idEmail !== "" && newPassw !== "") {
         setIsButtonActive(true);
       }
+      handleSubmit(e);
     }
   };
+  
+  useEffect(() => {
+    const isButtonActive = 
+      classCh === "login_data" && 
+      passw === "login_data" && 
+      idEmail !== "" && 
+      newPassw !== "";
+    setIsButtonActive(isButtonActive);
+  }, [classCh, passw, idEmail, newPassw]);
+
+
   return (
     <div className="login_all">
       <Header />
@@ -202,7 +212,8 @@ const LoginPage = () => {
                 이메일 가입
               </Col>
               <Col onClick={() => navigate("/login/find_email")}>
-                이메일 찾기</Col>
+                이메일 찾기
+              </Col>
               <Col onClick={() => navigate("/login/find_password")}>
                 비밀번호 찾기
               </Col>
@@ -211,7 +222,7 @@ const LoginPage = () => {
 
           <KakaoLoginButton
             kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
-            redirectUri={"http://localhost:3000/auth"}
+            redirectUri={"/api/auth"}
           />
         </div>
       </div>

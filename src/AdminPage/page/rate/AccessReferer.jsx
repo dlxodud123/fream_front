@@ -14,7 +14,7 @@ const AccessReferer = ({ isCustomLineColors = false, isDashboard = false }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/Access/referer"
+          "/api/Access/referer"
         );
 
         const transformedData = response.data.map((item) => {
