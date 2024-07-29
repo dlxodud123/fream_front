@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import '../../css/shoes_sizeLayer.css';
 
 function Layer({ onConfirm ,onClose, date, setDate  }) {
-    const sizes = [220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300];
+    const sizes = ['220', '225', '230', '235', '240', '245', '250', 
+                    '255', '260', '265', '270', '275', '280', '285', '290', '295', '300'];
     let [ newSize, setNewSize] = useState(null);
 
-    const handleSizeClick = (size) => {
-        setNewSize(size);
+    const handleSizeClick = (uSize) => {
+        setNewSize(uSize);
         // console.log(size)//싸이즈 확인
     };
     const handleConfirmClick = () => {
@@ -49,12 +50,12 @@ function Layer({ onConfirm ,onClose, date, setDate  }) {
                         <div className='info_size_list'>
                             <div className="row row-cols-3"
                                  style={{margin: '0px', backgroundColor: '#fff'}}>
-                                {sizes.map(size => (
+                                {sizes.map(uSize => (
                                 <div 
-                                key={size} 
-                                className={`col size_item ${newSize === size ? 'selected' : ''}`}
-                                onClick={() => handleSizeClick(size)}>
-                                <span>{size}</span>
+                                key={uSize} 
+                                className={`col size_item ${newSize === uSize ? 'selected' : ''}`}
+                                onClick={() => handleSizeClick(uSize)}>
+                                <span>{uSize}</span>
                                 </div>
                                 ))}
                             </div>

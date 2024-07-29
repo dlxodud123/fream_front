@@ -22,7 +22,7 @@ const Profile = () =>{
                     userEmail: res.data.email,
                     userPw: res.data.userPw,
                     userPhone: res.data.phone,
-                    userSize: res.data.userSize,
+                    uSize: res.data.uSize,
                     textMsg: res.data.receiveEmail,
                     emailMsg: res.data.receiveMessage
                 });
@@ -52,19 +52,16 @@ const Profile = () =>{
         setIsLayer(!isLayer);
     };
     
-    const handleConfirmSize = (size) => {
-        const updatedProfile = { ...date, userSize: size };
-        setDate(updatedProfile);
-
-        axios.put('/api/my/profile', updatedProfile)
+    const handleConfirmSize = (uSize) => {
+        axios.put(`/api/my/profile?uSize=${uSize}`)
             .then(response => {
                 console.log('프로필 업데이트 성공:', response.data);
+                setDate(prevDate => ({ ...prevDate, uSize }));
             })
             .catch(error => {
                 console.error('프로필 업데이트 오류:', error);
             });
     };
-
 
     //문자 광고성 정보수신`
     const handleTextMsgChange = (e) => {
@@ -131,7 +128,7 @@ return(
                     <div className='unit_Prof'>
                         <h5 className='login_info_title'>신발 싸이즈</h5>
                         <div className='unit_content'>
-                            <p className='outline'>{date.userSize}</p>
+                            <p className='outline'>{date.uSize}</p>
                             <button 
                                 type="button"
                                 className="unitAll_Btn"

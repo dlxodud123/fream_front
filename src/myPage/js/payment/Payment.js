@@ -13,12 +13,9 @@ const Payment = () => {
     
 
     const [ date , setDate ] =useState([]);
-    const axiosBaseURL = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_API_URL,
-        withCredentials: true,
-    });
+   
     useEffect(() => {
-        axiosBaseURL.get('http://localhost:3000/my/payment')
+        axios.get('/api/my/payment')
             .then(response => response)
             .then(data =>{
                 console.log(data)
@@ -83,7 +80,7 @@ const Payment = () => {
                                             </React.Fragment>
                                         ))}
                                         <div className='card_lastNum'>
-                                            <span className='lastCardNum'>3333</span>
+                                            <span className='lastCardNum'>여기에 값 넣기</span>
                                         </div>
                                     </span>
                                     <span className='mark_card'>기본결제</span>

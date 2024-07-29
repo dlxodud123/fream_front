@@ -4,25 +4,28 @@ import DaumAddress from './SerchAddress.js';
 import axios from 'axios';
 
 function AddresLayer({ onClose, date, setDate }) {
-    const [recipient, setRecipient] = useState('');
-    const [ponNum, setPonNum] = useState('');
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState(''); 
     const [postcode, setPostcode] = useState('');
     const [address, setAddress] = useState('');
     const [detailAddress, setDetailAddress] = useState('');
-    const [handleSearchButtonClick, setHandleSearchButtonClick] = useState(false);
-    const [isDefaultDelivery, setIsDefaultDelivery] = useState('0');
+    const [isSearchModalOpen, setIsSearchModalOpen] = useState(false); 
+    const [isDefaultDelivery, setIsDefaultDelivery] = useState(false);
 
     const handleSave = async () => {
         const data = {
-            recipient,
-            ponNum,
+            name,
+            phone,
             postcode,
             address,
             detailAddress,
+            isDefault: isDefaultDelivery ? '1' : '0',
         };
         try {
             const response = await axios.post('/api/my/addres', data);
             console.log('Success:', response.data);
+            setDate(response.data); // 부모 컴포넌트의 상태 업데이트
+            onClose(); // 모달 닫기
           } catch (error) {
               console.error('Error:', error);
           }
@@ -33,16 +36,41 @@ function AddresLayer({ onClose, date, setDate }) {
         onClose();
     };
 
-    const toggleLayer = () => {
-      setHandleSearchButtonClick(!handleSearchButtonClick);
+    const toggleSearchModal  = () => {
+        setIsSearchModalOpen(!isSearchModalOpen);
     };
 
     const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'detailAddress') {
-        setDetailAddress(value);
-    }
+        const { name, value } = e.target;
+        if (name === 'name') setName(value);
+        else if (name === 'phone') setPhone(value);
+        else if (name === 'postcode') setPostcode(value);
+        else if (name === 'address') setAddress(value);
+        else if (name === 'detailAddress') setDetailAddress(value);
     };
+    // const handleInputChange = (e) => {
+    //     const { name, value } = e.target;
+    //     switch (name) {
+    //         case 'name':
+    //             setName(value);
+    //             break;
+    //         case 'phone':
+    //             setPhone(value);
+    //             break;
+    //         case 'postcode':
+    //             setPostcode(value);
+    //             break;
+    //         case 'address':
+    //             setAddress(value);
+    //             break;
+    //         case 'detailAddress':
+    //             setDetailAddress(value);
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // };
+
 
     const handleCheckboxChange = (event) => {
         setIsDefaultDelivery(event.target.checked);
@@ -66,8 +94,8 @@ function AddresLayer({ onClose, date, setDate }) {
                             <div className="input_item">
                                 <input
                                     type="text"
-                                    value={recipient}
-                                    onChange={(e) => setRecipient(e.target.value)}
+                                    value={name}
+                                    onChange={handleInputChange}
                                     placeholder="수령인의 이름"
                                     className='textAddress Name'
                                     />
@@ -80,8 +108,8 @@ function AddresLayer({ onClose, date, setDate }) {
                         <div className="input_item">
                             <input
                                 type="text"
-                                value={ponNum}
-                                onChange={(e) => setPonNum(e.target.value)}
+                                value={phone}
+                                onChange={handleInputChange}
                                 placeholder="-없이입력"
                                 className='textAddress phone'
                                 />
@@ -102,11 +130,13 @@ function AddresLayer({ onClose, date, setDate }) {
                                 readOnly
                                 />
                             <button className='btn btn_zipcode'
-                                    onClick={()=>setHandleSearchButtonClick(true)}>우편번호</button>
-                                      {handleSearchButtonClick && <DaumAddress onClose={toggleLayer}
-                                                                                setPostcode={setPostcode}
-                                                                                setAddress={setAddress}
-                                                                               />}
+                                    onClick={toggleSearchModal}>
+                                        우편번호
+                            </button>
+                            {isSearchModalOpen  && <DaumAddress onClose={toggleSearchModal}
+                                                                    setPostcode={setPostcode}
+                                                                    setAddress={setAddress}
+                                                                    />}
                         </div>
                     </div>
 
@@ -144,8 +174,8 @@ function AddresLayer({ onClose, date, setDate }) {
                         <div class="form-check">
                             <input class="form-check-input" 
                                     type="checkbox"
-                                    onChange= {handleCheckboxChange}
-                                    value="1" />
+                                    checked={isDefaultDelivery}
+                                    onChange={handleCheckboxChange}/>
                             <label class="form-check-label" htmlFor="flexCheckDefault">
                                 기본배송지로 설정
                             </label>
