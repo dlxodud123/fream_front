@@ -23,25 +23,7 @@ const Join = () => {
     age: "",
     gender: "",
   });
-  // const idCheck = () => {
-  //   $.ajax({
-  //     // url: "http://192.168.0.101:3001/auth/rddCheck",
-  //     url: "http://43.200.110.19:8080/auth/rddCheck",
-  //     type: "POST",
-  //     contentType: "application/json",
-  //     data: JSON.stringify(formData),
-  //     success: function (response) {
-  //       console.log(response.code);
-  //       if (response == 0) {
-  //         console.log("ok");
-  //         alert("사용가능한 ID입니다..");
-  //       } else {
-  //         console.log("not ok");
-  //         alert("다시 입력해주세요.");
-  //       }
-  //     },
-  //   });
-  // };
+  
   const idCheck = () => {
     $.ajax({
       url: "/api/auth/rddCheck",

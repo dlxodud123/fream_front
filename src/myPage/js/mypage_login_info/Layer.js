@@ -15,29 +15,7 @@ function Layer({ onConfirm ,onClose, date, setDate  }) {
             onConfirm(newSize);  // 부모 컴포넌트로 선택한 사이즈 전달
             onClose();
         } 
-        // else {
-        //     alert('사이즈를 선택해주세요.');
-        // }
     };
-
-    // const handleConfirmClick = async () => {
-    //     if (newSize !== null) {
-    //         try {
-    //             const response = await axios.post('/api/my/profile', { size: newSize });
-    //             console.log('Size selected:', response.data);
-    //             onConfirm(newSize);
-    //             onClose();
-    //         } catch (error) {
-    //             console.error('Error selecting size:', error);
-    //             alert('사이즈 선택 중 오류가 발생했습니다.');
-    //         }
-    //     } else {
-    //         alert('사이즈를 선택해주세요.');
-    //     }
-    // };
-
-
-
 
     return (
         <div className='layer_lg'>

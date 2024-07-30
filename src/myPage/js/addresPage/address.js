@@ -4,7 +4,6 @@ import '../../css/address/address.css';
 import { useState, useEffect } from "react";
 import AddresLayer from './AddresLayer.js';
 import Footer from "../../../common/footer";
-import DaumAddress from "./SerchAddress";
 import ModifyAddress from './Modify_address.js';
 import axios from "axios";
 
@@ -14,11 +13,12 @@ const Address = () => {
     const [modiLayer, setModiLayer] = useState(false);//수정 모달창 열기
     const [currentEditIndex, setCurrentEditIndex] = useState(null);
     const [formValues, setFormValues] = useState({
-        postcode: "",
-        address: "",
+        address_id: "",
+        postalCode: "",
+        city: "",
         name: "",
         phone: "",
-        detailAddress: "",
+        street: "",
         currentId: null,
         isDefault: false,
     });
@@ -28,17 +28,21 @@ const Address = () => {
     const fetchData = async () => {
         try {
             const res = await axios.get('/api/my/address');
+            console.log(res);
             const transformedData = res.data.map(item => ({
-                address_id: item.address_id,
+                address_id: item.addressId,
                 userId: item.userId,
                 name: item.name,
                 phone: item.phone,
-                postcode: item.postcode,
-                address: item.address,
-                detailAddress: item.detailAddress,
+                postalCode: item.postalCode,
+                city: item.city,
+                street: item.street,
                 isDefault: item.isDefault === '1',
             }));
-            setAddressArry(transformedData);
+            const sortedData = transformedData.sort((a, b) => b.isDefault - a.isDefault);
+
+            console.log("기본 배송지 확인: ",sortedData);
+            setAddressArry(sortedData);
         } catch (error) {
             console.log('address 에러 useEffect', error);
         }
@@ -50,6 +54,7 @@ const Address = () => {
 
     const deleteAddress = async (id) => {
         try {
+            console.log(id);
             await axios.delete(`/api/my/address/${id}`);
 
             await fetchData(); // 주소 데이터 다시 가져오기
@@ -59,36 +64,55 @@ const Address = () => {
         }
     };
 
-    const setDefaultAddress = (index) => {
-        const updatedAddresses = [...addressArry];
-        const [defaultAddress] = updatedAddresses.splice(index, 1);
-        defaultAddress.isDefault = true;
-        updatedAddresses.forEach(address => address.isDefault = false);
+
+    const setDefaultAddress = async (index) => {
+        const updatedAddresses = addressArry.map((address, i) => ({
+            ...address,
+            isDefault: i === index ? true : false,
+        }));
+        const defaultAddress = updatedAddresses.splice(index, 1)[0];
         updatedAddresses.unshift(defaultAddress);
+
         setAddressArry(updatedAddresses);
+
+        const id = defaultAddress.address_id;
+            // console.log("아이디 값 : ",id)
+        try {
+            // ID 값을 파라미터로 포함하여 PUT 요청
+            await axios.put(`/api/my/address/is_default/${id}`);
+        
+        } catch (error) {
+            console.error('기본 배송지 설정 실패:', error);
+        }
     };
 
-    // const maskPhoneNumber = (phoneNumber) => { //전화번호 암호화화
-    //     if (!phoneNumber) return "";
-    //     const parts = phoneNumber.split("-");
-    //     if (parts.length !== 3) return phoneNumber;
+    const formatPhoneNumber = (phone) => {
+        // 하이픈을 추가하여 전화번호 포맷을 맞추는 함수
+        if (!phone) return "";
+    
+        // 전화번호 길이에 따라 하이픈을 추가
+        if (phone.length === 11) {
+            return `${phone.slice(0, 3)}-${phone.slice(3, 7)}-${phone.slice(7)}`;
+        } else if (phone.length === 10) {
+            return `${phone.slice(0, 3)}-${phone.slice(3, 6)}-${phone.slice(6)}`;
+        }
+    };
 
-    //     const maskedPart2 = parts[1].substr(0, 1) + "●".repeat(parts[1].length - 1);
-    //     const maskedPart3 = parts[2].substr(0, 1) + "●".repeat(parts[2].length - 1);
-
-    //     return `${parts[0]}-${maskedPart2}-${maskedPart3}`;
-    // };
-
-    const maskPhoneNumber = (phoneNumber) => {
-        if (!phoneNumber) return "";
-        const [part1, part2, part3] = phoneNumber.split("-");
-        return `${part1}-${part2.charAt(0)}${"●".repeat(part2.length - 1)}-${part3.charAt(0)}${"●".repeat(part3.length - 1)}`;
+    const maskPhoneNumber = (phone) => {
+        const formattedPhone = formatPhoneNumber(phone); // 하이픈을 추가한 후
+        if (!formattedPhone) return "";
+        const parts = formattedPhone.split("-");
+        if (parts.length !== 3) return formattedPhone; // 잘못된 형식의 경우 원본 반환
+    
+        const maskedPart2 = parts[1] ? parts[1].charAt(0) + "●".repeat(parts[1].length - 1) : "";
+        const maskedPart3 = parts[2] ? parts[2].charAt(0) + "●".repeat(parts[2].length - 1) : "";
+    
+        return `${parts[0]}-${maskedPart2}-${maskedPart3}`;
     };
 
 
     const maskName = (name) => {
         if (!name) return "";
-         if (!name) return "";
         return name.charAt(0) + "*".repeat(name.length - 1);
     };
 
@@ -110,10 +134,10 @@ const Address = () => {
         setFormValues({
             name: addressToEdit.name,
             phone: addressToEdit.phone,
-            postcode: addressToEdit.postcode,
-            address: addressToEdit.address,
-            detailAddress: addressToEdit.detailAddress,
-            currentId: addressToEdit.address_id,
+            postalCode: addressToEdit.postalCode,
+            city: addressToEdit.city,
+            street: addressToEdit.street,
+            address_id: addressToEdit.address_id,
             isDefault: addressToEdit.isDefault
         });
         setCurrentEditIndex(index);
@@ -121,16 +145,18 @@ const Address = () => {
     };
 
     const handleModifySave = (updatedAddress) => {
-        // 서버에 수정된 주소를 업데이트
-        axios.put(`/api/my/address/${updatedAddress.currentId}`, updatedAddress)
-            .then(() => {
-                fetchData(); // 주소 목록 다시 가져오기
-                setModiLayer(false); // 모달 닫기
-            })
-            .catch(error => {
-                console.error('주소 수정 실패:', error);
-            });
-    };
+    // 서버에 수정된 주소를 업데이트
+    axios.put(`/api/my/address`, updatedAddress)
+        .then(() => {
+            fetchData(); // 주소 목록 다시 가져오기
+            setModiLayer(false); // 모달 닫기
+        })
+        .catch(error => {
+            console.error('주소 수정 실패:', error);
+        });
+}
+
+    
 
     return (
         <div>
@@ -151,28 +177,27 @@ const Address = () => {
                                     onClick={toggleAddressLayer}>
                                     +새 배송지 추가
                                 </button>
-                                {addressLayer && <AddresLayer  onClose={toggleAddressLayer}/>}
+                                {addressLayer && <AddresLayer  onClose={toggleAddressLayer} setDate={setAddressArry} />}
                             </div>
                         </div>
-                        {  addressArry.length >0  ? (
-                            <div>
+                        {  addressArry.length > 0  ? (
                         <div className="address_list">
-                            {addressArry.map((address, index) => (
-                                <div key={address.id} className={index === 0 ? "address_item" : "address_other"}>
-                                    <div className={index === 0 ? "my_active" : "active_other"}>
-                                        <div className="info_bind">
-                                            <div className="address_info">
-                                                <div className="name_box">
-                                                    <span className="address_name">{maskName(address.name)}</span>
-                                                    {address.isDefault && <span className="mark">기본 배송지</span>}
-                                                </div>
-                                                <p className="phone">{maskPhoneNumber(address.phone)}</p>
-                                                <div className="address_box">
-                                                    <span>{address.postcode}</span>
-                                                    <span>{address.address}</span>
-                                                </div>
+                        {addressArry.map((address, index) => (
+                            <div key={address.address_id} className={index === 0 ? "address_item" : "address_other"}>
+                                <div className={address.isDefault ? "my_active" : "active_other"}>
+                                    <div className="info_bind">
+                                        <div className="address_info">
+                                            <div className="name_box">
+                                                <span className="address_name">{maskName(address.name)}</span>
+                                                {address.isDefault && <span className="mark">기본 배송지</span>}
+                                            </div>
+                                            <p className="phone">{maskPhoneNumber(address.phone)}</p> {/* 마스킹된 전화번호 */}
+                                            <div className="address_box">
+                                                <span>{address.postalCode}</span>
+                                                <span>{address.street}, {address.city}</span>
                                             </div>
                                         </div>
+                                    </div>
                                         <div className="btn_bind">
                                             {index !== 0 && (
                                                 <button
@@ -191,20 +216,19 @@ const Address = () => {
                                         </div>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-                        
+                            ))}                        
                         {   modiLayer && (<ModifyAddress
                                         onClose={toggleModiLayer}
                                         name={formValues.name}
                                         phone={formValues.phone}
-                                        postcode={formValues.postcode}
-                                        address={formValues.address}
-                                        detailAddress={formValues.detailAddress}
+                                        postalCode={formValues.postalCode}
+                                        city={formValues.city}
+                                        street={formValues.street}
                                         isDefault={formValues.isDefault}
-                                        id={formValues.currentId}
+                                        address_id={formValues.address_id}
                                         fetchData={fetchData}
                                         handleSave={handleModifySave}
+
                             />
                         )}
                         </div>
