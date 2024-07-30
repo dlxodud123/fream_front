@@ -56,7 +56,7 @@ const Detail_shoes2 = (props) => {
           
                     const imgNameArray = cleanedImgName.split("', '");
                     const imageUrls = imgNameArray.map((imgName) => {
-                      return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
+                      return `/api/admin/products/files/${imgName}`;
                     });
 
                     return(

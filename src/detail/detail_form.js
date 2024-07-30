@@ -59,7 +59,7 @@ const Detail_form = () => {
 
           const imgNameArray = cleanedImgName.split("', '");
           const imageUrls = imgNameArray.map((imgName) => {
-            return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
+            return `/api/admin/products/files/${imgName}`;
           });
           setMainImageUrls(imageUrls);
 
@@ -77,7 +77,7 @@ const Detail_form = () => {
             }
             const linkedimgNameArray = cleanedlinkedImgName.split("', '");
             const linkedimageUrls = linkedimgNameArray.map((imgName) => {
-              return `http://192.168.42.142:3001/admin/products/linkedfiles/${imgName}`;
+              return `/api/admin/products/linkedfiles/${imgName}`;
             });
             setLinkedImageUrls(linkedimageUrls);
           }

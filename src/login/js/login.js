@@ -135,7 +135,7 @@ const LoginPage = () => {
     } else {
       if (idEmail)
       $.ajax({
-        url: "http://192.168.0.13:3001/auth/loginCheck",
+        url: "/api/auth/loginCheck",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ userId: idEmail, userPw: newPassw }),
