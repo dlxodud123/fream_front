@@ -48,7 +48,7 @@ const Detail_form = () => {
 
           console.log(data.data[0].imgName);
           console.log(data.data[0].linkedImgName);
-          
+
           const rawImgName = data.data[0].imgName;
 
           let cleanedImgName = rawImgName;
