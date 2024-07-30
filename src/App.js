@@ -42,6 +42,7 @@ import Post from "./style/post.jsx";
 import Saved from "./myPage/js/saved/saved.js";
 import PrivateRoute from "./myPage/PrivateRoute";
 import TokenHandler from "./login/TokenHandler";
+import NotFound from "./NotFound.jsx";
 
 function App() {
   const AppWrapper = ({ children }) => {
@@ -50,7 +51,6 @@ function App() {
 
     return <div className={isAdminRoute ? "admin" : "main"}>{children}</div>;
   };
-
 
   useEffect(() => {
     const logUserAccess = async () => {
@@ -94,7 +94,7 @@ function App() {
                 }
               ></Route>
               {/* jwtToken 처리 라우트 */}
-        <Route path="/yourTargetPage" element={<TokenHandler />} />
+              <Route path="/yourTargetPage" element={<TokenHandler />} />
               <Route path="/my/saved" element={<Saved></Saved>}></Route>
               <Route path="/shop" element={<Shope></Shope>}></Route>
               <Route path="/shop" element={<Shopeshoes />}></Route>
@@ -104,15 +104,78 @@ function App() {
               <Route path="/join" element={<Join />} />
               <Route path="/login/find_email" element={<FindEmail />} />
               <Route path="/login/find_password" element={<FindPw />} />
-              <Route path="/myPage" element={ <PrivateRoute><MyPage/></PrivateRoute>}></Route>
-              <Route path="/my/profile" element={<PrivateRoute><Profile /></PrivateRoute>}></Route>
-              <Route path="/my/profile-edit" element={ <PrivateRoute><Profile_edit /></PrivateRoute>}></Route>
-              <Route path="/my/address" element={ <PrivateRoute><Address /></PrivateRoute>}></Route>
-              <Route path="/my/account" element={ <PrivateRoute><Settlement /></PrivateRoute>}></Route>
-              <Route path="/my/buying" element={ <PrivateRoute><Buying /></PrivateRoute>}></Route>
-              <Route path="/my/selling" element={ <PrivateRoute><Selling /></PrivateRoute>}></Route>
-              <Route path="/my/payment" element={ <PrivateRoute><Payment /></PrivateRoute>}></Route>
-              <Route path="/my/point" element={ <PrivateRoute><PointMain /></PrivateRoute>}></Route>
+              <Route
+                path="/myPage"
+                element={
+                  <PrivateRoute>
+                    <MyPage />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                path="/my/profile"
+                element={
+                  <PrivateRoute>
+                    <Profile />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                path="/my/profile-edit"
+                element={
+                  <PrivateRoute>
+                    <Profile_edit />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                path="/my/address"
+                element={
+                  <PrivateRoute>
+                    <Address />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                path="/my/account"
+                element={
+                  <PrivateRoute>
+                    <Settlement />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                path="/my/buying"
+                element={
+                  <PrivateRoute>
+                    <Buying />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                path="/my/selling"
+                element={
+                  <PrivateRoute>
+                    <Selling />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                path="/my/payment"
+                element={
+                  <PrivateRoute>
+                    <Payment />
+                  </PrivateRoute>
+                }
+              ></Route>
+              <Route
+                path="/my/point"
+                element={
+                  <PrivateRoute>
+                    <PointMain />
+                  </PrivateRoute>
+                }
+              ></Route>
               <Route path="/*" element={<BoardContainer />} />
               <Route path="/Style" element={<Style />} />
               <Route path="/post" element={<Post />} />
@@ -132,6 +195,8 @@ function App() {
                 path="/buy/history"
                 element={<Buy_history_from></Buy_history_from>}
               ></Route>
+              {/* Add the wildcard route for unmatched paths */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </AppWrapper>
         </div>

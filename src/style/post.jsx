@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   FaHeart,
@@ -16,6 +16,8 @@ import { UserAuthContext } from "../Auth/UserAuthContext";
 import { Margin } from "@mui/icons-material";
 import Footer from "../common/footer";
 import PostItem from "./postItem";
+import axios from "axios";
+import Size_modal from "../detail/modal/size_modal";
 // 모달 스타일
 const ModalBackground = styled.div`
   position: fixed;
@@ -201,22 +203,72 @@ function Post({ imageUrl, profileUrl, username, content }) {
   const id = queryParams.get("id");
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(25);
+  const [style, setStyle] = useState(null);
   let navigate = useNavigate();
   const [bookmarked, setBookmarked] = useState(false);
   const { isLoggedIn, handleLogout } = useContext(UserAuthContext);
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [sizeModalVisible, setSizeModalVisible] = useState(false); // Size modal 상태 추가
+  const [selectedSize, setSelectedSize] = useState(null);
   const handleLike = () => {
-    setLiked(!liked);
-    setLikes((prev) => (liked ? prev - 1 : prev + 1)); // 좋아요 상태에 따라 카운트 조정
+    fetch(`/api/styles/like/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          setLiked(!liked);
+          setLikes((prev) => (liked ? prev - 1 : prev + 1));
+        } else {
+          console.error("Failed to toggle like");
+        }
+      })
+      .catch((error) => console.error("Error toggling like:", error));
   };
+  useEffect(() => {
+    fetch(`/api/styles/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("데이터:", data);
+        setStyle(data);
+        setLoading(false);
+      })
+      .catch((error) => console.error("Error fetching style:", error));
+  }, [id]);
 
   const toggleBookmark = () => {
-    setBookmarked((prevBookmarked) => !prevBookmarked);
+    setSizeModalVisible(true); // 북마크 버튼 클릭 시 사이즈 모달 열기
+  };
+
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+    axios
+      .post(
+        `/api/wishes/toggle/${style.product.prid}/${selectedSize}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          setBookmarked((prev) => !prev);
+          setSizeModalVisible(false); // 모달 닫기
+        } else {
+          console.error("Failed to toggle bookmark");
+        }
+      })
+      .catch((error) => console.error("Error toggling bookmark:", error));
   };
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
-
+  if (loading) return <div>Loading...</div>;
   return (
     <>
       <div
@@ -341,10 +393,10 @@ function Post({ imageUrl, profileUrl, username, content }) {
       <Wrapper>
         <PostContainer>
           <ProfileSection>
-            <ProfilePic src={dummyPosts.profileUrl} alt={dummyPosts.username} />
+            <ProfilePic src={style.user.email} alt={"사용자"} />
             <ProfileInfo>
-              <Username>{dummyPosts.username}</Username>
-              <TimeAgo>{getTimeDifference(dummyPosts.date)}</TimeAgo>
+              <Username>{style.user.email}</Username>
+              <TimeAgo>{getTimeDifference(style.styleDate)}</TimeAgo>
             </ProfileInfo>
             <FollowButton>팔로잉</FollowButton>
             <MoreOptions onClick={toggleModal} />
@@ -359,7 +411,10 @@ function Post({ imageUrl, profileUrl, username, content }) {
               </ModalContent>
             </ModalBackground>
           </ProfileSection>
-          <PostImage src={dummyPosts.imageUrl} alt="Post" />
+          <PostImage
+            src={`http://localhost:3001/styles/image/${style.styleImgName}`}
+            alt="Post"
+          />
           <IconContainer>
             <LeftIcons>
               <DownloadButton />
@@ -377,7 +432,13 @@ function Post({ imageUrl, profileUrl, username, content }) {
               <IconText>12</IconText>
             </RightIcons>
           </IconContainer>
-          <Content>{dummyPosts.content}</Content>
+          {sizeModalVisible && (
+            <Size_modal
+              final_size={selectedSize}
+              setFinal_Size={handleSizeSelect}
+            />
+          )}
+          <Content>{style.content}</Content>
           <div
             style={{
               padding: "16px 0",
