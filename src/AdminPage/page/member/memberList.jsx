@@ -13,20 +13,34 @@ const MemberUser = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
+  const [totalCount,setTotalCount]=useState(0);
   //목록의 컬럼이 될 값들을 설정
   //삭제 함수
   const [selectedIds, setSelectedIds] = useState([]);
-  const fetchData = async () => {
+  const fetchData = async (page) => {
     try {
       const response = await axios.get(
         // "http://localhost:3001/adminPage/adminUser"
-        "/api/member/memberuser"
+        `/api/member/memberuser?page=${page}&size=${pageSize}`
       ); // 실제 API 엔드포인트로 변경 필요
-      setRows(response.data);
+      setRows(response.data.content);
+      setTotalCount(response.data.totalElements);
+      // setPage(page);
       console.log(response.data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
+  };
+  // const handleNext = () => {
+  //   fetchData(page + 1); // 현재 페이지 + 1
+  // };
+  
+  // const handlePrevious = () => {
+  //   if (page > 0) fetchData(page - 1); // 현재 페이지 - 1
+  // };
+  const handlePageChange = (newPage) => {
+    setPage(newPage); // 페이지 상태 업데이트
+    fetchData(newPage); // 새 페이지의 데이터 가져오기
   };
   const deleteMember = async () => {
     try {
@@ -53,13 +67,14 @@ const MemberUser = () => {
   };
 
   //페이지 수
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
+    const [page, setPage] = useState(0);
 
   const [rows, setRows] = useState([]);
   useEffect(() => {
     // 데이터를 가져오는 비동기 함수 정의
-    fetchData();
-  }, []);
+    fetchData(0);
+  }, [pageSize]);
 
   const columns = [
     { field: "ulid", headerName: "ID", flex: 1 },
@@ -182,7 +197,11 @@ const MemberUser = () => {
           columns={columns}
           components={{ Toolbar: GridToolbar }}
           pageSize={pageSize}
+          rowCount={totalCount} // DataGrid에 전체 데이터 수를 전달
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          // onPageChange={(newPage) => setPage(newPage)}
+          onPageChange={handlePageChange}
+           paginationMode="server"
           rowsPerPageOptions={[5, 10, 20]}
           getRowId={(row) => row.ulid}
           onSelectionModelChange={(ids) => {

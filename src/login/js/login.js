@@ -268,8 +268,9 @@ const LoginPage = () => {
             // // redirectUri={"/api/auth"}
             // redirectUri={"http://192.168.0.101:3001/kakaoLogin"}
 
-            kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
-            redirectUri={"/api/auth"}
+            kakaoApiKey={"fb71c1d08ebf4280c2a4c9fb49ddc744"}
+            //e48d04cb12e0ea1773f0278aa5044a44 
+            redirectUri={"http://pinjun.xyz:3001/kakaoLogin"}
 
           />
           

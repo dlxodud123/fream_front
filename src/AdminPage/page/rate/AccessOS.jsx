@@ -107,7 +107,7 @@ const AccessOS = ({
           Math.max(...data.flatMap((item) => item.data.map((point) => point.x)))
         )
       : defaultEndDate;
-
+        console.log("data:",data)
   return (
     <div
       style={{
@@ -119,10 +119,10 @@ const AccessOS = ({
       <div
         style={{
           width: isDashboard
-            ? data[0]?.data.length * 20 || 800
-            : data[0]?.data.length * 50 || 1000,
+            ? data[2]?.data.length * 80 || 800
+            : data[2]?.data.length * 50 || 1000,
           height: isDashboard ? 300 : "800px",
-          paddingTop: "30px",
+          paddingTop: "80px",
           paddingRight: isDashboard ? "50px" : "30px",
         }}
       >

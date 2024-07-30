@@ -8,7 +8,6 @@ module.exports = function (app) {
       // target: "http://www.pinjun.xyz:3001", // 백엔드 서버 주소
       // target: "http://192.168.42.142:3001", // 백엔드 서버 주소
       changeOrigin: true,
-
       pathRewrite: {
         '^/api': '', // '/api' 경로를 제거하고 백엔드 서버로 전달
       },
