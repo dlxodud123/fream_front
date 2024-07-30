@@ -3,46 +3,38 @@ import '../../css/address/addressLayer.css';
 import DaumAddress from './SerchAddress.js';
 import axios from 'axios';
 
-function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postcode: initialPostcode, address: initialAddress, detailAddress: initialDetailAddress, isDefault: initialIsDefault, id, fetchData }) {
+function ModifyAddress({ fetchData, onClose, name: initialName, phone: initialPhone, postalCode: initialPostcode, city: initialcity, street: initialStreet, isDefault: initialIsDefault, address_id :initialAddress_id, handleSave  }) {
+    const [address_id, setAddress_id] = useState(initialAddress_id);
     const [name, setName] = useState(initialName);
     const [phone, setPhone] = useState(initialPhone);
-    const [postcode, setPostcode] = useState(initialPostcode);
-    const [address, setAddress] = useState(initialAddress);
-    const [detailAddress, setDetailAddress] = useState(initialDetailAddress || '');
+    const [postalCode, setPostalCode] = useState(initialPostcode);
+    const [city, setCity] = useState(initialcity);
+    const [street, setStreet] = useState(initialStreet || '');
     const [isDefaultDelivery, setIsDefaultDelivery] = useState(initialIsDefault);
     const [handleSearchButtonClick, setHandleSearchButtonClick] = useState(false);
+    const [phoneError, setPhoneError] = useState(false);
 
 
-    // useEffect(() => {
-    //     setName(name);
-    //     setPhone(phone);
-    //     setPostcode(postcode);
-    //     setAddress(address);
-    //     setDetailAddress(initialDetailAddress);
-    //     setIsDefaultDelivery(isDefault);
+    // const saveAddress = async () => {
+    //     try {
+    //         const updatedAddress = {
+    //             address_id,
+    //             name,
+    //             phone,
+    //             postalCode,
+    //             city,
+    //             street,
+    //             isDefault: isDefaultDelivery ? '1' : '0'
+    //         };
+    //         // PUT 요청을 통해 주소를 수정
+    //         await axios.put(`/api/my/address`, updatedAddress);
+    //         fetchData(); // 부모 컴포넌트의 주소 목록을 다시 가져오기
+    //         onClose(); // 모달 닫기
+    //     } catch (error) {
+    //         console.error("ModifyAddress :", error);
+    //     }
+    // };
 
-    // }, [name, phone, postcode, address, initialDetailAddress, isDefault]);
-
-   
-
-    const handleSave = async () => {
-        try {
-            await axios.put(`/api/my/address/${id}`, {
-                id: id,
-                name: name,
-                phone: phone,
-                postcode: postcode,
-                address: address,
-                detailAddress: detailAddress,
-                isDefault: isDefaultDelivery ? '1' : '0',
-
-            });
-            fetchData(); // 부모 컴포넌트의 주소 목록을 다시 가져오기
-            onClose(); // 모달 닫기
-        } catch (error) {
-            console.error("ModifyAddress :", error);
-        }
-    };
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         switch (name) {
@@ -52,14 +44,14 @@ function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postco
             case 'phone':
                 setPhone(value);
                 break;
-            case 'postcode':
-                setPostcode(value);
+            case 'postalCode':
+                setPostalCode(value);
                 break;
-            case 'address':
-                setAddress(value);
+            case 'city':
+                setCity(value);
                 break;
-            case 'detailAddress':
-                setDetailAddress(value);
+            case 'street':
+                setStreet(value);
                 break;
             default:
                 break;
@@ -69,7 +61,12 @@ function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postco
 
     const handlePhoneChange = (e) => {
         const newValue = e.target.value.replace(/\D/g, ''); // 숫자 외의 문자 제거
-        setPhone(newValue);
+        if (newValue.startsWith("010")) {
+            setPhone(newValue);
+            setPhoneError(false);
+        } else {
+            setPhoneError(true);
+        }
     };
 
 
@@ -77,8 +74,9 @@ function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postco
         onClose();
     };
 
-    const handleCheckboxChange = (event) => {
-        setIsDefaultDelivery(event.target.checked);
+ 
+    const isFormValid = () => {
+        return name && phone && postalCode && city && street;
     };
 
     return (
@@ -127,7 +125,7 @@ function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postco
                                     <div className="input_item">
                                         <input
                                             type="text"
-                                            value={postcode}
+                                            value={postalCode}
                                             id="sample6_postcode"
                                             name="postcode"
                                             placeholder="우편 번호를 검색하세요"
@@ -139,8 +137,8 @@ function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postco
                                         우편번호</button>
 
                                         {handleSearchButtonClick && <DaumAddress onClose={() => setHandleSearchButtonClick(false)} 
-                                                                                 setPostcode={setPostcode} 
-                                                                                 setAddress={setAddress} />}
+                                                                                 setPostalCode={setPostalCode} 
+                                                                                 setCity={setCity} />}
                                     </div>
                                 </div>
 
@@ -150,8 +148,8 @@ function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postco
                                         <input
                                             type="text"
                                             id="sample6_address"
-                                            name="address"
-                                            value={address}
+                                            name="city"
+                                            value={city}
                                             placeholder="우편번호 검색 후, 자동입력 됩니다"
                                             className='textAddress Num'
                                             readOnly
@@ -165,8 +163,8 @@ function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postco
                                         <input
                                             type="text"
                                             id="sample6_detailAddress"
-                                            name="detailAddress"
-                                            value={detailAddress}
+                                            name="street"
+                                            value={street}
                                             onChange={handleInputChange}
                                             placeholder="건물,아파트,동/호수 입력"
                                             className='textAddress'
@@ -181,7 +179,7 @@ function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postco
                                                 className="form-check-input"
                                                 type="checkbox"
                                                 checked={isDefaultDelivery}
-                                                onChange={handleCheckboxChange}
+                                                onChange={(e) => setIsDefaultDelivery(e.target.checked)}
                                             />
                                             <label className="form-check-label" htmlFor="flexCheckDefault">
                                                 기본배송지로 설정
@@ -194,7 +192,10 @@ function ModifyAddress({ onClose, name: initialName, phone: initialPhone, postco
 
                         <div className='btnLayer'>
                             <button className='outlineegrey medium' onClick={handleCancel}>취소</button>
-                            <button className='outlineegrey medium save' onClick={handleSave }>저장하기</button>
+                            <button className={`outlineegrey medium save ${isFormValid() ? 'valid' : ''}`} 
+                                    onClick={handleSave}
+                                    disabled={!isFormValid()}
+                >저장하기</button>
                         </div>
                     </div>
                 </div>

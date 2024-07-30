@@ -11,8 +11,8 @@ module.exports = function (app) {
       pathRewrite: {
         '^/api': '', // '/api' 경로를 제거하고 백엔드 서버로 전달
       },
-      // cookieDomainRewrite: "www.pinjun.xyz", // 프록시가 쿠키 도메인을 localhost로 재작성하도록 설정
-      cookieDomainRewrite: "localhost",
+      cookieDomainRewrite: "www.pinjun.xyz", // 프록시가 쿠키 도메인을 localhost로 재작성하도록 설정
+      // cookieDomainRewrite: "localhost",
 
     })
   );

@@ -15,16 +15,7 @@ const NumberPlateModal = ({ onSelect }) => {
         shuffleNumbers(); // 컴포넌트가 마운트될 때 숫자 셔플
     }, []);
 
-    // const handleNumberSelect = (number) => {
-    //     if (selectedNumbers.length < 4) {
-    //         const newSelectedNumbers = [...selectedNumbers, number];
-    //         setSelectedNumbers(newSelectedNumbers);
-    //         if (newSelectedNumbers.length === 4) {
-    //             const plate = newSelectedNumbers.join(''); // 배열을 문자열로 변환
-    //             onSelect(plate);
-    //         }
-    //     }
-    // };
+
     const handleNumberSelect = (number) => {
         onSelect(number.toString());
     };

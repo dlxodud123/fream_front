@@ -11,8 +11,8 @@ import axios from 'axios';
 const Profile = () =>{
     let [date, setDate] = useState({});//데이터
     const [isLayer, setIsLayer] = useState(false); // 신발창 열기
-    const [receiveEmail, setReceiveEmail] = useState('1');
-    const [receiveMessage, setReceiveMessage] = useState('1');
+    const [receiveEmail, setReceiveEmail] = useState();
+    const [receiveMessage, setReceiveMessage] = useState();
 
     useEffect(() => {
         axios.get('/api/my/profile')
@@ -22,9 +22,9 @@ const Profile = () =>{
                     userEmail: res.data.email,
                     userPw: res.data.userPw,
                     userPhone: res.data.phone,
-                    uSize: res.data.uSize,
-                    textMsg: res.data.receiveEmail,
-                    emailMsg: res.data.receiveMessage
+                    uSize: res.data.userSize,
+                    receiveEmail: res.data.receiveEmail,
+                    receiveMessage: res.data.receiveMessage
                 });
                 setReceiveEmail(res.data.receiveEmail);
                 setReceiveMessage(res.data.receiveMessage);
@@ -34,26 +34,12 @@ const Profile = () =>{
             });
     }, []);
 
-
-    // const saveProfile = (updatedData) => {
-    //     const updatedProfile = { ...date, ...updatedData };
-    //     setDate(updatedProfile);
-
-    //     axios.put('/api/my/profile', updatedProfile)
-    //         .then(response => {
-    //             console.log('프로필 업데이트 성공:', response.data);
-    //         })
-    //         .catch(error => {
-    //             console.error('프로필 업데이트 오류:', error);
-    //         });
-    // };
-
     const toggleLayer = () => {
         setIsLayer(!isLayer);
     };
     
-    const handleConfirmSize = (uSize) => {
-        axios.put(`/api/my/profile?uSize=${uSize}`)
+    const handleConfirmSize = (uSize) => { 
+        axios.put('/api/my/profile?uSize='+ uSize)
             .then(response => {
                 console.log('프로필 업데이트 성공:', response.data);
                 setDate(prevDate => ({ ...prevDate, uSize }));
@@ -63,12 +49,12 @@ const Profile = () =>{
             });
     };
 
-    //문자 광고성 정보수신`
+    //문자 광고성 정보수신
     const handleTextMsgChange = (e) => {
         const value = e.target.value;
+        console.log("REvalue:",value);
         setReceiveMessage(value);
-
-        axios.put('/api/my/profile', { newReceiveMsg: value })
+        axios.put('/api/my/profile?receiveMessage=' + value)
             .then(response => {
                 console.log('수신변경 성공 :', response.data);
             })
@@ -79,8 +65,9 @@ const Profile = () =>{
     //이메일 광고성 정보 수신
     const handleEmailMsgChange = (e) => { 
         const value = e.target.value;
+        console.log("RE=Mvalue:",value);
         setReceiveEmail(value);
-        axios.put('/api/my/profile', { newReceiveEmail: value })
+        axios.put('/api/my/profile?receiveEmail='+ value)
             .then(response => {
                 console.log('수신변경 성공:', response.data);
             })

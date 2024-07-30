@@ -43,47 +43,6 @@ const LoginPage = () => {
 
   const { setAdminAccess } = useAuth();
   const [token, setToken] = useState("");
-
-  // useEffect(() => {
-  //   const handleMessage = (event) => {
-  //     if (event.origin !== "http://localhost:3000") {
-  //       return;
-  //     }
-
-  //     const { code } = event.data;
-  //     if (code) {
-  //       dispatch(kakaoLogin(code));
-  //     }
-  //   };
-
-  //   window.addEventListener("message", handleMessage);
-
-  //   return () => {
-  //     window.removeEventListener("message", handleMessage);
-  //   };
-  // }, [dispatch]);
-
-
-  // const kakaoLogin = (code) => {
-  //   return async (dispatch) => {
-  //     try {
-  //       const res = await axios.get(
-  //         `/api/auth?code=${code}`
-  //       );
-  //       console.log("Response:", res);
-
-  //       const Access_Token = res.data.accessToken;
-  //       console.log("Access Token:", Access_Token);
-
-  //       localStorage.setItem("token", Access_Token);
-  //       dispatch({ type: "LOGIN_SUCCESS", payload: Access_Token });
-  //       navigate("/");
-  //     } catch (err) {
-  //       console.log("Error:", err);
-  //       window.alert("로그인 실패");
-  //     }
-  //   };
-  // };
   
   useEffect(() => {
     // 현재 URL에서 'code' 파라미터 추출
@@ -262,7 +221,6 @@ const LoginPage = () => {
           </div>
 
           <KakaoLoginButton
-
             // // kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
             // kakaoApiKey={"2c38a672bc98d7bf79b19bbcaeb91eb6"}
             // // redirectUri={"/api/auth"}
@@ -271,6 +229,7 @@ const LoginPage = () => {
             kakaoApiKey={"fb71c1d08ebf4280c2a4c9fb49ddc744"}
             //e48d04cb12e0ea1773f0278aa5044a44 
             redirectUri={"http://pinjun.xyz:3001/kakaoLogin"}
+
 
           />
           

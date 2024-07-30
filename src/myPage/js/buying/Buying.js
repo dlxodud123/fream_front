@@ -14,48 +14,6 @@ import Footer from "../../../common/footer";
 import axios from "axios";
 
 const Buying = () => {
-  const dummyData = [
-    {
-      id: 1,
-      image: "image1.jpg",
-      name: "신발1",
-      size: "260",
-      price: "100,000",
-      expiryDate: "24/12/31",
-    },
-    {
-      id: 2,
-      image: "image2.jpg",
-      name: "신발2",
-      size: "270",
-      price: "120,000",
-      expiryDate: "24/11/30",
-    },
-    {
-      id: 3,
-      image: "image3.jpg",
-      name: "신발3",
-      size: "280",
-      price: "150,000",
-      expiryDate: "24/10/31",
-    },
-    {
-      id: 4,
-      image: "image4.jpg",
-      name: "신발4",
-      size: "275",
-      price: "130,000",
-      expiryDate: "24/09/30",
-    },
-    {
-      id: 5,
-      image: "image5.jpg",
-      name: "신발5",
-      size: "265",
-      price: "110,000",
-      expiryDate: "24/08/31",
-    },
-  ];
 
   const [buyingData, setBuyingData] = useState([]);
   const transformData = (data) => {
