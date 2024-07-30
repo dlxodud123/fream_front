@@ -25,6 +25,7 @@ import Certification from "./page/auth/Certification";
 import CertificationResult from "./page/auth/CertificationResult";
 import ProductForm from "./page/product/ProductForm";
 import ReviewList from "./page/product/ReviewList";
+import NotFound from "../NotFound";
 function AdminRouter() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -70,6 +71,7 @@ function AdminRouter() {
 
               {/* <Route path="/inquiryProduct" element={<AccessReferer />} />
               <Route path="/review" element={<AccessReferer />} /> */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
         </div>
