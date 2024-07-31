@@ -59,7 +59,7 @@ const Detail_form = () => {
 
           const imgNameArray = cleanedImgName.split("', '");
           const imageUrls = imgNameArray.map((imgName) => {
-            return `http://192.168.42.142:3001/admin/products/files/${imgName}`;
+            return `/api/admin/products/files/${imgName}`;
           });
           setMainImageUrls(imageUrls);
 
@@ -128,7 +128,7 @@ const Detail_form = () => {
 
           <div
             style={{
-              height: "1800px", //1680
+              height: "1850px", //1800
               width: "1px",
               marginLeft: "40px",
               backgroundColor: "rgba(0,0,0,0.1)",

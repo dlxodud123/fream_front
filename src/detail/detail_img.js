@@ -5,14 +5,9 @@ import { Carousel } from "react-bootstrap";
 
 const Detail_img = (props) => {
   useEffect(() => {
-    // console.log("이미지 : " , props.detail_main_image[0]);
-    // console.log("이미지 : " , props.detail_main_image[1]);
-    // console.log("이미지 : " , props.detail_main_image[2]);
     console.log("asdf", props.linked_img);
     console.log("asdfasdf", props.detail_main_image);
   }, [props.detail_main_image, props.detail_linked_images]);
-
-  // let [chooseImg, setChooseImg] = useState();
 
   return (
     <div className="detail_img_form">
