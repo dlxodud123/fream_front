@@ -6,10 +6,8 @@ import axios from "axios";
 function BoardPage({ deleteBoardItem }) {
   const { No } = useParams();
   const navigate = useNavigate();
-  useEffect(() => {}, []);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-
   const [newCommentAuthor, setNewCommentAuthor] = useState("");
   const [board, setBoard] = useState({});
   const [writer, setWriter] = useState("");
@@ -17,12 +15,10 @@ function BoardPage({ deleteBoardItem }) {
   useEffect(() => {
     const fetchBoardList = async () => {
       try {
-        const response = await axios.get(
-          `/api/board/${No}`
-        );
+        const response = await axios.get(`/api/board/${No}`);
         console.log(response.data);
         setBoard(response.data);
-        setWriter(response.data.user.userId);
+        setWriter(response.data.user ? response.data.user.userId : "Unknown"); // 방어 코드 추가
       } catch (error) {
         console.error("Failed to fetch board list:", error);
       }

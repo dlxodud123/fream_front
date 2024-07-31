@@ -411,6 +411,11 @@ const Detail_info = (props) => {
             </div>
           </>
         )}
+        {/* <div className="parentDiv">
+          <LineChart></LineChart>
+        </div> */}
+        {/* marginTop: "16px" */}
+
         <div className="guarantee">
           {isLoggedIn ? (
             <>
