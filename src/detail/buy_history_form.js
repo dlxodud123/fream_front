@@ -1,12 +1,29 @@
 import './css/buy_history_form.css';
 import Detail_buy_history_header from '../common/detail_buy_history_header';
 import Footer from '../common/footer';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Buy_history_from = () => {
+
+    const location = useLocation();
+    const paymentDetails = location.state?.paymentDetails;
+
+    useEffect(() => {
+        console.log(JSON.stringify(paymentDetails, null, 2));
+    }, [paymentDetails])
 
     return(
         <>
             <Detail_buy_history_header></Detail_buy_history_header>
+            {paymentDetails ? (
+                <div>
+                <h2>Payment Details:</h2>
+                <pre>{JSON.stringify(paymentDetails, null, 2)}</pre>
+                </div>
+            ) : (
+                <p>No payment details available.</p>
+            )}
             <div className='buy_history_all'>
                 <div className='buy_history_container'>
                     <div style={{height:"30px", backgroundColor:"#f4f4f4"}}/>

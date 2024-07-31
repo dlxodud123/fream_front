@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState ,useContext} from 'react';
 import { UserAuthContext } from '../../Auth/UserAuthContext';
+import "./shop.css";
+
 
 
 function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
@@ -79,8 +81,8 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
     <>
       <div className={`modal ${showModal ? 'show' : ''}`} onClick={closeModal}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <p style={{ fontWeight: 'bold', fontSize: '19px' }}>관심 상품 저장</p>
-            <div className='modalbox' style={{height:'500px', overflowY:'auto',boxSizing: 'content-box',paddingRight:'16px' }}>
+        <p style={{ marginTop:'15px',fontWeight: 'bold', fontSize: '19px' }}>관심 상품 저장</p>
+            <div className='modalbox' style={{height:'500px', overflowY:'auto',boxSizing: 'content-box',paddingRight:'16px',margin:'auto' }}>
           <span className="close" onClick={closeModal}>&times;</span>
      
           <div style={{ display: 'flex', marginRight: '20px' }}>
@@ -167,7 +169,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
             ))}
           </div>
           </div>
-          <div style={{ display: 'flex', textAlign: 'center', marginLeft: '80px', marginTop: '40px' }}>
+          <div style={{ display: 'flex', textAlign: 'center', marginLeft: '80px', marginTop: '40px'}}>
             <div
               onClick={closeModal}
               style={{
@@ -176,7 +178,11 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
                 height: '50px',
                 borderRadius: '10px',
                 paddingTop: '10px',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                marginLeft:'60px',
+                marginBottom:'20px'
+
+                
               }}
             >
               <p>취소</p>
