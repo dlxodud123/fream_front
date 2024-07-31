@@ -16,15 +16,18 @@ const OrderList = () => {
   //목록의 컬럼이 될 값들을 설정
   //삭제 함수
   const [selectedIds, setSelectedIds] = useState([]);
+  const [totalCount,setTotalCount]=useState();
   const fetchData = async () => {
     try {
+      console.log("ordersPage:",page);
       const response = await axios.get(
         // "http://localhost:3001/adminPage/adminUser"
-        "/api/member/orders"
+        `/api/member/orders?page=${page}&size=${pageSize}`
         // "http://192.168.0.101:3001/member/orders"
       ); // 실제 API 엔드포인트로 변경 필요
-      const orders = response.data;
-
+      const orders = response.data.content;
+      setTotalCount(response.data.totalElements);
+      console.log("orders:",orders);
       const ordersWithUserNames = orders.map((order) => ({
         ...order,
         userName: order.user.username, // user 객체에서 username 추출
@@ -67,15 +70,19 @@ const OrderList = () => {
       alert("선택된 ID 배열을 비우고 하나만 입력해주세요.");
     }
   };
-
+  const handlePageChange = (newPage) => {
+    setPage(newPage); // 페이지 상태 업데이트
+    fetchData(newPage); // 새 페이지의 데이터 가져오기
+  };
   //페이지 수
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
+    const [page, setPage] = useState(0);
 
   const [rows, setRows] = useState([]);
   useEffect(() => {
     // 데이터를 가져오는 비동기 함수 정의
     fetchData();
-  }, []);
+  }, [page,pageSize]);
 
   const columns = [
     { field: "orderId", headerName: "주문 ID", flex: 1 },
@@ -153,8 +160,11 @@ const OrderList = () => {
           rows={rows}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          rowCount={totalCount}
           pageSize={pageSize}
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          onPageChange={handlePageChange}
+           paginationMode="server"
           rowsPerPageOptions={[5, 10, 20]}
           getRowId={(row) => row.orderId}
           onSelectionModelChange={(ids) => {

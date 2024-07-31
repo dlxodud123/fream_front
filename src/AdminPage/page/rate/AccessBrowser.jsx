@@ -108,11 +108,13 @@ const AccessBrowser = ({
           Math.max(...data.flatMap((item) => item.data.map((point) => point.x)))
         )
       : defaultEndDate;
-
+        console.log("Xmin:",xMin);
+        console.log("Xmax:",xMax);
+        console.log("data:",data);
   return (
     <div
       style={{
-        height: isDashboard ? 300 : 1000,
+        height: isDashboard ? 450 : 1000,
         width: "100%",
         overflowX: "scroll",
       }}
@@ -120,10 +122,10 @@ const AccessBrowser = ({
       <div
         style={{
           width: isDashboard
-            ? data[0]?.data.length * 20 || 800
+            ? data[1]?.data.length * 80 || 800
             : data[0]?.data.length * 50 || 1000,
           height: isDashboard ? 300 : 800,
-          paddingTop: "30px",
+          paddingTop: "80px",
           paddingRight: isDashboard ? "50px" : "30px", // 더 많은 오른쪽 패딩 추가
         }}
       >
@@ -190,7 +192,7 @@ const AccessBrowser = ({
             orient: "bottom",
             tickSize: isDashboard ? 1 : 5,
             tickPadding: isDashboard ? 1 : 5,
-            tickRotation: isDashboard ? 0 : 45,
+            tickRotation: isDashboard ? 10 : 45,
             legend: isDashboard ? undefined : "Date",
             legendOffset: 36,
             legendPosition: "middle",
@@ -222,6 +224,7 @@ const AccessBrowser = ({
                 padding: "5px 10px",
                 border: "1px solid #ccc",
                 color: "black",
+                
               }}
             >
               <strong>{point.serieId}</strong>

@@ -5,7 +5,8 @@ import { useAuth } from "./adminAccess";
 const ProtectedRoute = () => {
   const { successAdmin } = useAuth();
 
-  return successAdmin ? <Outlet /> : <Navigate to="/" />;
+  return successAdmin ? <Outlet /> : <Outlet />;
+  // <Navigate to="/" />
 };
 
 export default ProtectedRoute;

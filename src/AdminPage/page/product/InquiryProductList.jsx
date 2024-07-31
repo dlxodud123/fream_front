@@ -13,6 +13,7 @@ const ProductQnaList = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
+  
   //목록의 컬럼이 될 값들을 설정
   //삭제 함수
   const [selectedIds, setSelectedIds] = useState([]);

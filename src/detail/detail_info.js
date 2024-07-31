@@ -58,6 +58,10 @@ const Detail_info = (props) => {
     setShowModal(false);
   };
 
+  const login_link = () => {
+    navigate('/login');
+  }
+
   return (
     <div className="detail_info_form">
       <div className="detail_info">
@@ -244,15 +248,13 @@ const Detail_info = (props) => {
             <BsBookmarkFill size={22} />
             <label style={{}}>&nbsp;관심상품</label>
           </button>
-          {/* <<<<<<< HEAD
-          {interestModal ? (
+          {/* {interestModal ? (
             <Shopmodal
               isChecked={isChecked}
               setIsChecked={setIsChecked}
               closeModal={closeModal}
               showModal={showModal}
-              prId={props.main_info_shoes.prid}
-======= */}
+              prId={props.main_info_shoes.prid} */}
           {interestModal && isLoggedIn ? (
             <Shopmodal
               isChecked={isChecked}
@@ -378,7 +380,6 @@ const Detail_info = (props) => {
             style={{ width: "560px", height: "100px" }}
           ></img>
         </div>
-
         {isLoggedIn ? (
           <div className="parentDiv">
             <LineChart productId={prid}></LineChart>
@@ -391,17 +392,22 @@ const Detail_info = (props) => {
               </div>
             </div>
             <div
-              style={{ backgroundColor: "black", zIndex: "2", opacity: "1" }}
-            >
-              <div
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  border: "1px solid black",
+              style={{ width:"300px", height:"150px", marginLeft:"150px", zIndex:"0" }}>
+              <div style={{
+                  width: "300px",
+                  height: "140px",
+                  border: "1px solid rgba(0,0,0,0.3)",
                   margin: "0px auto",
                   marginTop: "-250px",
+                  backgroundColor:"white",
+                  zIndex:"1",
+                  position:"relative"
                 }}
-              ></div>
+              >
+                <div style={{fontSize:"14px", marginTop:"23px"}}>모든 체결 거래는</div>
+                <div style={{fontSize:"14px"}}>로그인 후 확인 가능합니다.</div>
+                <button onClick={() => login_link()} style={{width:"80px", height:"40px", borderRadius:"10px",color:"white", backgroundColor:"black", border:"none", marginTop:"5px"}}>로그인</button>
+              </div>
             </div>
           </>
         )}

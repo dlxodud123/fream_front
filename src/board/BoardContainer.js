@@ -9,6 +9,7 @@ import MainHeader from "../common/main_header";
 import Footer from "../common/footer";
 import Announcement from "./announcement";
 import axios from "axios";
+import NotFound from "../NotFound";
 
 function BoardContainer() {
   const [boardList, setBoardList] = useState([]);
@@ -88,6 +89,7 @@ function BoardContainer() {
           path="/announcement"
           element={<Announcement></Announcement>}
         ></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer />
     </>

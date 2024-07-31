@@ -8,12 +8,7 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 const bankList =
-  // [   '국민은행', '신한은행', '우리은행', '하나은행', '기업은행',
-  //     '농협은행', 'SC은행', '우체국', '한국씨티은행', '산업은행', '카카오뱅크', '부산은행',
-  //     '대구은행', '광주은행','케이뱅크','수협중앙회', '제주은행', '전북은행','지역농축협', '경남은행',
-  //     '저축은행', 'HSBC은행', '도이치은행','새마을금고연합회','신협', '제이피모건체이스', 'BOA은행',
-  //     '비엔피파라바은행', '중국공상은행', '산림조합', '중국건설은행', '토스뱅크'
-  // ]
+
   [
     "국민은행",
     "신한은행",
@@ -44,7 +39,6 @@ const accountValidationRules = {
   하나은행: "81",
   한국씨티은행: "27",
 };
-//은행 구분 계좌를 찾지 못함
 const selectedBankAccountFormats = {
   국민은행: ["000000-00-000000", "XXXXXX-XX-XXXXXX"],
   우리은행: ["000-00-000000", "XXXX-XXX-XXXXXX"],
@@ -129,22 +123,6 @@ const SettlementMain = () => {
     return formatted;
   };
 
-  //   const handleAccountNumChange = (e) => {
-  //     const value = e.target.value;
-  //     const numericValue = value.replace(/\D/g, ""); // 숫자가 아닌 문자 제거
-  //     setAccountNum(numericValue);
-
-  //     if (selectBank && accountValidationRules[selectBank]) {
-  //       const length = accountValidationRules[selectBank];
-  //       if (numericValue.length === length) {
-  //         setIsValidAccount(true);
-  //       } else {
-  //         setIsValidAccount(false);
-  //       }
-  //     } else {
-  //       setIsValidAccount(true);
-  //     }
-  //   };
   //은행에 따라 포맷형식 변경
   const handleAccountNumChange = (e) => {
     const value = e.target.value.replace(/-/g, ""); // '-' 제거
