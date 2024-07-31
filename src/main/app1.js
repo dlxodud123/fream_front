@@ -75,7 +75,7 @@ function App1() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosBaseURL.get("http://192.168.0.13:3001/home");
+        const response = await axiosBaseURL.get("/api/home");
         setShoes(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
