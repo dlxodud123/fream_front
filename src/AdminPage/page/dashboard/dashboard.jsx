@@ -311,7 +311,7 @@ const Dashboard = () => {
             title={usersToday.newUsersToday}
             subtitle="신규회원"
             progress={usersToday.progress}
-            increase={`${usersToday.userGrowthRate}%`}
+            increase={`${usersToday.userGrowthRate.toFixed(1)}%`}
             icon={
               <PeopleIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -350,7 +350,7 @@ const Dashboard = () => {
             title="보류"
             subtitle="신규 문의"
             progress={usersToday.progress}
-            increase={`${usersToday.userGrowthRate}%`}
+            
             icon={
               <QuestionAnswerIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}

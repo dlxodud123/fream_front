@@ -82,7 +82,7 @@ const AdminForm = () => {
           setReadOnly(true); // 폼을 읽기 전용으로 설정
           if (response.data.profilePicture) {
             setPreviewImage(
-              `http://localhost:3001/adminPage/files/${response.data.profilePicture}`
+              `/api/adminPage/files/${response.data.profilePicture}`
             );
           } else {
             switch (response.data.role) {

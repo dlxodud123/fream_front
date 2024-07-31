@@ -141,7 +141,7 @@ function MainHeader() {
           <div style={{}}>
             <div style={{ display: "flex", marginLeft: "650px" }}>
               <div style={{ fontSize: "22px", width: "130px" }}>
-                <a style={{ color: "black", textDecoration: "none" }} href="/">
+                <a style={{ color: "black", textDecoration: "none",marginLeft: "50px" }} href="/">
                   HOME
                 </a>
               </div>

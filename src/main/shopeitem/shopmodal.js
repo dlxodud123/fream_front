@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState ,useContext} from 'react';
 import { UserAuthContext } from '../../Auth/UserAuthContext';
 
+
 function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
   const [selectedBoxes, setSelectedBoxes] = useState([]); // 선택된 박스의 인덱스를 배열로 관리
   const [activeBox, setActiveBox] = useState(null); // 클릭 및 누르고 있는 박스의 인덱스를 상태로 관리

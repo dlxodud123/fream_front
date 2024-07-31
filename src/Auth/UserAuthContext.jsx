@@ -26,7 +26,12 @@ export const UserAuthProvider = ({ children }) => {
           "/api/auth/verifyToken",
 
           { token: jwtToken },
-          { withCredentials: true }
+          { withCredentials: true,
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+              'Content-Type': 'application/json'
+            }
+           }
         )
         .then((response) => {
           if (response.data.valid) {

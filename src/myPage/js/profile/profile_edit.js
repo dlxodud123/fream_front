@@ -53,10 +53,11 @@ const Profile_edit = () =>{
                 });
     
                 const data = response.data;
-                setUserImg(data.imageUrl);
+                console.log("업로드 후 데이터:",data)
+                setUserImg(data.profileUrl);
                 setDate(prevState => ({
                     ...prevState,
-                    img: data.imageUrl
+                    img: data.profileUrl
                 }));
             } catch (error) {
                 console.log('이미지 파일 업로드 에러 발생', error);
@@ -71,10 +72,12 @@ const Profile_edit = () =>{
         }
     }
 
-    const baseUrl = '/api/upload/ProfileImg/';
-    const imageUrl = userImg.startsWith('/upload/ProfileImg/') ? baseUrl + userImg.split('/upload/ProfileImg/')[1] : userImg;
-
-return(
+    const baseUrl = '/upload/ProfileImg/';
+    // const imageUrl = userImg.startsWith('/upload/ProfileImg/') ? baseUrl + userImg.split('/upload/ProfileImg/')[1] : userImg;
+    // const imageUrl =userImg ? (userImg.startsWith('/upload/ProfileImg/') ? baseUrl + userImg.split('/upload/ProfileImg/')[1] : userImg) : defaultProfileImg;
+    // const imageUrl = userImg.startsWith('/upload/ProfileImg/') ? userImg : `/api${userImg}`;
+    const imageUrl = userImg.startsWith('/upload/ProfileImg/') ? userImg : `/upload/ProfileImg/${userImg}`;
+    return(
 
 <div>
     <Header />
@@ -91,7 +94,7 @@ return(
                 <div className='user_profile'>
                     <div className='profile_thumb'>
                         <div className='profileIm'>
-                            <img className='img_profile' src ={imageUrl}  alt='Profile' />{/*`/api/+${userImg}` */}
+                            <img className='img_profile' src ={"/api"+imageUrl}  alt='Profile' />{/*`/api/+${userImg}` */}
                             <input
                                 hidden
                                 id='img'

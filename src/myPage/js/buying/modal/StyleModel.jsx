@@ -63,7 +63,7 @@ function StyleModal({ onClose, itemId }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/styles",
+        "api/styles",
         formData,
         {
           headers: {

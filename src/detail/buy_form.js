@@ -76,6 +76,48 @@ const Buy_form = () => {
 
   const { IMP } = window;
   IMP.init("imp25812042");
+  const [addressArry, setAddressArry] = useState([]); // 주소 데이터를 저장할 배열
+  const AddressfetchData = async () => {
+    try {
+        const res = await axios.get('/api/my/address');
+        console.log(res);
+        const transformedData = res.data.map(item => ({
+            address_id: item.addressId,
+            userId: item.userId,
+            name: item.name,
+            phone: item.phone,
+            postalCode: item.postalCode,
+            city: item.city,
+            street: item.street,
+            isDefault: item.isDefault === '1',
+        }));
+        const sortedData = transformedData.sort((a, b) => b.isDefault - a.isDefault);
+
+        console.log("기본 배송지 확인: ",sortedData);
+        // ({finalZonecode}) {finalRoadaddress} ({finalBname},{" "}
+        //   {finalBuildingname}) {finalBetterAddress}
+        setAddressArry(sortedData);
+        const defaultAddress = sortedData.find(item => item.isDefault);
+        if (defaultAddress) {
+            setFinalZonecode(defaultAddress.postalCode);
+            setFinalRoadaddress(defaultAddress.city);
+            setFinalName(defaultAddress.name);
+            setFinalBuildingname(defaultAddress.street);
+            setFinalNumber(defaultAddress.phone);
+            setFinalSaveBtn(true);
+            // setFinalBetterAddress 는 추가적인 정보를 원하시는 경우 설정
+            setFinalBetterAddress(''); // 여기에 적절한 값을 설정하세요.
+        }
+        console.log("defaultAddress:",defaultAddress)
+    
+      } catch (error) {
+        console.log('address 에러 useEffect', error);
+    }
+};
+
+useEffect(() => { // 백엔드 get 코드
+  AddressfetchData();
+}, []);
 
   useEffect(() => {
     console.log(size);

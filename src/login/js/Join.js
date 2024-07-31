@@ -33,8 +33,8 @@ const Join = () => {
       // formData 대신 userId만 전송
       data: JSON.stringify({ userId: formData.userId }), 
       success: function (response) {
-        console.log(response.code);
-        if (response.code == 0) {
+        console.log(response);
+        if (response == 0) {
           console.log("ok");
           alert("사용가능한 ID입니다.");
           setFormData((prevData) => ({
@@ -239,7 +239,7 @@ const Join = () => {
                     id="gender"
                     type="radio"
                     value="MAN"
-                    checked={formData.gender === "male"}
+                    checked={formData.gender === "MAN"}
                     onChange={handleChange}
                     name="gender"
                   />
@@ -252,7 +252,7 @@ const Join = () => {
                     id="gender"
                     type="radio"
                     value="WOMAN"
-                    checked={formData.gender === "female"}
+                    checked={formData.gender === "WOMAN"}
                     onChange={handleChange}
                     name="gender"
                   />

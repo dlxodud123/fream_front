@@ -89,7 +89,7 @@ const ProductList = () => {
 
   return (
     <Box m="20px">
-      <Header title="사용자 정보 관리" subtitle="사용자 정보 확인" />
+      <Header title="상품 관리" subtitle="상품 정보 확인" />
       <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap="20px">
         {/* 정보수정 버튼 */}
         <Button
