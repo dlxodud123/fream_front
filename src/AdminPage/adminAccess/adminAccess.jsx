@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { createContext, useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [adminAccess, setAdminAccess] = useState(true);
-  const [successAdmin, setSuccessAdmin] = useState(true);
+  const [adminAccess, setAdminAccess] = useState(false);
+  const [successAdmin, setSuccessAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate(); // useNavigate 훅 초기화
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("adminToken");
@@ -24,6 +25,7 @@ export const AuthProvider = ({ children }) => {
           );
 
           if (response.status === 200) {
+            console.log("성공")
             setAdminAccess(true);
             setSuccessAdmin(true);
           } else {
@@ -58,9 +60,12 @@ export const AuthProvider = ({ children }) => {
         console.error("Failed to logout", error);
       }
       localStorage.removeItem("adminToken");
+      
       setAdminAccess(false);
       setSuccessAdmin(false);
+      navigate('/login'); // 로그아웃 후 로그인 페이지로 리디렉션
     }
+    
   };
 
   return (

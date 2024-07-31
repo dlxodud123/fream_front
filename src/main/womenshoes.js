@@ -1,7 +1,7 @@
-
+import styled from 'styled-components';
 
 function Womenshoes(props){
-  
+
     return(
         <>
       <div style={{textAlign:"center"}} className="col-md-4">

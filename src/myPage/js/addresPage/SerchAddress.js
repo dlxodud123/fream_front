@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react';
 
-function DaumAddress({ onClose, setPostcode, setAddress }) {
+function DaumAddress({ onClose, setPostalCode, setCity }) {
   const openPostcodeWindow = useCallback(() => {
     if (typeof window.daum !== 'undefined') {
       new window.daum.Postcode({
@@ -26,13 +26,13 @@ function DaumAddress({ onClose, setPostcode, setAddress }) {
             }
           }
 
-          setPostcode(data.zonecode);
-          setAddress(fullAddress);
+          setPostalCode(data.zonecode);
+          setCity(fullAddress);
           onClose();
         },
       }).open();
     }
-  }, [onClose, setPostcode, setAddress]);
+  }, [onClose, setPostalCode, setCity]);
 
   useEffect(() => {
     openPostcodeWindow();

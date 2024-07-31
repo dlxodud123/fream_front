@@ -10,8 +10,8 @@ const Payment = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const openModalProduct = () => setModalOpen(true);
   const closeModalProduct = () => setModalOpen(false);
-
   const [date, setDate] = useState([]);
+
 
   useEffect(() => {
     axios

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function Modal_my_self ({ date,setDate }) {
+function Modal_my_self ({ date, setDate }) {
     const [newMySelf, setNewMySelf] = useState(date.userBio); //자기소개
     const [isEditing, setIsEditing] = useState(false);
     const [profile_titleCh, setProfile_titleCh] = useState('profile_title')
@@ -12,12 +12,13 @@ function Modal_my_self ({ date,setDate }) {
     }, [date.userBio]);
 
     const handleSave = () => {
+  
+      console.log(newMySelf)
       setDate(prevDate => ({
         ...prevDate,
         userBio: newMySelf,
       }));
-      // console.log(newMySelf)
-        axios.put('/api/my/profile-edit?userBio=' + newMySelf )
+        axios.put('/api/my/profile-edit?introduce=' + newMySelf )
         .then(response => {
         console.log(response.data);
         setIsEditing(false);

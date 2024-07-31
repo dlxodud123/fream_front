@@ -1,27 +1,83 @@
-import {useNavigate } from 'react-router-dom';
+import React from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
+const ItemContainer = styled.div`
+  text-align: center;
+  flex: 1 1 300px;
+  max-width: 300px;
+  margin: 10px;
+  transition: transform 0.3s ease;
 
-function Shoesitem0(props){
-    console.log(props.shoes)
-    const naviagte = useNavigate();
-    console.log(props.shoes.id)
-    return(
-        <>
-          <div style={{textAlign:"center"}} className="col-md-4">
-            <img onClick={()=>naviagte(`/products/${props.shoes.prid}`)} className="img-a-1" src={`./images/${props.shoes.imgName}`} style={{background:'#f4f4f4'}}/>
-            <div style={{textAlign:"left", marginLeft:"65px"}}>
-            <h6 onClick={()=>naviagte(`/products/${props.shoes.prid}`)} className='cursor'>{props.shoes.brand}</h6>
-            <h4 onClick={()=>naviagte(`/products/${props.shoes.prid}`)} className='cursor'>{props.shoes.nameKor}</h4>
-            <h6 style={{fontWeight:'bold'}} onClick={()=>naviagte(`/products/${props.shoes.prid}`)} className='cursor'>{props.shoes.price}원</h6>
-            </div>
-          </div>
-
-          </>
-    )
+  &:hover {
+    transform: scale(1.05);
   }
 
+  @media (max-width: 768px) {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 
-  // Shoesitem2 컴포넌트에 getData 함수 추가
+  @media (min-width: 768px) and (max-width: 992px) {
+    flex: 1 1 48%;
+    max-width: 48%;
+  }
 
+  @media (min-width: 992px) and (max-width: 1200px) {
+    flex: 1 1 31%;
+    max-width: 31%;
+  }
+`;
 
-  export {Shoesitem0} ;
+const Image = styled.img`
+  width: 100%;
+  height: auto;
+  background: #f4f4f4;
+  cursor: pointer;
+  border-radius: 10px;
+`;
+
+const InfoContainer = styled.div`
+  text-align: left;
+  margin: 10px 0;
+`;
+
+const Brand = styled.h6`
+  cursor: pointer;
+  &:hover {
+    color: #007bff;
+  }
+`;
+
+const Name = styled.h4`
+  cursor: pointer;
+  &:hover {
+    color: #007bff;
+  }
+`;
+
+const Price = styled.h6`
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    color: #007bff;
+  }
+`;
+
+function Shoesitem0(props) {
+  const navigate = useNavigate();
+  const { brand, nameKor, price, imgName, prid } = props.shoes;
+
+  return (
+    <ItemContainer>
+      <Image onClick={() => navigate(`/products/${prid}`)} src={`./images/${imgName}`} />
+      <InfoContainer>
+        <Brand onClick={() => navigate(`/products/${prid}`)}>{brand}</Brand>
+        <Name onClick={() => navigate(`/products/${prid}`)}>{nameKor}</Name>
+        <Price onClick={() => navigate(`/products/${prid}`)}>{price}원</Price>
+      </InfoContainer>
+    </ItemContainer>
+  );
+}
+
+export { Shoesitem0 };

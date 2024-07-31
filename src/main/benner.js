@@ -1,44 +1,39 @@
-import "./css/main.css";
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
+import styled from 'styled-components';
+import './css/main.css';
 
-function Benner(){
-    return(
-        <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
-        <Carousel interval={2000}>
-          <Carousel.Item>
-            <img
-              className="img-a"
-              style={{ width:'100%', height: '500px', objectFit: 'cover', backgroundColor:'white'}}
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-          <img
-            className='img-b'
-            style={{ width:'100%',height: '500px', objectFit: 'cover' }}
-          />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="img-c"
-              style={{ width:'100%',height: '500px', objectFit: 'cover' }}
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="img-d"
-              style={{ width:'100%',height: '500px', objectFit: 'cover' }}
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="img-e"
-              style={{ width:'100%',height: '500px', objectFit: 'cover' }}
-            />
-          </Carousel.Item>
-        </Carousel>
-      </div>
-    )
+const StyledCarousel = styled(Carousel)`
+  width: 100%;
+`;
+
+const CarouselImage = styled.img`
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  background-color: white;
+`;
+
+function Benner() {
+  return (
+    <StyledCarousel interval={2000}>
+      <Carousel.Item>
+        <CarouselImage className="img-a" />
+      </Carousel.Item>
+      <Carousel.Item>
+        <CarouselImage className="img-b" />
+      </Carousel.Item>
+      <Carousel.Item>
+        <CarouselImage className="img-c" />
+      </Carousel.Item>
+      <Carousel.Item>
+        <CarouselImage className="img-d" />
+      </Carousel.Item>
+      <Carousel.Item>
+        <CarouselImage className="img-e" />
+      </Carousel.Item>
+    </StyledCarousel>
+  );
 }
 
 export default Benner;
