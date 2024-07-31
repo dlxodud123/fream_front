@@ -11,11 +11,11 @@ import point_img from "./../img/detail-page/point.png";
 import guar_img from "./../img/detail-page/guar.png";
 import guar_img1 from "./../img/detail-page/guar1.png";
 import guar_img2 from "./../img/detail-page/guar2.png";
-import { BsBookmark } from "react-icons/bs";
 import { BsBookmarkFill } from "react-icons/bs";
 import Shopmodal from "../main/shopeitem/shopmodal.js";
 import { UserAuthContext } from "../Auth/UserAuthContext.jsx";
 import { useNavigate } from "react-router-dom";
+import Detail_interest from "./modal/detail_interest.js";
 
 const Detail_info = (props) => {
   let [interestModal, setInterestModal] = useState(false);
@@ -230,7 +230,7 @@ const Detail_info = (props) => {
             setFinal_Size={props.setFinal_Size}
           ></Sell_modal>
         </div>
-        <div style={{ height: "100px" }}>
+        {/* <div style={{ height: "100px" }}>
           <button
             onClick={() => {
               setInterestModal(true);
@@ -248,13 +248,6 @@ const Detail_info = (props) => {
             <BsBookmarkFill size={22} />
             <label style={{}}>&nbsp;관심상품</label>
           </button>
-          {/* {interestModal ? (
-            <Shopmodal
-              isChecked={isChecked}
-              setIsChecked={setIsChecked}
-              closeModal={closeModal}
-              showModal={showModal}
-              prId={props.main_info_shoes.prid} */}
           {interestModal && isLoggedIn ? (
             <Shopmodal
               isChecked={isChecked}
@@ -266,7 +259,8 @@ const Detail_info = (props) => {
           ) : (
             <></>
           )}
-        </div>
+        </div> */}
+        <Detail_interest prId={props.main_info_shoes.prid}></Detail_interest>
         <div className="add_benefit">
           <div style={{ textAlign: "left", fontWeight: "bold" }}>추가 혜택</div>
           <div style={{ display: "flex", fontSize: "13px", marginTop: "16px" }}>
