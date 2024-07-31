@@ -166,7 +166,7 @@ const Buy_form = () => {
             );
             if (serverResponse.status === 200) {
               console.log("Order Processed Successfully:", serverResponse.data);
-              Navigate("/success", {
+              Navigate("/buy/history", {
                 state: { paymentDetails: serverResponse.data },
               }); // 성공 페이지로 이동
             } else {
