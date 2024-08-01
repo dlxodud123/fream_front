@@ -12,10 +12,10 @@ Front-End
 Back-End
 김준형,구영모,이소래,이지혜
 
+<hr>
 <br>
 <br>
-<br>
-<br>
+
 
 # 사용한 기술
 
