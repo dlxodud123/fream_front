@@ -18,6 +18,10 @@ Back-End code
 https://github.com/junhyeong9812/fream_back
 <br>
 <br>
+PPT URL
+https://docs.google.com/presentation/d/1FhtH7zdxHCUmf0rAK6oeOYmYHFsV6ROCL8g23di3FOE/edit#slide=id.g2ef64be9aa8_6_115
+<br>
+<br>
 
 
 # 사용한 기술
