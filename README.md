@@ -14,13 +14,13 @@ Back-End
 
 # 사용한 기술
 
-## Front-End
+<h3>Front-End</h3>
 React, Javascript, Styled-Component
 
-## Back-End
+<h3>Back-End</h3>
 Spring-boot
 
-Cowork
+<h3>Cowork</h3>
 Git
 
 구현기능
