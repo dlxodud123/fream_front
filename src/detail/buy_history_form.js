@@ -13,18 +13,14 @@ const Buy_history_from = (props) => {
     useEffect(() => {
         console.log(JSON.stringify(paymentDetails, null, 2));
     }, [paymentDetails])
-    // console.log("paymentDetails")
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat("en-US").format(price);
+    };
+
     return(
         <>
             <Detail_buy_history_header></Detail_buy_history_header>
-            {paymentDetails ? (
-                <div>
-                    <h2>Payment Details:</h2>
-                    <pre>{JSON.stringify(paymentDetails, null, 2)}</pre>
-                </div>
-            ) : (
-                <p>No payment details available.</p>
-            )}
             <div className='buy_history_all'>
                 <div className='buy_history_container'>
                     <div style={{height:"30px", backgroundColor:"#f4f4f4"}}/>
@@ -38,9 +34,9 @@ const Buy_history_from = (props) => {
                         <div style={{height:"250px"}}>
                             <img src={mainImageUrls} style={{width:"220px", height:"220px", backgroundColor:"rgb(244,244,244)", borderRadius:"15px"}}></img>
                         </div>
-                        <div style={{height:"80px"}}>
+                        {/* <div style={{height:"80px"}}>
                             <button style={{width:"650px", height:"70px", fontWeight:400, fontSize:"19px"}}>구매 내역 상세보기</button>
-                        </div>
+                        </div> */}
                         <div style={{color:"grey", fontWeight:"bold"}}>즉시 구매는 취소가 불가능합니다.</div>
                     </div>
 
@@ -51,7 +47,7 @@ const Buy_history_from = (props) => {
                             <div style={{marginLeft:"30px",paddingTop:"30px", textAlign:"left" ,fontWeight:"bold", fontSize:"23px"}}>총 결제금액</div>
                         </div>
                         <div style={{height:"60px"}}>
-                            <div style={{fontSize:"30px", textAlign:"right", marginRight:"30px", fontWeight:"bold", color:"rgb(239,98,83)"}}>{paymentDetails.paidAmount+3000}원</div>
+                            <div style={{fontSize:"30px", textAlign:"right", marginRight:"30px", fontWeight:"bold", color:"rgb(239,98,83)"}}>{formatPrice(paymentDetails.paidAmount+3000)}원</div>
                         </div>
                     </div>
 
@@ -60,7 +56,7 @@ const Buy_history_from = (props) => {
                     <div style={{backgroundColor:"white", height:"270px"}}>
                         <div style={{display:"flex"}}>
                             <div style={{width:"200px", textAlign:"left", height:"80px", paddingTop:"20px", paddingLeft:"30px", fontWeight:"bold", fontSize:"20px"}}>즉시 구매가</div>
-                            <div style={{width:"500px", paddingRight:"30px", textAlign:"right", paddingTop:"20px", fontSize:"20px", fontWeight:"bold"}}>{paymentDetails.paidAmount}</div>
+                            <div style={{width:"500px", paddingRight:"30px", textAlign:"right", paddingTop:"20px", fontSize:"20px", fontWeight:"bold"}}>{formatPrice(paymentDetails.paidAmount)}</div>
                         </div>
                         <div style={{display:"flex"}}>
                             <div style={{width:"200px", color:"rgba(128,128,128,0.8)", textAlign:"left", height:"60px", paddingLeft:"30px", fontWeight:"bold", fontSize:"20px"}}>검수비</div>

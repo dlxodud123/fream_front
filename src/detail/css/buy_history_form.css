@@ -5,7 +5,7 @@ body {
 }
 .buy_history_all{
     background-color: #f4f4f4;
-    height: 1050px;
+    height: 1000px;
 }
 .buy_history_container{
     margin: auto;
@@ -13,6 +13,6 @@ body {
     text-align: center;
 }
 .buy_history_content{
-    height: 570px;
+    height: 500px;
     background-color: white;
 }
