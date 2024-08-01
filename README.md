@@ -48,6 +48,10 @@ Git
 ## 구현 기능 동영상
 <h3>로그인 페이지 (설송희)</h3>
 
+
+https://github.com/user-attachments/assets/3cf4b418-322c-46c2-a777-96f3914968a1
+
+
 <br>
 <h3>회원가입 페이지 (설송희)</h3>
 
