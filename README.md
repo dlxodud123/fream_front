@@ -43,20 +43,30 @@ Git
 ## 웹사이트 스크린샷
 <img center width="800" alt="스크린샷 2024-08-01 오전 11 30 00" src="https://github.com/user-attachments/assets/b4a08dfe-7c20-4238-a115-aff09ef9fd75">
 <br>
-<h3>로그인 페이지</h3>
+<h3>로그인 페이지</h3>(설송희)
 
 <br>
-<h3>회원가입 페이지</h3>
+<h3>회원가입 페이지</h3>(설송희)
 
 <br>
-<h3>메인 페이지</h3>
+<h3>메인 페이지</h3> (김재환)
 <img width="486" alt="스크린샷 2024-08-01 오후 1 50 52" src="https://github.com/user-attachments/assets/5601b694-1086-405f-8a62-e3ba9f45a381">
 <br>
-<h3>Shop 페이지</h3>
+<h3>Shop 페이지</h3> (김재환)
 <img width="503" alt="스크린샷 2024-08-01 오후 1 50 08" src="https://github.com/user-attachments/assets/a2ac224c-9c23-4a63-9a9e-2ce8fb72f0cb">
 <br>
-<h3>상세 페이지</h3>
 
+<h3>상세 페이지</h3> (이태영)
+<img width="1089" alt="스크린샷 2024-08-01 오후 2 08 05" src="https://github.com/user-attachments/assets/8dc8617e-f9d7-4112-9b04-e4eefe16044c">
 <br>
-<h3> 페이지</h3>
+<img width="1109" alt="스크린샷 2024-08-01 오후 2 08 29" src="https://github.com/user-attachments/assets/080aaab4-1e38-4f94-addb-87414bea6353">
+<br>
+<h3>공지사항 게시판</h3>(김재환)
+<img width="1296" alt="스크린샷 2024-07-31 오후 5 38 26" src="https://github.com/user-attachments/assets/e3e3d5f4-61c9-411d-8930-c712399f411d">
+<br>
+<h3>404 에러 페이지</h3> (김준형)
+<img width="1015" alt="스크린샷 2024-08-01 오후 2 09 23" src="https://github.com/user-attachments/assets/936d7057-08c2-49a3-af01-2fab4448d70b">
+
+
+
 
