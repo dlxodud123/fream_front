@@ -10,9 +10,10 @@ import naver_img from "./../img/detail-page/naver_pay.png";
 import kakao_img from "./../img/detail-page/kakao_pay.png";
 import toss_img from "./../img/detail-page/toss_pay.png";
 import payco_img from "./../img/detail-page/payco_pay.png";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Buy_delivery_modal from "./modal/buy_delivery_modal";
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
 
 const axiosBaseURL = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -29,6 +30,7 @@ const Buy_form = () => {
   let [finalBetterAddress, setFinalBetterAddress] = useState();
   let [finalSaveBtn, setFinalSaveBtn] = useState(false);
   let [finalCardBtn, setFinalCardBtn] = useState(false);
+  const navigate = useNavigate();
 
   let { size, id } = useParams();
   // let parseData = JSON.parse(decodeURIComponent(data)); //데이터 파싱
@@ -138,7 +140,8 @@ useEffect(() => { // 백엔드 get 코드
       {
         pg: "html5_inicis", // PG사 코드와 상점 ID
         pay_method: "card",
-        merchant_uid: `payment-${crypto.randomUUID()}`, // 주문 고유 번호
+        // merchant_uid: `payment-${crypto.randomUUID()}`, // 주문 고유 번호
+        merchant_uid:`payment-${uuidv4()}`,
         name: buyFormData.nameKor,
         amount: buyFormData.price,
         buyer_email: "pickjog@naver.com",
@@ -206,10 +209,11 @@ useEffect(() => { // 백엔드 get 코드
               "/api/orders/create",
               paymentInfo
             );
+            console.log("Order Processed Successfully:",serverResponse);
             if (serverResponse.status === 200) {
               console.log("Order Processed Successfully:", serverResponse.data);
-              Navigate("/buy/history", {
-                state: { paymentDetails: serverResponse.data },
+              navigate("/buy/history", {
+                state: { paymentDetails: paymentInfo },
               }); // 성공 페이지로 이동
             } else {
               console.error("Order Processing Failed:", serverResponse.data);
@@ -1021,7 +1025,8 @@ useEffect(() => { // 백엔드 get 코드
                     border: "none",
                   }}
                 >
-                  {formatPrice(buyFormData.price + 3000)}원・일반배송 결제하기
+                  {/* {formatPrice(buyFormData.price + 3000)}원・일반배송 결제하기 */}
+                  {formatPrice(buyFormData.price)}원・일반배송 결제하기
                 </button>
               </>
             ) : (
@@ -1041,7 +1046,8 @@ useEffect(() => { // 백엔드 get 코드
                     border: "none",
                   }}
                 >
-                  {formatPrice(buyFormData.price + 3000)}원・일반배송 결제하기
+                  {/* {formatPrice(buyFormData.price + 3000)}원・일반배송 결제하기 */}
+                  {formatPrice(buyFormData.price)}원・일반배송 결제하기
                 </button>
               </>
             )}
