@@ -11,7 +11,7 @@ Front-End
 김재환,이태영,설송희,김준형<br>
 <br>
 Back-End
-김준형,구영모,이소래,이지혜
+김준형,구영모,이소래,박지혜
 <br>
 <br>
 Back-End code
