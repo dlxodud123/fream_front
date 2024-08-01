@@ -4,7 +4,7 @@ import Footer from '../common/footer';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const Buy_history_from = () => {
+const Buy_history_from = (props) => {
 
     const location = useLocation();
     const paymentDetails = location.state?.paymentDetails;
@@ -18,8 +18,8 @@ const Buy_history_from = () => {
             <Detail_buy_history_header></Detail_buy_history_header>
             {paymentDetails ? (
                 <div>
-                <h2>Payment Details:</h2>
-                <pre>{JSON.stringify(paymentDetails, null, 2)}</pre>
+                    <h2>Payment Details:</h2>
+                    <pre>{JSON.stringify(paymentDetails, null, 2)}</pre>
                 </div>
             ) : (
                 <p>No payment details available.</p>
@@ -32,6 +32,7 @@ const Buy_history_from = () => {
                         <div style={{height:"80px"}}>
                             <div style={{fontWeight:"bold"}}>구매한 상품은 전문가의 검수 완료 후,</div>
                             <div style={{fontWeight:"bold"}}>안전하게 배송될 예정입니다.</div>
+                            {/* {props.state.buyerName} */}
                         </div>
                         <div style={{height:"250px"}}>
                             <img src={`${process.env.PUBLIC_URL}/images/kream_img001.jpg`} style={{width:"220px", height:"220px", backgroundColor:"rgb(244,244,244)", borderRadius:"15px"}}></img>

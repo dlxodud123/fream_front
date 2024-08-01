@@ -260,7 +260,9 @@ const Detail_info = (props) => {
             <></>
           )}
         </div> */}
+
         <Detail_interest prId={props.main_info_shoes.prid}></Detail_interest>
+
         <div className="add_benefit">
           <div style={{ textAlign: "left", fontWeight: "bold" }}>추가 혜택</div>
           <div style={{ display: "flex", fontSize: "13px", marginTop: "16px" }}>

@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './../css/modal/detail_interest.css';
 import { BsBookmarkFill } from "react-icons/bs";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { UserAuthContext } from '../../Auth/UserAuthContext';
 
 const Detail_interest = (props) => {
   const [showInterestModal, setShowInterestModal] = useState(false);
   const [selectedBoxes, setSelectedBoxes] = useState([]); // 선택된 박스의 인덱스를 배열로 관리
   const [activeBox, setActiveBox] = useState(null); // 클릭 및 누르고 있는 박스의 인덱스를 상태로 관리
   const [finalSizeArr, setFinalSizeArr] = useState([]);
+
+  const { isLoggedIn, handleLogout } = useContext(UserAuthContext);
+  const navigate = useNavigate();
 
   const sizeArr = [220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295];
 
@@ -70,6 +75,12 @@ const Detail_interest = (props) => {
         console.log("실패함", error);
       });
   }
+
+    useEffect(() => {
+        if (showInterestModal && !isLoggedIn) {
+            navigate('/login');
+        }
+    }, [showInterestModal, isLoggedIn, navigate]);
 
   return (
     <>
