@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState ,useContext} from 'react';
 import { UserAuthContext } from '../../Auth/UserAuthContext';
-import "./shop.css";
+// import "./shop.css";
 
 
 

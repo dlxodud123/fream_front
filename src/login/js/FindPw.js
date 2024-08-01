@@ -40,24 +40,74 @@ const FindPw = () =>{
         navigate('/login');
     };
 
+    // function generateTemporaryPassword() {
+    //     const length = 9; // 비밀번호 길이를 9자리로 설정
+    //     const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?";
+    //     let temporaryPassword = "";
+    //     for (let i = 0; i < length; i++) {
+    //         const randomIndex = Math.floor(Math.random() * charset.length);
+    //         temporaryPassword += charset[randomIndex];
+    //     }
+    //     return temporaryPassword;
+    // }
     function generateTemporaryPassword() {
         const length = 9; // 비밀번호 길이를 9자리로 설정
         const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?";
+        const lowercaseCharset = "abcdefghijklmnopqrstuvwxyz";
+        const uppercaseCharset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const numberCharset = "0123456789";
+        const specialCharset = "!@#$%^&*()_+[]{}|;:,.<>?";
+    
         let temporaryPassword = "";
-        for (let i = 0; i < length; i++) {
+    
+        // 각 카테고리에서 최소 1개씩 추가
+        temporaryPassword += lowercaseCharset[Math.floor(Math.random() * lowercaseCharset.length)];
+        temporaryPassword += uppercaseCharset[Math.floor(Math.random() * uppercaseCharset.length)];
+        temporaryPassword += numberCharset[Math.floor(Math.random() * numberCharset.length)];
+        temporaryPassword += specialCharset[Math.floor(Math.random() * specialCharset.length)];
+    
+        // 나머지 길이만큼 랜덤하게 추가
+        for (let i = 4; i < length; i++) {
             const randomIndex = Math.floor(Math.random() * charset.length);
             temporaryPassword += charset[randomIndex];
         }
+    
+        // 비밀번호를 랜덤하게 섞음
+        temporaryPassword = shuffleString(temporaryPassword);
+    
+        // 조건 확인 및 조건에 맞지 않으면 다시 생성
+        if (!isValidPassword(temporaryPassword)) {
+            return generateTemporaryPassword();
+        }
+    
         return temporaryPassword;
+    }
+    function shuffleString(str) {
+        const arr = str.split('');
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr.join('');
+    }
+    
+    function isValidPassword(password) {
+        const hasLowercase = /[a-z]/.test(password);
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasSpecial = /[!@#$%^&*()_+\[\]{}|;:,.<>?]/.test(password);
+    
+        return hasLowercase && hasUppercase && hasNumber && hasSpecial;
     }
 
     const findePassword = async () => {
         try {
-            const response = await axios.post(`/api/login/find_email`, {
+            const response = await axios.post(`/api/login/find_UserPw`, {
                 phonNum: inputPhoneNumber,
                 email: emailAddress,
             });
-            if (response.data.success) { // 서버 응답에서 성공 여부 확인
+            console.log(response)
+            if (response.data) { // 서버 응답에서 성공 여부 확인
                 sendVerificationEmail();
             } else {
                 setIsSuccess(false);
@@ -96,7 +146,7 @@ const sendVerificationEmail = () => {
                 temporaryPassword: temporaryPassword
             })
             .then((response) => {
-                if (response.data.success) {
+                if (response.data) {
                     console.log('비밀번호가 성공적으로 업데이트되었습니다.');
                     setIsSuccess(true);
                 } else {
