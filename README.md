@@ -51,6 +51,10 @@ Git
 <br>
 <h3>회원가입 페이지 (설송희)</h3>
 
+
+https://github.com/user-attachments/assets/116b3a44-ef99-40c4-a0ca-345a57a77d1c
+
+
 <br>
 <h3>메인 페이지 (김재환)</h3>
 <br>
