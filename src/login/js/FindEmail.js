@@ -30,9 +30,9 @@ const FindEmail = () => {
             const response = await axios.post('/api/login/find_email', {
                 phonNum: phonNumber
             });
-
-            if (response.data.email) {
-                setEmail(response.data.email); // 응답에서 이메일을 추출하여 상태 업데이트
+            console.log("resEM:",response);
+            if (response.data) {
+                setEmail(response.data); // 응답에서 이메일을 추출하여 상태 업데이트
                 setError(''); // 오류 상태 초기화
             } else {
                 setEmail(''); // 이메일이 없는 경우 상태 초기화

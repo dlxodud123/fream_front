@@ -12,7 +12,7 @@ const Buy_history_from = (props) => {
     useEffect(() => {
         console.log(JSON.stringify(paymentDetails, null, 2));
     }, [paymentDetails])
-
+    // console.log("paymentDetails")
     return(
         <>
             <Detail_buy_history_header></Detail_buy_history_header>
@@ -50,7 +50,7 @@ const Buy_history_from = (props) => {
                             <div style={{marginLeft:"30px",paddingTop:"30px", textAlign:"left" ,fontWeight:"bold", fontSize:"23px"}}>총 결제금액</div>
                         </div>
                         <div style={{height:"60px"}}>
-                            <div style={{fontSize:"30px", textAlign:"right", marginRight:"30px", fontWeight:"bold", color:"rgb(239,98,83)"}}>174,900원</div>
+                            <div style={{fontSize:"30px", textAlign:"right", marginRight:"30px", fontWeight:"bold", color:"rgb(239,98,83)"}}>{paymentDetails.paidAmount+3000}원</div>
                         </div>
                     </div>
 
@@ -59,7 +59,7 @@ const Buy_history_from = (props) => {
                     <div style={{backgroundColor:"white", height:"270px"}}>
                         <div style={{display:"flex"}}>
                             <div style={{width:"200px", textAlign:"left", height:"80px", paddingTop:"20px", paddingLeft:"30px", fontWeight:"bold", fontSize:"20px"}}>즉시 구매가</div>
-                            <div style={{width:"500px", paddingRight:"30px", textAlign:"right", paddingTop:"20px", fontSize:"20px", fontWeight:"bold"}}>171,900원</div>
+                            <div style={{width:"500px", paddingRight:"30px", textAlign:"right", paddingTop:"20px", fontSize:"20px", fontWeight:"bold"}}>{paymentDetails.paidAmount}</div>
                         </div>
                         <div style={{display:"flex"}}>
                             <div style={{width:"200px", color:"rgba(128,128,128,0.8)", textAlign:"left", height:"60px", paddingLeft:"30px", fontWeight:"bold", fontSize:"20px"}}>검수비</div>
