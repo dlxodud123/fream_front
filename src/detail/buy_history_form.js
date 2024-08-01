@@ -1,6 +1,7 @@
 import './css/buy_history_form.css';
 import Detail_buy_history_header from '../common/detail_buy_history_header';
 import Footer from '../common/footer';
+import Buy_history_modal from './modal/buy_history_modal';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -30,13 +31,24 @@ const Buy_history_from = (props) => {
                             <div style={{fontWeight:"bold"}}>구매한 상품은 전문가의 검수 완료 후,</div>
                             <div style={{fontWeight:"bold"}}>안전하게 배송될 예정입니다.</div>
                             {/* {props.state.buyerName} */}
+                            {/* {
+                                props.state ? (
+                                    <>
+                                    {props.state}
+                                    </>
+                                ) : (
+                                    <>
+                                    afds
+                                    </>
+                                )
+                            }  */}
                         </div>
                         <div style={{height:"250px"}}>
                             <img src={mainImageUrls} style={{width:"220px", height:"220px", backgroundColor:"rgb(244,244,244)", borderRadius:"15px"}}></img>
                         </div>
-                        {/* <div style={{height:"80px"}}>
-                            <button style={{width:"650px", height:"70px", fontWeight:400, fontSize:"19px"}}>구매 내역 상세보기</button>
-                        </div> */}
+                        <div style={{height:"90px"}}>
+                            <Buy_history_modal data={props.state}></Buy_history_modal>
+                        </div>
                         <div style={{color:"grey", fontWeight:"bold"}}>즉시 구매는 취소가 불가능합니다.</div>
                     </div>
 
@@ -48,6 +60,7 @@ const Buy_history_from = (props) => {
                         </div>
                         <div style={{height:"60px"}}>
                             <div style={{fontSize:"30px", textAlign:"right", marginRight:"30px", fontWeight:"bold", color:"rgb(239,98,83)"}}>{formatPrice(paymentDetails.paidAmount+3000)}원</div>
+                            {/* {formatPrice(paymentDetails.paidAmount+3000)} */}
                         </div>
                     </div>
 
