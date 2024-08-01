@@ -41,4 +41,4 @@ Git
 <hr>
 
 ## 웹사이트 스크린샷
-<img width="1097" alt="스크린샷 2024-08-01 오전 11 30 00" src="https://github.com/user-attachments/assets/b4a08dfe-7c20-4238-a115-aff09ef9fd75">
+<img width="800" alt="스크린샷 2024-08-01 오전 11 30 00" src="https://github.com/user-attachments/assets/b4a08dfe-7c20-4238-a115-aff09ef9fd75">
