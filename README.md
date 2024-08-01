@@ -12,12 +12,12 @@ Front-End
 Back-End
 김준형,구영모,이소래,이지혜
 
-#사용한 기술
+# 사용한 기술
 
-##Front-End
+## Front-End
 React, Javascript, Styled-Component
 
-##Back-End
+## Back-End
 Spring-boot
 
 Cowork
