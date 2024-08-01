@@ -9,9 +9,11 @@ const Buy_history_from = (props) => {
     const location = useLocation();
     const paymentDetails = location.state?.paymentDetails;
     const mainImageUrls=location.state?.mainImageUrls
-
+    const  request=location.state?.request
+    
     useEffect(() => {
         console.log(JSON.stringify(paymentDetails, null, 2));
+        console.log(request);
     }, [paymentDetails])
 
     const formatPrice = (price) => {
