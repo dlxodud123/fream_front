@@ -93,12 +93,15 @@ Git
 <br>
 <br>
 <h3>관리자 페이지(김준형)</h3>
-
-<img width="999" alt="스크린샷 2024-08-01 오후 2 26 58" src="https://github.com/user-attachments/assets/f9e8c0a6-2f4b-427d-b5fe-7da0568226d9">
+<br>
+<img width="1012" alt="스크린샷 2024-08-01 오후 2 26 58" src="https://github.com/user-attachments/assets/f9e8c0a6-2f4b-427d-b5fe-7da0568226d9">
+<br>
 <br>
 <img width="1012" alt="스크린샷 2024-08-01 오후 2 27 16" src="https://github.com/user-attachments/assets/3e09569a-afd8-4d0b-a8f5-bcaca3c5e4e0">
 <br>
-<img width="1029" alt="스크린샷 2024-08-01 오후 2 27 24" src="https://github.com/user-attachments/assets/3c4afae9-b092-448e-b689-36003244334b">
 <br>
-<img width="992" alt="스크린샷 2024-08-01 오후 2 27 33" src="https://github.com/user-attachments/assets/8cfd755d-e574-450f-9f81-618e0904f6a1">
+<img width="1012" alt="스크린샷 2024-08-01 오후 2 27 24" src="https://github.com/user-attachments/assets/3c4afae9-b092-448e-b689-36003244334b">
+<br>
+<br>
+<img width="1012" alt="스크린샷 2024-08-01 오후 2 27 33" src="https://github.com/user-attachments/assets/8cfd755d-e574-450f-9f81-618e0904f6a1">
 
