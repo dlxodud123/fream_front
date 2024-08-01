@@ -74,9 +74,8 @@ https://github.com/user-attachments/assets/ce454cac-d3c4-4c70-a3d3-fe0149ea2a3d
 https://github.com/user-attachments/assets/e0f46e8b-0476-4156-a7b9-92f3eb6a8a73
 
 <br>
-<h3>김준형</h3>
-
-<img center width="800" alt="스크린샷 2024-08-01 오전 11 30 00" src="https://www.canva.com/design/DAGMlrcGoLE/DASZrXn49cEY_EMkaeMLBg/edit?utm_content=DAGMlrcGoLE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">
+<h3>관리자 페이지 김준형</h3>
+https://github.com/user-attachments/assets/f05b4c46-2870-4547-bc19-5e95e1640d76
 <hr>
 
 ## 웹사이트 스크린샷
