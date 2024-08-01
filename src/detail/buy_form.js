@@ -213,7 +213,9 @@ useEffect(() => { // 백엔드 get 코드
             if (serverResponse.status === 200) {
               console.log("Order Processed Successfully:", serverResponse.data);
               navigate("/buy/history", {
-                state: { paymentDetails: paymentInfo },
+                state: { paymentDetails: paymentInfo,
+                  mainImageUrls:mainImageUrls[0]
+                 },
               }); // 성공 페이지로 이동
             } else {
               console.error("Order Processing Failed:", serverResponse.data);

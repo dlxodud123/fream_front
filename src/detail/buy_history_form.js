@@ -8,6 +8,7 @@ const Buy_history_from = () => {
 
     const location = useLocation();
     const paymentDetails = location.state?.paymentDetails;
+    const mainImageUrls=location.state?.mainImageUrls
 
     useEffect(() => {
         console.log(JSON.stringify(paymentDetails, null, 2));
@@ -34,7 +35,7 @@ const Buy_history_from = () => {
                             <div style={{fontWeight:"bold"}}>안전하게 배송될 예정입니다.</div>
                         </div>
                         <div style={{height:"250px"}}>
-                            <img src={`${process.env.PUBLIC_URL}/images/kream_img001.jpg`} style={{width:"220px", height:"220px", backgroundColor:"rgb(244,244,244)", borderRadius:"15px"}}></img>
+                            <img src={mainImageUrls} style={{width:"220px", height:"220px", backgroundColor:"rgb(244,244,244)", borderRadius:"15px"}}></img>
                         </div>
                         <div style={{height:"80px"}}>
                             <button style={{width:"650px", height:"70px", fontWeight:400, fontSize:"19px"}}>구매 내역 상세보기</button>
