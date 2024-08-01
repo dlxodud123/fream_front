@@ -205,6 +205,7 @@ function Post({ imageUrl, profileUrl, username, content }) {
   const [likes, setLikes] = useState(25);
   const [style, setStyle] = useState(null);
   let navigate = useNavigate();
+  const [user, setUser] = useState(null); // 사용자 상태 추가
   const [bookmarked, setBookmarked] = useState(false);
   const { isLoggedIn, handleLogout } = useContext(UserAuthContext);
   const [modalVisible, setModalVisible] = useState(false);
@@ -234,10 +235,19 @@ function Post({ imageUrl, profileUrl, username, content }) {
       .then((data) => {
         console.log("데이터:", data);
         setStyle(data);
-        setLoading(false);
+        // setLoading(false);
+      })
+      axios
+      .get(`/api/styles/by-style/${id}`)
+      .then((response) => {
+        
+        setUser(response.data);
+        console.log("유저정보:",response.data);
+        setLoading(false); // 모든 데이터 로딩 완료
       })
       .catch((error) => console.error("Error fetching style:", error));
   }, [id]);
+
 
   const toggleBookmark = () => {
     setSizeModalVisible(true); // 북마크 버튼 클릭 시 사이즈 모달 열기
@@ -393,9 +403,9 @@ function Post({ imageUrl, profileUrl, username, content }) {
       <Wrapper>
         <PostContainer>
           <ProfileSection>
-            <ProfilePic src={style.user.email} alt={"사용자"} />
+            <ProfilePic src={"/api"+user.profileUrl} alt={"사용자"} />
             <ProfileInfo>
-              <Username>{style.user.email}</Username>
+              <Username>{user.userName}</Username>
               <TimeAgo>{getTimeDifference(style.styleDate)}</TimeAgo>
             </ProfileInfo>
             <FollowButton>팔로잉</FollowButton>
@@ -412,7 +422,7 @@ function Post({ imageUrl, profileUrl, username, content }) {
             </ModalBackground>
           </ProfileSection>
           <PostImage
-            src={`http://localhost:3001/styles/image/${style.styleImgName}`}
+            src={`/api/styles/image/${style.styleImgName}`}
             alt="Post"
           />
           <IconContainer>

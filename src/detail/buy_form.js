@@ -214,7 +214,8 @@ useEffect(() => { // 백엔드 get 코드
               console.log("Order Processed Successfully:", serverResponse.data);
               navigate("/buy/history", {
                 state: { paymentDetails: paymentInfo,
-                  mainImageUrls:mainImageUrls[0]
+                  mainImageUrls:mainImageUrls[0],
+                  request:buy_request,
                  },
               }); // 성공 페이지로 이동
             } else {
