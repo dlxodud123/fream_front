@@ -57,9 +57,6 @@ Git
 <br>
 <h3>공지사항 게시판 (김재환)</h3>
 
-<br>
-<h3>404 에러 페이지 (김준형)</h3>
-
 
 <hr>
 
@@ -67,10 +64,14 @@ Git
 <img center width="800" alt="스크린샷 2024-08-01 오전 11 30 00" src="https://github.com/user-attachments/assets/b4a08dfe-7c20-4238-a115-aff09ef9fd75">
 <br>
 <h3>로그인 페이지 (설송희)</h3>
+<img width="996" alt="스크린샷 2024-08-01 오후 2 26 18" src="https://github.com/user-attachments/assets/1a160073-6fa1-4555-aa87-6b1d005587ac">
 
 <br>
 <h3>회원가입 페이지 (설송희)</h3>
-
+<img width="999" alt="스크린샷 2024-08-01 오후 2 26 25" src="https://github.com/user-attachments/assets/8be3126d-8932-40e7-8069-3dbe86b1debb">
+<br>
+<h3>마이 페이지</h3>
+<img width="1015" alt="스크린샷 2024-08-01 오후 2 31 07" src="https://github.com/user-attachments/assets/0dacb827-3868-47fc-a89a-2a23b52043fb">
 <br>
 <h3>메인 페이지 (김재환)</h3>
 <img width="486" alt="스크린샷 2024-08-01 오후 1 50 52" src="https://github.com/user-attachments/assets/5601b694-1086-405f-8a62-e3ba9f45a381">
@@ -89,7 +90,15 @@ Git
 <br>
 <h3>404 에러 페이지 (김준형)</h3>
 <img width="1015" alt="스크린샷 2024-08-01 오후 2 09 23" src="https://github.com/user-attachments/assets/936d7057-08c2-49a3-af01-2fab4448d70b">
+<br>
+<br>
+<h3>관리자 페이지(김준형)</h3>
 
-
-
+<img width="999" alt="스크린샷 2024-08-01 오후 2 26 58" src="https://github.com/user-attachments/assets/f9e8c0a6-2f4b-427d-b5fe-7da0568226d9">
+<br>
+<img width="1012" alt="스크린샷 2024-08-01 오후 2 27 16" src="https://github.com/user-attachments/assets/3e09569a-afd8-4d0b-a8f5-bcaca3c5e4e0">
+<br>
+<img width="1029" alt="스크린샷 2024-08-01 오후 2 27 24" src="https://github.com/user-attachments/assets/3c4afae9-b092-448e-b689-36003244334b">
+<br>
+<img width="992" alt="스크린샷 2024-08-01 오후 2 27 33" src="https://github.com/user-attachments/assets/8cfd755d-e574-450f-9f81-618e0904f6a1">
 
