@@ -37,6 +37,29 @@ Git
 메인페이지,샵,로그인,회원가입,마이페이지,상세페이지,상세페이지 그래프,관심상품,관리자 페이지
 
 ## 구현 기능 동영상
+<h3>로그인 페이지 (설송희)</h3>
+
+<br>
+<h3>회원가입 페이지 (설송희)</h3>
+
+<br>
+<h3>메인 페이지 (김재환)</h3>
+
+<br>
+<h3>Shop 페이지 (김재환)</h3> 
+
+<br>
+
+<h3>상세 페이지 (이태영)</h3>
+
+<br>
+
+<br>
+<h3>공지사항 게시판 (김재환)</h3>
+
+<br>
+<h3>404 에러 페이지 (김준형)</h3>
+
 
 <hr>
 
@@ -56,7 +79,7 @@ Git
 <img width="503" alt="스크린샷 2024-08-01 오후 1 50 08" src="https://github.com/user-attachments/assets/a2ac224c-9c23-4a63-9a9e-2ce8fb72f0cb">
 <br>
 
-<h3>상세 페이지 (이태영)</h3> (
+<h3>상세 페이지 (이태영)</h3>
 <img width="1089" alt="스크린샷 2024-08-01 오후 2 08 05" src="https://github.com/user-attachments/assets/8dc8617e-f9d7-4112-9b04-e4eefe16044c">
 <br>
 <img width="1109" alt="스크린샷 2024-08-01 오후 2 08 29" src="https://github.com/user-attachments/assets/080aaab4-1e38-4f94-addb-87414bea6353">
