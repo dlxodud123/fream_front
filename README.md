@@ -61,14 +61,14 @@ https://github.com/user-attachments/assets/116b3a44-ef99-40c4-a0ca-345a57a77d1c
 
 <br>
 <h3>메인 페이지 (김재환)</h3>
-<br>
 https://github.com/user-attachments/assets/78944d87-8416-4a57-bdcc-82ec0085f58f
 
+<br>
 
-<br>
 <h3>Shop 페이지 (김재환)</h3> 
-<br>
 https://github.com/user-attachments/assets/ce454cac-d3c4-4c70-a3d3-fe0149ea2a3d
+<h3>공지사항 게시판 (김재환)</h3>
+https://github.com/user-attachments/assets/e0f46e8b-0476-4156-a7b9-92f3eb6a8a73
 
 <br>
 <br>
@@ -81,9 +81,6 @@ https://github.com/user-attachments/assets/5bf1b069-5317-4f45-a870-262a2c2f3feb
 <br>
 <br>
 
-<h3>공지사항 게시판 (김재환)</h3>
-<br>
-https://github.com/user-attachments/assets/e0f46e8b-0476-4156-a7b9-92f3eb6a8a73
 
 <br>
 <h3>관리자 페이지 김준형</h3>
