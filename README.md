@@ -112,6 +112,11 @@ https://github.com/user-attachments/assets/f05b4c46-2870-4547-bc19-5e95e1640d76
 <img width="1109" alt="스크린샷 2024-08-01 오후 2 08 29" src="https://github.com/user-attachments/assets/080aaab4-1e38-4f94-addb-87414bea6353">
 <br>
 <h3>구매 페이지 (이태영)</h3>
+<br>
+<h3>판매 페이지 (이태영)</h3>
+<br>
+<h3>구매 내역 페이지 (이태영)</h3>
+<br>
 
 
 <h3>공지사항 게시판 (김재환)</h3>
