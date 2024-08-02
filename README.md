@@ -113,11 +113,12 @@ https://github.com/user-attachments/assets/f05b4c46-2870-4547-bc19-5e95e1640d76
 <br>
 <h3>구매 페이지 (이태영)</h3>
 <img width="1109" src="https://github.com/user-attachments/assets/c17fad51-1d67-460e-a2db-acf3a35250eb">
-
 <br>
 <h3>판매 페이지 (이태영)</h3>
+<img width="1109 src="https://github.com/user-attachments/assets/1115af08-3e22-4f19-bf92-851b8e40785d">
 <br>
 <h3>구매 내역 페이지 (이태영)</h3>
+<img width="1109 src="https://github.com/user-attachments/assets/a74ef7fb-e738-4d0a-8dcd-4548fcec3148">
 <br>
 
 
