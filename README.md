@@ -96,7 +96,7 @@ https://github.com/user-attachments/assets/f05b4c46-2870-4547-bc19-5e95e1640d76
 <h3>회원가입 페이지 (설송희)</h3>
 <img width="999" alt="스크린샷 2024-08-01 오후 2 26 25" src="https://github.com/user-attachments/assets/8be3126d-8932-40e7-8069-3dbe86b1debb">
 <br>
-<h3>마이 페이지</h3>
+<h3>마이 페이지 (설송희)</h3>
 <img width="1015" alt="스크린샷 2024-08-01 오후 2 31 07" src="https://github.com/user-attachments/assets/0dacb827-3868-47fc-a89a-2a23b52043fb">
 <br>
 <h3>메인 페이지 (김재환)</h3>
