@@ -69,17 +69,19 @@ https://github.com/user-attachments/assets/e0f46e8b-0476-4156-a7b9-92f3eb6a8a73
 
 <br>
 <br>
+<br>
+
 <h3>상세 페이지 (이태영)</h3>
 https://github.com/user-attachments/assets/7eac48f5-289e-4b3a-91c6-6475d838740e
 <h3>구매 페이지 (이태영)</h3>
 https://github.com/user-attachments/assets/21f8d4c4-476f-49d0-8ac7-9835fa465303
 <h3>판매 페이지 (이태영)</h3>
 https://github.com/user-attachments/assets/5bf1b069-5317-4f45-a870-262a2c2f3feb
+
+<br>
 <br>
 <br>
 
-
-<br>
 <h3>관리자 페이지 김준형</h3>
 https://github.com/user-attachments/assets/f05b4c46-2870-4547-bc19-5e95e1640d76
 <hr>
