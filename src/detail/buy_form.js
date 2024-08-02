@@ -77,7 +77,7 @@ const Buy_form = () => {
   }, [id]);
 
   const { IMP } = window;
-  IMP.init("imp25812042");
+  IMP.init("아임포트 코드키");
   const [addressArry, setAddressArry] = useState([]); // 주소 데이터를 저장할 배열
   const AddressfetchData = async () => {
     try {

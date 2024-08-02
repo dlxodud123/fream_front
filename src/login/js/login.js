@@ -221,14 +221,8 @@ const LoginPage = () => {
           </div>
 
           <KakaoLoginButton
-            // // kakaoApiKey={"e48d04cb12e0ea1773f0278aa5044a44"}
-            // kakaoApiKey={"2c38a672bc98d7bf79b19bbcaeb91eb6"}
-            // // redirectUri={"/api/auth"}
-            // redirectUri={"http://192.168.0.101:3001/kakaoLogin"}
-
-            kakaoApiKey={"fb71c1d08ebf4280c2a4c9fb49ddc744"}
-            //e48d04cb12e0ea1773f0278aa5044a44 
-            redirectUri={"http://pinjun.xyz:3001/kakaoLogin"}
+             kakaoApiKey={"카카오톡API키 필요"}
+            redirectUri={"리다이렉트URL설정"}
 
 
           />
