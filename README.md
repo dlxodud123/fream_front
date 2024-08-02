@@ -74,13 +74,9 @@ https://github.com/user-attachments/assets/ce454cac-d3c4-4c70-a3d3-fe0149ea2a3d
 
 <h3>상세 페이지 (이태영)</h3>
 https://github.com/user-attachments/assets/7eac48f5-289e-4b3a-91c6-6475d838740e
-
 <h3>구매 페이지 (이태영)</h3>
-<br>
 https://github.com/user-attachments/assets/21f8d4c4-476f-49d0-8ac7-9835fa465303
-
 <h3>판매 페이지 (이태영)</h3>
-<br>
 https://github.com/user-attachments/assets/5bf1b069-5317-4f45-a870-262a2c2f3feb
 
 <br>
