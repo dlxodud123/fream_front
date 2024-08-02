@@ -48,6 +48,10 @@ Git
 ## 구현 기능 동영상
 <h3>로그인 페이지 (설송희)</h3>
 
+
+https://github.com/user-attachments/assets/3cf4b418-322c-46c2-a777-96f3914968a1
+
+
 <br>
 <h3>회원가입 페이지 (설송희)</h3>
 
@@ -57,27 +61,27 @@ https://github.com/user-attachments/assets/116b3a44-ef99-40c4-a0ca-345a57a77d1c
 
 <br>
 <h3>메인 페이지 (김재환)</h3>
-<br>
 https://github.com/user-attachments/assets/78944d87-8416-4a57-bdcc-82ec0085f58f
-
-
-<br>
 <h3>Shop 페이지 (김재환)</h3> 
-<br>
 https://github.com/user-attachments/assets/ce454cac-d3c4-4c70-a3d3-fe0149ea2a3d
-
-<br>
-
-<h3>상세 페이지 (이태영)</h3>
-
-<br>
-
-<br>
 <h3>공지사항 게시판 (김재환)</h3>
-<br>
 https://github.com/user-attachments/assets/e0f46e8b-0476-4156-a7b9-92f3eb6a8a73
 
 <br>
+<br>
+<br>
+
+<h3>상세 페이지 (이태영)</h3>
+https://github.com/user-attachments/assets/7eac48f5-289e-4b3a-91c6-6475d838740e
+<h3>구매 페이지 (이태영)</h3>
+https://github.com/user-attachments/assets/21f8d4c4-476f-49d0-8ac7-9835fa465303
+<h3>판매 페이지 (이태영)</h3>
+https://github.com/user-attachments/assets/5bf1b069-5317-4f45-a870-262a2c2f3feb
+
+<br>
+<br>
+<br>
+
 <h3>관리자 페이지 김준형</h3>
 https://github.com/user-attachments/assets/f05b4c46-2870-4547-bc19-5e95e1640d76
 <hr>
@@ -92,7 +96,7 @@ https://github.com/user-attachments/assets/f05b4c46-2870-4547-bc19-5e95e1640d76
 <h3>회원가입 페이지 (설송희)</h3>
 <img width="999" alt="스크린샷 2024-08-01 오후 2 26 25" src="https://github.com/user-attachments/assets/8be3126d-8932-40e7-8069-3dbe86b1debb">
 <br>
-<h3>마이 페이지</h3>
+<h3>마이 페이지 (설송희)</h3>
 <img width="1015" alt="스크린샷 2024-08-01 오후 2 31 07" src="https://github.com/user-attachments/assets/0dacb827-3868-47fc-a89a-2a23b52043fb">
 <br>
 <h3>메인 페이지 (김재환)</h3>
@@ -107,6 +111,17 @@ https://github.com/user-attachments/assets/f05b4c46-2870-4547-bc19-5e95e1640d76
 <br>
 <img width="1109" alt="스크린샷 2024-08-01 오후 2 08 29" src="https://github.com/user-attachments/assets/080aaab4-1e38-4f94-addb-87414bea6353">
 <br>
+<h3>구매 페이지 (이태영)</h3>
+<img width="1109" src="https://github.com/user-attachments/assets/c17fad51-1d67-460e-a2db-acf3a35250eb">
+<br>
+<h3>판매 페이지 (이태영)</h3>
+<img width="1109" src="https://github.com/user-attachments/assets/2ea70401-eea0-4ed9-92d3-e16a8d2c40a5">
+<br>
+<h3>구매 내역 페이지 (이태영)</h3>
+<img width="1109" src="https://github.com/user-attachments/assets/34731cad-0b77-4a44-869d-2265121a298e">
+<br>
+
+
 <h3>공지사항 게시판 (김재환)</h3>
 <img width="1296" alt="스크린샷 2024-07-31 오후 5 38 26" src="https://github.com/user-attachments/assets/e3e3d5f4-61c9-411d-8930-c712399f411d">
 <br>
