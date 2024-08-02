@@ -62,9 +62,6 @@ https://github.com/user-attachments/assets/116b3a44-ef99-40c4-a0ca-345a57a77d1c
 <br>
 <h3>메인 페이지 (김재환)</h3>
 https://github.com/user-attachments/assets/78944d87-8416-4a57-bdcc-82ec0085f58f
-
-<br>
-
 <h3>Shop 페이지 (김재환)</h3> 
 https://github.com/user-attachments/assets/ce454cac-d3c4-4c70-a3d3-fe0149ea2a3d
 <h3>공지사항 게시판 (김재환)</h3>
