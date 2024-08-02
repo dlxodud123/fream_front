@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -31,10 +31,12 @@ const Title = styled.div`
 `;
 
 function StyleCategoryCard({ image, title }) {
+  const imageUrl = image.endsWith('/null') ? image.replace('/null', '/404.png') : image;
+  
   return (
     <Card>
       <ImageContainer>
-        <Image src={image} alt={title} />
+        <Image src={imageUrl} alt={title} />
       </ImageContainer>
       <Title>{title}</Title>
     </Card>

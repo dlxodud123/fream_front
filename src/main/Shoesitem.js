@@ -67,10 +67,13 @@ const Price = styled.h6`
 function Shoesitem0(props) {
   const navigate = useNavigate();
   const { brand, nameKor, price, imgName, prid } = props.shoes;
-
+  const getImagePath = (imgName, prid) => {
+    return imgName ? `/api/admin/products/files/${imgName}` : `/api/admin/products/files/${prid}_1.png`;
+  };
+ 
   return (
     <ItemContainer>
-      <Image onClick={() => navigate(`/products/${prid}`)} src={`./images/${imgName}`} />
+      <Image onClick={() => navigate(`/products/${prid}`)} src={ getImagePath(imgName, prid)} />
       <InfoContainer>
         <Brand onClick={() => navigate(`/products/${prid}`)}>{brand}</Brand>
         <Name onClick={() => navigate(`/products/${prid}`)}>{nameKor}</Name>

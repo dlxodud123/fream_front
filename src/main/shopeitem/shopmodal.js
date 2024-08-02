@@ -82,10 +82,10 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
       <div className={`modal ${showModal ? 'show' : ''}`} onClick={closeModal}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <p style={{ marginTop:'15px',fontWeight: 'bold', fontSize: '19px' }}>관심 상품 저장</p>
-            <div className='modalbox' style={{height:'500px', overflowY:'auto',boxSizing: 'content-box',paddingRight:'16px',margin:'auto' }}>
+            <div className='modalbox' style={{height:'500px', overflowY:'auto',boxSizing: 'content-box',paddingRight:'16px',margin:'auto'}}>
           <span className="close" onClick={closeModal}>&times;</span>
      
-          <div style={{ display: 'flex', marginRight: '20px' }}>
+          <div style={{ display: 'flex', marginRight: '20px',width:"400px" }}>
             {[220, 225, 230].map((size, index) => (
               <div
                 key={index}
@@ -99,7 +99,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
             ))}
           </div>
 
-          <div style={{ display: 'flex', marginRight: '20px' }}>
+          <div style={{ display: 'flex', marginRight: '20px',width:"400px" }}>
             {[235, 240, 245].map((size, index) => (
               <div
                 key={index}
@@ -113,7 +113,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
             ))}
           </div>
 
-          <div style={{ display: 'flex', marginRight: '20px' }}>
+          <div style={{ display: 'flex', marginRight: '20px',width:"400px" }}>
             {[220, 250, 255].map((size, index) => (
               <div
                 key={index}
@@ -127,7 +127,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
             ))}
           </div>
 
-          <div style={{ display: 'flex', marginRight: '20px' }}>
+          <div style={{ display: 'flex', marginRight: '20px',width:"400px" }}>
             {[220, 260, 265].map((size, index) => (
               <div
                 key={index}
@@ -141,7 +141,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
             ))}
           </div>
 
-          <div style={{ display: 'flex', marginRight: '20px' }}>
+          <div style={{ display: 'flex', marginRight: '20px',width:"400px" }}>
             {[270, 275, 280].map((size, index) => (
               <div
                 key={index}
@@ -155,7 +155,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
             ))}
           </div>
 
-          <div style={{ display: 'flex', marginRight: '20px' }}>
+          <div style={{ display: 'flex', marginRight: '20px',width:"400px" }}>
             {[285, 290, 295].map((size, index) => (
               <div
                 key={index}
@@ -169,7 +169,7 @@ function Shopmodal({ isChecked, setIsChecked, closeModal, showModal, prId }) {
             ))}
           </div>
           </div>
-          <div style={{ display: 'flex', textAlign: 'center', marginLeft: '80px', marginTop: '40px'}}>
+          <div style={{ display: 'flex', textAlign: 'center', marginLeft: '30px', marginTop: '40px'}}>
             <div
               onClick={closeModal}
               style={{

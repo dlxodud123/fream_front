@@ -27,7 +27,7 @@ function EditBoardForm({ boardList, updateBoardItem }) {
         );
 
         console.log("응답데이터:", response.data);
-
+        setTitle(response.data.title);
         setBoard(response.data);
         setWriter(response.data.user.userId);
       } catch (error) {
@@ -57,8 +57,8 @@ function EditBoardForm({ boardList, updateBoardItem }) {
     }
     formData.append("user", writer); // 현재 사용자 ID를 폼 데이터에 추가 // 실제 사용자 ID로 변경 필요
     try {
-      const response = await axios.post(
-        "/api/board",
+      const response = await axios.put(
+        `/api/board/${No}`,
         formData,
         {
           headers: {

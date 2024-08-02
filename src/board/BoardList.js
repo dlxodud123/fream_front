@@ -74,7 +74,7 @@ function BoardList({ boardList }) {
                 {board.title}
               </Link>
               <Link className="board_link" to={`/board/${board.boardId}`}>
-                {board.user.username}
+                {board.user.userName}
               </Link>
               <Link className="board_link" to={`/board/${board.boardId}`}>
                 <p style={{ fontSize: "17px" }}>{board.createdDate}</p>

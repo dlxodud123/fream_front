@@ -50,7 +50,7 @@ const pages = [
 ];
 //한글 검색을 위한 한글 매핑
 const pageMapping = {
-  대시보드: "dashboard",
+  대시보드: "",
   "관리자 계정 관리": "adminUser",
   일정관리: "calendar",
   회원관리: "member",

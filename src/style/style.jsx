@@ -128,17 +128,25 @@ const dummyPosts = [
     content: "The best of our seasonal sale!",
   },
 ];
+const StylePost = styled.div`
+  width: 300PX;
+  max-width: 300px;
+  margin-bottom: 24px;
+`;
 
 function Style() {
   const containerRef = useRef(null);
   let navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [loading,isLoading]=useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/api/styles");
-        setData(response.data);
+        // setData(response.data);
+        setData(response.data.slice(0, 10)); // 첫 10개 항목만 설정
         console.log(response.data); // 상태 업데이트 후의 데이터를 로그로 출력
+        isLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -146,27 +154,43 @@ function Style() {
 
     fetchData();
   }, []);
+  // useEffect(() => {
+  //   // Masonry 인스턴스 초기화
+  //   if (!loading) {
+  //   const masonryInstance = new Masonry(containerRef.current, {
+  //     itemSelector: ".post", // 이 클래스를 가진 요소들이 Masonry 레이아웃에 포함됩니다.
+  //     columnWidth: ".post", // columnWidth를 .post의 너비로 설정
+  //     //   columnWidth: 300,
+  //     gutter: 24,
+  //   });
+  //   // 모든 이미지 로드 대기
+  //   imagesLoaded(containerRef.current, function () {
+  //     masonryInstance.layout(); // 이미지 로드 후 레이아웃 갱신
+  //   });
+  //   // 컴포넌트 언마운트 시 Masonry 인스턴스 정리
+  //   return () => masonryInstance.destroy();
+  // }
+  // }, [loading, data]);
   useEffect(() => {
-    // Masonry 인스턴스 초기화
-    const masonryInstance = new Masonry(containerRef.current, {
-      itemSelector: ".post", // 이 클래스를 가진 요소들이 Masonry 레이아웃에 포함됩니다.
-      columnWidth: ".post", // columnWidth를 .post의 너비로 설정
-      //   columnWidth: 300,
-      gutter: 1,
-    });
-    // 모든 이미지 로드 대기
-    imagesLoaded(containerRef.current, function () {
-      masonryInstance.layout(); // 이미지 로드 후 레이아웃 갱신
-    });
-    // 컴포넌트 언마운트 시 Masonry 인스턴스 정리
-    return () => masonryInstance.destroy();
-  }, []);
+    if (!loading) {
+      imagesLoaded(containerRef.current, function () {
+        const masonryInstance = new Masonry(containerRef.current, {
+          itemSelector: ".post",
+          columnWidth: ".post",
+          gutter: 24,
+        });
+        masonryInstance.layout();
+      });
+    }
+  }, [loading, data]);
 
   const categories = [
     { id: 1, title: "7월추천", image: "/path/to/image1.jpg" },
     { id: 2, title: "팔로잉", image: "/path/to/image2.jpg" },
     // 여기에 더 많은 카테고리를 추가하세요.
   ];
+ 
+  
 
   return (
     <>
@@ -232,9 +256,14 @@ function Style() {
             </ul>
           </div>
         </div>
+        {loading?(
+            <div>로딩중</div>
+          ):(
         <Container ref={containerRef}>
+{/*           
           {data.map((post) => (
-            <StylePostItem
+            <StylePost className="post" key={post.id}>           
+             <StylePostItem
               key={post.id}
               id={post.id} // id를 prop으로 전달
               imageUrl={post.imageUrl.replace('localhost:3000', 'www.pinjun.xyz:3000/api')}
@@ -243,9 +272,33 @@ function Style() {
               content={post.content}
               className="post" // 이 클래스명은 Masonry 인스턴스에 사용됩니다.
             />
-          ))}
+            </StylePost>
+
+          ))} */}
+         
+            {data.map((post) => (
+              // <StylePost className="post" key={post.id}>
+                <StylePostItem
+                  key={post.id}
+                  id={post.id}
+                  imageUrl={post.imageUrl.replace(
+                    "localhost:3000",
+                    "www.pinjun.xyz:3000/api"
+                  )}
+                  profileUrl={post.profileUrl}
+                  username={post.username}
+                  content={post.content}
+                  className="post"
+                />
+              // </StylePost>
+            ))}
+          
+          
         </Container>
+        )}
+        {/* )} */}
       </div>
+
       <Footer />
     </>
   );

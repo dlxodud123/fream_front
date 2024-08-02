@@ -4,7 +4,7 @@ import './../css/modal/buy_history_modal.css';
 const Buy_history_modal = (props) => {
 
     const [history_modal, setHistory_modal] = useState(false);
-
+    console.log(props.data.paymentDetails)
     return(
         <>
             <button onClick={() => setHistory_modal(true)} style={{width:"650px", height:"70px", fontWeight:600, fontSize:"21px", backgroundColor:"white", borderRadius:"10px", border:"1px solid rgba(0,0,0,0.2)"}}>구매 내역 상세보기</button>
@@ -34,7 +34,7 @@ const Buy_history_modal = (props) => {
                                         </div>
                                         <div style={{width:"290px", textAlign:"left", marginTop:"10px"}}>
                                             {/* 이태영 */}
-                                            {props.data.buyerName}
+                                            {props.data.paymentDetails.buyerName}
                                         </div>
                                     </div>
                                     <div style={{display:"flex"}}>
@@ -43,7 +43,7 @@ const Buy_history_modal = (props) => {
                                         </div>
                                         <div style={{width:"290px", textAlign:"left"}}>
                                             {/* 010-1234-5678 */}
-                                            {props.data.buyerTel}
+                                            {props.data.paymentDetails.buyerTel}
                                         </div>
                                     </div>
                                     <div style={{display:"flex"}}>
@@ -52,7 +52,7 @@ const Buy_history_modal = (props) => {
                                         </div>
                                         <div style={{width:"290px", textAlign:"left"}}>
                                             {/* 서울 강남구 논현로34길 10 (도곡동) 1234 */}
-                                            {props.data.buyerAddr}
+                                            {props.data.paymentDetails.buyerAddr}
                                         </div>
                                     </div>
                                 </div>
@@ -79,13 +79,13 @@ const Buy_history_modal = (props) => {
                                     </div>
                                     <div style={{borderBottom:"3px solid black", width:"400px", marginLeft:"40px"}}></div>
                                     <div style={{display:"flex"}}>
-                                        <div style={{fontWeight:"600", textAlign:"left", width:"110px", marginLeft:"40px", height:"90px", marginTop:"10px"}}>
-                                            신한카드
-                                            {/* {props.data.cardName} */}
+                                        <div style={{fontWeight:"600", textAlign:"left", width:"110px", marginLeft:"40px", height:"60px", marginTop:"10px"}}>
+                                            {/* 신한카드 */}
+                                            {props.data.paymentDetails.cardName}
                                         </div>
                                         <div style={{width:"290px", textAlign:"left", marginTop:"10px"}}>
-                                            559410*********0
-                                            {/* {props.data.cardNumber} */}
+                                            {/* 559410*********0 */}
+                                            {props.data.paymentDetails.cardNumber}
                                         </div>
                                     </div>
                                 </div>

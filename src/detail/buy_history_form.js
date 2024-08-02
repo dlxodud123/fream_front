@@ -49,7 +49,7 @@ const Buy_history_from = (props) => {
                             <img src={mainImageUrls} style={{width:"220px", height:"220px", backgroundColor:"rgb(244,244,244)", borderRadius:"15px"}}></img>
                         </div>
                         <div style={{height:"90px"}}>
-                            <Buy_history_modal data={props.state}></Buy_history_modal>
+                            <Buy_history_modal data={location.state}></Buy_history_modal>
                         </div>
                         <div style={{color:"grey", fontWeight:"bold"}}>즉시 구매는 취소가 불가능합니다.</div>
                     </div>

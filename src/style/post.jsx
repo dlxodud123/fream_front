@@ -278,7 +278,7 @@ function Post({ imageUrl, profileUrl, username, content }) {
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
-  if (loading) return <div>Loading...</div>;
+  // if (loading) return <div>Loading...</div>;
   return (
     <>
       <div
@@ -403,10 +403,10 @@ function Post({ imageUrl, profileUrl, username, content }) {
       <Wrapper>
         <PostContainer>
           <ProfileSection>
-            <ProfilePic src={"/api"+user.profileUrl} alt={"사용자"} />
+            {/* <ProfilePic src={"/api"+user.profileUrl} alt={"사용자"} /> */}
             <ProfileInfo>
-              <Username>{user.userName}</Username>
-              <TimeAgo>{getTimeDifference(style.styleDate)}</TimeAgo>
+              {/* <Username>{user.userName}</Username> */}
+              {/* <TimeAgo>{getTimeDifference(style.styleDate)}</TimeAgo> */}
             </ProfileInfo>
             <FollowButton>팔로잉</FollowButton>
             <MoreOptions onClick={toggleModal} />
@@ -422,7 +422,7 @@ function Post({ imageUrl, profileUrl, username, content }) {
             </ModalBackground>
           </ProfileSection>
           <PostImage
-            src={`/api/styles/image/${style.styleImgName}`}
+            // src={`/api/styles/image/${style.styleImgName}`}
             alt="Post"
           />
           <IconContainer>
@@ -448,7 +448,7 @@ function Post({ imageUrl, profileUrl, username, content }) {
               setFinal_Size={handleSizeSelect}
             />
           )}
-          <Content>{style.content}</Content>
+          {/* <Content>{style.content}</Content> */}
           <div
             style={{
               padding: "16px 0",

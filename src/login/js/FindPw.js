@@ -135,7 +135,7 @@ const sendVerificationEmail = () => {
                 'service_gd9bbsg',
                 'template_0dmxz8e',
                 templateParams,
-                'hmn2jtvCHzDWF-trq', // 노출되면 안됨
+                '이메일특수키필요', // 노출되면 안됨
             )
             .then((response) => {
                 console.log('이메일 전송 완료 ', response);

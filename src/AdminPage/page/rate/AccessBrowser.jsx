@@ -12,6 +12,7 @@ const AccessBrowser = ({
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const calculateDifference = (data) => {
     if (!data || data.length === 0) return 0;
 
@@ -78,6 +79,7 @@ const AccessBrowser = ({
           setData(transformedData);
           setBrowser(calculateDifference(transformedData));
         }
+        setLoading(false); // 데이터를 모두 처리한 후 loading 상태를 false로 설정
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -111,6 +113,9 @@ const AccessBrowser = ({
         console.log("Xmin:",xMin);
         console.log("Xmax:",xMax);
         console.log("data:",data);
+        if (loading) {
+          return <div>Loading...</div>; // 로딩 중일 때 표시할 컴포넌트
+        }
   return (
     <div
       style={{

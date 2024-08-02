@@ -22,7 +22,8 @@ const PostContainer = styled.div`
 `;
 
 const PostImage = styled.img`
-  width: 100%;
+  // width: 100%;
+  width:300px;
   display: block; // 이미지가 div의 전체 너비를 차지하도록
   height: 100%;
 `;
@@ -59,7 +60,7 @@ const LikeButton = styled.button`
 function StylePostItem({ id, imageUrl, profileUrl, username, content }) {
   const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
-
+  const image = imageUrl.endsWith('/null') ? imageUrl.replace('/null', '/404.png') : imageUrl;
   const toggleLike = (e) => {
     e.stopPropagation(); // 부모 요소로의 클릭 이벤트 전파 방지
     setLiked((prevLiked) => !prevLiked);
@@ -69,7 +70,7 @@ function StylePostItem({ id, imageUrl, profileUrl, username, content }) {
   };
   return (
     <PostContainer className="post" onClick={handlePostClick}>
-      <PostImage src={imageUrl} alt="Post" />
+      <PostImage src={image} alt="Post" />
       <ProfileSection>
         <ProfilePic src={profileUrl} alt={username} />
         <Username>{username}</Username>

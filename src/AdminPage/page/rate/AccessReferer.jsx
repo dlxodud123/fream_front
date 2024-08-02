@@ -8,7 +8,7 @@ const AccessReferer = ({ isCustomLineColors = false, isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [data, setData] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     console.log("유저유입");
     const fetchData = async () => {
@@ -64,6 +64,7 @@ const AccessReferer = ({ isCustomLineColors = false, isDashboard = false }) => {
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
+      setLoading(false); // 데이터를 모두 처리한 후 loading 상태를 false로 설정
     };
 
     fetchData();
@@ -91,6 +92,10 @@ const AccessReferer = ({ isCustomLineColors = false, isDashboard = false }) => {
           Math.max(...data.flatMap((item) => item.data.map((point) => point.x)))
         )
       : defaultEndDate;
+
+      if (loading) {
+        return <div>Loading...</div>; // 로딩 중일 때 표시할 컴포넌트
+      }
 
   return (
     <div style={{ height: 1000, width: "100%", overflowX: "scroll" }}>

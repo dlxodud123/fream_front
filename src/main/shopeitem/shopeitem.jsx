@@ -31,7 +31,10 @@ export const Shopeitem = ({ shopdata, i }) => {
     setIsChecked(sizes.length > 0); // Change to FaBookmark if sizes are selected
     setShowModal(false);
   };
-
+  const getImagePath = (imgName, prid) => {
+    return imgName ? `/api/admin/products/files/${imgName}` : `/api/admin/products/files/${prid}_1.png`;
+  };
+  // getImagePath(shopdata.imgName, shopdata.prid)
   return (
     <div className="">
       <div className="card" style={{ border: 'none' }}>
@@ -39,7 +42,7 @@ export const Shopeitem = ({ shopdata, i }) => {
           onClick={() => navigate(`/products/${shopdata.prid}`)}
           className="card-img-top"
           style={{ backgroundColor: '#f4f4f4' }}
-          src={`./images/${shopdata.imgName}`}
+          src={getImagePath(shopdata.imgName, shopdata.prid)}
           alt={shopdata.nameKor}
         />
         <div className="card-body">
